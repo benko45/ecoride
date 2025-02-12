@@ -1,0 +1,115 @@
+@use "./styles/colors-variables" as colors;
+@use "./styles/global-styles";
+@use "./styles/main-styles";
+
+// @debug 'test de débogage';
+
+body {
+    margin: 0;
+}
+
+/* styles.css */
+.background-image {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../img/foret_et_terre_320_568.webp');
+    background-size: cover; /* Remplit l’espace sans déformation */
+    background-position: center; /* Centre l’image */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Texte en blanc */
+    @media screen and (min-width: 768px) {
+        height: 50vh; /* La moitié de la hauteur de l'écran */
+        width: 100%;
+        background-image: url('/public/img/foret_et_terre_degrade.webp');
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        }
+  }
+  /********************************************************/
+  /* formatage de la zone de recherche de trajet */
+  /********************************************************/
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+/*  certains coins de la première cellule et de la dernière doivent
+    s'arrondir différemment selon leur positionnement en ligne ou en colonne*/
+.premiere-cellule {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    @media screen and (min-width: 768px) {
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 20px;
+        }
+        
+}
+
+.derniere-cellule {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    @media screen and (min-width: 768px) {
+            border-bottom-left-radius: 0;
+            border-top-right-radius: 20px;
+        }
+}
+
+/************************************************/
+/*      .special-border-color-width-opacity
+/************************************************/
+
+
+@each $theme-name, $colors in colors.$themes {
+    @each $color-name, $color-value in $colors {
+        @for $i from 0 through 10 {
+            @for $j from 10 through 100 {
+                @if $j%10 == 0 {
+                    [theme=#{$theme-name}] .special-border-#{$color-name}-#{$i}-#{$j} {
+                        border-bottom-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
+                        @if $theme-name == 'light' or $theme-name == 'dark' {
+                            border-bottom-width: #{$i * 1px};
+                        } @else {
+                            border-bottom-width: #{$i * 3px};
+                        }
+                        border-bottom-style: solid;
+                        border-top: none;
+                        border-right: none;
+                        border-left:none;
+                    }
+                }
+             }
+         } 
+    }
+}
+
+@media screen and (min-width: 768px) {
+    @each $theme-name, $colors in colors.$themes {
+        @each $color-name, $color-value in $colors {
+            @for $i from 0 through 10 {
+                @for $j from 10 through 100 {
+                    @if $j%10 == 0 {
+                        [theme=#{$theme-name}] .special-border-#{$color-name}-#{$i}-#{$j} {
+                            border-right-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
+                            @if $theme-name == 'light' or $theme-name == 'dark' {
+                                border-right-width: #{$i * 1px};
+                            } @else {
+                                border-right-width: #{$i * 3px};
+                            }
+                            border-right-style: solid;
+                            border-top: none;
+                            border-bottom: none;
+                            border-left:none;
+                        }
+                    }
+                 }
+             } 
+        }
+    }
+}

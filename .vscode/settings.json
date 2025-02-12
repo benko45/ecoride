@@ -1,0 +1,25 @@
+{
+    // "liveSassCompile.settings.includeItems": [
+    //     "/src/scss/main.scss",
+    //     "/src/scss/styles/custom-themes.scss"
+    // ],
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/public/css"
+        }
+    ],
+    "liveSassCompile.settings.autoprefix": [
+        "> 1%",
+        "last 2 versions", 
+        "not dead"
+    ],
+    "liveSassCompile.settings.generateMap": true,
+    "liveSassCompile.settings.excludeList": [
+        "/**/node_modules/**",
+        "/.vscode/**"
+    ]
+
+}
+

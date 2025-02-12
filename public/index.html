@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Custom Themes</title>
+    <!-- Importation des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/custom-themes.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- <link rel="stylesheet" href="./css/test.css"> -->
+</head>
+<body class="background-light">
+    <button data-theme="light">Mode Clair</button>
+    <button data-theme="dark">Mode Sombre</button>
+    <button data-theme="accessibility-light">Accessibilité claire</button>
+    <button data-theme="accessibility-dark">Accessibilité Sombre</button>
+
+    <div class="container">
+    <div class="background-image">          
+        <div class="container">
+            <div class="row  justify-content-center align-content-center traject-search-bloc-width">
+                <div class="col-lg-2 col-md-2 col-12 background-light p-3 d-flex premiere-cellule element-height-10 special-border-primary-1-100">
+                        <div class="d-inline-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-circle icon" viewBox="-2 -2 20 20">
+                                <path  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            </svg>
+                        </div>
+                        <label for="form-depart" class="form-label visually-hidden"></label>
+                        <input type="text" class="form-control no-border txt-primary fw-semibold background-light" id="form-depart" placeholder="Départ">
+                </div>
+                <div class="col-lg-2 col-md-2 col-12 p-3 txt-primary background-light special-border-primary-1-100">Colonne 2</div>
+                <div class="col-lg-2 col-md-2 col-12 p-3 txt-primary background-light special-border-primary-1-100">Colonne 3</div>
+                <div class="col-lg-2 col-md-2 col-12 p-3 txt-primary background-light special-border-primary-1-100">Colonne 4</div>
+                <button class="col-lg-2 col-md-2 col-12 p-3 txt-light fw-semibold background-secondary d-flex derniere-cellule no-border justify-content-center align-items-center element-height-10">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="../src/js/index.js" defer></script>
+</body>
+</html>

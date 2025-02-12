@@ -1,0 +1,17 @@
+/* centrage de la zone de recherche de trajet*/
+.align-content-center {
+  @media screen and (min-width: 768px) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
+}
+
+.traject-search-bloc-width {
+  width: 100%;
+  @media screen and (min-width: 768px) {
+      width: 70%;
+  }
+}

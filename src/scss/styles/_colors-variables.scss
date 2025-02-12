@@ -1,0 +1,71 @@
+/**********************************************/
+// 🎨 Définition des palettes de couleurs
+/**********************************************/
+$themes: (
+    "light": (
+        //"primary": purple,  // Vert forêt
+        "primary":   #4CAF50,  // Vert lumineux
+        "secondary": #4CAF50, // Vert menthe doux
+        "success":   #388E3C,  // Vert herbe fraîche
+        "warning":   #FFB74D,  // Orange doux
+        "danger":    #D84315,  // Rouge terre
+        "info":      #4FC3F7,  // Bleu doux
+        "light":     #ffffff,  // blanc
+        "dark":      #1B5E20,  // Vert foncé
+        "body-bg":   #E8F5E9,  // Fond vert clair naturel
+        "body":      #425F0D,  // Texte vert forêt
+        "link":      #388E3C,   // Couleur des liens
+        "heading":   #425F0D // Couleur des titres
+    ),
+    "dark": (
+        "primary":   #4CAF50,  // Vert feuillage lumineux
+        "secondary": #4CAF50, // Vert tendre
+        "success":   #66BB6A,  // Vert vif
+        "warning":   #FFB74D,  // Orange automnal
+        "danger":    #E57373,  // Rouge doux
+        "info":      #4FC3F7,  // Bleu clair
+        "light":     #000000,  // blanc
+        "dark":      #ffffff,  // Vert forêt profond
+        "body-bg":   #121A13,  // Noir verdoyant
+        "body":      #425F0D,  // Texte vert clair
+        "link":      #388E3C,   // Couleur des liens
+        "heading":   #425F0D // Couleur des titres
+    ),
+    "accessibility-light": (
+        "primary":   #1A1A1A, // Noir doux, excellent contraste
+        "secondary": #3B3B3B, // Gris très foncé
+        "success":   #77D625, // Vert profond avec fort contraste
+        "warning":   #8C5100, // Orange brun foncé pour bon contraste
+        "info":      #004488, // Bleu foncé mais lisible
+        "danger":    #7D0000, // Rouge sombre pour éviter saturation
+        "body-bg":   #FAFAFA, // Blanc légèrement teinté pour réduire l’éblouissement
+        "body":      #111111, // Noir presque pur pour maximiser lisibilité
+        "light":     #ffffff, // blanc pur pour sections contrastées
+        "dark":      #000000,  // Noir pur pour sections contrastées
+        "link":      #004488,   // Bleu foncé pour visibilité accrue
+        "heading":   #1A1A1A // Titres bien définis, excellent contraste
+    ),
+    "accessibility-dark": (
+        "primary":   #E5E5E5, // Vert foncé au lieu d'un gris clair
+        "secondary": #ffffff, // Gris foncé pour meilleur contraste
+        "success":   #77D625, // Vert profond et accessible
+        "warning":   #AD5E00, // Orange foncé compatible
+        "info":      #004488, // Bleu lisible
+        "danger":    #990000, // Rouge sombre et accessible
+        "body-bg":   #181818, // Noir atténué (moins fatiguant)
+        "body":      #EAEAEA, // Texte clair lisible
+        "light":     #000000, // Gris foncé au lieu d'un gris trop clair
+        "dark":      #F5F5F5, // Gris clair pour ne pas être un blanc pur
+        "link":      #88C0D0,  // Bleu lisible
+        "heading":   #EAEAEA // Titres bien contrastés
+    )
+);
+
+@each $theme-name, $colors in $themes {
+    [theme="#{$theme-name}"] {
+      @each $color-name, $color-value in $colors {
+        --custom-#{$color-name}: #{$color-value}; // Définit les variables CSS
+        --custom-#{$color-name}-rgb: #{red($color-value)}, #{green($color-value)}, #{blue($color-value)}; // Définit les variables CSS  
+      }
+    }
+  }

@@ -1,0 +1,140 @@
+@use 'sass:map';
+@use './colors-variables' as colors;
+
+// ✅ GÉNÉRATION DES CLASSES DE COULEURS DE TEXTE
+@each $theme-name, $colors in colors.$themes {
+    @each $color-name, $color-value in $colors {
+        [theme=#{$theme-name}] .txt-#{$color-name} {
+          color: $color-value;
+          font-weight: if($theme-name == 'light' or $theme-name == 'dark', 200, 800);
+        }
+    }
+}
+
+// ✅ CLASSES DE POLICES
+.montserrat { font-family: 'Montserrat', sans-serif; }
+.hind { font-family: 'Hind Madurai', sans-serif; }
+
+// ✅ CLASSES DE TAILLES DE TEXTE
+$font-weights : (
+  "thin": 100,
+  "extra-light": 200,
+  "light": 300,
+  "regular": 400,
+  "medium": 500,
+  "semi-bold": 600,
+  "bold": 700,
+  "extra-bold": 800,
+  "black": 900
+);
+
+@each $font-weight-name, $font-weight-value in $font-weights {
+  .#{$font-weight-name} { font-weight: $font-weight-value; }
+}
+
+// ✅ CLASSES DE STYLES DE TEXTE
+$font-styles: (
+  "normal": normal,
+  "italic": italic,
+  "oblique": oblique
+);
+@each $font-style-name, $font-style-value in $font-styles {
+  .#{$font-style-name} { font-style: $font-style-value; }
+}
+
+// ✅ CLASSES DE TRANSFORMATIONS DE TEXTE
+$font-transforms: (
+  "uppercase": uppercase,
+  "lowercase": lowercase,
+  "capitalize": capitalize,
+  "none": none
+);
+@each $font-transform-name, $font-transform-value in $font-transforms {
+  .#{$font-transform-name} { text-transform: $font-transform-value; }
+}
+
+// ✅ CLASSES DE DÉCORATIONS DE TEXTE
+$font-decorations: (
+  "underline": underline,
+  "overline": overline,
+  "line-through": line-through,
+  "none": none
+);
+@each $font-decoration-name, $font-decoration-value in $font-decorations {
+  .#{$font-decoration-name} { text-decoration: $font-decoration-value; }
+}
+
+// ✅ CLASSES DE ALIGNEMENT DE TEXTE
+$font-alignments: (
+  "left": left,
+  "center": center,
+  "right": right,
+  "justify": justify
+);
+@each $font-alignment-name, $font-alignment-value in $font-alignments {
+  .#{$font-alignment-name} { text-align: $font-alignment-value; }
+}
+
+// ✅ CLASSES DE ESPACEMENT DE TEXTE
+$font-spacings: (
+  "normal": normal,
+  "0": 0,
+  "1": 0.25em,
+  "2": 0.5em,
+  "3": 0.75em,
+  "4": 1em,
+  "5": 1.25em,
+  "6": 1.5em,
+  "7": 1.75em,
+  "8": 2em,
+  "9": 2.25em,
+  "10": 2.5em
+);
+@each $font-spacing-name, $font-spacing-value in $font-spacings {
+  .letter-spacing-#{$font-spacing-name} { letter-spacing: $font-spacing-value; }
+}
+
+// ✅ CLASSES DE ESPACEMENT DE LIGNE
+$line-heights: (
+  "normal": normal,
+  "1": 1,
+  "1_25": 1.25,
+  "1_5": 1.5,
+  "1_75": 1.75,
+  "2": 2,
+  "2_25": 2.25,
+  "2_5": 2.5,
+  "2_75": 2.75,
+  "3": 3
+);
+@each $line-height-name, $line-height-value in $line-heights {
+  @if $line-height-name != "normal" {
+    .line-height-#{$line-height-name} { line-height: unquote($line-height-value + 'em'); }
+  } @else {
+    .line-height-#{$line-height-name} { line-height: 1em; }
+  }
+  
+}
+
+// ✅ CLASSES DE OMBRES DE TEXTE
+$font-shadows: (
+  "none": none,
+  "small": 0 1px 3px,
+  "medium": 0 2px 4px,
+  "large": 0 4px 8px
+);
+
+@each $theme-name, $colors in colors.$themes {
+  @each $font-shadow-name, $font-shadow-value in $font-shadows {
+    @if $font-shadow-name != none {
+      @each $color, $value in $colors {
+        [theme=#{$theme-name}] .text-shadow-#{$font-shadow-name}-#{$color}{
+          text-shadow: $font-shadow-value rgba( var(--custom-#{$color}-rgb),0.12 );
+        }
+      }
+    }
+    @else {
+      [theme=#{$theme-name}] .text-shadow-none{ text-shadow: none; } 
+    }
+  }
+}

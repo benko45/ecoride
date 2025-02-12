@@ -1,0 +1,67 @@
+@use './colors-variables' as colors;
+
+/************************************************/
+/* ✅ GÉNÉRATION DES CLASSES DE BORDURES
+/************************************************/
+
+/************************************************/
+/*            .border-color-width
+/************************************************/
+
+@each $theme-name, $colors in colors.$themes {
+  @each $color-name, $color-value in $colors {
+    @for $i from 1 through 10 {
+        [theme=#{$theme-name}] .border-#{$color-name}-#{$i} { border-color: $color-value; border-width: #{$i * 1px}; border-style: solid; } 
+    } 
+  }
+}
+
+/************************************************/
+/*            .border-color-width-opacity
+/************************************************/
+
+@each $theme-name, $colors in colors.$themes {
+    @each $color-name, $color-value in $colors {
+        @for $i from 0 through 10 {
+            @for $j from 10 through 100 {
+                @if $j%10 == 0 {
+                    [theme=#{$theme-name}] .border-#{$color-name}-#{$i}-#{$j} {
+                        border-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
+                        border-width: #{$i * 1px};
+                        border-style: solid;
+                    }
+                }
+            }
+        } 
+    }
+}
+
+/************************************************/
+/*      .border-position-color-width-opacity
+/************************************************/
+
+
+$border-position: (
+  "top": top,
+  "right": right,
+  "bottom": bottom,
+  "left": left
+);
+
+@each $position-name, $position-value in $border-position {
+    @each $theme-name, $colors in colors.$themes {
+        @each $color-name, $color-value in $colors {
+            @for $i from 0 through 10 {
+                @for $j from 10 through 100 {
+                    @if $j%10 == 0 {
+                        [theme=#{$theme-name}] .border-#{$position-value}-#{$color-name}-#{$i}-#{$j} {
+                            border-#{$position-value}-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
+                            border-#{$position-value}-width: #{$i * 1px};
+                            border-#{$position-value}-style: solid;
+                        }
+                    }
+                }
+            } 
+        }
+    }
+}
