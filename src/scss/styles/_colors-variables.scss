@@ -3,9 +3,8 @@
 /**********************************************/
 $themes: (
     "light": (
-        //"primary": purple,  // Vert forêt
-        "primary":   #4CAF50,  // Vert lumineux
-        "secondary": #4CAF50, // Vert menthe doux
+        "primary":   #425F0D,  // Vert lumineux
+        "secondary": #425F0D, // Vert menthe doux
         "success":   #388E3C,  // Vert herbe fraîche
         "warning":   #FFB74D,  // Orange doux
         "danger":    #D84315,  // Rouge terre
@@ -18,8 +17,8 @@ $themes: (
         "heading":   #425F0D // Couleur des titres
     ),
     "dark": (
-        "primary":   #4CAF50,  // Vert feuillage lumineux
-        "secondary": #4CAF50, // Vert tendre
+        "primary":   #425F0D,  // Vert feuillage lumineux
+        "secondary": #425F0D, // Vert tendre
         "success":   #66BB6A,  // Vert vif
         "warning":   #FFB74D,  // Orange automnal
         "danger":    #E57373,  // Rouge doux
@@ -62,7 +61,7 @@ $themes: (
 );
 
 @each $theme-name, $colors in $themes {
-    [theme="#{$theme-name}"] {
+    html[theme="#{$theme-name}"] {
       @each $color-name, $color-value in $colors {
         --custom-#{$color-name}: #{$color-value}; // Définit les variables CSS
         --custom-#{$color-name}-rgb: #{red($color-value)}, #{green($color-value)}, #{blue($color-value)}; // Définit les variables CSS  

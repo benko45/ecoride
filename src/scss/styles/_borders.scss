@@ -18,7 +18,7 @@
 @each $theme-name, $colors in colors.$themes {
   @each $color-name, $color-value in $colors {
     @for $i from 1 through 10 {
-        [theme=#{$theme-name}] .border-#{$color-name}-#{$i} { border-color: $color-value; border-width: #{$i * 1px}; border-style: solid; } 
+        html[theme=#{$theme-name}] .border-#{$color-name}-#{$i} { border-color: $color-value; border-width: #{$i * 1px}; border-style: solid; } 
     } 
   }
 }
@@ -40,7 +40,7 @@
         @for $i from 0 through 10 {
             @for $j from 10 through 100 {
                 @if $j%10 == 0 {
-                    [theme=#{$theme-name}] .border-#{$color-name}-#{$i}-#{$j} {
+                    html[theme=#{$theme-name}] .border-#{$color-name}-#{$i}-#{$j} {
                         border-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
                         border-width: #{$i * 1px};
                         border-style: solid;
@@ -77,7 +77,7 @@ $border-position: (
             @for $i from 0 through 10 {
                 @for $j from 10 through 100 {
                     @if $j%10 == 0 {
-                        [theme=#{$theme-name}] .border-#{$position-value}-#{$color-name}-#{$i}-#{$j} {
+                        html[theme=#{$theme-name}] .border-#{$position-value}-#{$color-name}-#{$i}-#{$j} {
                             border-#{$position-value}-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
                             border-#{$position-value}-width: #{$i * 1px};
                             border-#{$position-value}-style: solid;
@@ -114,7 +114,7 @@ $border-position: (
 //         @each $color-name, $color-value in $colors {
 //             @for $i from 0 through 10 {
 //                 @for $j from 0 through 10 {
-//                     [theme=#{$theme-name}] .box-shadow-#{$position-value}-#{$color-name}-#{$j}-#{$i} {
+//                     html[theme=#{$theme-name}] .box-shadow-#{$position-value}-#{$color-name}-#{$j}-#{$i} {
 //                         box-shadow: if($position-value== 'top', 0 -4px, if($position-value== 'bottom', 0 4px, if($position-value== 'right', 4px 0, -4px 0))) #{$j * 2px} rgba(var(--custom-#{$color-name}-rgb),  $i * 0.01);
 //                     }
 

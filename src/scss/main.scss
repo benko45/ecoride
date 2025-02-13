@@ -62,7 +62,7 @@ body {
 }
 
 .dropdown-toggle::after {
-    border-top-color: var(--custom-light) !important; /* Change la couleur de la flèche */
+    border-top-color: var(--custom-primary) !important; /* Change la couleur de la flèche */
 }
 
 .dropdown ul {
@@ -72,6 +72,7 @@ body {
 .icon-color {
     fill: var(--custom-primary) !important;
     stroke: var(--custom-primary) !important;
+    stroke-width: 1px;
 }
 
 button svg {
@@ -80,7 +81,21 @@ button svg {
 }
 
 svg {
-    color: red; /* Devrait colorer l'icône */
+    color: var(--custom-primary); /* Devrait colorer l'icône */
+    &:hover {
+        color: var(--custom-dark); /* Devrait colorer l'icône */
+    }
+}
+
+svg symbol path{
+    stroke-width: 5px !important;
+}
+
+.dropdown-item {
+    color: var(--custom-primary);
+    &:hover {
+        background-color: var(--custom-primary);
+    }
 }
 
 

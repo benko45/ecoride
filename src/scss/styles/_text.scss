@@ -4,7 +4,7 @@
 // ✅ GÉNÉRATION DES CLASSES DE COULEURS DE TEXTE
 @each $theme-name, $colors in colors.$themes {
     @each $color-name, $color-value in $colors {
-        [theme=#{$theme-name}] .txt-#{$color-name} {
+        html[theme=#{$theme-name}] .txt-#{$color-name} {
           color: $color-value;
           font-weight: if($theme-name == 'light' or $theme-name == 'dark', 400, 600);
         }
@@ -128,13 +128,13 @@ $font-shadows: (
   @each $font-shadow-name, $font-shadow-value in $font-shadows {
     @if $font-shadow-name != none {
       @each $color, $value in $colors {
-        [theme=#{$theme-name}] .text-shadow-#{$font-shadow-name}-#{$color}{
+        html[theme=#{$theme-name}] .text-shadow-#{$font-shadow-name}-#{$color}{
           text-shadow: $font-shadow-value rgba( var(--custom-#{$color}-rgb),0.12 );
         }
       }
     }
     @else {
-      [theme=#{$theme-name}] .text-shadow-none{ text-shadow: none; } 
+      html[theme=#{$theme-name}] .text-shadow-none{ text-shadow: none; } 
     }
   }
 }
