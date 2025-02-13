@@ -82,9 +82,6 @@ button svg {
 
 svg {
     color: var(--custom-primary); /* Devrait colorer l'icône */
-    &:hover {
-        color: var(--custom-dark); /* Devrait colorer l'icône */
-    }
 }
 
 svg symbol path{
