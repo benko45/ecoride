@@ -412,242 +412,242 @@
 
 [theme=light] .txt-primary {
   color: #4CAF50;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-secondary {
   color: #4CAF50;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-success {
   color: #388E3C;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-warning {
   color: #FFB74D;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-danger {
   color: #D84315;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-info {
   color: #4FC3F7;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-light {
   color: #ffffff;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-dark {
   color: #1B5E20;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-body-bg {
   color: #E8F5E9;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-body {
   color: #425F0D;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-link {
   color: #388E3C;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=light] .txt-heading {
   color: #425F0D;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-primary {
   color: #4CAF50;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-secondary {
   color: #4CAF50;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-success {
   color: #66BB6A;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-warning {
   color: #FFB74D;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-danger {
   color: #E57373;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-info {
   color: #4FC3F7;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-light {
   color: #000000;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-dark {
   color: #ffffff;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-body-bg {
   color: #121A13;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-body {
   color: #425F0D;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-link {
   color: #388E3C;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=dark] .txt-heading {
   color: #425F0D;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 [theme=accessibility-light] .txt-primary {
   color: #1A1A1A;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-secondary {
   color: #3B3B3B;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-success {
   color: #77D625;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-warning {
   color: #8C5100;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-info {
   color: #004488;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-danger {
   color: #7D0000;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-body-bg {
   color: #FAFAFA;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-body {
   color: #111111;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-light {
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-dark {
   color: #000000;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-link {
   color: #004488;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-light] .txt-heading {
   color: #1A1A1A;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-primary {
   color: #E5E5E5;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-secondary {
   color: #ffffff;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-success {
   color: #77D625;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-warning {
   color: #AD5E00;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-info {
   color: #004488;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-danger {
   color: #990000;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-body-bg {
   color: #181818;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-body {
   color: #EAEAEA;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-light {
   color: #000000;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-dark {
   color: #F5F5F5;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-link {
   color: #88C0D0;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 [theme=accessibility-dark] .txt-heading {
   color: #EAEAEA;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .montserrat {

@@ -37,7 +37,7 @@ $browser-infix: ('::', '::-webkit-input-', ':-ms-input-');
     @each $infix in $browser-infix {
       input#{$infix}placeholder {
         color: var(--custom-primary);
-        font-weight: if($theme-name == 'light' or $theme-name == 'dark', 200, 800);
+        font-weight: if($theme-name == 'light' or $theme-name == 'dark', 400, 600);
       }
     }
   }

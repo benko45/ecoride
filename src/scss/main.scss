@@ -1,15 +1,86 @@
+@use 'sass:map';
 @use "./styles/colors-variables" as colors;
 @use "./styles/global-styles";
-@use "./styles/main-styles";
 
 // @debug 'test de débogage';
+
+/************************************************/
+$breakpoints: (
+    'xs': 0,
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px
+);
+$breakpoint: map.get($breakpoints, 'md');
 
 body {
     margin: 0;
 }
 
-/* styles.css */
+/****************************************************/
+/*              🔍 Menu thème (dropdown) 
+/****************************************************/
+.theme-icon {
+    display: none;
+}
+
+/* Afficher l'icône en fonction du mode actif */
+[selected-theme="auto"] .icon-auto {
+    display: flex !important;
+}
+
+[selected-theme="light"] .icon-light,
+[selected-theme="dark"] .icon-dark,
+[selected-theme="accessibility-light"] .icon-accessibility-light,
+[selected-theme="accessibility-dark"] .icon-accessibility-dark {
+    display: flex;
+}
+
+/* Masquer toutes les autres icônes en mode auto */
+[selected-theme="auto"] .theme-icon:not(.icon-auto) {
+    display: none !important;
+}
+
+.dropdown {
+    position: absolute;
+    top: 10%; /* Ajuste la distance depuis le haut */
+    left: 50% !important;
+    transform: translate(-50%, 10%) !important;
+    z-index: 1050; /* S'assure que le menu est au-dessus */
+    @media screen and (min-width: $breakpoint) {
+        top: 25%; /* Ajuste la distance depuis le haut */
+        left: 50% !important;
+        transform: translate(-50%, 25%) !important;
+    }
+}
+
+.dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: max-content;
+}
+
+.dropdown-toggle::after {
+    border-top-color: var(--custom-light) !important; /* Change la couleur de la flèche */
+}
+
+/*  formatage des icônes du menu thème déroulant*/
+.icon-color {
+    fill: var(--custom-light);
+    stroke: var(--custom-light);
+}
+
+button svg {
+    width: 16px;
+    height: 16px;
+}
+
+
+/*      image de fond            */
 .background-image {
+    position: relative;
+
     height: 100vh;
     width: 100%;
     background-image: url('../img/foret_et_terre_320_568.webp');
@@ -17,10 +88,11 @@ body {
     background-position: center; /* Centre l’image */
 
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     color: white; /* Texte en blanc */
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpoint) {
         height: 50vh; /* La moitié de la hauteur de l'écran */
         width: 100%;
         background-image: url('/public/img/foret_et_terre_degrade.webp');
@@ -28,24 +100,38 @@ body {
         // justify-content: center;
         // align-items: center;
         }
-  }
-  /********************************************************/
-  /* formatage de la zone de recherche de trajet */
-  /********************************************************/
+}
+/********************************************************/
+/* formatage de la zone de recherche de trajet */
+/********************************************************/
 
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+.traject-container {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    // background-color: red;
+    width: 75%;
+}
+
+.traject-container .row {
+    width: 100%; // Assurer que la .row prend toute la largeur du parent
+    margin: 0;   // Éviter que les marges négatives ne posent problème
+}
+
+.traject-search-bloc-width {
+    width: 100%;
+    @media screen and (min-width: $breakpoint) {
+        width: 70%;
+    }
+}
 
 /*  certains coins de la première cellule et de la dernière doivent
     s'arrondir différemment selon leur positionnement en ligne ou en colonne*/
 .premiere-cellule {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpoint) {
             border-top-right-radius: 0;
             border-bottom-left-radius: 20px;
         }
@@ -55,14 +141,24 @@ body {
 .derniere-cellule {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpoint) {
             border-bottom-left-radius: 0;
             border-top-right-radius: 20px;
         }
 }
 
 /************************************************/
-/*      .special-border-color-width-opacity
+/*
+/*      .moving-border-color-width-opacity
+/*
+/************************************************/
+/*
+/* This class is used to create a defaut bottom-border.
+/* But beyond breakpoints, it will create a right-border.
+/*
+/*     color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*     width: 0 to 10
+/*     opacity: 10 to 100
 /************************************************/
 
 
@@ -71,13 +167,9 @@ body {
         @for $i from 0 through 10 {
             @for $j from 10 through 100 {
                 @if $j%10 == 0 {
-                    [theme=#{$theme-name}] .special-border-#{$color-name}-#{$i}-#{$j} {
+                    [theme=#{$theme-name}] .moving-border-#{$color-name}-#{$i}-#{$j} {
                         border-bottom-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
-                        @if $theme-name == 'light' or $theme-name == 'dark' {
-                            border-bottom-width: #{$i * 1px};
-                        } @else {
-                            border-bottom-width: #{$i * 3px};
-                        }
+                        border-bottom-width: if($theme-name == 'light' or $theme-name == 'dark', #{$i * 1px}, #{$i * 3px});
                         border-bottom-style: solid;
                         border-top: none;
                         border-right: none;
@@ -89,19 +181,15 @@ body {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $breakpoint) {
     @each $theme-name, $colors in colors.$themes {
         @each $color-name, $color-value in $colors {
             @for $i from 0 through 10 {
                 @for $j from 10 through 100 {
                     @if $j%10 == 0 {
-                        [theme=#{$theme-name}] .special-border-#{$color-name}-#{$i}-#{$j} {
+                        [theme=#{$theme-name}] .moving-border-#{$color-name}-#{$i}-#{$j} {
                             border-right-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
-                            @if $theme-name == 'light' or $theme-name == 'dark' {
-                                border-right-width: #{$i * 1px};
-                            } @else {
-                                border-right-width: #{$i * 3px};
-                            }
+                            border-bottom-width: if($theme-name == 'light' or $theme-name == 'dark', #{$i * 1px}, #{$i * 3px});
                             border-right-style: solid;
                             border-top: none;
                             border-bottom: none;
@@ -110,6 +198,71 @@ body {
                     }
                  }
              } 
+        }
+    }
+}
+
+/************************************************/
+/*
+/*      .special-box-shadow-color-spread-opacity
+/*
+/************************************************/
+/*
+/*      color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*      spread: 0 to 10
+/*      opacity: 0 to 10
+/*
+/************************************************/
+
+// @media screen and (min-width: $breakpoint) {
+//     $border-position: (
+//         "top": top,
+//         "right": right,
+//         "bottom": bottom,
+//         "left": left
+//     );
+//     @each $theme-name, $colors in colors.$themes {
+//         @each $color-name, $color-value in $colors {
+//             @for $i from 0 through 10 {
+//                 @for $j from 0 through 10 {
+//                     [theme=#{$theme-name}] .special-box-shadow-#{$color-name}-#{$j}-#{$i} {
+//                         box-shadow: 0 4px #{$j * 2px} rgba($color-value, $i * 0.1) !important;
+//                     }
+
+//                 }
+//             } 
+//         }
+//     }
+// }
+
+/************************************************/
+/*
+/*      .bottom-border-color-width-opacity
+/*
+/************************************************/
+/*
+/* This class is used to create a bottom-border
+/* when min-width is beyond breakpoint
+/*
+/*     color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*     width: 0 to 10
+/*     opacity: 10 to 100
+/************************************************/
+
+@media screen and (min-width: $breakpoint) {
+    @each $theme-name, $colors in colors.$themes {
+        @each $color-name, $color-value in $colors {
+            @for $i from 0 through 10 {
+                @for $j from 10 through 100 {
+                    @if $j%10 == 0 {
+                        [theme=#{$theme-name}] .bottom-border-#{$color-name}-#{$i}-#{$j} {
+                            border-bottom-color: rgba(var(--custom-#{$color-name}-rgb), $j * 0.01);
+                            border-bottom-width: if($theme-name == 'light' or $theme-name == 'dark', #{$i * 1px}, #{$i * 3px});
+                            border-bottom-style: solid;
+                        }
+                    }
+                }
+            } 
         }
     }
 }

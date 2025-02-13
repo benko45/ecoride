@@ -5,7 +5,14 @@
 /************************************************/
 
 /************************************************/
+/*
 /*            .border-color-width
+/*
+/************************************************/
+/*
+/*      color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*      width: 1 to 10
+/*
 /************************************************/
 
 @each $theme-name, $colors in colors.$themes {
@@ -17,7 +24,15 @@
 }
 
 /************************************************/
+/*
 /*            .border-color-width-opacity
+/*
+/************************************************/
+/*
+/*      color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*      width: 1 to 10
+/*      opacity: 0 to 10
+/*
 /************************************************/
 
 @each $theme-name, $colors in colors.$themes {
@@ -37,7 +52,15 @@
 }
 
 /************************************************/
-/*      .border-position-color-width-opacity
+/*
+/*            .border-position-color-width-opacity
+/*
+/************************************************/
+/*
+/*      color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*      position: top, right, bottom, left
+/*      opacity: 0 to 10
+/*
 /************************************************/
 
 
@@ -65,3 +88,38 @@ $border-position: (
         }
     }
 }
+
+/************************************************/
+/*
+/*      .box-shadow-position-color-spread-opacity
+/*
+/************************************************/
+/*
+/*      position: top, right, bottom, left
+/*      color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
+/*      spread: 0 to 10
+/*      opacity: 0 to 10
+/*
+/************************************************/
+
+// $border-position: (
+//   "top": top,
+//   "right": right,
+//   "bottom": bottom,
+//   "left": left
+// );
+
+// @each $position-name, $position-value in $border-position {
+//     @each $theme-name, $colors in colors.$themes {
+//         @each $color-name, $color-value in $colors {
+//             @for $i from 0 through 10 {
+//                 @for $j from 0 through 10 {
+//                     [theme=#{$theme-name}] .box-shadow-#{$position-value}-#{$color-name}-#{$j}-#{$i} {
+//                         box-shadow: if($position-value== 'top', 0 -4px, if($position-value== 'bottom', 0 4px, if($position-value== 'right', 4px 0, -4px 0))) #{$j * 2px} rgba(var(--custom-#{$color-name}-rgb),  $i * 0.01);
+//                     }
+
+//                 }
+//             } 
+//         }
+//     }
+// }
