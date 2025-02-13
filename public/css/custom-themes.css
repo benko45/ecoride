@@ -3,8 +3,8 @@
 html[theme=light] {
   --custom-primary: #425F0D;
   --custom-primary-rgb: 66, 95, 13;
-  --custom-secondary: #425F0D;
-  --custom-secondary-rgb: 66, 95, 13;
+  --custom-secondary: #77D625;
+  --custom-secondary-rgb: 119, 214, 37;
   --custom-success: #388E3C;
   --custom-success-rgb: 56, 142, 60;
   --custom-warning: #FFB74D;
@@ -30,8 +30,8 @@ html[theme=light] {
 html[theme=dark] {
   --custom-primary: #425F0D;
   --custom-primary-rgb: 66, 95, 13;
-  --custom-secondary: #425F0D;
-  --custom-secondary-rgb: 66, 95, 13;
+  --custom-secondary: #77D625;
+  --custom-secondary-rgb: 119, 214, 37;
   --custom-success: #66BB6A;
   --custom-success-rgb: 102, 187, 106;
   --custom-warning: #FFB74D;
@@ -113,7 +113,7 @@ html[theme=accessibility-dark] {
 }
 
 [theme=light] .background-secondary {
-  background-color: #425F0D;
+  background-color: #77D625;
 }
 
 [theme=light] .background-success {
@@ -161,7 +161,7 @@ html[theme=accessibility-dark] {
 }
 
 [theme=dark] .background-secondary {
-  background-color: #425F0D;
+  background-color: #77D625;
 }
 
 [theme=dark] .background-success {
@@ -305,8 +305,8 @@ html[theme=accessibility-dark] {
 html[theme=light] {
   --custom-primary: #425F0D;
   --custom-primary-rgb: 66, 95, 13;
-  --custom-secondary: #425F0D;
-  --custom-secondary-rgb: 66, 95, 13;
+  --custom-secondary: #77D625;
+  --custom-secondary-rgb: 119, 214, 37;
   --custom-success: #388E3C;
   --custom-success-rgb: 56, 142, 60;
   --custom-warning: #FFB74D;
@@ -332,8 +332,8 @@ html[theme=light] {
 html[theme=dark] {
   --custom-primary: #425F0D;
   --custom-primary-rgb: 66, 95, 13;
-  --custom-secondary: #425F0D;
-  --custom-secondary-rgb: 66, 95, 13;
+  --custom-secondary: #77D625;
+  --custom-secondary-rgb: 119, 214, 37;
   --custom-success: #66BB6A;
   --custom-success-rgb: 102, 187, 106;
   --custom-warning: #FFB74D;
@@ -416,7 +416,7 @@ html[theme=light] .txt-primary {
 }
 
 html[theme=light] .txt-secondary {
-  color: #425F0D;
+  color: #77D625;
   font-weight: 400;
 }
 
@@ -476,7 +476,7 @@ html[theme=dark] .txt-primary {
 }
 
 html[theme=dark] .txt-secondary {
-  color: #425F0D;
+  color: #77D625;
   font-weight: 400;
 }
 
