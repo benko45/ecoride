@@ -65,15 +65,22 @@ body {
     border-top-color: var(--custom-light) !important; /* Change la couleur de la flèche */
 }
 
-/*  formatage des icônes du menu thème déroulant*/
+.dropdown ul {
+    background-color: var(--custom-light);
+}
+/*  formatage des icônes du menu thème */
 .icon-color {
-    fill: var(--custom-light);
-    stroke: var(--custom-light);
+    fill: var(--custom-primary) !important;
+    stroke: var(--custom-primary) !important;
 }
 
 button svg {
     width: 16px;
     height: 16px;
+}
+
+svg {
+    color: red; /* Devrait colorer l'icône */
 }
 
 
