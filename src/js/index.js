@@ -54,3 +54,16 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
     }
 });
 
+
+//écoute le click sur la zone recherche-départ
+document.getElementById("case-depart").addEventListener("click", function(event) {
+    // event.preventDefault();
+    window.location.href = "choosing-address.html";
+});
+
+// éviter que le champ de saisie input ne capte le clic et empêche la navigation
+// document.getElementById("form-depart").addEventListener("click", function(event) {
+//     event.stopPropagation();
+//     this.blur(); // Empêche la mise en focus de l'input
+// });
+

@@ -1,5 +1,7 @@
 @use 'sass:map';
 @use 'colors-variables' as colors;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 // ✅ GÉNÉRATION DES CLASSES DE COULEURS DE TEXTE
 @each $theme-name, $colors in colors.$themes {

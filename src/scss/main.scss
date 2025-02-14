@@ -285,3 +285,15 @@ svg symbol path{
         }
     }
 }
+
+/************************************************/
+/* cette classe rend la zone d'input cliquable */
+/************************************************/
+
+#case-depart, #case-arrivee, #case-date, #case-nb-passagers {
+    cursor: pointer;
+}
+
+#form-depart, #form-arrivee, #form-date, #form-nb-passagers {
+    pointer-events: none; /* Désactive l'interaction directe */
+}
