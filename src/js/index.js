@@ -58,7 +58,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
 //écoute le click sur la zone recherche-départ
 document.getElementById("case-depart").addEventListener("click", function(event) {
     // event.preventDefault();
-    window.location.href = "choosing-address.html";
+    window.location.href = "public/choosing-address.html";
 });
 
 // éviter que le champ de saisie input ne capte le clic et empêche la navigation
