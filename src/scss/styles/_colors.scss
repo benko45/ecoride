@@ -4,7 +4,7 @@
  /* ✅ GÉNÉRATION DES CLASSES DE COULEURS   */
 @each $theme-name, $colors in colors.$themes {
   @each $color-name, $color-value in $colors {
-    [theme=#{$theme-name}] .#{$color-name} { color: $color-value; } 
+    [theme=#{$theme-name}] .custom-#{$color-name} { color: $color-value; } 
   }
 }
 

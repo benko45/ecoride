@@ -8,35 +8,18 @@
     <link rel="stylesheet" href="css/custom-themes.css">
     <link rel="stylesheet" href="css/choosing-address.css">
 </head>
-<body class="m-0 background-light">
-    <!-- Définition de symbols pour le menu dropdown de choix du thème -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-        <symbol id="chevron-left"   viewBox="0 1 16 17" style="stroke: var(--custom-primary);">
-            <path fill="currentColor" fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-        </symbol>
-    </svg>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none" viewBox="0 0 320 512">
-        <symbol id="chevron-left-2" style="stroke: var(--custom-primary);">
-            <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
-        </symbol>
-    </svg>
-    
+<body class="m-0 background-light">   
     <!-- Formulaire de choix de l'adresse de départ -->
     <div class="d-flex justify-content-center mt-4">
         <div class="form-container d-flex flex-row justify-content align-items-center background-primary-1 rounded" style="width: 80%;">
             <form method="POST" id="input-form" class="d-flex align-items-center element-height-2">
-                    <div class="vertical-align-center">
+                    <div class="vertical-align-center ms-2">
                         <a href="../index.html" class="vertical-align-center m-0 me-0 text-decoration-none">
-                            <!-- <svg class="fa-solid fa-chevron-left" width="1em" height="1em">
-                                <use href="#chevron-left-2"></use>
-                            </svg> -->
-                            <i class="fa-solid fa-chevron-left"></i>
+                            <i class="fa-solid fa-chevron-left custom-primary"></i>
                         </a>
-                        <!-- <div c>toto </div> -->
                     </div>
                     <label for="form-depart" class="form-label visually-hidden"></label>
-                    <input type="text" class="form-control no-border txt-primary fs-10 fw-semibold bg-transparent element-height-2" id="form-depart" placeholder="Rue Blanche ou Café de la gare">
-                    <!-- <div class="test">Rue Blanche ou Café de la gare</div> -->
+                    <input type="text" class="form-control no-border txt-primary fs-10 fw-normal bg-transparent element-height-2" id="form-depart" placeholder="Rue Blanche ou Café de la gare">
             </form>
         </div>
     </div>

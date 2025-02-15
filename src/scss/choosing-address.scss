@@ -16,9 +16,26 @@ $breakpoints: (
 $breakpoint: map.get($breakpoints, 'md');
 
 #form-depart {
-    width: 100%; 
+    width: 100%;
 }
 
 #input-form {
     width: 100%;
 }
+
+html[theme="accesibility-light"] input.form-control:focus {
+    border-color: var(--custom-primary);
+}
+html[theme="accesibility-dark"] input.form-control:focus {
+    border-color: var(--custom-primary);
+}
+
+html[theme="light"] input.form-control:focus {
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+html[theme="dark"] input.form-control:focus {
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+

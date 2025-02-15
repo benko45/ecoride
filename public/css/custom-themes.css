@@ -112,195 +112,195 @@ html[theme=accessibility-dark] {
 }
 
 /* ✅ GÉNÉRATION DES CLASSES DE COULEURS   */
-[theme=light] .primary {
+[theme=light] .custom-primary {
   color: #425F0D;
 }
 
-[theme=light] .secondary {
+[theme=light] .custom-secondary {
   color: #77D625;
 }
 
-[theme=light] .success {
+[theme=light] .custom-success {
   color: #388E3C;
 }
 
-[theme=light] .warning {
+[theme=light] .custom-warning {
   color: #FFB74D;
 }
 
-[theme=light] .danger {
+[theme=light] .custom-danger {
   color: #D84315;
 }
 
-[theme=light] .info {
+[theme=light] .custom-info {
   color: #4FC3F7;
 }
 
-[theme=light] .light {
+[theme=light] .custom-light {
   color: #ffffff;
 }
 
-[theme=light] .dark {
+[theme=light] .custom-dark {
   color: #1B5E20;
 }
 
-[theme=light] .body-bg {
+[theme=light] .custom-body-bg {
   color: #E8F5E9;
 }
 
-[theme=light] .body {
+[theme=light] .custom-body {
   color: #425F0D;
 }
 
-[theme=light] .link {
+[theme=light] .custom-link {
   color: #388E3C;
 }
 
-[theme=light] .heading {
+[theme=light] .custom-heading {
   color: #425F0D;
 }
 
-[theme=dark] .primary {
+[theme=dark] .custom-primary {
   color: #425F0D;
 }
 
-[theme=dark] .secondary {
+[theme=dark] .custom-secondary {
   color: #77D625;
 }
 
-[theme=dark] .success {
+[theme=dark] .custom-success {
   color: #66BB6A;
 }
 
-[theme=dark] .warning {
+[theme=dark] .custom-warning {
   color: #FFB74D;
 }
 
-[theme=dark] .danger {
+[theme=dark] .custom-danger {
   color: #E57373;
 }
 
-[theme=dark] .info {
+[theme=dark] .custom-info {
   color: #4FC3F7;
 }
 
-[theme=dark] .light {
+[theme=dark] .custom-light {
   color: #000000;
 }
 
-[theme=dark] .dark {
+[theme=dark] .custom-dark {
   color: #ffffff;
 }
 
-[theme=dark] .body-bg {
+[theme=dark] .custom-body-bg {
   color: #121A13;
 }
 
-[theme=dark] .body {
+[theme=dark] .custom-body {
   color: #425F0D;
 }
 
-[theme=dark] .link {
+[theme=dark] .custom-link {
   color: #388E3C;
 }
 
-[theme=dark] .heading {
+[theme=dark] .custom-heading {
   color: #425F0D;
 }
 
-[theme=accessibility-light] .primary {
+[theme=accessibility-light] .custom-primary {
   color: #1A1A1A;
 }
 
-[theme=accessibility-light] .secondary {
+[theme=accessibility-light] .custom-secondary {
   color: #3B3B3B;
 }
 
-[theme=accessibility-light] .success {
+[theme=accessibility-light] .custom-success {
   color: #77D625;
 }
 
-[theme=accessibility-light] .warning {
+[theme=accessibility-light] .custom-warning {
   color: #8C5100;
 }
 
-[theme=accessibility-light] .info {
+[theme=accessibility-light] .custom-info {
   color: #004488;
 }
 
-[theme=accessibility-light] .danger {
+[theme=accessibility-light] .custom-danger {
   color: #7D0000;
 }
 
-[theme=accessibility-light] .body-bg {
+[theme=accessibility-light] .custom-body-bg {
   color: #FAFAFA;
 }
 
-[theme=accessibility-light] .body {
+[theme=accessibility-light] .custom-body {
   color: #111111;
 }
 
-[theme=accessibility-light] .light {
+[theme=accessibility-light] .custom-light {
   color: #ffffff;
 }
 
-[theme=accessibility-light] .dark {
+[theme=accessibility-light] .custom-dark {
   color: #000000;
 }
 
-[theme=accessibility-light] .link {
+[theme=accessibility-light] .custom-link {
   color: #004488;
 }
 
-[theme=accessibility-light] .heading {
+[theme=accessibility-light] .custom-heading {
   color: #1A1A1A;
 }
 
-[theme=accessibility-dark] .primary {
+[theme=accessibility-dark] .custom-primary {
   color: #E5E5E5;
 }
 
-[theme=accessibility-dark] .secondary {
+[theme=accessibility-dark] .custom-secondary {
   color: #ffffff;
 }
 
-[theme=accessibility-dark] .success {
+[theme=accessibility-dark] .custom-success {
   color: #77D625;
 }
 
-[theme=accessibility-dark] .warning {
+[theme=accessibility-dark] .custom-warning {
   color: #AD5E00;
 }
 
-[theme=accessibility-dark] .info {
+[theme=accessibility-dark] .custom-info {
   color: #004488;
 }
 
-[theme=accessibility-dark] .danger {
+[theme=accessibility-dark] .custom-danger {
   color: #990000;
 }
 
-[theme=accessibility-dark] .body-bg {
+[theme=accessibility-dark] .custom-body-bg {
   color: #181818;
 }
 
-[theme=accessibility-dark] .body {
+[theme=accessibility-dark] .custom-body {
   color: #EAEAEA;
 }
 
-[theme=accessibility-dark] .light {
+[theme=accessibility-dark] .custom-light {
   color: #000000;
 }
 
-[theme=accessibility-dark] .dark {
+[theme=accessibility-dark] .custom-dark {
   color: #F5F5F5;
 }
 
-[theme=accessibility-dark] .link {
+[theme=accessibility-dark] .custom-link {
   color: #88C0D0;
 }
 
-[theme=accessibility-dark] .heading {
+[theme=accessibility-dark] .custom-heading {
   color: #EAEAEA;
 }
 
@@ -2528,2402 +2528,2402 @@ html[theme=accessibility-dark] {
 }
 
 html[theme=light] .txt-primary-1 {
-  color: rgba(66, 95, 13, 0.1);
+  color: rgba(66, 95, 13, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-2 {
-  color: rgba(66, 95, 13, 0.2);
+  color: rgba(66, 95, 13, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-3 {
-  color: rgba(66, 95, 13, 0.3);
+  color: rgba(66, 95, 13, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-4 {
-  color: rgba(66, 95, 13, 0.4);
+  color: rgba(66, 95, 13, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-5 {
-  color: rgba(66, 95, 13, 0.5);
+  color: rgba(66, 95, 13, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-6 {
-  color: rgba(66, 95, 13, 0.6);
+  color: rgba(66, 95, 13, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-7 {
-  color: rgba(66, 95, 13, 0.7);
+  color: rgba(66, 95, 13, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-8 {
-  color: rgba(66, 95, 13, 0.8);
+  color: rgba(66, 95, 13, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary-9 {
-  color: rgba(66, 95, 13, 0.9);
+  color: rgba(66, 95, 13, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-primary {
-  color: #425F0D;
+  color: #425F0D !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-1 {
-  color: rgba(119, 214, 37, 0.1);
+  color: rgba(119, 214, 37, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-2 {
-  color: rgba(119, 214, 37, 0.2);
+  color: rgba(119, 214, 37, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-3 {
-  color: rgba(119, 214, 37, 0.3);
+  color: rgba(119, 214, 37, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-4 {
-  color: rgba(119, 214, 37, 0.4);
+  color: rgba(119, 214, 37, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-5 {
-  color: rgba(119, 214, 37, 0.5);
+  color: rgba(119, 214, 37, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-6 {
-  color: rgba(119, 214, 37, 0.6);
+  color: rgba(119, 214, 37, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-7 {
-  color: rgba(119, 214, 37, 0.7);
+  color: rgba(119, 214, 37, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-8 {
-  color: rgba(119, 214, 37, 0.8);
+  color: rgba(119, 214, 37, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary-9 {
-  color: rgba(119, 214, 37, 0.9);
+  color: rgba(119, 214, 37, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-secondary {
-  color: #77D625;
+  color: #77D625 !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-1 {
-  color: rgba(56, 142, 60, 0.1);
+  color: rgba(56, 142, 60, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-2 {
-  color: rgba(56, 142, 60, 0.2);
+  color: rgba(56, 142, 60, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-3 {
-  color: rgba(56, 142, 60, 0.3);
+  color: rgba(56, 142, 60, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-4 {
-  color: rgba(56, 142, 60, 0.4);
+  color: rgba(56, 142, 60, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-5 {
-  color: rgba(56, 142, 60, 0.5);
+  color: rgba(56, 142, 60, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-6 {
-  color: rgba(56, 142, 60, 0.6);
+  color: rgba(56, 142, 60, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-7 {
-  color: rgba(56, 142, 60, 0.7);
+  color: rgba(56, 142, 60, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-8 {
-  color: rgba(56, 142, 60, 0.8);
+  color: rgba(56, 142, 60, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success-9 {
-  color: rgba(56, 142, 60, 0.9);
+  color: rgba(56, 142, 60, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-success {
-  color: #388E3C;
+  color: #388E3C !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-1 {
-  color: rgba(255, 183, 77, 0.1);
+  color: rgba(255, 183, 77, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-2 {
-  color: rgba(255, 183, 77, 0.2);
+  color: rgba(255, 183, 77, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-3 {
-  color: rgba(255, 183, 77, 0.3);
+  color: rgba(255, 183, 77, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-4 {
-  color: rgba(255, 183, 77, 0.4);
+  color: rgba(255, 183, 77, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-5 {
-  color: rgba(255, 183, 77, 0.5);
+  color: rgba(255, 183, 77, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-6 {
-  color: rgba(255, 183, 77, 0.6);
+  color: rgba(255, 183, 77, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-7 {
-  color: rgba(255, 183, 77, 0.7);
+  color: rgba(255, 183, 77, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-8 {
-  color: rgba(255, 183, 77, 0.8);
+  color: rgba(255, 183, 77, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning-9 {
-  color: rgba(255, 183, 77, 0.9);
+  color: rgba(255, 183, 77, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-warning {
-  color: #FFB74D;
+  color: #FFB74D !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-1 {
-  color: rgba(216, 67, 21, 0.1);
+  color: rgba(216, 67, 21, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-2 {
-  color: rgba(216, 67, 21, 0.2);
+  color: rgba(216, 67, 21, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-3 {
-  color: rgba(216, 67, 21, 0.3);
+  color: rgba(216, 67, 21, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-4 {
-  color: rgba(216, 67, 21, 0.4);
+  color: rgba(216, 67, 21, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-5 {
-  color: rgba(216, 67, 21, 0.5);
+  color: rgba(216, 67, 21, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-6 {
-  color: rgba(216, 67, 21, 0.6);
+  color: rgba(216, 67, 21, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-7 {
-  color: rgba(216, 67, 21, 0.7);
+  color: rgba(216, 67, 21, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-8 {
-  color: rgba(216, 67, 21, 0.8);
+  color: rgba(216, 67, 21, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger-9 {
-  color: rgba(216, 67, 21, 0.9);
+  color: rgba(216, 67, 21, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-danger {
-  color: #D84315;
+  color: #D84315 !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-1 {
-  color: rgba(79, 195, 247, 0.1);
+  color: rgba(79, 195, 247, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-2 {
-  color: rgba(79, 195, 247, 0.2);
+  color: rgba(79, 195, 247, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-3 {
-  color: rgba(79, 195, 247, 0.3);
+  color: rgba(79, 195, 247, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-4 {
-  color: rgba(79, 195, 247, 0.4);
+  color: rgba(79, 195, 247, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-5 {
-  color: rgba(79, 195, 247, 0.5);
+  color: rgba(79, 195, 247, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-6 {
-  color: rgba(79, 195, 247, 0.6);
+  color: rgba(79, 195, 247, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-7 {
-  color: rgba(79, 195, 247, 0.7);
+  color: rgba(79, 195, 247, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-8 {
-  color: rgba(79, 195, 247, 0.8);
+  color: rgba(79, 195, 247, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info-9 {
-  color: rgba(79, 195, 247, 0.9);
+  color: rgba(79, 195, 247, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-info {
-  color: #4FC3F7;
+  color: #4FC3F7 !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-1 {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-2 {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-3 {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-4 {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-5 {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-6 {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-7 {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-8 {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light-9 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-light {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-1 {
-  color: rgba(27, 94, 32, 0.1);
+  color: rgba(27, 94, 32, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-2 {
-  color: rgba(27, 94, 32, 0.2);
+  color: rgba(27, 94, 32, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-3 {
-  color: rgba(27, 94, 32, 0.3);
+  color: rgba(27, 94, 32, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-4 {
-  color: rgba(27, 94, 32, 0.4);
+  color: rgba(27, 94, 32, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-5 {
-  color: rgba(27, 94, 32, 0.5);
+  color: rgba(27, 94, 32, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-6 {
-  color: rgba(27, 94, 32, 0.6);
+  color: rgba(27, 94, 32, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-7 {
-  color: rgba(27, 94, 32, 0.7);
+  color: rgba(27, 94, 32, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-8 {
-  color: rgba(27, 94, 32, 0.8);
+  color: rgba(27, 94, 32, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark-9 {
-  color: rgba(27, 94, 32, 0.9);
+  color: rgba(27, 94, 32, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-dark {
-  color: #1B5E20;
+  color: #1B5E20 !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-1 {
-  color: rgba(232, 245, 233, 0.1);
+  color: rgba(232, 245, 233, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-2 {
-  color: rgba(232, 245, 233, 0.2);
+  color: rgba(232, 245, 233, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-3 {
-  color: rgba(232, 245, 233, 0.3);
+  color: rgba(232, 245, 233, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-4 {
-  color: rgba(232, 245, 233, 0.4);
+  color: rgba(232, 245, 233, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-5 {
-  color: rgba(232, 245, 233, 0.5);
+  color: rgba(232, 245, 233, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-6 {
-  color: rgba(232, 245, 233, 0.6);
+  color: rgba(232, 245, 233, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-7 {
-  color: rgba(232, 245, 233, 0.7);
+  color: rgba(232, 245, 233, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-8 {
-  color: rgba(232, 245, 233, 0.8);
+  color: rgba(232, 245, 233, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg-9 {
-  color: rgba(232, 245, 233, 0.9);
+  color: rgba(232, 245, 233, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-bg {
-  color: #E8F5E9;
+  color: #E8F5E9 !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-1 {
-  color: rgba(66, 95, 13, 0.1);
+  color: rgba(66, 95, 13, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-2 {
-  color: rgba(66, 95, 13, 0.2);
+  color: rgba(66, 95, 13, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-3 {
-  color: rgba(66, 95, 13, 0.3);
+  color: rgba(66, 95, 13, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-4 {
-  color: rgba(66, 95, 13, 0.4);
+  color: rgba(66, 95, 13, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-5 {
-  color: rgba(66, 95, 13, 0.5);
+  color: rgba(66, 95, 13, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-6 {
-  color: rgba(66, 95, 13, 0.6);
+  color: rgba(66, 95, 13, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-7 {
-  color: rgba(66, 95, 13, 0.7);
+  color: rgba(66, 95, 13, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-8 {
-  color: rgba(66, 95, 13, 0.8);
+  color: rgba(66, 95, 13, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body-9 {
-  color: rgba(66, 95, 13, 0.9);
+  color: rgba(66, 95, 13, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-body {
-  color: #425F0D;
+  color: #425F0D !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-1 {
-  color: rgba(56, 142, 60, 0.1);
+  color: rgba(56, 142, 60, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-2 {
-  color: rgba(56, 142, 60, 0.2);
+  color: rgba(56, 142, 60, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-3 {
-  color: rgba(56, 142, 60, 0.3);
+  color: rgba(56, 142, 60, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-4 {
-  color: rgba(56, 142, 60, 0.4);
+  color: rgba(56, 142, 60, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-5 {
-  color: rgba(56, 142, 60, 0.5);
+  color: rgba(56, 142, 60, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-6 {
-  color: rgba(56, 142, 60, 0.6);
+  color: rgba(56, 142, 60, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-7 {
-  color: rgba(56, 142, 60, 0.7);
+  color: rgba(56, 142, 60, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-8 {
-  color: rgba(56, 142, 60, 0.8);
+  color: rgba(56, 142, 60, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link-9 {
-  color: rgba(56, 142, 60, 0.9);
+  color: rgba(56, 142, 60, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-link {
-  color: #388E3C;
+  color: #388E3C !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-1 {
-  color: rgba(66, 95, 13, 0.1);
+  color: rgba(66, 95, 13, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-2 {
-  color: rgba(66, 95, 13, 0.2);
+  color: rgba(66, 95, 13, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-3 {
-  color: rgba(66, 95, 13, 0.3);
+  color: rgba(66, 95, 13, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-4 {
-  color: rgba(66, 95, 13, 0.4);
+  color: rgba(66, 95, 13, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-5 {
-  color: rgba(66, 95, 13, 0.5);
+  color: rgba(66, 95, 13, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-6 {
-  color: rgba(66, 95, 13, 0.6);
+  color: rgba(66, 95, 13, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-7 {
-  color: rgba(66, 95, 13, 0.7);
+  color: rgba(66, 95, 13, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-8 {
-  color: rgba(66, 95, 13, 0.8);
+  color: rgba(66, 95, 13, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading-9 {
-  color: rgba(66, 95, 13, 0.9);
+  color: rgba(66, 95, 13, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=light] .txt-heading {
-  color: #425F0D;
+  color: #425F0D !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-1 {
-  color: rgba(66, 95, 13, 0.1);
+  color: rgba(66, 95, 13, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-2 {
-  color: rgba(66, 95, 13, 0.2);
+  color: rgba(66, 95, 13, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-3 {
-  color: rgba(66, 95, 13, 0.3);
+  color: rgba(66, 95, 13, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-4 {
-  color: rgba(66, 95, 13, 0.4);
+  color: rgba(66, 95, 13, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-5 {
-  color: rgba(66, 95, 13, 0.5);
+  color: rgba(66, 95, 13, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-6 {
-  color: rgba(66, 95, 13, 0.6);
+  color: rgba(66, 95, 13, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-7 {
-  color: rgba(66, 95, 13, 0.7);
+  color: rgba(66, 95, 13, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-8 {
-  color: rgba(66, 95, 13, 0.8);
+  color: rgba(66, 95, 13, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-9 {
-  color: rgba(66, 95, 13, 0.9);
+  color: rgba(66, 95, 13, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary {
-  color: #425F0D;
+  color: #425F0D !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-1 {
-  color: rgba(119, 214, 37, 0.1);
+  color: rgba(119, 214, 37, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-2 {
-  color: rgba(119, 214, 37, 0.2);
+  color: rgba(119, 214, 37, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-3 {
-  color: rgba(119, 214, 37, 0.3);
+  color: rgba(119, 214, 37, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-4 {
-  color: rgba(119, 214, 37, 0.4);
+  color: rgba(119, 214, 37, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-5 {
-  color: rgba(119, 214, 37, 0.5);
+  color: rgba(119, 214, 37, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-6 {
-  color: rgba(119, 214, 37, 0.6);
+  color: rgba(119, 214, 37, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-7 {
-  color: rgba(119, 214, 37, 0.7);
+  color: rgba(119, 214, 37, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-8 {
-  color: rgba(119, 214, 37, 0.8);
+  color: rgba(119, 214, 37, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary-9 {
-  color: rgba(119, 214, 37, 0.9);
+  color: rgba(119, 214, 37, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-secondary {
-  color: #77D625;
+  color: #77D625 !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-1 {
-  color: rgba(102, 187, 106, 0.1);
+  color: rgba(102, 187, 106, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-2 {
-  color: rgba(102, 187, 106, 0.2);
+  color: rgba(102, 187, 106, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-3 {
-  color: rgba(102, 187, 106, 0.3);
+  color: rgba(102, 187, 106, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-4 {
-  color: rgba(102, 187, 106, 0.4);
+  color: rgba(102, 187, 106, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-5 {
-  color: rgba(102, 187, 106, 0.5);
+  color: rgba(102, 187, 106, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-6 {
-  color: rgba(102, 187, 106, 0.6);
+  color: rgba(102, 187, 106, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-7 {
-  color: rgba(102, 187, 106, 0.7);
+  color: rgba(102, 187, 106, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-8 {
-  color: rgba(102, 187, 106, 0.8);
+  color: rgba(102, 187, 106, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success-9 {
-  color: rgba(102, 187, 106, 0.9);
+  color: rgba(102, 187, 106, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-success {
-  color: #66BB6A;
+  color: #66BB6A !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-1 {
-  color: rgba(255, 183, 77, 0.1);
+  color: rgba(255, 183, 77, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-2 {
-  color: rgba(255, 183, 77, 0.2);
+  color: rgba(255, 183, 77, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-3 {
-  color: rgba(255, 183, 77, 0.3);
+  color: rgba(255, 183, 77, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-4 {
-  color: rgba(255, 183, 77, 0.4);
+  color: rgba(255, 183, 77, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-5 {
-  color: rgba(255, 183, 77, 0.5);
+  color: rgba(255, 183, 77, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-6 {
-  color: rgba(255, 183, 77, 0.6);
+  color: rgba(255, 183, 77, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-7 {
-  color: rgba(255, 183, 77, 0.7);
+  color: rgba(255, 183, 77, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-8 {
-  color: rgba(255, 183, 77, 0.8);
+  color: rgba(255, 183, 77, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning-9 {
-  color: rgba(255, 183, 77, 0.9);
+  color: rgba(255, 183, 77, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-warning {
-  color: #FFB74D;
+  color: #FFB74D !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-1 {
-  color: rgba(229, 115, 115, 0.1);
+  color: rgba(229, 115, 115, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-2 {
-  color: rgba(229, 115, 115, 0.2);
+  color: rgba(229, 115, 115, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-3 {
-  color: rgba(229, 115, 115, 0.3);
+  color: rgba(229, 115, 115, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-4 {
-  color: rgba(229, 115, 115, 0.4);
+  color: rgba(229, 115, 115, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-5 {
-  color: rgba(229, 115, 115, 0.5);
+  color: rgba(229, 115, 115, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-6 {
-  color: rgba(229, 115, 115, 0.6);
+  color: rgba(229, 115, 115, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-7 {
-  color: rgba(229, 115, 115, 0.7);
+  color: rgba(229, 115, 115, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-8 {
-  color: rgba(229, 115, 115, 0.8);
+  color: rgba(229, 115, 115, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger-9 {
-  color: rgba(229, 115, 115, 0.9);
+  color: rgba(229, 115, 115, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-danger {
-  color: #E57373;
+  color: #E57373 !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-1 {
-  color: rgba(79, 195, 247, 0.1);
+  color: rgba(79, 195, 247, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-2 {
-  color: rgba(79, 195, 247, 0.2);
+  color: rgba(79, 195, 247, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-3 {
-  color: rgba(79, 195, 247, 0.3);
+  color: rgba(79, 195, 247, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-4 {
-  color: rgba(79, 195, 247, 0.4);
+  color: rgba(79, 195, 247, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-5 {
-  color: rgba(79, 195, 247, 0.5);
+  color: rgba(79, 195, 247, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-6 {
-  color: rgba(79, 195, 247, 0.6);
+  color: rgba(79, 195, 247, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-7 {
-  color: rgba(79, 195, 247, 0.7);
+  color: rgba(79, 195, 247, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-8 {
-  color: rgba(79, 195, 247, 0.8);
+  color: rgba(79, 195, 247, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info-9 {
-  color: rgba(79, 195, 247, 0.9);
+  color: rgba(79, 195, 247, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-info {
-  color: #4FC3F7;
+  color: #4FC3F7 !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-1 {
-  color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-2 {
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-3 {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-4 {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-5 {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-6 {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-7 {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-8 {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light-9 {
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-light {
-  color: #000000;
+  color: #000000 !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-1 {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-2 {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-3 {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-4 {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-5 {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-6 {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-7 {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-8 {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark-9 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-dark {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-1 {
-  color: rgba(18, 26, 19, 0.1);
+  color: rgba(18, 26, 19, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-2 {
-  color: rgba(18, 26, 19, 0.2);
+  color: rgba(18, 26, 19, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-3 {
-  color: rgba(18, 26, 19, 0.3);
+  color: rgba(18, 26, 19, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-4 {
-  color: rgba(18, 26, 19, 0.4);
+  color: rgba(18, 26, 19, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-5 {
-  color: rgba(18, 26, 19, 0.5);
+  color: rgba(18, 26, 19, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-6 {
-  color: rgba(18, 26, 19, 0.6);
+  color: rgba(18, 26, 19, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-7 {
-  color: rgba(18, 26, 19, 0.7);
+  color: rgba(18, 26, 19, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-8 {
-  color: rgba(18, 26, 19, 0.8);
+  color: rgba(18, 26, 19, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg-9 {
-  color: rgba(18, 26, 19, 0.9);
+  color: rgba(18, 26, 19, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-bg {
-  color: #121A13;
+  color: #121A13 !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-1 {
-  color: rgba(66, 95, 13, 0.1);
+  color: rgba(66, 95, 13, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-2 {
-  color: rgba(66, 95, 13, 0.2);
+  color: rgba(66, 95, 13, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-3 {
-  color: rgba(66, 95, 13, 0.3);
+  color: rgba(66, 95, 13, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-4 {
-  color: rgba(66, 95, 13, 0.4);
+  color: rgba(66, 95, 13, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-5 {
-  color: rgba(66, 95, 13, 0.5);
+  color: rgba(66, 95, 13, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-6 {
-  color: rgba(66, 95, 13, 0.6);
+  color: rgba(66, 95, 13, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-7 {
-  color: rgba(66, 95, 13, 0.7);
+  color: rgba(66, 95, 13, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-8 {
-  color: rgba(66, 95, 13, 0.8);
+  color: rgba(66, 95, 13, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body-9 {
-  color: rgba(66, 95, 13, 0.9);
+  color: rgba(66, 95, 13, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-body {
-  color: #425F0D;
+  color: #425F0D !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-1 {
-  color: rgba(56, 142, 60, 0.1);
+  color: rgba(56, 142, 60, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-2 {
-  color: rgba(56, 142, 60, 0.2);
+  color: rgba(56, 142, 60, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-3 {
-  color: rgba(56, 142, 60, 0.3);
+  color: rgba(56, 142, 60, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-4 {
-  color: rgba(56, 142, 60, 0.4);
+  color: rgba(56, 142, 60, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-5 {
-  color: rgba(56, 142, 60, 0.5);
+  color: rgba(56, 142, 60, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-6 {
-  color: rgba(56, 142, 60, 0.6);
+  color: rgba(56, 142, 60, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-7 {
-  color: rgba(56, 142, 60, 0.7);
+  color: rgba(56, 142, 60, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-8 {
-  color: rgba(56, 142, 60, 0.8);
+  color: rgba(56, 142, 60, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link-9 {
-  color: rgba(56, 142, 60, 0.9);
+  color: rgba(56, 142, 60, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-link {
-  color: #388E3C;
+  color: #388E3C !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-1 {
-  color: rgba(66, 95, 13, 0.1);
+  color: rgba(66, 95, 13, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-2 {
-  color: rgba(66, 95, 13, 0.2);
+  color: rgba(66, 95, 13, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-3 {
-  color: rgba(66, 95, 13, 0.3);
+  color: rgba(66, 95, 13, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-4 {
-  color: rgba(66, 95, 13, 0.4);
+  color: rgba(66, 95, 13, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-5 {
-  color: rgba(66, 95, 13, 0.5);
+  color: rgba(66, 95, 13, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-6 {
-  color: rgba(66, 95, 13, 0.6);
+  color: rgba(66, 95, 13, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-7 {
-  color: rgba(66, 95, 13, 0.7);
+  color: rgba(66, 95, 13, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-8 {
-  color: rgba(66, 95, 13, 0.8);
+  color: rgba(66, 95, 13, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading-9 {
-  color: rgba(66, 95, 13, 0.9);
+  color: rgba(66, 95, 13, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-heading {
-  color: #425F0D;
+  color: #425F0D !important;
   font-weight: 400;
 }
 
 html[theme=accessibility-light] .txt-primary-1 {
-  color: rgba(26, 26, 26, 0.1);
+  color: rgba(26, 26, 26, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-2 {
-  color: rgba(26, 26, 26, 0.2);
+  color: rgba(26, 26, 26, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-3 {
-  color: rgba(26, 26, 26, 0.3);
+  color: rgba(26, 26, 26, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-4 {
-  color: rgba(26, 26, 26, 0.4);
+  color: rgba(26, 26, 26, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-5 {
-  color: rgba(26, 26, 26, 0.5);
+  color: rgba(26, 26, 26, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-6 {
-  color: rgba(26, 26, 26, 0.6);
+  color: rgba(26, 26, 26, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-7 {
-  color: rgba(26, 26, 26, 0.7);
+  color: rgba(26, 26, 26, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-8 {
-  color: rgba(26, 26, 26, 0.8);
+  color: rgba(26, 26, 26, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary-9 {
-  color: rgba(26, 26, 26, 0.9);
+  color: rgba(26, 26, 26, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-primary {
-  color: #1A1A1A;
+  color: #1A1A1A !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-1 {
-  color: rgba(59, 59, 59, 0.1);
+  color: rgba(59, 59, 59, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-2 {
-  color: rgba(59, 59, 59, 0.2);
+  color: rgba(59, 59, 59, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-3 {
-  color: rgba(59, 59, 59, 0.3);
+  color: rgba(59, 59, 59, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-4 {
-  color: rgba(59, 59, 59, 0.4);
+  color: rgba(59, 59, 59, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-5 {
-  color: rgba(59, 59, 59, 0.5);
+  color: rgba(59, 59, 59, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-6 {
-  color: rgba(59, 59, 59, 0.6);
+  color: rgba(59, 59, 59, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-7 {
-  color: rgba(59, 59, 59, 0.7);
+  color: rgba(59, 59, 59, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-8 {
-  color: rgba(59, 59, 59, 0.8);
+  color: rgba(59, 59, 59, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary-9 {
-  color: rgba(59, 59, 59, 0.9);
+  color: rgba(59, 59, 59, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-secondary {
-  color: #3B3B3B;
+  color: #3B3B3B !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-1 {
-  color: rgba(119, 214, 37, 0.1);
+  color: rgba(119, 214, 37, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-2 {
-  color: rgba(119, 214, 37, 0.2);
+  color: rgba(119, 214, 37, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-3 {
-  color: rgba(119, 214, 37, 0.3);
+  color: rgba(119, 214, 37, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-4 {
-  color: rgba(119, 214, 37, 0.4);
+  color: rgba(119, 214, 37, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-5 {
-  color: rgba(119, 214, 37, 0.5);
+  color: rgba(119, 214, 37, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-6 {
-  color: rgba(119, 214, 37, 0.6);
+  color: rgba(119, 214, 37, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-7 {
-  color: rgba(119, 214, 37, 0.7);
+  color: rgba(119, 214, 37, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-8 {
-  color: rgba(119, 214, 37, 0.8);
+  color: rgba(119, 214, 37, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success-9 {
-  color: rgba(119, 214, 37, 0.9);
+  color: rgba(119, 214, 37, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-success {
-  color: #77D625;
+  color: #77D625 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-1 {
-  color: rgba(140, 81, 0, 0.1);
+  color: rgba(140, 81, 0, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-2 {
-  color: rgba(140, 81, 0, 0.2);
+  color: rgba(140, 81, 0, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-3 {
-  color: rgba(140, 81, 0, 0.3);
+  color: rgba(140, 81, 0, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-4 {
-  color: rgba(140, 81, 0, 0.4);
+  color: rgba(140, 81, 0, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-5 {
-  color: rgba(140, 81, 0, 0.5);
+  color: rgba(140, 81, 0, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-6 {
-  color: rgba(140, 81, 0, 0.6);
+  color: rgba(140, 81, 0, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-7 {
-  color: rgba(140, 81, 0, 0.7);
+  color: rgba(140, 81, 0, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-8 {
-  color: rgba(140, 81, 0, 0.8);
+  color: rgba(140, 81, 0, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning-9 {
-  color: rgba(140, 81, 0, 0.9);
+  color: rgba(140, 81, 0, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-warning {
-  color: #8C5100;
+  color: #8C5100 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-1 {
-  color: rgba(0, 68, 136, 0.1);
+  color: rgba(0, 68, 136, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-2 {
-  color: rgba(0, 68, 136, 0.2);
+  color: rgba(0, 68, 136, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-3 {
-  color: rgba(0, 68, 136, 0.3);
+  color: rgba(0, 68, 136, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-4 {
-  color: rgba(0, 68, 136, 0.4);
+  color: rgba(0, 68, 136, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-5 {
-  color: rgba(0, 68, 136, 0.5);
+  color: rgba(0, 68, 136, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-6 {
-  color: rgba(0, 68, 136, 0.6);
+  color: rgba(0, 68, 136, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-7 {
-  color: rgba(0, 68, 136, 0.7);
+  color: rgba(0, 68, 136, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-8 {
-  color: rgba(0, 68, 136, 0.8);
+  color: rgba(0, 68, 136, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info-9 {
-  color: rgba(0, 68, 136, 0.9);
+  color: rgba(0, 68, 136, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-info {
-  color: #004488;
+  color: #004488 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-1 {
-  color: rgba(125, 0, 0, 0.1);
+  color: rgba(125, 0, 0, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-2 {
-  color: rgba(125, 0, 0, 0.2);
+  color: rgba(125, 0, 0, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-3 {
-  color: rgba(125, 0, 0, 0.3);
+  color: rgba(125, 0, 0, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-4 {
-  color: rgba(125, 0, 0, 0.4);
+  color: rgba(125, 0, 0, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-5 {
-  color: rgba(125, 0, 0, 0.5);
+  color: rgba(125, 0, 0, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-6 {
-  color: rgba(125, 0, 0, 0.6);
+  color: rgba(125, 0, 0, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-7 {
-  color: rgba(125, 0, 0, 0.7);
+  color: rgba(125, 0, 0, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-8 {
-  color: rgba(125, 0, 0, 0.8);
+  color: rgba(125, 0, 0, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger-9 {
-  color: rgba(125, 0, 0, 0.9);
+  color: rgba(125, 0, 0, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-danger {
-  color: #7D0000;
+  color: #7D0000 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-1 {
-  color: rgba(250, 250, 250, 0.1);
+  color: rgba(250, 250, 250, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-2 {
-  color: rgba(250, 250, 250, 0.2);
+  color: rgba(250, 250, 250, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-3 {
-  color: rgba(250, 250, 250, 0.3);
+  color: rgba(250, 250, 250, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-4 {
-  color: rgba(250, 250, 250, 0.4);
+  color: rgba(250, 250, 250, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-5 {
-  color: rgba(250, 250, 250, 0.5);
+  color: rgba(250, 250, 250, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-6 {
-  color: rgba(250, 250, 250, 0.6);
+  color: rgba(250, 250, 250, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-7 {
-  color: rgba(250, 250, 250, 0.7);
+  color: rgba(250, 250, 250, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-8 {
-  color: rgba(250, 250, 250, 0.8);
+  color: rgba(250, 250, 250, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg-9 {
-  color: rgba(250, 250, 250, 0.9);
+  color: rgba(250, 250, 250, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-bg {
-  color: #FAFAFA;
+  color: #FAFAFA !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-1 {
-  color: rgba(17, 17, 17, 0.1);
+  color: rgba(17, 17, 17, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-2 {
-  color: rgba(17, 17, 17, 0.2);
+  color: rgba(17, 17, 17, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-3 {
-  color: rgba(17, 17, 17, 0.3);
+  color: rgba(17, 17, 17, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-4 {
-  color: rgba(17, 17, 17, 0.4);
+  color: rgba(17, 17, 17, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-5 {
-  color: rgba(17, 17, 17, 0.5);
+  color: rgba(17, 17, 17, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-6 {
-  color: rgba(17, 17, 17, 0.6);
+  color: rgba(17, 17, 17, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-7 {
-  color: rgba(17, 17, 17, 0.7);
+  color: rgba(17, 17, 17, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-8 {
-  color: rgba(17, 17, 17, 0.8);
+  color: rgba(17, 17, 17, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body-9 {
-  color: rgba(17, 17, 17, 0.9);
+  color: rgba(17, 17, 17, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-body {
-  color: #111111;
+  color: #111111 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-1 {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-2 {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-3 {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-4 {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-5 {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-6 {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-7 {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-8 {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light-9 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-light {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-1 {
-  color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-2 {
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-3 {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-4 {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-5 {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-6 {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-7 {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-8 {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark-9 {
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-dark {
-  color: #000000;
+  color: #000000 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-1 {
-  color: rgba(0, 68, 136, 0.1);
+  color: rgba(0, 68, 136, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-2 {
-  color: rgba(0, 68, 136, 0.2);
+  color: rgba(0, 68, 136, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-3 {
-  color: rgba(0, 68, 136, 0.3);
+  color: rgba(0, 68, 136, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-4 {
-  color: rgba(0, 68, 136, 0.4);
+  color: rgba(0, 68, 136, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-5 {
-  color: rgba(0, 68, 136, 0.5);
+  color: rgba(0, 68, 136, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-6 {
-  color: rgba(0, 68, 136, 0.6);
+  color: rgba(0, 68, 136, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-7 {
-  color: rgba(0, 68, 136, 0.7);
+  color: rgba(0, 68, 136, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-8 {
-  color: rgba(0, 68, 136, 0.8);
+  color: rgba(0, 68, 136, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link-9 {
-  color: rgba(0, 68, 136, 0.9);
+  color: rgba(0, 68, 136, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-link {
-  color: #004488;
+  color: #004488 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-1 {
-  color: rgba(26, 26, 26, 0.1);
+  color: rgba(26, 26, 26, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-2 {
-  color: rgba(26, 26, 26, 0.2);
+  color: rgba(26, 26, 26, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-3 {
-  color: rgba(26, 26, 26, 0.3);
+  color: rgba(26, 26, 26, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-4 {
-  color: rgba(26, 26, 26, 0.4);
+  color: rgba(26, 26, 26, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-5 {
-  color: rgba(26, 26, 26, 0.5);
+  color: rgba(26, 26, 26, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-6 {
-  color: rgba(26, 26, 26, 0.6);
+  color: rgba(26, 26, 26, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-7 {
-  color: rgba(26, 26, 26, 0.7);
+  color: rgba(26, 26, 26, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-8 {
-  color: rgba(26, 26, 26, 0.8);
+  color: rgba(26, 26, 26, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading-9 {
-  color: rgba(26, 26, 26, 0.9);
+  color: rgba(26, 26, 26, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-light] .txt-heading {
-  color: #1A1A1A;
+  color: #1A1A1A !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-1 {
-  color: rgba(229, 229, 229, 0.1);
+  color: rgba(229, 229, 229, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-2 {
-  color: rgba(229, 229, 229, 0.2);
+  color: rgba(229, 229, 229, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-3 {
-  color: rgba(229, 229, 229, 0.3);
+  color: rgba(229, 229, 229, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-4 {
-  color: rgba(229, 229, 229, 0.4);
+  color: rgba(229, 229, 229, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-5 {
-  color: rgba(229, 229, 229, 0.5);
+  color: rgba(229, 229, 229, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-6 {
-  color: rgba(229, 229, 229, 0.6);
+  color: rgba(229, 229, 229, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-7 {
-  color: rgba(229, 229, 229, 0.7);
+  color: rgba(229, 229, 229, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-8 {
-  color: rgba(229, 229, 229, 0.8);
+  color: rgba(229, 229, 229, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary-9 {
-  color: rgba(229, 229, 229, 0.9);
+  color: rgba(229, 229, 229, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-primary {
-  color: #E5E5E5;
+  color: #E5E5E5 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-1 {
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-2 {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-3 {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-4 {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-5 {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-6 {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-7 {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-8 {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary-9 {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-secondary {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-1 {
-  color: rgba(119, 214, 37, 0.1);
+  color: rgba(119, 214, 37, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-2 {
-  color: rgba(119, 214, 37, 0.2);
+  color: rgba(119, 214, 37, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-3 {
-  color: rgba(119, 214, 37, 0.3);
+  color: rgba(119, 214, 37, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-4 {
-  color: rgba(119, 214, 37, 0.4);
+  color: rgba(119, 214, 37, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-5 {
-  color: rgba(119, 214, 37, 0.5);
+  color: rgba(119, 214, 37, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-6 {
-  color: rgba(119, 214, 37, 0.6);
+  color: rgba(119, 214, 37, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-7 {
-  color: rgba(119, 214, 37, 0.7);
+  color: rgba(119, 214, 37, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-8 {
-  color: rgba(119, 214, 37, 0.8);
+  color: rgba(119, 214, 37, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success-9 {
-  color: rgba(119, 214, 37, 0.9);
+  color: rgba(119, 214, 37, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-success {
-  color: #77D625;
+  color: #77D625 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-1 {
-  color: rgba(173, 94, 0, 0.1);
+  color: rgba(173, 94, 0, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-2 {
-  color: rgba(173, 94, 0, 0.2);
+  color: rgba(173, 94, 0, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-3 {
-  color: rgba(173, 94, 0, 0.3);
+  color: rgba(173, 94, 0, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-4 {
-  color: rgba(173, 94, 0, 0.4);
+  color: rgba(173, 94, 0, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-5 {
-  color: rgba(173, 94, 0, 0.5);
+  color: rgba(173, 94, 0, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-6 {
-  color: rgba(173, 94, 0, 0.6);
+  color: rgba(173, 94, 0, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-7 {
-  color: rgba(173, 94, 0, 0.7);
+  color: rgba(173, 94, 0, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-8 {
-  color: rgba(173, 94, 0, 0.8);
+  color: rgba(173, 94, 0, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning-9 {
-  color: rgba(173, 94, 0, 0.9);
+  color: rgba(173, 94, 0, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-warning {
-  color: #AD5E00;
+  color: #AD5E00 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-1 {
-  color: rgba(0, 68, 136, 0.1);
+  color: rgba(0, 68, 136, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-2 {
-  color: rgba(0, 68, 136, 0.2);
+  color: rgba(0, 68, 136, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-3 {
-  color: rgba(0, 68, 136, 0.3);
+  color: rgba(0, 68, 136, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-4 {
-  color: rgba(0, 68, 136, 0.4);
+  color: rgba(0, 68, 136, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-5 {
-  color: rgba(0, 68, 136, 0.5);
+  color: rgba(0, 68, 136, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-6 {
-  color: rgba(0, 68, 136, 0.6);
+  color: rgba(0, 68, 136, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-7 {
-  color: rgba(0, 68, 136, 0.7);
+  color: rgba(0, 68, 136, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-8 {
-  color: rgba(0, 68, 136, 0.8);
+  color: rgba(0, 68, 136, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info-9 {
-  color: rgba(0, 68, 136, 0.9);
+  color: rgba(0, 68, 136, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-info {
-  color: #004488;
+  color: #004488 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-1 {
-  color: rgba(153, 0, 0, 0.1);
+  color: rgba(153, 0, 0, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-2 {
-  color: rgba(153, 0, 0, 0.2);
+  color: rgba(153, 0, 0, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-3 {
-  color: rgba(153, 0, 0, 0.3);
+  color: rgba(153, 0, 0, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-4 {
-  color: rgba(153, 0, 0, 0.4);
+  color: rgba(153, 0, 0, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-5 {
-  color: rgba(153, 0, 0, 0.5);
+  color: rgba(153, 0, 0, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-6 {
-  color: rgba(153, 0, 0, 0.6);
+  color: rgba(153, 0, 0, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-7 {
-  color: rgba(153, 0, 0, 0.7);
+  color: rgba(153, 0, 0, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-8 {
-  color: rgba(153, 0, 0, 0.8);
+  color: rgba(153, 0, 0, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger-9 {
-  color: rgba(153, 0, 0, 0.9);
+  color: rgba(153, 0, 0, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-danger {
-  color: #990000;
+  color: #990000 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-1 {
-  color: rgba(24, 24, 24, 0.1);
+  color: rgba(24, 24, 24, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-2 {
-  color: rgba(24, 24, 24, 0.2);
+  color: rgba(24, 24, 24, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-3 {
-  color: rgba(24, 24, 24, 0.3);
+  color: rgba(24, 24, 24, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-4 {
-  color: rgba(24, 24, 24, 0.4);
+  color: rgba(24, 24, 24, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-5 {
-  color: rgba(24, 24, 24, 0.5);
+  color: rgba(24, 24, 24, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-6 {
-  color: rgba(24, 24, 24, 0.6);
+  color: rgba(24, 24, 24, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-7 {
-  color: rgba(24, 24, 24, 0.7);
+  color: rgba(24, 24, 24, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-8 {
-  color: rgba(24, 24, 24, 0.8);
+  color: rgba(24, 24, 24, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg-9 {
-  color: rgba(24, 24, 24, 0.9);
+  color: rgba(24, 24, 24, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-bg {
-  color: #181818;
+  color: #181818 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-1 {
-  color: rgba(234, 234, 234, 0.1);
+  color: rgba(234, 234, 234, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-2 {
-  color: rgba(234, 234, 234, 0.2);
+  color: rgba(234, 234, 234, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-3 {
-  color: rgba(234, 234, 234, 0.3);
+  color: rgba(234, 234, 234, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-4 {
-  color: rgba(234, 234, 234, 0.4);
+  color: rgba(234, 234, 234, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-5 {
-  color: rgba(234, 234, 234, 0.5);
+  color: rgba(234, 234, 234, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-6 {
-  color: rgba(234, 234, 234, 0.6);
+  color: rgba(234, 234, 234, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-7 {
-  color: rgba(234, 234, 234, 0.7);
+  color: rgba(234, 234, 234, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-8 {
-  color: rgba(234, 234, 234, 0.8);
+  color: rgba(234, 234, 234, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body-9 {
-  color: rgba(234, 234, 234, 0.9);
+  color: rgba(234, 234, 234, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-body {
-  color: #EAEAEA;
+  color: #EAEAEA !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-1 {
-  color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-2 {
-  color: rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-3 {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-4 {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-5 {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-6 {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-7 {
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-8 {
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light-9 {
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-light {
-  color: #000000;
+  color: #000000 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-1 {
-  color: rgba(245, 245, 245, 0.1);
+  color: rgba(245, 245, 245, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-2 {
-  color: rgba(245, 245, 245, 0.2);
+  color: rgba(245, 245, 245, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-3 {
-  color: rgba(245, 245, 245, 0.3);
+  color: rgba(245, 245, 245, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-4 {
-  color: rgba(245, 245, 245, 0.4);
+  color: rgba(245, 245, 245, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-5 {
-  color: rgba(245, 245, 245, 0.5);
+  color: rgba(245, 245, 245, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-6 {
-  color: rgba(245, 245, 245, 0.6);
+  color: rgba(245, 245, 245, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-7 {
-  color: rgba(245, 245, 245, 0.7);
+  color: rgba(245, 245, 245, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-8 {
-  color: rgba(245, 245, 245, 0.8);
+  color: rgba(245, 245, 245, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark-9 {
-  color: rgba(245, 245, 245, 0.9);
+  color: rgba(245, 245, 245, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-dark {
-  color: #F5F5F5;
+  color: #F5F5F5 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-1 {
-  color: rgba(136, 192, 208, 0.1);
+  color: rgba(136, 192, 208, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-2 {
-  color: rgba(136, 192, 208, 0.2);
+  color: rgba(136, 192, 208, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-3 {
-  color: rgba(136, 192, 208, 0.3);
+  color: rgba(136, 192, 208, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-4 {
-  color: rgba(136, 192, 208, 0.4);
+  color: rgba(136, 192, 208, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-5 {
-  color: rgba(136, 192, 208, 0.5);
+  color: rgba(136, 192, 208, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-6 {
-  color: rgba(136, 192, 208, 0.6);
+  color: rgba(136, 192, 208, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-7 {
-  color: rgba(136, 192, 208, 0.7);
+  color: rgba(136, 192, 208, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-8 {
-  color: rgba(136, 192, 208, 0.8);
+  color: rgba(136, 192, 208, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link-9 {
-  color: rgba(136, 192, 208, 0.9);
+  color: rgba(136, 192, 208, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-link {
-  color: #88C0D0;
+  color: #88C0D0 !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-1 {
-  color: rgba(234, 234, 234, 0.1);
+  color: rgba(234, 234, 234, 0.1) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-2 {
-  color: rgba(234, 234, 234, 0.2);
+  color: rgba(234, 234, 234, 0.2) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-3 {
-  color: rgba(234, 234, 234, 0.3);
+  color: rgba(234, 234, 234, 0.3) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-4 {
-  color: rgba(234, 234, 234, 0.4);
+  color: rgba(234, 234, 234, 0.4) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-5 {
-  color: rgba(234, 234, 234, 0.5);
+  color: rgba(234, 234, 234, 0.5) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-6 {
-  color: rgba(234, 234, 234, 0.6);
+  color: rgba(234, 234, 234, 0.6) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-7 {
-  color: rgba(234, 234, 234, 0.7);
+  color: rgba(234, 234, 234, 0.7) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-8 {
-  color: rgba(234, 234, 234, 0.8);
+  color: rgba(234, 234, 234, 0.8) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading-9 {
-  color: rgba(234, 234, 234, 0.9);
+  color: rgba(234, 234, 234, 0.9) !important;
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading {
-  color: #EAEAEA;
+  color: #EAEAEA !important;
   font-weight: 600;
 }
 

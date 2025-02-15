@@ -6,25 +6,6 @@
 
 // ✅ GÉNÉRATION DES CLASSES DE COULEURS DE TEXTE
 
-$font-sizes: (
-  "10": 0.625rem,
-  "12": 0.75rem,
-  "14": 0.875rem,
-  "16": 1rem,
-  "18": 1.125rem,
-  "20": 1.25rem,
-  "22": 1.375rem,
-  "24": 1.5rem,
-  "30": 1.875rem,
-  "32": 2rem,
-  "34": 2.125rem,
-  "36": 2.25rem,
-  "48": 3rem,
-  "60": 3.75rem,
-  "72": 4.5rem,
-  "96": 6rem
-);
-
 $opacities: (
   "1": 0.1,
   "2": 0.2,
@@ -43,13 +24,13 @@ $opacities: (
         // .txt-#{$color-name}
         @if $opacity-name == "10" {
             html[theme=#{$theme-name}] .txt-#{$color-name} {
-              color: $color-value;
+              color: $color-value !important;
               font-weight: if($theme-name == 'light' or $theme-name == 'dark', 400, 600);
             } 
           } @else {
             //.txt-#{$color-name}-#{$opacity-name}
             html[theme=#{$theme-name}] .txt-#{$color-name}-#{$opacity-name} {
-              color: rgba($color-value, $opacity-value);
+              color: rgba($color-value, $opacity-value) !important;
               font-weight: if($theme-name == 'light' or $theme-name == 'dark', 400, 600);
             }
           }
