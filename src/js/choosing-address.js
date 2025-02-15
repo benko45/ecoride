@@ -1,4 +1,6 @@
 "use strict";
+// choosing-address.js
+console.log("choosing-address.js est bien appliqué !");
 
 // Variable pour stocker la sélection de l'utilisateur
 var selectedTheme = localStorage.getItem("theme") || "auto";
@@ -38,16 +40,3 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
         applyTheme("auto");
     }
 });
-
-//écoute le click sur la zone recherche-départ
-document.getElementById("case-depart").addEventListener("click", function(event) {
-    // event.preventDefault();
-    window.location.href = "public/choosing-address.html";
-});
-
-// éviter que le champ de saisie input ne capte le clic et empêche la navigation
-// document.getElementById("form-depart").addEventListener("click", function(event) {
-//     event.stopPropagation();
-//     this.blur(); // Empêche la mise en focus de l'input
-// });
-

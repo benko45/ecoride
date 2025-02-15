@@ -33,12 +33,13 @@ $browser-infix: ('::', '::-webkit-input-', ':-ms-input-');
 
 // Boucle sur chaque thème défini dans colors.$themes
 @each $theme-name, $colors in colors.$themes {
-  [theme="#{$theme-name}"] {
+  html[theme="#{$theme-name}"] {
     @each $infix in $browser-infix {
       input#{$infix}placeholder {
-        color: var(--custom-primary);
+        color: if( $theme-name != 'dark', var(--custom-primary), var(--custom-dark));
         font-weight: if($theme-name == 'light' or $theme-name == 'dark', 400, 600);
         opacity : 0.5;
+        // background-color: var(--custom-light);
       }
     }
   }
@@ -53,6 +54,19 @@ $browser-infix: ('::', '::-webkit-input-', ':-ms-input-');
       height: #{$i * 1vh};
     }
   }
+}
+
+/**********************************************/
+/* accessibility border */
+/**********************************************/
+html[theme="accessibility-dark"] .accessibility-border {
+  border: 2px solid var(--custom-dark);
+}
+html[theme="accessibility-light"] .accessibility-border {
+  border: 2px solid var(--custom-dark);
+}
+html[theme="dark"] .accessibility-border {
+  border: 2px solid var(--custom-primary);
 }
 
 

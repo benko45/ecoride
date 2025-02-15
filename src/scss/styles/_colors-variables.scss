@@ -9,6 +9,7 @@ $themes: (
         "warning":   #FFB74D,  // Orange doux
         "danger":    #D84315,  // Rouge terre
         "info":      #4FC3F7,  // Bleu doux
+        // "light":     red,  // blanc
         "light":     #ffffff,  // blanc
         "dark":      #1B5E20,  // Vert foncé
         "body-bg":   #E8F5E9,  // Fond vert clair naturel
@@ -45,15 +46,15 @@ $themes: (
         "heading":   #1A1A1A // Titres bien définis, excellent contraste
     ),
     "accessibility-dark": (
-        "primary":   #E5E5E5, // Vert foncé au lieu d'un gris clair
-        "secondary": #ffffff, // Gris foncé pour meilleur contraste
+        "primary":   #E5E5E5, 
+        "secondary": #ffffff, 
         "success":   #77D625, // Vert profond et accessible
         "warning":   #AD5E00, // Orange foncé compatible
         "info":      #004488, // Bleu lisible
         "danger":    #990000, // Rouge sombre et accessible
         "body-bg":   #181818, // Noir atténué (moins fatiguant)
         "body":      #EAEAEA, // Texte clair lisible
-        "light":     #000000, // Gris foncé au lieu d'un gris trop clair
+        "light":     #000000, // Noir pur pour sections contrastées
         "dark":      #F5F5F5, // Gris clair pour ne pas être un blanc pur
         "link":      #88C0D0,  // Bleu lisible
         "heading":   #EAEAEA // Titres bien contrastés
