@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use "styles/colors-variables" as colors;
+@use "styles/global-styles";
+
+// body {
+//     margin: 0;
+// }
+
+$breakpoints: (
+    'xs': 0,
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px
+);
+$breakpoint: map.get($breakpoints, 'md');
+
+#form-depart {
+    width: 100%; 
+}
+
+#input-form {
+    width: 100%;
+}

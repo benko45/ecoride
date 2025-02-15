@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**********************************************/
 /**********************************************/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
@@ -110,119 +111,1473 @@ html[theme=accessibility-dark] {
   --custom-heading-rgb: 234, 234, 234;
 }
 
+/* ✅ GÉNÉRATION DES CLASSES DE COULEURS   */
+[theme=light] .primary {
+  color: #425F0D;
+}
+
+[theme=light] .secondary {
+  color: #77D625;
+}
+
+[theme=light] .success {
+  color: #388E3C;
+}
+
+[theme=light] .warning {
+  color: #FFB74D;
+}
+
+[theme=light] .danger {
+  color: #D84315;
+}
+
+[theme=light] .info {
+  color: #4FC3F7;
+}
+
+[theme=light] .light {
+  color: #ffffff;
+}
+
+[theme=light] .dark {
+  color: #1B5E20;
+}
+
+[theme=light] .body-bg {
+  color: #E8F5E9;
+}
+
+[theme=light] .body {
+  color: #425F0D;
+}
+
+[theme=light] .link {
+  color: #388E3C;
+}
+
+[theme=light] .heading {
+  color: #425F0D;
+}
+
+[theme=dark] .primary {
+  color: #425F0D;
+}
+
+[theme=dark] .secondary {
+  color: #77D625;
+}
+
+[theme=dark] .success {
+  color: #66BB6A;
+}
+
+[theme=dark] .warning {
+  color: #FFB74D;
+}
+
+[theme=dark] .danger {
+  color: #E57373;
+}
+
+[theme=dark] .info {
+  color: #4FC3F7;
+}
+
+[theme=dark] .light {
+  color: #000000;
+}
+
+[theme=dark] .dark {
+  color: #ffffff;
+}
+
+[theme=dark] .body-bg {
+  color: #121A13;
+}
+
+[theme=dark] .body {
+  color: #425F0D;
+}
+
+[theme=dark] .link {
+  color: #388E3C;
+}
+
+[theme=dark] .heading {
+  color: #425F0D;
+}
+
+[theme=accessibility-light] .primary {
+  color: #1A1A1A;
+}
+
+[theme=accessibility-light] .secondary {
+  color: #3B3B3B;
+}
+
+[theme=accessibility-light] .success {
+  color: #77D625;
+}
+
+[theme=accessibility-light] .warning {
+  color: #8C5100;
+}
+
+[theme=accessibility-light] .info {
+  color: #004488;
+}
+
+[theme=accessibility-light] .danger {
+  color: #7D0000;
+}
+
+[theme=accessibility-light] .body-bg {
+  color: #FAFAFA;
+}
+
+[theme=accessibility-light] .body {
+  color: #111111;
+}
+
+[theme=accessibility-light] .light {
+  color: #ffffff;
+}
+
+[theme=accessibility-light] .dark {
+  color: #000000;
+}
+
+[theme=accessibility-light] .link {
+  color: #004488;
+}
+
+[theme=accessibility-light] .heading {
+  color: #1A1A1A;
+}
+
+[theme=accessibility-dark] .primary {
+  color: #E5E5E5;
+}
+
+[theme=accessibility-dark] .secondary {
+  color: #ffffff;
+}
+
+[theme=accessibility-dark] .success {
+  color: #77D625;
+}
+
+[theme=accessibility-dark] .warning {
+  color: #AD5E00;
+}
+
+[theme=accessibility-dark] .info {
+  color: #004488;
+}
+
+[theme=accessibility-dark] .danger {
+  color: #990000;
+}
+
+[theme=accessibility-dark] .body-bg {
+  color: #181818;
+}
+
+[theme=accessibility-dark] .body {
+  color: #EAEAEA;
+}
+
+[theme=accessibility-dark] .light {
+  color: #000000;
+}
+
+[theme=accessibility-dark] .dark {
+  color: #F5F5F5;
+}
+
+[theme=accessibility-dark] .link {
+  color: #88C0D0;
+}
+
+[theme=accessibility-dark] .heading {
+  color: #EAEAEA;
+}
+
+/* ✅ GÉNÉRATION DES CLASSES DE FOND        */
 [theme=light] .background-primary {
   background-color: #425F0D;
+}
+
+[theme=light] .background-primary-1 {
+  background-color: rgba(66, 95, 13, 0.1);
+}
+
+[theme=light] .background-primary-2 {
+  background-color: rgba(66, 95, 13, 0.2);
+}
+
+[theme=light] .background-primary-3 {
+  background-color: rgba(66, 95, 13, 0.3);
+}
+
+[theme=light] .background-primary-4 {
+  background-color: rgba(66, 95, 13, 0.4);
+}
+
+[theme=light] .background-primary-5 {
+  background-color: rgba(66, 95, 13, 0.5);
+}
+
+[theme=light] .background-primary-6 {
+  background-color: rgba(66, 95, 13, 0.6);
+}
+
+[theme=light] .background-primary-7 {
+  background-color: rgba(66, 95, 13, 0.7);
+}
+
+[theme=light] .background-primary-8 {
+  background-color: rgba(66, 95, 13, 0.8);
+}
+
+[theme=light] .background-primary-9 {
+  background-color: rgba(66, 95, 13, 0.9);
+}
+
+[theme=light] .background-primary-10 {
+  background-color: #425f0d;
 }
 
 [theme=light] .background-secondary {
   background-color: #77D625;
 }
 
+[theme=light] .background-secondary-1 {
+  background-color: rgba(119, 214, 37, 0.1);
+}
+
+[theme=light] .background-secondary-2 {
+  background-color: rgba(119, 214, 37, 0.2);
+}
+
+[theme=light] .background-secondary-3 {
+  background-color: rgba(119, 214, 37, 0.3);
+}
+
+[theme=light] .background-secondary-4 {
+  background-color: rgba(119, 214, 37, 0.4);
+}
+
+[theme=light] .background-secondary-5 {
+  background-color: rgba(119, 214, 37, 0.5);
+}
+
+[theme=light] .background-secondary-6 {
+  background-color: rgba(119, 214, 37, 0.6);
+}
+
+[theme=light] .background-secondary-7 {
+  background-color: rgba(119, 214, 37, 0.7);
+}
+
+[theme=light] .background-secondary-8 {
+  background-color: rgba(119, 214, 37, 0.8);
+}
+
+[theme=light] .background-secondary-9 {
+  background-color: rgba(119, 214, 37, 0.9);
+}
+
+[theme=light] .background-secondary-10 {
+  background-color: #77d625;
+}
+
 [theme=light] .background-success {
   background-color: #388E3C;
+}
+
+[theme=light] .background-success-1 {
+  background-color: rgba(56, 142, 60, 0.1);
+}
+
+[theme=light] .background-success-2 {
+  background-color: rgba(56, 142, 60, 0.2);
+}
+
+[theme=light] .background-success-3 {
+  background-color: rgba(56, 142, 60, 0.3);
+}
+
+[theme=light] .background-success-4 {
+  background-color: rgba(56, 142, 60, 0.4);
+}
+
+[theme=light] .background-success-5 {
+  background-color: rgba(56, 142, 60, 0.5);
+}
+
+[theme=light] .background-success-6 {
+  background-color: rgba(56, 142, 60, 0.6);
+}
+
+[theme=light] .background-success-7 {
+  background-color: rgba(56, 142, 60, 0.7);
+}
+
+[theme=light] .background-success-8 {
+  background-color: rgba(56, 142, 60, 0.8);
+}
+
+[theme=light] .background-success-9 {
+  background-color: rgba(56, 142, 60, 0.9);
+}
+
+[theme=light] .background-success-10 {
+  background-color: #388e3c;
 }
 
 [theme=light] .background-warning {
   background-color: #FFB74D;
 }
 
+[theme=light] .background-warning-1 {
+  background-color: rgba(255, 183, 77, 0.1);
+}
+
+[theme=light] .background-warning-2 {
+  background-color: rgba(255, 183, 77, 0.2);
+}
+
+[theme=light] .background-warning-3 {
+  background-color: rgba(255, 183, 77, 0.3);
+}
+
+[theme=light] .background-warning-4 {
+  background-color: rgba(255, 183, 77, 0.4);
+}
+
+[theme=light] .background-warning-5 {
+  background-color: rgba(255, 183, 77, 0.5);
+}
+
+[theme=light] .background-warning-6 {
+  background-color: rgba(255, 183, 77, 0.6);
+}
+
+[theme=light] .background-warning-7 {
+  background-color: rgba(255, 183, 77, 0.7);
+}
+
+[theme=light] .background-warning-8 {
+  background-color: rgba(255, 183, 77, 0.8);
+}
+
+[theme=light] .background-warning-9 {
+  background-color: rgba(255, 183, 77, 0.9);
+}
+
+[theme=light] .background-warning-10 {
+  background-color: #ffb74d;
+}
+
 [theme=light] .background-danger {
   background-color: #D84315;
+}
+
+[theme=light] .background-danger-1 {
+  background-color: rgba(216, 67, 21, 0.1);
+}
+
+[theme=light] .background-danger-2 {
+  background-color: rgba(216, 67, 21, 0.2);
+}
+
+[theme=light] .background-danger-3 {
+  background-color: rgba(216, 67, 21, 0.3);
+}
+
+[theme=light] .background-danger-4 {
+  background-color: rgba(216, 67, 21, 0.4);
+}
+
+[theme=light] .background-danger-5 {
+  background-color: rgba(216, 67, 21, 0.5);
+}
+
+[theme=light] .background-danger-6 {
+  background-color: rgba(216, 67, 21, 0.6);
+}
+
+[theme=light] .background-danger-7 {
+  background-color: rgba(216, 67, 21, 0.7);
+}
+
+[theme=light] .background-danger-8 {
+  background-color: rgba(216, 67, 21, 0.8);
+}
+
+[theme=light] .background-danger-9 {
+  background-color: rgba(216, 67, 21, 0.9);
+}
+
+[theme=light] .background-danger-10 {
+  background-color: #d84315;
 }
 
 [theme=light] .background-info {
   background-color: #4FC3F7;
 }
 
+[theme=light] .background-info-1 {
+  background-color: rgba(79, 195, 247, 0.1);
+}
+
+[theme=light] .background-info-2 {
+  background-color: rgba(79, 195, 247, 0.2);
+}
+
+[theme=light] .background-info-3 {
+  background-color: rgba(79, 195, 247, 0.3);
+}
+
+[theme=light] .background-info-4 {
+  background-color: rgba(79, 195, 247, 0.4);
+}
+
+[theme=light] .background-info-5 {
+  background-color: rgba(79, 195, 247, 0.5);
+}
+
+[theme=light] .background-info-6 {
+  background-color: rgba(79, 195, 247, 0.6);
+}
+
+[theme=light] .background-info-7 {
+  background-color: rgba(79, 195, 247, 0.7);
+}
+
+[theme=light] .background-info-8 {
+  background-color: rgba(79, 195, 247, 0.8);
+}
+
+[theme=light] .background-info-9 {
+  background-color: rgba(79, 195, 247, 0.9);
+}
+
+[theme=light] .background-info-10 {
+  background-color: #4fc3f7;
+}
+
 [theme=light] .background-light {
   background-color: #ffffff;
+}
+
+[theme=light] .background-light-1 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[theme=light] .background-light-2 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[theme=light] .background-light-3 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[theme=light] .background-light-4 {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+[theme=light] .background-light-5 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+[theme=light] .background-light-6 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+[theme=light] .background-light-7 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+[theme=light] .background-light-8 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+[theme=light] .background-light-9 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+[theme=light] .background-light-10 {
+  background-color: white;
 }
 
 [theme=light] .background-dark {
   background-color: #1B5E20;
 }
 
+[theme=light] .background-dark-1 {
+  background-color: rgba(27, 94, 32, 0.1);
+}
+
+[theme=light] .background-dark-2 {
+  background-color: rgba(27, 94, 32, 0.2);
+}
+
+[theme=light] .background-dark-3 {
+  background-color: rgba(27, 94, 32, 0.3);
+}
+
+[theme=light] .background-dark-4 {
+  background-color: rgba(27, 94, 32, 0.4);
+}
+
+[theme=light] .background-dark-5 {
+  background-color: rgba(27, 94, 32, 0.5);
+}
+
+[theme=light] .background-dark-6 {
+  background-color: rgba(27, 94, 32, 0.6);
+}
+
+[theme=light] .background-dark-7 {
+  background-color: rgba(27, 94, 32, 0.7);
+}
+
+[theme=light] .background-dark-8 {
+  background-color: rgba(27, 94, 32, 0.8);
+}
+
+[theme=light] .background-dark-9 {
+  background-color: rgba(27, 94, 32, 0.9);
+}
+
+[theme=light] .background-dark-10 {
+  background-color: #1b5e20;
+}
+
 [theme=light] .background-body-bg {
   background-color: #E8F5E9;
+}
+
+[theme=light] .background-body-bg-1 {
+  background-color: rgba(232, 245, 233, 0.1);
+}
+
+[theme=light] .background-body-bg-2 {
+  background-color: rgba(232, 245, 233, 0.2);
+}
+
+[theme=light] .background-body-bg-3 {
+  background-color: rgba(232, 245, 233, 0.3);
+}
+
+[theme=light] .background-body-bg-4 {
+  background-color: rgba(232, 245, 233, 0.4);
+}
+
+[theme=light] .background-body-bg-5 {
+  background-color: rgba(232, 245, 233, 0.5);
+}
+
+[theme=light] .background-body-bg-6 {
+  background-color: rgba(232, 245, 233, 0.6);
+}
+
+[theme=light] .background-body-bg-7 {
+  background-color: rgba(232, 245, 233, 0.7);
+}
+
+[theme=light] .background-body-bg-8 {
+  background-color: rgba(232, 245, 233, 0.8);
+}
+
+[theme=light] .background-body-bg-9 {
+  background-color: rgba(232, 245, 233, 0.9);
+}
+
+[theme=light] .background-body-bg-10 {
+  background-color: #e8f5e9;
 }
 
 [theme=light] .background-body {
   background-color: #425F0D;
 }
 
+[theme=light] .background-body-1 {
+  background-color: rgba(66, 95, 13, 0.1);
+}
+
+[theme=light] .background-body-2 {
+  background-color: rgba(66, 95, 13, 0.2);
+}
+
+[theme=light] .background-body-3 {
+  background-color: rgba(66, 95, 13, 0.3);
+}
+
+[theme=light] .background-body-4 {
+  background-color: rgba(66, 95, 13, 0.4);
+}
+
+[theme=light] .background-body-5 {
+  background-color: rgba(66, 95, 13, 0.5);
+}
+
+[theme=light] .background-body-6 {
+  background-color: rgba(66, 95, 13, 0.6);
+}
+
+[theme=light] .background-body-7 {
+  background-color: rgba(66, 95, 13, 0.7);
+}
+
+[theme=light] .background-body-8 {
+  background-color: rgba(66, 95, 13, 0.8);
+}
+
+[theme=light] .background-body-9 {
+  background-color: rgba(66, 95, 13, 0.9);
+}
+
+[theme=light] .background-body-10 {
+  background-color: #425f0d;
+}
+
 [theme=light] .background-link {
   background-color: #388E3C;
+}
+
+[theme=light] .background-link-1 {
+  background-color: rgba(56, 142, 60, 0.1);
+}
+
+[theme=light] .background-link-2 {
+  background-color: rgba(56, 142, 60, 0.2);
+}
+
+[theme=light] .background-link-3 {
+  background-color: rgba(56, 142, 60, 0.3);
+}
+
+[theme=light] .background-link-4 {
+  background-color: rgba(56, 142, 60, 0.4);
+}
+
+[theme=light] .background-link-5 {
+  background-color: rgba(56, 142, 60, 0.5);
+}
+
+[theme=light] .background-link-6 {
+  background-color: rgba(56, 142, 60, 0.6);
+}
+
+[theme=light] .background-link-7 {
+  background-color: rgba(56, 142, 60, 0.7);
+}
+
+[theme=light] .background-link-8 {
+  background-color: rgba(56, 142, 60, 0.8);
+}
+
+[theme=light] .background-link-9 {
+  background-color: rgba(56, 142, 60, 0.9);
+}
+
+[theme=light] .background-link-10 {
+  background-color: #388e3c;
 }
 
 [theme=light] .background-heading {
   background-color: #425F0D;
 }
 
+[theme=light] .background-heading-1 {
+  background-color: rgba(66, 95, 13, 0.1);
+}
+
+[theme=light] .background-heading-2 {
+  background-color: rgba(66, 95, 13, 0.2);
+}
+
+[theme=light] .background-heading-3 {
+  background-color: rgba(66, 95, 13, 0.3);
+}
+
+[theme=light] .background-heading-4 {
+  background-color: rgba(66, 95, 13, 0.4);
+}
+
+[theme=light] .background-heading-5 {
+  background-color: rgba(66, 95, 13, 0.5);
+}
+
+[theme=light] .background-heading-6 {
+  background-color: rgba(66, 95, 13, 0.6);
+}
+
+[theme=light] .background-heading-7 {
+  background-color: rgba(66, 95, 13, 0.7);
+}
+
+[theme=light] .background-heading-8 {
+  background-color: rgba(66, 95, 13, 0.8);
+}
+
+[theme=light] .background-heading-9 {
+  background-color: rgba(66, 95, 13, 0.9);
+}
+
+[theme=light] .background-heading-10 {
+  background-color: #425f0d;
+}
+
 [theme=dark] .background-primary {
   background-color: #425F0D;
+}
+
+[theme=dark] .background-primary-1 {
+  background-color: rgba(66, 95, 13, 0.1);
+}
+
+[theme=dark] .background-primary-2 {
+  background-color: rgba(66, 95, 13, 0.2);
+}
+
+[theme=dark] .background-primary-3 {
+  background-color: rgba(66, 95, 13, 0.3);
+}
+
+[theme=dark] .background-primary-4 {
+  background-color: rgba(66, 95, 13, 0.4);
+}
+
+[theme=dark] .background-primary-5 {
+  background-color: rgba(66, 95, 13, 0.5);
+}
+
+[theme=dark] .background-primary-6 {
+  background-color: rgba(66, 95, 13, 0.6);
+}
+
+[theme=dark] .background-primary-7 {
+  background-color: rgba(66, 95, 13, 0.7);
+}
+
+[theme=dark] .background-primary-8 {
+  background-color: rgba(66, 95, 13, 0.8);
+}
+
+[theme=dark] .background-primary-9 {
+  background-color: rgba(66, 95, 13, 0.9);
+}
+
+[theme=dark] .background-primary-10 {
+  background-color: #425f0d;
 }
 
 [theme=dark] .background-secondary {
   background-color: #77D625;
 }
 
+[theme=dark] .background-secondary-1 {
+  background-color: rgba(119, 214, 37, 0.1);
+}
+
+[theme=dark] .background-secondary-2 {
+  background-color: rgba(119, 214, 37, 0.2);
+}
+
+[theme=dark] .background-secondary-3 {
+  background-color: rgba(119, 214, 37, 0.3);
+}
+
+[theme=dark] .background-secondary-4 {
+  background-color: rgba(119, 214, 37, 0.4);
+}
+
+[theme=dark] .background-secondary-5 {
+  background-color: rgba(119, 214, 37, 0.5);
+}
+
+[theme=dark] .background-secondary-6 {
+  background-color: rgba(119, 214, 37, 0.6);
+}
+
+[theme=dark] .background-secondary-7 {
+  background-color: rgba(119, 214, 37, 0.7);
+}
+
+[theme=dark] .background-secondary-8 {
+  background-color: rgba(119, 214, 37, 0.8);
+}
+
+[theme=dark] .background-secondary-9 {
+  background-color: rgba(119, 214, 37, 0.9);
+}
+
+[theme=dark] .background-secondary-10 {
+  background-color: #77d625;
+}
+
 [theme=dark] .background-success {
   background-color: #66BB6A;
+}
+
+[theme=dark] .background-success-1 {
+  background-color: rgba(102, 187, 106, 0.1);
+}
+
+[theme=dark] .background-success-2 {
+  background-color: rgba(102, 187, 106, 0.2);
+}
+
+[theme=dark] .background-success-3 {
+  background-color: rgba(102, 187, 106, 0.3);
+}
+
+[theme=dark] .background-success-4 {
+  background-color: rgba(102, 187, 106, 0.4);
+}
+
+[theme=dark] .background-success-5 {
+  background-color: rgba(102, 187, 106, 0.5);
+}
+
+[theme=dark] .background-success-6 {
+  background-color: rgba(102, 187, 106, 0.6);
+}
+
+[theme=dark] .background-success-7 {
+  background-color: rgba(102, 187, 106, 0.7);
+}
+
+[theme=dark] .background-success-8 {
+  background-color: rgba(102, 187, 106, 0.8);
+}
+
+[theme=dark] .background-success-9 {
+  background-color: rgba(102, 187, 106, 0.9);
+}
+
+[theme=dark] .background-success-10 {
+  background-color: #66bb6a;
 }
 
 [theme=dark] .background-warning {
   background-color: #FFB74D;
 }
 
+[theme=dark] .background-warning-1 {
+  background-color: rgba(255, 183, 77, 0.1);
+}
+
+[theme=dark] .background-warning-2 {
+  background-color: rgba(255, 183, 77, 0.2);
+}
+
+[theme=dark] .background-warning-3 {
+  background-color: rgba(255, 183, 77, 0.3);
+}
+
+[theme=dark] .background-warning-4 {
+  background-color: rgba(255, 183, 77, 0.4);
+}
+
+[theme=dark] .background-warning-5 {
+  background-color: rgba(255, 183, 77, 0.5);
+}
+
+[theme=dark] .background-warning-6 {
+  background-color: rgba(255, 183, 77, 0.6);
+}
+
+[theme=dark] .background-warning-7 {
+  background-color: rgba(255, 183, 77, 0.7);
+}
+
+[theme=dark] .background-warning-8 {
+  background-color: rgba(255, 183, 77, 0.8);
+}
+
+[theme=dark] .background-warning-9 {
+  background-color: rgba(255, 183, 77, 0.9);
+}
+
+[theme=dark] .background-warning-10 {
+  background-color: #ffb74d;
+}
+
 [theme=dark] .background-danger {
   background-color: #E57373;
+}
+
+[theme=dark] .background-danger-1 {
+  background-color: rgba(229, 115, 115, 0.1);
+}
+
+[theme=dark] .background-danger-2 {
+  background-color: rgba(229, 115, 115, 0.2);
+}
+
+[theme=dark] .background-danger-3 {
+  background-color: rgba(229, 115, 115, 0.3);
+}
+
+[theme=dark] .background-danger-4 {
+  background-color: rgba(229, 115, 115, 0.4);
+}
+
+[theme=dark] .background-danger-5 {
+  background-color: rgba(229, 115, 115, 0.5);
+}
+
+[theme=dark] .background-danger-6 {
+  background-color: rgba(229, 115, 115, 0.6);
+}
+
+[theme=dark] .background-danger-7 {
+  background-color: rgba(229, 115, 115, 0.7);
+}
+
+[theme=dark] .background-danger-8 {
+  background-color: rgba(229, 115, 115, 0.8);
+}
+
+[theme=dark] .background-danger-9 {
+  background-color: rgba(229, 115, 115, 0.9);
+}
+
+[theme=dark] .background-danger-10 {
+  background-color: #e57373;
 }
 
 [theme=dark] .background-info {
   background-color: #4FC3F7;
 }
 
+[theme=dark] .background-info-1 {
+  background-color: rgba(79, 195, 247, 0.1);
+}
+
+[theme=dark] .background-info-2 {
+  background-color: rgba(79, 195, 247, 0.2);
+}
+
+[theme=dark] .background-info-3 {
+  background-color: rgba(79, 195, 247, 0.3);
+}
+
+[theme=dark] .background-info-4 {
+  background-color: rgba(79, 195, 247, 0.4);
+}
+
+[theme=dark] .background-info-5 {
+  background-color: rgba(79, 195, 247, 0.5);
+}
+
+[theme=dark] .background-info-6 {
+  background-color: rgba(79, 195, 247, 0.6);
+}
+
+[theme=dark] .background-info-7 {
+  background-color: rgba(79, 195, 247, 0.7);
+}
+
+[theme=dark] .background-info-8 {
+  background-color: rgba(79, 195, 247, 0.8);
+}
+
+[theme=dark] .background-info-9 {
+  background-color: rgba(79, 195, 247, 0.9);
+}
+
+[theme=dark] .background-info-10 {
+  background-color: #4fc3f7;
+}
+
 [theme=dark] .background-light {
   background-color: #000000;
+}
+
+[theme=dark] .background-light-1 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+[theme=dark] .background-light-2 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+[theme=dark] .background-light-3 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+[theme=dark] .background-light-4 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+[theme=dark] .background-light-5 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+[theme=dark] .background-light-6 {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+[theme=dark] .background-light-7 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+[theme=dark] .background-light-8 {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+[theme=dark] .background-light-9 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+[theme=dark] .background-light-10 {
+  background-color: black;
 }
 
 [theme=dark] .background-dark {
   background-color: #ffffff;
 }
 
+[theme=dark] .background-dark-1 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[theme=dark] .background-dark-2 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[theme=dark] .background-dark-3 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[theme=dark] .background-dark-4 {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+[theme=dark] .background-dark-5 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+[theme=dark] .background-dark-6 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+[theme=dark] .background-dark-7 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+[theme=dark] .background-dark-8 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+[theme=dark] .background-dark-9 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+[theme=dark] .background-dark-10 {
+  background-color: white;
+}
+
 [theme=dark] .background-body-bg {
   background-color: #121A13;
+}
+
+[theme=dark] .background-body-bg-1 {
+  background-color: rgba(18, 26, 19, 0.1);
+}
+
+[theme=dark] .background-body-bg-2 {
+  background-color: rgba(18, 26, 19, 0.2);
+}
+
+[theme=dark] .background-body-bg-3 {
+  background-color: rgba(18, 26, 19, 0.3);
+}
+
+[theme=dark] .background-body-bg-4 {
+  background-color: rgba(18, 26, 19, 0.4);
+}
+
+[theme=dark] .background-body-bg-5 {
+  background-color: rgba(18, 26, 19, 0.5);
+}
+
+[theme=dark] .background-body-bg-6 {
+  background-color: rgba(18, 26, 19, 0.6);
+}
+
+[theme=dark] .background-body-bg-7 {
+  background-color: rgba(18, 26, 19, 0.7);
+}
+
+[theme=dark] .background-body-bg-8 {
+  background-color: rgba(18, 26, 19, 0.8);
+}
+
+[theme=dark] .background-body-bg-9 {
+  background-color: rgba(18, 26, 19, 0.9);
+}
+
+[theme=dark] .background-body-bg-10 {
+  background-color: #121a13;
 }
 
 [theme=dark] .background-body {
   background-color: #425F0D;
 }
 
+[theme=dark] .background-body-1 {
+  background-color: rgba(66, 95, 13, 0.1);
+}
+
+[theme=dark] .background-body-2 {
+  background-color: rgba(66, 95, 13, 0.2);
+}
+
+[theme=dark] .background-body-3 {
+  background-color: rgba(66, 95, 13, 0.3);
+}
+
+[theme=dark] .background-body-4 {
+  background-color: rgba(66, 95, 13, 0.4);
+}
+
+[theme=dark] .background-body-5 {
+  background-color: rgba(66, 95, 13, 0.5);
+}
+
+[theme=dark] .background-body-6 {
+  background-color: rgba(66, 95, 13, 0.6);
+}
+
+[theme=dark] .background-body-7 {
+  background-color: rgba(66, 95, 13, 0.7);
+}
+
+[theme=dark] .background-body-8 {
+  background-color: rgba(66, 95, 13, 0.8);
+}
+
+[theme=dark] .background-body-9 {
+  background-color: rgba(66, 95, 13, 0.9);
+}
+
+[theme=dark] .background-body-10 {
+  background-color: #425f0d;
+}
+
 [theme=dark] .background-link {
   background-color: #388E3C;
+}
+
+[theme=dark] .background-link-1 {
+  background-color: rgba(56, 142, 60, 0.1);
+}
+
+[theme=dark] .background-link-2 {
+  background-color: rgba(56, 142, 60, 0.2);
+}
+
+[theme=dark] .background-link-3 {
+  background-color: rgba(56, 142, 60, 0.3);
+}
+
+[theme=dark] .background-link-4 {
+  background-color: rgba(56, 142, 60, 0.4);
+}
+
+[theme=dark] .background-link-5 {
+  background-color: rgba(56, 142, 60, 0.5);
+}
+
+[theme=dark] .background-link-6 {
+  background-color: rgba(56, 142, 60, 0.6);
+}
+
+[theme=dark] .background-link-7 {
+  background-color: rgba(56, 142, 60, 0.7);
+}
+
+[theme=dark] .background-link-8 {
+  background-color: rgba(56, 142, 60, 0.8);
+}
+
+[theme=dark] .background-link-9 {
+  background-color: rgba(56, 142, 60, 0.9);
+}
+
+[theme=dark] .background-link-10 {
+  background-color: #388e3c;
 }
 
 [theme=dark] .background-heading {
   background-color: #425F0D;
 }
 
+[theme=dark] .background-heading-1 {
+  background-color: rgba(66, 95, 13, 0.1);
+}
+
+[theme=dark] .background-heading-2 {
+  background-color: rgba(66, 95, 13, 0.2);
+}
+
+[theme=dark] .background-heading-3 {
+  background-color: rgba(66, 95, 13, 0.3);
+}
+
+[theme=dark] .background-heading-4 {
+  background-color: rgba(66, 95, 13, 0.4);
+}
+
+[theme=dark] .background-heading-5 {
+  background-color: rgba(66, 95, 13, 0.5);
+}
+
+[theme=dark] .background-heading-6 {
+  background-color: rgba(66, 95, 13, 0.6);
+}
+
+[theme=dark] .background-heading-7 {
+  background-color: rgba(66, 95, 13, 0.7);
+}
+
+[theme=dark] .background-heading-8 {
+  background-color: rgba(66, 95, 13, 0.8);
+}
+
+[theme=dark] .background-heading-9 {
+  background-color: rgba(66, 95, 13, 0.9);
+}
+
+[theme=dark] .background-heading-10 {
+  background-color: #425f0d;
+}
+
 [theme=accessibility-light] .background-primary {
   background-color: #1A1A1A;
+}
+
+[theme=accessibility-light] .background-primary-1 {
+  background-color: rgba(26, 26, 26, 0.1);
+}
+
+[theme=accessibility-light] .background-primary-2 {
+  background-color: rgba(26, 26, 26, 0.2);
+}
+
+[theme=accessibility-light] .background-primary-3 {
+  background-color: rgba(26, 26, 26, 0.3);
+}
+
+[theme=accessibility-light] .background-primary-4 {
+  background-color: rgba(26, 26, 26, 0.4);
+}
+
+[theme=accessibility-light] .background-primary-5 {
+  background-color: rgba(26, 26, 26, 0.5);
+}
+
+[theme=accessibility-light] .background-primary-6 {
+  background-color: rgba(26, 26, 26, 0.6);
+}
+
+[theme=accessibility-light] .background-primary-7 {
+  background-color: rgba(26, 26, 26, 0.7);
+}
+
+[theme=accessibility-light] .background-primary-8 {
+  background-color: rgba(26, 26, 26, 0.8);
+}
+
+[theme=accessibility-light] .background-primary-9 {
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+[theme=accessibility-light] .background-primary-10 {
+  background-color: #1a1a1a;
 }
 
 [theme=accessibility-light] .background-secondary {
   background-color: #3B3B3B;
 }
 
+[theme=accessibility-light] .background-secondary-1 {
+  background-color: rgba(59, 59, 59, 0.1);
+}
+
+[theme=accessibility-light] .background-secondary-2 {
+  background-color: rgba(59, 59, 59, 0.2);
+}
+
+[theme=accessibility-light] .background-secondary-3 {
+  background-color: rgba(59, 59, 59, 0.3);
+}
+
+[theme=accessibility-light] .background-secondary-4 {
+  background-color: rgba(59, 59, 59, 0.4);
+}
+
+[theme=accessibility-light] .background-secondary-5 {
+  background-color: rgba(59, 59, 59, 0.5);
+}
+
+[theme=accessibility-light] .background-secondary-6 {
+  background-color: rgba(59, 59, 59, 0.6);
+}
+
+[theme=accessibility-light] .background-secondary-7 {
+  background-color: rgba(59, 59, 59, 0.7);
+}
+
+[theme=accessibility-light] .background-secondary-8 {
+  background-color: rgba(59, 59, 59, 0.8);
+}
+
+[theme=accessibility-light] .background-secondary-9 {
+  background-color: rgba(59, 59, 59, 0.9);
+}
+
+[theme=accessibility-light] .background-secondary-10 {
+  background-color: #3b3b3b;
+}
+
 [theme=accessibility-light] .background-success {
   background-color: #77D625;
+}
+
+[theme=accessibility-light] .background-success-1 {
+  background-color: rgba(119, 214, 37, 0.1);
+}
+
+[theme=accessibility-light] .background-success-2 {
+  background-color: rgba(119, 214, 37, 0.2);
+}
+
+[theme=accessibility-light] .background-success-3 {
+  background-color: rgba(119, 214, 37, 0.3);
+}
+
+[theme=accessibility-light] .background-success-4 {
+  background-color: rgba(119, 214, 37, 0.4);
+}
+
+[theme=accessibility-light] .background-success-5 {
+  background-color: rgba(119, 214, 37, 0.5);
+}
+
+[theme=accessibility-light] .background-success-6 {
+  background-color: rgba(119, 214, 37, 0.6);
+}
+
+[theme=accessibility-light] .background-success-7 {
+  background-color: rgba(119, 214, 37, 0.7);
+}
+
+[theme=accessibility-light] .background-success-8 {
+  background-color: rgba(119, 214, 37, 0.8);
+}
+
+[theme=accessibility-light] .background-success-9 {
+  background-color: rgba(119, 214, 37, 0.9);
+}
+
+[theme=accessibility-light] .background-success-10 {
+  background-color: #77d625;
 }
 
 [theme=accessibility-light] .background-warning {
   background-color: #8C5100;
 }
 
+[theme=accessibility-light] .background-warning-1 {
+  background-color: rgba(140, 81, 0, 0.1);
+}
+
+[theme=accessibility-light] .background-warning-2 {
+  background-color: rgba(140, 81, 0, 0.2);
+}
+
+[theme=accessibility-light] .background-warning-3 {
+  background-color: rgba(140, 81, 0, 0.3);
+}
+
+[theme=accessibility-light] .background-warning-4 {
+  background-color: rgba(140, 81, 0, 0.4);
+}
+
+[theme=accessibility-light] .background-warning-5 {
+  background-color: rgba(140, 81, 0, 0.5);
+}
+
+[theme=accessibility-light] .background-warning-6 {
+  background-color: rgba(140, 81, 0, 0.6);
+}
+
+[theme=accessibility-light] .background-warning-7 {
+  background-color: rgba(140, 81, 0, 0.7);
+}
+
+[theme=accessibility-light] .background-warning-8 {
+  background-color: rgba(140, 81, 0, 0.8);
+}
+
+[theme=accessibility-light] .background-warning-9 {
+  background-color: rgba(140, 81, 0, 0.9);
+}
+
+[theme=accessibility-light] .background-warning-10 {
+  background-color: #8c5100;
+}
+
 [theme=accessibility-light] .background-info {
+  background-color: #004488;
+}
+
+[theme=accessibility-light] .background-info-1 {
+  background-color: rgba(0, 68, 136, 0.1);
+}
+
+[theme=accessibility-light] .background-info-2 {
+  background-color: rgba(0, 68, 136, 0.2);
+}
+
+[theme=accessibility-light] .background-info-3 {
+  background-color: rgba(0, 68, 136, 0.3);
+}
+
+[theme=accessibility-light] .background-info-4 {
+  background-color: rgba(0, 68, 136, 0.4);
+}
+
+[theme=accessibility-light] .background-info-5 {
+  background-color: rgba(0, 68, 136, 0.5);
+}
+
+[theme=accessibility-light] .background-info-6 {
+  background-color: rgba(0, 68, 136, 0.6);
+}
+
+[theme=accessibility-light] .background-info-7 {
+  background-color: rgba(0, 68, 136, 0.7);
+}
+
+[theme=accessibility-light] .background-info-8 {
+  background-color: rgba(0, 68, 136, 0.8);
+}
+
+[theme=accessibility-light] .background-info-9 {
+  background-color: rgba(0, 68, 136, 0.9);
+}
+
+[theme=accessibility-light] .background-info-10 {
   background-color: #004488;
 }
 
@@ -230,11 +1585,131 @@ html[theme=accessibility-dark] {
   background-color: #7D0000;
 }
 
+[theme=accessibility-light] .background-danger-1 {
+  background-color: rgba(125, 0, 0, 0.1);
+}
+
+[theme=accessibility-light] .background-danger-2 {
+  background-color: rgba(125, 0, 0, 0.2);
+}
+
+[theme=accessibility-light] .background-danger-3 {
+  background-color: rgba(125, 0, 0, 0.3);
+}
+
+[theme=accessibility-light] .background-danger-4 {
+  background-color: rgba(125, 0, 0, 0.4);
+}
+
+[theme=accessibility-light] .background-danger-5 {
+  background-color: rgba(125, 0, 0, 0.5);
+}
+
+[theme=accessibility-light] .background-danger-6 {
+  background-color: rgba(125, 0, 0, 0.6);
+}
+
+[theme=accessibility-light] .background-danger-7 {
+  background-color: rgba(125, 0, 0, 0.7);
+}
+
+[theme=accessibility-light] .background-danger-8 {
+  background-color: rgba(125, 0, 0, 0.8);
+}
+
+[theme=accessibility-light] .background-danger-9 {
+  background-color: rgba(125, 0, 0, 0.9);
+}
+
+[theme=accessibility-light] .background-danger-10 {
+  background-color: #7d0000;
+}
+
 [theme=accessibility-light] .background-body-bg {
   background-color: #FAFAFA;
 }
 
+[theme=accessibility-light] .background-body-bg-1 {
+  background-color: rgba(250, 250, 250, 0.1);
+}
+
+[theme=accessibility-light] .background-body-bg-2 {
+  background-color: rgba(250, 250, 250, 0.2);
+}
+
+[theme=accessibility-light] .background-body-bg-3 {
+  background-color: rgba(250, 250, 250, 0.3);
+}
+
+[theme=accessibility-light] .background-body-bg-4 {
+  background-color: rgba(250, 250, 250, 0.4);
+}
+
+[theme=accessibility-light] .background-body-bg-5 {
+  background-color: rgba(250, 250, 250, 0.5);
+}
+
+[theme=accessibility-light] .background-body-bg-6 {
+  background-color: rgba(250, 250, 250, 0.6);
+}
+
+[theme=accessibility-light] .background-body-bg-7 {
+  background-color: rgba(250, 250, 250, 0.7);
+}
+
+[theme=accessibility-light] .background-body-bg-8 {
+  background-color: rgba(250, 250, 250, 0.8);
+}
+
+[theme=accessibility-light] .background-body-bg-9 {
+  background-color: rgba(250, 250, 250, 0.9);
+}
+
+[theme=accessibility-light] .background-body-bg-10 {
+  background-color: #fafafa;
+}
+
 [theme=accessibility-light] .background-body {
+  background-color: #111111;
+}
+
+[theme=accessibility-light] .background-body-1 {
+  background-color: rgba(17, 17, 17, 0.1);
+}
+
+[theme=accessibility-light] .background-body-2 {
+  background-color: rgba(17, 17, 17, 0.2);
+}
+
+[theme=accessibility-light] .background-body-3 {
+  background-color: rgba(17, 17, 17, 0.3);
+}
+
+[theme=accessibility-light] .background-body-4 {
+  background-color: rgba(17, 17, 17, 0.4);
+}
+
+[theme=accessibility-light] .background-body-5 {
+  background-color: rgba(17, 17, 17, 0.5);
+}
+
+[theme=accessibility-light] .background-body-6 {
+  background-color: rgba(17, 17, 17, 0.6);
+}
+
+[theme=accessibility-light] .background-body-7 {
+  background-color: rgba(17, 17, 17, 0.7);
+}
+
+[theme=accessibility-light] .background-body-8 {
+  background-color: rgba(17, 17, 17, 0.8);
+}
+
+[theme=accessibility-light] .background-body-9 {
+  background-color: rgba(17, 17, 17, 0.9);
+}
+
+[theme=accessibility-light] .background-body-10 {
   background-color: #111111;
 }
 
@@ -242,11 +1717,131 @@ html[theme=accessibility-dark] {
   background-color: #ffffff;
 }
 
+[theme=accessibility-light] .background-light-1 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[theme=accessibility-light] .background-light-2 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[theme=accessibility-light] .background-light-3 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[theme=accessibility-light] .background-light-4 {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+[theme=accessibility-light] .background-light-5 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+[theme=accessibility-light] .background-light-6 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+[theme=accessibility-light] .background-light-7 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+[theme=accessibility-light] .background-light-8 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+[theme=accessibility-light] .background-light-9 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+[theme=accessibility-light] .background-light-10 {
+  background-color: white;
+}
+
 [theme=accessibility-light] .background-dark {
   background-color: #000000;
 }
 
+[theme=accessibility-light] .background-dark-1 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+[theme=accessibility-light] .background-dark-2 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+[theme=accessibility-light] .background-dark-3 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+[theme=accessibility-light] .background-dark-4 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+[theme=accessibility-light] .background-dark-5 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+[theme=accessibility-light] .background-dark-6 {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+[theme=accessibility-light] .background-dark-7 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+[theme=accessibility-light] .background-dark-8 {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+[theme=accessibility-light] .background-dark-9 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+[theme=accessibility-light] .background-dark-10 {
+  background-color: black;
+}
+
 [theme=accessibility-light] .background-link {
+  background-color: #004488;
+}
+
+[theme=accessibility-light] .background-link-1 {
+  background-color: rgba(0, 68, 136, 0.1);
+}
+
+[theme=accessibility-light] .background-link-2 {
+  background-color: rgba(0, 68, 136, 0.2);
+}
+
+[theme=accessibility-light] .background-link-3 {
+  background-color: rgba(0, 68, 136, 0.3);
+}
+
+[theme=accessibility-light] .background-link-4 {
+  background-color: rgba(0, 68, 136, 0.4);
+}
+
+[theme=accessibility-light] .background-link-5 {
+  background-color: rgba(0, 68, 136, 0.5);
+}
+
+[theme=accessibility-light] .background-link-6 {
+  background-color: rgba(0, 68, 136, 0.6);
+}
+
+[theme=accessibility-light] .background-link-7 {
+  background-color: rgba(0, 68, 136, 0.7);
+}
+
+[theme=accessibility-light] .background-link-8 {
+  background-color: rgba(0, 68, 136, 0.8);
+}
+
+[theme=accessibility-light] .background-link-9 {
+  background-color: rgba(0, 68, 136, 0.9);
+}
+
+[theme=accessibility-light] .background-link-10 {
   background-color: #004488;
 }
 
@@ -254,23 +1849,263 @@ html[theme=accessibility-dark] {
   background-color: #1A1A1A;
 }
 
+[theme=accessibility-light] .background-heading-1 {
+  background-color: rgba(26, 26, 26, 0.1);
+}
+
+[theme=accessibility-light] .background-heading-2 {
+  background-color: rgba(26, 26, 26, 0.2);
+}
+
+[theme=accessibility-light] .background-heading-3 {
+  background-color: rgba(26, 26, 26, 0.3);
+}
+
+[theme=accessibility-light] .background-heading-4 {
+  background-color: rgba(26, 26, 26, 0.4);
+}
+
+[theme=accessibility-light] .background-heading-5 {
+  background-color: rgba(26, 26, 26, 0.5);
+}
+
+[theme=accessibility-light] .background-heading-6 {
+  background-color: rgba(26, 26, 26, 0.6);
+}
+
+[theme=accessibility-light] .background-heading-7 {
+  background-color: rgba(26, 26, 26, 0.7);
+}
+
+[theme=accessibility-light] .background-heading-8 {
+  background-color: rgba(26, 26, 26, 0.8);
+}
+
+[theme=accessibility-light] .background-heading-9 {
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+[theme=accessibility-light] .background-heading-10 {
+  background-color: #1a1a1a;
+}
+
 [theme=accessibility-dark] .background-primary {
   background-color: #E5E5E5;
+}
+
+[theme=accessibility-dark] .background-primary-1 {
+  background-color: rgba(229, 229, 229, 0.1);
+}
+
+[theme=accessibility-dark] .background-primary-2 {
+  background-color: rgba(229, 229, 229, 0.2);
+}
+
+[theme=accessibility-dark] .background-primary-3 {
+  background-color: rgba(229, 229, 229, 0.3);
+}
+
+[theme=accessibility-dark] .background-primary-4 {
+  background-color: rgba(229, 229, 229, 0.4);
+}
+
+[theme=accessibility-dark] .background-primary-5 {
+  background-color: rgba(229, 229, 229, 0.5);
+}
+
+[theme=accessibility-dark] .background-primary-6 {
+  background-color: rgba(229, 229, 229, 0.6);
+}
+
+[theme=accessibility-dark] .background-primary-7 {
+  background-color: rgba(229, 229, 229, 0.7);
+}
+
+[theme=accessibility-dark] .background-primary-8 {
+  background-color: rgba(229, 229, 229, 0.8);
+}
+
+[theme=accessibility-dark] .background-primary-9 {
+  background-color: rgba(229, 229, 229, 0.9);
+}
+
+[theme=accessibility-dark] .background-primary-10 {
+  background-color: #e5e5e5;
 }
 
 [theme=accessibility-dark] .background-secondary {
   background-color: #ffffff;
 }
 
+[theme=accessibility-dark] .background-secondary-1 {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[theme=accessibility-dark] .background-secondary-2 {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+[theme=accessibility-dark] .background-secondary-3 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[theme=accessibility-dark] .background-secondary-4 {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+[theme=accessibility-dark] .background-secondary-5 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+[theme=accessibility-dark] .background-secondary-6 {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+[theme=accessibility-dark] .background-secondary-7 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+[theme=accessibility-dark] .background-secondary-8 {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+[theme=accessibility-dark] .background-secondary-9 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+[theme=accessibility-dark] .background-secondary-10 {
+  background-color: white;
+}
+
 [theme=accessibility-dark] .background-success {
   background-color: #77D625;
+}
+
+[theme=accessibility-dark] .background-success-1 {
+  background-color: rgba(119, 214, 37, 0.1);
+}
+
+[theme=accessibility-dark] .background-success-2 {
+  background-color: rgba(119, 214, 37, 0.2);
+}
+
+[theme=accessibility-dark] .background-success-3 {
+  background-color: rgba(119, 214, 37, 0.3);
+}
+
+[theme=accessibility-dark] .background-success-4 {
+  background-color: rgba(119, 214, 37, 0.4);
+}
+
+[theme=accessibility-dark] .background-success-5 {
+  background-color: rgba(119, 214, 37, 0.5);
+}
+
+[theme=accessibility-dark] .background-success-6 {
+  background-color: rgba(119, 214, 37, 0.6);
+}
+
+[theme=accessibility-dark] .background-success-7 {
+  background-color: rgba(119, 214, 37, 0.7);
+}
+
+[theme=accessibility-dark] .background-success-8 {
+  background-color: rgba(119, 214, 37, 0.8);
+}
+
+[theme=accessibility-dark] .background-success-9 {
+  background-color: rgba(119, 214, 37, 0.9);
+}
+
+[theme=accessibility-dark] .background-success-10 {
+  background-color: #77d625;
 }
 
 [theme=accessibility-dark] .background-warning {
   background-color: #AD5E00;
 }
 
+[theme=accessibility-dark] .background-warning-1 {
+  background-color: rgba(173, 94, 0, 0.1);
+}
+
+[theme=accessibility-dark] .background-warning-2 {
+  background-color: rgba(173, 94, 0, 0.2);
+}
+
+[theme=accessibility-dark] .background-warning-3 {
+  background-color: rgba(173, 94, 0, 0.3);
+}
+
+[theme=accessibility-dark] .background-warning-4 {
+  background-color: rgba(173, 94, 0, 0.4);
+}
+
+[theme=accessibility-dark] .background-warning-5 {
+  background-color: rgba(173, 94, 0, 0.5);
+}
+
+[theme=accessibility-dark] .background-warning-6 {
+  background-color: rgba(173, 94, 0, 0.6);
+}
+
+[theme=accessibility-dark] .background-warning-7 {
+  background-color: rgba(173, 94, 0, 0.7);
+}
+
+[theme=accessibility-dark] .background-warning-8 {
+  background-color: rgba(173, 94, 0, 0.8);
+}
+
+[theme=accessibility-dark] .background-warning-9 {
+  background-color: rgba(173, 94, 0, 0.9);
+}
+
+[theme=accessibility-dark] .background-warning-10 {
+  background-color: #ad5e00;
+}
+
 [theme=accessibility-dark] .background-info {
+  background-color: #004488;
+}
+
+[theme=accessibility-dark] .background-info-1 {
+  background-color: rgba(0, 68, 136, 0.1);
+}
+
+[theme=accessibility-dark] .background-info-2 {
+  background-color: rgba(0, 68, 136, 0.2);
+}
+
+[theme=accessibility-dark] .background-info-3 {
+  background-color: rgba(0, 68, 136, 0.3);
+}
+
+[theme=accessibility-dark] .background-info-4 {
+  background-color: rgba(0, 68, 136, 0.4);
+}
+
+[theme=accessibility-dark] .background-info-5 {
+  background-color: rgba(0, 68, 136, 0.5);
+}
+
+[theme=accessibility-dark] .background-info-6 {
+  background-color: rgba(0, 68, 136, 0.6);
+}
+
+[theme=accessibility-dark] .background-info-7 {
+  background-color: rgba(0, 68, 136, 0.7);
+}
+
+[theme=accessibility-dark] .background-info-8 {
+  background-color: rgba(0, 68, 136, 0.8);
+}
+
+[theme=accessibility-dark] .background-info-9 {
+  background-color: rgba(0, 68, 136, 0.9);
+}
+
+[theme=accessibility-dark] .background-info-10 {
   background-color: #004488;
 }
 
@@ -278,7 +2113,87 @@ html[theme=accessibility-dark] {
   background-color: #990000;
 }
 
+[theme=accessibility-dark] .background-danger-1 {
+  background-color: rgba(153, 0, 0, 0.1);
+}
+
+[theme=accessibility-dark] .background-danger-2 {
+  background-color: rgba(153, 0, 0, 0.2);
+}
+
+[theme=accessibility-dark] .background-danger-3 {
+  background-color: rgba(153, 0, 0, 0.3);
+}
+
+[theme=accessibility-dark] .background-danger-4 {
+  background-color: rgba(153, 0, 0, 0.4);
+}
+
+[theme=accessibility-dark] .background-danger-5 {
+  background-color: rgba(153, 0, 0, 0.5);
+}
+
+[theme=accessibility-dark] .background-danger-6 {
+  background-color: rgba(153, 0, 0, 0.6);
+}
+
+[theme=accessibility-dark] .background-danger-7 {
+  background-color: rgba(153, 0, 0, 0.7);
+}
+
+[theme=accessibility-dark] .background-danger-8 {
+  background-color: rgba(153, 0, 0, 0.8);
+}
+
+[theme=accessibility-dark] .background-danger-9 {
+  background-color: rgba(153, 0, 0, 0.9);
+}
+
+[theme=accessibility-dark] .background-danger-10 {
+  background-color: #990000;
+}
+
 [theme=accessibility-dark] .background-body-bg {
+  background-color: #181818;
+}
+
+[theme=accessibility-dark] .background-body-bg-1 {
+  background-color: rgba(24, 24, 24, 0.1);
+}
+
+[theme=accessibility-dark] .background-body-bg-2 {
+  background-color: rgba(24, 24, 24, 0.2);
+}
+
+[theme=accessibility-dark] .background-body-bg-3 {
+  background-color: rgba(24, 24, 24, 0.3);
+}
+
+[theme=accessibility-dark] .background-body-bg-4 {
+  background-color: rgba(24, 24, 24, 0.4);
+}
+
+[theme=accessibility-dark] .background-body-bg-5 {
+  background-color: rgba(24, 24, 24, 0.5);
+}
+
+[theme=accessibility-dark] .background-body-bg-6 {
+  background-color: rgba(24, 24, 24, 0.6);
+}
+
+[theme=accessibility-dark] .background-body-bg-7 {
+  background-color: rgba(24, 24, 24, 0.7);
+}
+
+[theme=accessibility-dark] .background-body-bg-8 {
+  background-color: rgba(24, 24, 24, 0.8);
+}
+
+[theme=accessibility-dark] .background-body-bg-9 {
+  background-color: rgba(24, 24, 24, 0.9);
+}
+
+[theme=accessibility-dark] .background-body-bg-10 {
   background-color: #181818;
 }
 
@@ -286,20 +2201,220 @@ html[theme=accessibility-dark] {
   background-color: #EAEAEA;
 }
 
+[theme=accessibility-dark] .background-body-1 {
+  background-color: rgba(234, 234, 234, 0.1);
+}
+
+[theme=accessibility-dark] .background-body-2 {
+  background-color: rgba(234, 234, 234, 0.2);
+}
+
+[theme=accessibility-dark] .background-body-3 {
+  background-color: rgba(234, 234, 234, 0.3);
+}
+
+[theme=accessibility-dark] .background-body-4 {
+  background-color: rgba(234, 234, 234, 0.4);
+}
+
+[theme=accessibility-dark] .background-body-5 {
+  background-color: rgba(234, 234, 234, 0.5);
+}
+
+[theme=accessibility-dark] .background-body-6 {
+  background-color: rgba(234, 234, 234, 0.6);
+}
+
+[theme=accessibility-dark] .background-body-7 {
+  background-color: rgba(234, 234, 234, 0.7);
+}
+
+[theme=accessibility-dark] .background-body-8 {
+  background-color: rgba(234, 234, 234, 0.8);
+}
+
+[theme=accessibility-dark] .background-body-9 {
+  background-color: rgba(234, 234, 234, 0.9);
+}
+
+[theme=accessibility-dark] .background-body-10 {
+  background-color: #eaeaea;
+}
+
 [theme=accessibility-dark] .background-light {
   background-color: #000000;
+}
+
+[theme=accessibility-dark] .background-light-1 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+[theme=accessibility-dark] .background-light-2 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+[theme=accessibility-dark] .background-light-3 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+[theme=accessibility-dark] .background-light-4 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+[theme=accessibility-dark] .background-light-5 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+[theme=accessibility-dark] .background-light-6 {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+[theme=accessibility-dark] .background-light-7 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+[theme=accessibility-dark] .background-light-8 {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+[theme=accessibility-dark] .background-light-9 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+[theme=accessibility-dark] .background-light-10 {
+  background-color: black;
 }
 
 [theme=accessibility-dark] .background-dark {
   background-color: #F5F5F5;
 }
 
+[theme=accessibility-dark] .background-dark-1 {
+  background-color: rgba(245, 245, 245, 0.1);
+}
+
+[theme=accessibility-dark] .background-dark-2 {
+  background-color: rgba(245, 245, 245, 0.2);
+}
+
+[theme=accessibility-dark] .background-dark-3 {
+  background-color: rgba(245, 245, 245, 0.3);
+}
+
+[theme=accessibility-dark] .background-dark-4 {
+  background-color: rgba(245, 245, 245, 0.4);
+}
+
+[theme=accessibility-dark] .background-dark-5 {
+  background-color: rgba(245, 245, 245, 0.5);
+}
+
+[theme=accessibility-dark] .background-dark-6 {
+  background-color: rgba(245, 245, 245, 0.6);
+}
+
+[theme=accessibility-dark] .background-dark-7 {
+  background-color: rgba(245, 245, 245, 0.7);
+}
+
+[theme=accessibility-dark] .background-dark-8 {
+  background-color: rgba(245, 245, 245, 0.8);
+}
+
+[theme=accessibility-dark] .background-dark-9 {
+  background-color: rgba(245, 245, 245, 0.9);
+}
+
+[theme=accessibility-dark] .background-dark-10 {
+  background-color: whitesmoke;
+}
+
 [theme=accessibility-dark] .background-link {
   background-color: #88C0D0;
 }
 
+[theme=accessibility-dark] .background-link-1 {
+  background-color: rgba(136, 192, 208, 0.1);
+}
+
+[theme=accessibility-dark] .background-link-2 {
+  background-color: rgba(136, 192, 208, 0.2);
+}
+
+[theme=accessibility-dark] .background-link-3 {
+  background-color: rgba(136, 192, 208, 0.3);
+}
+
+[theme=accessibility-dark] .background-link-4 {
+  background-color: rgba(136, 192, 208, 0.4);
+}
+
+[theme=accessibility-dark] .background-link-5 {
+  background-color: rgba(136, 192, 208, 0.5);
+}
+
+[theme=accessibility-dark] .background-link-6 {
+  background-color: rgba(136, 192, 208, 0.6);
+}
+
+[theme=accessibility-dark] .background-link-7 {
+  background-color: rgba(136, 192, 208, 0.7);
+}
+
+[theme=accessibility-dark] .background-link-8 {
+  background-color: rgba(136, 192, 208, 0.8);
+}
+
+[theme=accessibility-dark] .background-link-9 {
+  background-color: rgba(136, 192, 208, 0.9);
+}
+
+[theme=accessibility-dark] .background-link-10 {
+  background-color: #88c0d0;
+}
+
 [theme=accessibility-dark] .background-heading {
   background-color: #EAEAEA;
+}
+
+[theme=accessibility-dark] .background-heading-1 {
+  background-color: rgba(234, 234, 234, 0.1);
+}
+
+[theme=accessibility-dark] .background-heading-2 {
+  background-color: rgba(234, 234, 234, 0.2);
+}
+
+[theme=accessibility-dark] .background-heading-3 {
+  background-color: rgba(234, 234, 234, 0.3);
+}
+
+[theme=accessibility-dark] .background-heading-4 {
+  background-color: rgba(234, 234, 234, 0.4);
+}
+
+[theme=accessibility-dark] .background-heading-5 {
+  background-color: rgba(234, 234, 234, 0.5);
+}
+
+[theme=accessibility-dark] .background-heading-6 {
+  background-color: rgba(234, 234, 234, 0.6);
+}
+
+[theme=accessibility-dark] .background-heading-7 {
+  background-color: rgba(234, 234, 234, 0.7);
+}
+
+[theme=accessibility-dark] .background-heading-8 {
+  background-color: rgba(234, 234, 234, 0.8);
+}
+
+[theme=accessibility-dark] .background-heading-9 {
+  background-color: rgba(234, 234, 234, 0.9);
+}
+
+[theme=accessibility-dark] .background-heading-10 {
+  background-color: #eaeaea;
 }
 
 /**********************************************/
@@ -412,8 +2527,98 @@ html[theme=accessibility-dark] {
   --custom-heading-rgb: 234, 234, 234;
 }
 
+html[theme=light] .txt-primary-1 {
+  color: rgba(66, 95, 13, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-2 {
+  color: rgba(66, 95, 13, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-3 {
+  color: rgba(66, 95, 13, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-4 {
+  color: rgba(66, 95, 13, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-5 {
+  color: rgba(66, 95, 13, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-6 {
+  color: rgba(66, 95, 13, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-7 {
+  color: rgba(66, 95, 13, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-8 {
+  color: rgba(66, 95, 13, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-primary-9 {
+  color: rgba(66, 95, 13, 0.9);
+  font-weight: 400;
+}
+
 html[theme=light] .txt-primary {
   color: #425F0D;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-1 {
+  color: rgba(119, 214, 37, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-2 {
+  color: rgba(119, 214, 37, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-3 {
+  color: rgba(119, 214, 37, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-4 {
+  color: rgba(119, 214, 37, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-5 {
+  color: rgba(119, 214, 37, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-6 {
+  color: rgba(119, 214, 37, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-7 {
+  color: rgba(119, 214, 37, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-8 {
+  color: rgba(119, 214, 37, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-secondary-9 {
+  color: rgba(119, 214, 37, 0.9);
   font-weight: 400;
 }
 
@@ -422,8 +2627,98 @@ html[theme=light] .txt-secondary {
   font-weight: 400;
 }
 
+html[theme=light] .txt-success-1 {
+  color: rgba(56, 142, 60, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-2 {
+  color: rgba(56, 142, 60, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-3 {
+  color: rgba(56, 142, 60, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-4 {
+  color: rgba(56, 142, 60, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-5 {
+  color: rgba(56, 142, 60, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-6 {
+  color: rgba(56, 142, 60, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-7 {
+  color: rgba(56, 142, 60, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-8 {
+  color: rgba(56, 142, 60, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-success-9 {
+  color: rgba(56, 142, 60, 0.9);
+  font-weight: 400;
+}
+
 html[theme=light] .txt-success {
   color: #388E3C;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-1 {
+  color: rgba(255, 183, 77, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-2 {
+  color: rgba(255, 183, 77, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-3 {
+  color: rgba(255, 183, 77, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-4 {
+  color: rgba(255, 183, 77, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-5 {
+  color: rgba(255, 183, 77, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-6 {
+  color: rgba(255, 183, 77, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-7 {
+  color: rgba(255, 183, 77, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-8 {
+  color: rgba(255, 183, 77, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-warning-9 {
+  color: rgba(255, 183, 77, 0.9);
   font-weight: 400;
 }
 
@@ -432,8 +2727,98 @@ html[theme=light] .txt-warning {
   font-weight: 400;
 }
 
+html[theme=light] .txt-danger-1 {
+  color: rgba(216, 67, 21, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-2 {
+  color: rgba(216, 67, 21, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-3 {
+  color: rgba(216, 67, 21, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-4 {
+  color: rgba(216, 67, 21, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-5 {
+  color: rgba(216, 67, 21, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-6 {
+  color: rgba(216, 67, 21, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-7 {
+  color: rgba(216, 67, 21, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-8 {
+  color: rgba(216, 67, 21, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-danger-9 {
+  color: rgba(216, 67, 21, 0.9);
+  font-weight: 400;
+}
+
 html[theme=light] .txt-danger {
   color: #D84315;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-1 {
+  color: rgba(79, 195, 247, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-2 {
+  color: rgba(79, 195, 247, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-3 {
+  color: rgba(79, 195, 247, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-4 {
+  color: rgba(79, 195, 247, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-5 {
+  color: rgba(79, 195, 247, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-6 {
+  color: rgba(79, 195, 247, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-7 {
+  color: rgba(79, 195, 247, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-8 {
+  color: rgba(79, 195, 247, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-info-9 {
+  color: rgba(79, 195, 247, 0.9);
   font-weight: 400;
 }
 
@@ -442,8 +2827,98 @@ html[theme=light] .txt-info {
   font-weight: 400;
 }
 
+html[theme=light] .txt-light-1 {
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-2 {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-3 {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-4 {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-5 {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-6 {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-7 {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-8 {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-light-9 {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
 html[theme=light] .txt-light {
   color: #ffffff;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-1 {
+  color: rgba(27, 94, 32, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-2 {
+  color: rgba(27, 94, 32, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-3 {
+  color: rgba(27, 94, 32, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-4 {
+  color: rgba(27, 94, 32, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-5 {
+  color: rgba(27, 94, 32, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-6 {
+  color: rgba(27, 94, 32, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-7 {
+  color: rgba(27, 94, 32, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-8 {
+  color: rgba(27, 94, 32, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-dark-9 {
+  color: rgba(27, 94, 32, 0.9);
   font-weight: 400;
 }
 
@@ -452,8 +2927,98 @@ html[theme=light] .txt-dark {
   font-weight: 400;
 }
 
+html[theme=light] .txt-body-bg-1 {
+  color: rgba(232, 245, 233, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-2 {
+  color: rgba(232, 245, 233, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-3 {
+  color: rgba(232, 245, 233, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-4 {
+  color: rgba(232, 245, 233, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-5 {
+  color: rgba(232, 245, 233, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-6 {
+  color: rgba(232, 245, 233, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-7 {
+  color: rgba(232, 245, 233, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-8 {
+  color: rgba(232, 245, 233, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-bg-9 {
+  color: rgba(232, 245, 233, 0.9);
+  font-weight: 400;
+}
+
 html[theme=light] .txt-body-bg {
   color: #E8F5E9;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-1 {
+  color: rgba(66, 95, 13, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-2 {
+  color: rgba(66, 95, 13, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-3 {
+  color: rgba(66, 95, 13, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-4 {
+  color: rgba(66, 95, 13, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-5 {
+  color: rgba(66, 95, 13, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-6 {
+  color: rgba(66, 95, 13, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-7 {
+  color: rgba(66, 95, 13, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-8 {
+  color: rgba(66, 95, 13, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-body-9 {
+  color: rgba(66, 95, 13, 0.9);
   font-weight: 400;
 }
 
@@ -462,8 +3027,98 @@ html[theme=light] .txt-body {
   font-weight: 400;
 }
 
+html[theme=light] .txt-link-1 {
+  color: rgba(56, 142, 60, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-2 {
+  color: rgba(56, 142, 60, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-3 {
+  color: rgba(56, 142, 60, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-4 {
+  color: rgba(56, 142, 60, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-5 {
+  color: rgba(56, 142, 60, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-6 {
+  color: rgba(56, 142, 60, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-7 {
+  color: rgba(56, 142, 60, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-8 {
+  color: rgba(56, 142, 60, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-link-9 {
+  color: rgba(56, 142, 60, 0.9);
+  font-weight: 400;
+}
+
 html[theme=light] .txt-link {
   color: #388E3C;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-1 {
+  color: rgba(66, 95, 13, 0.1);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-2 {
+  color: rgba(66, 95, 13, 0.2);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-3 {
+  color: rgba(66, 95, 13, 0.3);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-4 {
+  color: rgba(66, 95, 13, 0.4);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-5 {
+  color: rgba(66, 95, 13, 0.5);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-6 {
+  color: rgba(66, 95, 13, 0.6);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-7 {
+  color: rgba(66, 95, 13, 0.7);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-8 {
+  color: rgba(66, 95, 13, 0.8);
+  font-weight: 400;
+}
+
+html[theme=light] .txt-heading-9 {
+  color: rgba(66, 95, 13, 0.9);
   font-weight: 400;
 }
 
@@ -472,8 +3127,98 @@ html[theme=light] .txt-heading {
   font-weight: 400;
 }
 
+html[theme=dark] .txt-primary-1 {
+  color: rgba(66, 95, 13, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-2 {
+  color: rgba(66, 95, 13, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-3 {
+  color: rgba(66, 95, 13, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-4 {
+  color: rgba(66, 95, 13, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-5 {
+  color: rgba(66, 95, 13, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-6 {
+  color: rgba(66, 95, 13, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-7 {
+  color: rgba(66, 95, 13, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-8 {
+  color: rgba(66, 95, 13, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-primary-9 {
+  color: rgba(66, 95, 13, 0.9);
+  font-weight: 400;
+}
+
 html[theme=dark] .txt-primary {
   color: #425F0D;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-1 {
+  color: rgba(119, 214, 37, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-2 {
+  color: rgba(119, 214, 37, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-3 {
+  color: rgba(119, 214, 37, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-4 {
+  color: rgba(119, 214, 37, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-5 {
+  color: rgba(119, 214, 37, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-6 {
+  color: rgba(119, 214, 37, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-7 {
+  color: rgba(119, 214, 37, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-8 {
+  color: rgba(119, 214, 37, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-secondary-9 {
+  color: rgba(119, 214, 37, 0.9);
   font-weight: 400;
 }
 
@@ -482,8 +3227,98 @@ html[theme=dark] .txt-secondary {
   font-weight: 400;
 }
 
+html[theme=dark] .txt-success-1 {
+  color: rgba(102, 187, 106, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-2 {
+  color: rgba(102, 187, 106, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-3 {
+  color: rgba(102, 187, 106, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-4 {
+  color: rgba(102, 187, 106, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-5 {
+  color: rgba(102, 187, 106, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-6 {
+  color: rgba(102, 187, 106, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-7 {
+  color: rgba(102, 187, 106, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-8 {
+  color: rgba(102, 187, 106, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-success-9 {
+  color: rgba(102, 187, 106, 0.9);
+  font-weight: 400;
+}
+
 html[theme=dark] .txt-success {
   color: #66BB6A;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-1 {
+  color: rgba(255, 183, 77, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-2 {
+  color: rgba(255, 183, 77, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-3 {
+  color: rgba(255, 183, 77, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-4 {
+  color: rgba(255, 183, 77, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-5 {
+  color: rgba(255, 183, 77, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-6 {
+  color: rgba(255, 183, 77, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-7 {
+  color: rgba(255, 183, 77, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-8 {
+  color: rgba(255, 183, 77, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-warning-9 {
+  color: rgba(255, 183, 77, 0.9);
   font-weight: 400;
 }
 
@@ -492,8 +3327,98 @@ html[theme=dark] .txt-warning {
   font-weight: 400;
 }
 
+html[theme=dark] .txt-danger-1 {
+  color: rgba(229, 115, 115, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-2 {
+  color: rgba(229, 115, 115, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-3 {
+  color: rgba(229, 115, 115, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-4 {
+  color: rgba(229, 115, 115, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-5 {
+  color: rgba(229, 115, 115, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-6 {
+  color: rgba(229, 115, 115, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-7 {
+  color: rgba(229, 115, 115, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-8 {
+  color: rgba(229, 115, 115, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-danger-9 {
+  color: rgba(229, 115, 115, 0.9);
+  font-weight: 400;
+}
+
 html[theme=dark] .txt-danger {
   color: #E57373;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-1 {
+  color: rgba(79, 195, 247, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-2 {
+  color: rgba(79, 195, 247, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-3 {
+  color: rgba(79, 195, 247, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-4 {
+  color: rgba(79, 195, 247, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-5 {
+  color: rgba(79, 195, 247, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-6 {
+  color: rgba(79, 195, 247, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-7 {
+  color: rgba(79, 195, 247, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-8 {
+  color: rgba(79, 195, 247, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-info-9 {
+  color: rgba(79, 195, 247, 0.9);
   font-weight: 400;
 }
 
@@ -502,8 +3427,98 @@ html[theme=dark] .txt-info {
   font-weight: 400;
 }
 
+html[theme=dark] .txt-light-1 {
+  color: rgba(0, 0, 0, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-2 {
+  color: rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-3 {
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-4 {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-5 {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-6 {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-7 {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-8 {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-light-9 {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 400;
+}
+
 html[theme=dark] .txt-light {
   color: #000000;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-1 {
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-2 {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-3 {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-4 {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-5 {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-6 {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-7 {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-8 {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-dark-9 {
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 400;
 }
 
@@ -512,8 +3527,98 @@ html[theme=dark] .txt-dark {
   font-weight: 400;
 }
 
+html[theme=dark] .txt-body-bg-1 {
+  color: rgba(18, 26, 19, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-2 {
+  color: rgba(18, 26, 19, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-3 {
+  color: rgba(18, 26, 19, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-4 {
+  color: rgba(18, 26, 19, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-5 {
+  color: rgba(18, 26, 19, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-6 {
+  color: rgba(18, 26, 19, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-7 {
+  color: rgba(18, 26, 19, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-8 {
+  color: rgba(18, 26, 19, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-bg-9 {
+  color: rgba(18, 26, 19, 0.9);
+  font-weight: 400;
+}
+
 html[theme=dark] .txt-body-bg {
   color: #121A13;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-1 {
+  color: rgba(66, 95, 13, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-2 {
+  color: rgba(66, 95, 13, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-3 {
+  color: rgba(66, 95, 13, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-4 {
+  color: rgba(66, 95, 13, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-5 {
+  color: rgba(66, 95, 13, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-6 {
+  color: rgba(66, 95, 13, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-7 {
+  color: rgba(66, 95, 13, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-8 {
+  color: rgba(66, 95, 13, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-body-9 {
+  color: rgba(66, 95, 13, 0.9);
   font-weight: 400;
 }
 
@@ -522,8 +3627,98 @@ html[theme=dark] .txt-body {
   font-weight: 400;
 }
 
+html[theme=dark] .txt-link-1 {
+  color: rgba(56, 142, 60, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-2 {
+  color: rgba(56, 142, 60, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-3 {
+  color: rgba(56, 142, 60, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-4 {
+  color: rgba(56, 142, 60, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-5 {
+  color: rgba(56, 142, 60, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-6 {
+  color: rgba(56, 142, 60, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-7 {
+  color: rgba(56, 142, 60, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-8 {
+  color: rgba(56, 142, 60, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-link-9 {
+  color: rgba(56, 142, 60, 0.9);
+  font-weight: 400;
+}
+
 html[theme=dark] .txt-link {
   color: #388E3C;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-1 {
+  color: rgba(66, 95, 13, 0.1);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-2 {
+  color: rgba(66, 95, 13, 0.2);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-3 {
+  color: rgba(66, 95, 13, 0.3);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-4 {
+  color: rgba(66, 95, 13, 0.4);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-5 {
+  color: rgba(66, 95, 13, 0.5);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-6 {
+  color: rgba(66, 95, 13, 0.6);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-7 {
+  color: rgba(66, 95, 13, 0.7);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-8 {
+  color: rgba(66, 95, 13, 0.8);
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-heading-9 {
+  color: rgba(66, 95, 13, 0.9);
   font-weight: 400;
 }
 
@@ -532,8 +3727,98 @@ html[theme=dark] .txt-heading {
   font-weight: 400;
 }
 
+html[theme=accessibility-light] .txt-primary-1 {
+  color: rgba(26, 26, 26, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-2 {
+  color: rgba(26, 26, 26, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-3 {
+  color: rgba(26, 26, 26, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-4 {
+  color: rgba(26, 26, 26, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-5 {
+  color: rgba(26, 26, 26, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-6 {
+  color: rgba(26, 26, 26, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-7 {
+  color: rgba(26, 26, 26, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-8 {
+  color: rgba(26, 26, 26, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-primary-9 {
+  color: rgba(26, 26, 26, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-primary {
   color: #1A1A1A;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-1 {
+  color: rgba(59, 59, 59, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-2 {
+  color: rgba(59, 59, 59, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-3 {
+  color: rgba(59, 59, 59, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-4 {
+  color: rgba(59, 59, 59, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-5 {
+  color: rgba(59, 59, 59, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-6 {
+  color: rgba(59, 59, 59, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-7 {
+  color: rgba(59, 59, 59, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-8 {
+  color: rgba(59, 59, 59, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-secondary-9 {
+  color: rgba(59, 59, 59, 0.9);
   font-weight: 600;
 }
 
@@ -542,8 +3827,98 @@ html[theme=accessibility-light] .txt-secondary {
   font-weight: 600;
 }
 
+html[theme=accessibility-light] .txt-success-1 {
+  color: rgba(119, 214, 37, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-2 {
+  color: rgba(119, 214, 37, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-3 {
+  color: rgba(119, 214, 37, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-4 {
+  color: rgba(119, 214, 37, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-5 {
+  color: rgba(119, 214, 37, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-6 {
+  color: rgba(119, 214, 37, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-7 {
+  color: rgba(119, 214, 37, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-8 {
+  color: rgba(119, 214, 37, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-success-9 {
+  color: rgba(119, 214, 37, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-success {
   color: #77D625;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-1 {
+  color: rgba(140, 81, 0, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-2 {
+  color: rgba(140, 81, 0, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-3 {
+  color: rgba(140, 81, 0, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-4 {
+  color: rgba(140, 81, 0, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-5 {
+  color: rgba(140, 81, 0, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-6 {
+  color: rgba(140, 81, 0, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-7 {
+  color: rgba(140, 81, 0, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-8 {
+  color: rgba(140, 81, 0, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-warning-9 {
+  color: rgba(140, 81, 0, 0.9);
   font-weight: 600;
 }
 
@@ -552,8 +3927,98 @@ html[theme=accessibility-light] .txt-warning {
   font-weight: 600;
 }
 
+html[theme=accessibility-light] .txt-info-1 {
+  color: rgba(0, 68, 136, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-2 {
+  color: rgba(0, 68, 136, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-3 {
+  color: rgba(0, 68, 136, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-4 {
+  color: rgba(0, 68, 136, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-5 {
+  color: rgba(0, 68, 136, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-6 {
+  color: rgba(0, 68, 136, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-7 {
+  color: rgba(0, 68, 136, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-8 {
+  color: rgba(0, 68, 136, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-info-9 {
+  color: rgba(0, 68, 136, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-info {
   color: #004488;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-1 {
+  color: rgba(125, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-2 {
+  color: rgba(125, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-3 {
+  color: rgba(125, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-4 {
+  color: rgba(125, 0, 0, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-5 {
+  color: rgba(125, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-6 {
+  color: rgba(125, 0, 0, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-7 {
+  color: rgba(125, 0, 0, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-8 {
+  color: rgba(125, 0, 0, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-danger-9 {
+  color: rgba(125, 0, 0, 0.9);
   font-weight: 600;
 }
 
@@ -562,8 +4027,98 @@ html[theme=accessibility-light] .txt-danger {
   font-weight: 600;
 }
 
+html[theme=accessibility-light] .txt-body-bg-1 {
+  color: rgba(250, 250, 250, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-2 {
+  color: rgba(250, 250, 250, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-3 {
+  color: rgba(250, 250, 250, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-4 {
+  color: rgba(250, 250, 250, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-5 {
+  color: rgba(250, 250, 250, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-6 {
+  color: rgba(250, 250, 250, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-7 {
+  color: rgba(250, 250, 250, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-8 {
+  color: rgba(250, 250, 250, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-bg-9 {
+  color: rgba(250, 250, 250, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-body-bg {
   color: #FAFAFA;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-1 {
+  color: rgba(17, 17, 17, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-2 {
+  color: rgba(17, 17, 17, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-3 {
+  color: rgba(17, 17, 17, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-4 {
+  color: rgba(17, 17, 17, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-5 {
+  color: rgba(17, 17, 17, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-6 {
+  color: rgba(17, 17, 17, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-7 {
+  color: rgba(17, 17, 17, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-8 {
+  color: rgba(17, 17, 17, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-body-9 {
+  color: rgba(17, 17, 17, 0.9);
   font-weight: 600;
 }
 
@@ -572,8 +4127,98 @@ html[theme=accessibility-light] .txt-body {
   font-weight: 600;
 }
 
+html[theme=accessibility-light] .txt-light-1 {
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-2 {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-3 {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-4 {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-5 {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-6 {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-7 {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-8 {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-light-9 {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-light {
   color: #ffffff;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-1 {
+  color: rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-2 {
+  color: rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-3 {
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-4 {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-5 {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-6 {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-7 {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-8 {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-dark-9 {
+  color: rgba(0, 0, 0, 0.9);
   font-weight: 600;
 }
 
@@ -582,8 +4227,98 @@ html[theme=accessibility-light] .txt-dark {
   font-weight: 600;
 }
 
+html[theme=accessibility-light] .txt-link-1 {
+  color: rgba(0, 68, 136, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-2 {
+  color: rgba(0, 68, 136, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-3 {
+  color: rgba(0, 68, 136, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-4 {
+  color: rgba(0, 68, 136, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-5 {
+  color: rgba(0, 68, 136, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-6 {
+  color: rgba(0, 68, 136, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-7 {
+  color: rgba(0, 68, 136, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-8 {
+  color: rgba(0, 68, 136, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-link-9 {
+  color: rgba(0, 68, 136, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-link {
   color: #004488;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-1 {
+  color: rgba(26, 26, 26, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-2 {
+  color: rgba(26, 26, 26, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-3 {
+  color: rgba(26, 26, 26, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-4 {
+  color: rgba(26, 26, 26, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-5 {
+  color: rgba(26, 26, 26, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-6 {
+  color: rgba(26, 26, 26, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-7 {
+  color: rgba(26, 26, 26, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-8 {
+  color: rgba(26, 26, 26, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-heading-9 {
+  color: rgba(26, 26, 26, 0.9);
   font-weight: 600;
 }
 
@@ -592,8 +4327,98 @@ html[theme=accessibility-light] .txt-heading {
   font-weight: 600;
 }
 
+html[theme=accessibility-dark] .txt-primary-1 {
+  color: rgba(229, 229, 229, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-2 {
+  color: rgba(229, 229, 229, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-3 {
+  color: rgba(229, 229, 229, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-4 {
+  color: rgba(229, 229, 229, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-5 {
+  color: rgba(229, 229, 229, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-6 {
+  color: rgba(229, 229, 229, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-7 {
+  color: rgba(229, 229, 229, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-8 {
+  color: rgba(229, 229, 229, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-primary-9 {
+  color: rgba(229, 229, 229, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-dark] .txt-primary {
   color: #E5E5E5;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-1 {
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-2 {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-3 {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-4 {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-5 {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-6 {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-7 {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-8 {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-secondary-9 {
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
 }
 
@@ -602,8 +4427,98 @@ html[theme=accessibility-dark] .txt-secondary {
   font-weight: 600;
 }
 
+html[theme=accessibility-dark] .txt-success-1 {
+  color: rgba(119, 214, 37, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-2 {
+  color: rgba(119, 214, 37, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-3 {
+  color: rgba(119, 214, 37, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-4 {
+  color: rgba(119, 214, 37, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-5 {
+  color: rgba(119, 214, 37, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-6 {
+  color: rgba(119, 214, 37, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-7 {
+  color: rgba(119, 214, 37, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-8 {
+  color: rgba(119, 214, 37, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-success-9 {
+  color: rgba(119, 214, 37, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-dark] .txt-success {
   color: #77D625;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-1 {
+  color: rgba(173, 94, 0, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-2 {
+  color: rgba(173, 94, 0, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-3 {
+  color: rgba(173, 94, 0, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-4 {
+  color: rgba(173, 94, 0, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-5 {
+  color: rgba(173, 94, 0, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-6 {
+  color: rgba(173, 94, 0, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-7 {
+  color: rgba(173, 94, 0, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-8 {
+  color: rgba(173, 94, 0, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-warning-9 {
+  color: rgba(173, 94, 0, 0.9);
   font-weight: 600;
 }
 
@@ -612,8 +4527,98 @@ html[theme=accessibility-dark] .txt-warning {
   font-weight: 600;
 }
 
+html[theme=accessibility-dark] .txt-info-1 {
+  color: rgba(0, 68, 136, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-2 {
+  color: rgba(0, 68, 136, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-3 {
+  color: rgba(0, 68, 136, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-4 {
+  color: rgba(0, 68, 136, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-5 {
+  color: rgba(0, 68, 136, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-6 {
+  color: rgba(0, 68, 136, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-7 {
+  color: rgba(0, 68, 136, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-8 {
+  color: rgba(0, 68, 136, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-info-9 {
+  color: rgba(0, 68, 136, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-dark] .txt-info {
   color: #004488;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-1 {
+  color: rgba(153, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-2 {
+  color: rgba(153, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-3 {
+  color: rgba(153, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-4 {
+  color: rgba(153, 0, 0, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-5 {
+  color: rgba(153, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-6 {
+  color: rgba(153, 0, 0, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-7 {
+  color: rgba(153, 0, 0, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-8 {
+  color: rgba(153, 0, 0, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-danger-9 {
+  color: rgba(153, 0, 0, 0.9);
   font-weight: 600;
 }
 
@@ -622,8 +4627,98 @@ html[theme=accessibility-dark] .txt-danger {
   font-weight: 600;
 }
 
+html[theme=accessibility-dark] .txt-body-bg-1 {
+  color: rgba(24, 24, 24, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-2 {
+  color: rgba(24, 24, 24, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-3 {
+  color: rgba(24, 24, 24, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-4 {
+  color: rgba(24, 24, 24, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-5 {
+  color: rgba(24, 24, 24, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-6 {
+  color: rgba(24, 24, 24, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-7 {
+  color: rgba(24, 24, 24, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-8 {
+  color: rgba(24, 24, 24, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-bg-9 {
+  color: rgba(24, 24, 24, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-dark] .txt-body-bg {
   color: #181818;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-1 {
+  color: rgba(234, 234, 234, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-2 {
+  color: rgba(234, 234, 234, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-3 {
+  color: rgba(234, 234, 234, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-4 {
+  color: rgba(234, 234, 234, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-5 {
+  color: rgba(234, 234, 234, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-6 {
+  color: rgba(234, 234, 234, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-7 {
+  color: rgba(234, 234, 234, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-8 {
+  color: rgba(234, 234, 234, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-body-9 {
+  color: rgba(234, 234, 234, 0.9);
   font-weight: 600;
 }
 
@@ -632,8 +4727,98 @@ html[theme=accessibility-dark] .txt-body {
   font-weight: 600;
 }
 
+html[theme=accessibility-dark] .txt-light-1 {
+  color: rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-2 {
+  color: rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-3 {
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-4 {
+  color: rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-5 {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-6 {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-7 {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-8 {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-light-9 {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-dark] .txt-light {
   color: #000000;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-1 {
+  color: rgba(245, 245, 245, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-2 {
+  color: rgba(245, 245, 245, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-3 {
+  color: rgba(245, 245, 245, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-4 {
+  color: rgba(245, 245, 245, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-5 {
+  color: rgba(245, 245, 245, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-6 {
+  color: rgba(245, 245, 245, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-7 {
+  color: rgba(245, 245, 245, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-8 {
+  color: rgba(245, 245, 245, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-dark-9 {
+  color: rgba(245, 245, 245, 0.9);
   font-weight: 600;
 }
 
@@ -642,14 +4827,360 @@ html[theme=accessibility-dark] .txt-dark {
   font-weight: 600;
 }
 
+html[theme=accessibility-dark] .txt-link-1 {
+  color: rgba(136, 192, 208, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-2 {
+  color: rgba(136, 192, 208, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-3 {
+  color: rgba(136, 192, 208, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-4 {
+  color: rgba(136, 192, 208, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-5 {
+  color: rgba(136, 192, 208, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-6 {
+  color: rgba(136, 192, 208, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-7 {
+  color: rgba(136, 192, 208, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-8 {
+  color: rgba(136, 192, 208, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-link-9 {
+  color: rgba(136, 192, 208, 0.9);
+  font-weight: 600;
+}
+
 html[theme=accessibility-dark] .txt-link {
   color: #88C0D0;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-1 {
+  color: rgba(234, 234, 234, 0.1);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-2 {
+  color: rgba(234, 234, 234, 0.2);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-3 {
+  color: rgba(234, 234, 234, 0.3);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-4 {
+  color: rgba(234, 234, 234, 0.4);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-5 {
+  color: rgba(234, 234, 234, 0.5);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-6 {
+  color: rgba(234, 234, 234, 0.6);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-7 {
+  color: rgba(234, 234, 234, 0.7);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-8 {
+  color: rgba(234, 234, 234, 0.8);
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-heading-9 {
+  color: rgba(234, 234, 234, 0.9);
   font-weight: 600;
 }
 
 html[theme=accessibility-dark] .txt-heading {
   color: #EAEAEA;
   font-weight: 600;
+}
+
+html[theme=light] .fs-10 {
+  font-size: 0.625rem;
+}
+
+html[theme=light] .fs-12 {
+  font-size: 0.75rem;
+}
+
+html[theme=light] .fs-14 {
+  font-size: 0.875rem;
+}
+
+html[theme=light] .fs-16 {
+  font-size: 1rem;
+}
+
+html[theme=light] .fs-18 {
+  font-size: 1.125rem;
+}
+
+html[theme=light] .fs-20 {
+  font-size: 1.25rem;
+}
+
+html[theme=light] .fs-22 {
+  font-size: 1.375rem;
+}
+
+html[theme=light] .fs-24 {
+  font-size: 1.5rem;
+}
+
+html[theme=light] .fs-30 {
+  font-size: 1.875rem;
+}
+
+html[theme=light] .fs-32 {
+  font-size: 2rem;
+}
+
+html[theme=light] .fs-34 {
+  font-size: 2.125rem;
+}
+
+html[theme=light] .fs-36 {
+  font-size: 2.25rem;
+}
+
+html[theme=light] .fs-48 {
+  font-size: 3rem;
+}
+
+html[theme=light] .fs-60 {
+  font-size: 3.75rem;
+}
+
+html[theme=light] .fs-72 {
+  font-size: 4.5rem;
+}
+
+html[theme=light] .fs-96 {
+  font-size: 6rem;
+}
+
+html[theme=dark] .fs-10 {
+  font-size: 0.625rem;
+}
+
+html[theme=dark] .fs-12 {
+  font-size: 0.75rem;
+}
+
+html[theme=dark] .fs-14 {
+  font-size: 0.875rem;
+}
+
+html[theme=dark] .fs-16 {
+  font-size: 1rem;
+}
+
+html[theme=dark] .fs-18 {
+  font-size: 1.125rem;
+}
+
+html[theme=dark] .fs-20 {
+  font-size: 1.25rem;
+}
+
+html[theme=dark] .fs-22 {
+  font-size: 1.375rem;
+}
+
+html[theme=dark] .fs-24 {
+  font-size: 1.5rem;
+}
+
+html[theme=dark] .fs-30 {
+  font-size: 1.875rem;
+}
+
+html[theme=dark] .fs-32 {
+  font-size: 2rem;
+}
+
+html[theme=dark] .fs-34 {
+  font-size: 2.125rem;
+}
+
+html[theme=dark] .fs-36 {
+  font-size: 2.25rem;
+}
+
+html[theme=dark] .fs-48 {
+  font-size: 3rem;
+}
+
+html[theme=dark] .fs-60 {
+  font-size: 3.75rem;
+}
+
+html[theme=dark] .fs-72 {
+  font-size: 4.5rem;
+}
+
+html[theme=dark] .fs-96 {
+  font-size: 6rem;
+}
+
+html[theme=accessibility-light] .fs-10 {
+  font-size: 0.625rem;
+}
+
+html[theme=accessibility-light] .fs-12 {
+  font-size: 0.75rem;
+}
+
+html[theme=accessibility-light] .fs-14 {
+  font-size: 0.875rem;
+}
+
+html[theme=accessibility-light] .fs-16 {
+  font-size: 1rem;
+}
+
+html[theme=accessibility-light] .fs-18 {
+  font-size: 1.125rem;
+}
+
+html[theme=accessibility-light] .fs-20 {
+  font-size: 1.25rem;
+}
+
+html[theme=accessibility-light] .fs-22 {
+  font-size: 1.375rem;
+}
+
+html[theme=accessibility-light] .fs-24 {
+  font-size: 1.5rem;
+}
+
+html[theme=accessibility-light] .fs-30 {
+  font-size: 1.875rem;
+}
+
+html[theme=accessibility-light] .fs-32 {
+  font-size: 2rem;
+}
+
+html[theme=accessibility-light] .fs-34 {
+  font-size: 2.125rem;
+}
+
+html[theme=accessibility-light] .fs-36 {
+  font-size: 2.25rem;
+}
+
+html[theme=accessibility-light] .fs-48 {
+  font-size: 3rem;
+}
+
+html[theme=accessibility-light] .fs-60 {
+  font-size: 3.75rem;
+}
+
+html[theme=accessibility-light] .fs-72 {
+  font-size: 4.5rem;
+}
+
+html[theme=accessibility-light] .fs-96 {
+  font-size: 6rem;
+}
+
+html[theme=accessibility-dark] .fs-10 {
+  font-size: 0.625rem;
+}
+
+html[theme=accessibility-dark] .fs-12 {
+  font-size: 0.75rem;
+}
+
+html[theme=accessibility-dark] .fs-14 {
+  font-size: 0.875rem;
+}
+
+html[theme=accessibility-dark] .fs-16 {
+  font-size: 1rem;
+}
+
+html[theme=accessibility-dark] .fs-18 {
+  font-size: 1.125rem;
+}
+
+html[theme=accessibility-dark] .fs-20 {
+  font-size: 1.25rem;
+}
+
+html[theme=accessibility-dark] .fs-22 {
+  font-size: 1.375rem;
+}
+
+html[theme=accessibility-dark] .fs-24 {
+  font-size: 1.5rem;
+}
+
+html[theme=accessibility-dark] .fs-30 {
+  font-size: 1.875rem;
+}
+
+html[theme=accessibility-dark] .fs-32 {
+  font-size: 2rem;
+}
+
+html[theme=accessibility-dark] .fs-34 {
+  font-size: 2.125rem;
+}
+
+html[theme=accessibility-dark] .fs-36 {
+  font-size: 2.25rem;
+}
+
+html[theme=accessibility-dark] .fs-48 {
+  font-size: 3rem;
+}
+
+html[theme=accessibility-dark] .fs-60 {
+  font-size: 3.75rem;
+}
+
+html[theme=accessibility-dark] .fs-72 {
+  font-size: 4.5rem;
+}
+
+html[theme=accessibility-dark] .fs-96 {
+  font-size: 6rem;
 }
 
 .montserrat {

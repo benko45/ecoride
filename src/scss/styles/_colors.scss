@@ -1,17 +1,35 @@
 @use "sass:map";
 @use 'colors-variables' as colors;
 
-// @each $theme-name, $colors in colors.$themes {
-//   // ✅ GÉNÉRATION DES CLASSES DE COULEURS
-//   @each $color-name, $color-value in $colors {
-//     [theme=#{$theme-name}] .#{$color-name} { color: $color-value; } 
-//   }
-// }
+ /* ✅ GÉNÉRATION DES CLASSES DE COULEURS   */
+@each $theme-name, $colors in colors.$themes {
+  @each $color-name, $color-value in $colors {
+    [theme=#{$theme-name}] .#{$color-name} { color: $color-value; } 
+  }
+}
+
+
+/* ✅ GÉNÉRATION DES CLASSES DE FOND        */
+$opacities: (
+  "1": 0.1,
+  "2": 0.2,
+  "3": 0.3,
+  "4": 0.4,
+  "5": 0.5,
+  "6": 0.6,
+  "7": 0.7,
+  "8": 0.8,
+  "9": 0.9,
+  "10": 1
+);
 
 @each $theme-name, $colors in colors.$themes {
-  // ✅ GÉNÉRATION DES CLASSES DE FOND
+  
   @each $color-name, $color-value in $colors {
     [theme=#{$theme-name}] .background-#{$color-name} { background-color: $color-value; } 
+    @each $opacity-name, $opacity-value in $opacities {
+      [theme=#{$theme-name}] .background-#{$color-name}-#{$opacity-name} { background-color: rgba($color-value, $opacity-value); } 
+    }
   }
 }
 
