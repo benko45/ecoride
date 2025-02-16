@@ -15,7 +15,7 @@ $breakpoints: (
 );
 $breakpoint: map.get($breakpoints, 'md');
 
-#form-depart {
+#address {
     width: 100%;
 }
 
@@ -37,5 +37,29 @@ html[theme="light"] input.form-control:focus {
 html[theme="dark"] input.form-control:focus {
     box-shadow: none;
     border: 1px solid transparent;
+}
+
+.suggestions-container {
+    display: flex; /* Active le flexbox pour le conteneur */
+    justify-content: flex-start; /* Aligne les éléments à gauche */
+    align-items: flex-start; /* Aligne les éléments en haut */
+    flex-direction: column; /* Assure que les suggestions s'empilent verticalement */
+    gap: 10px; /* Espacement entre chaque suggestion */
+}
+
+#suggestions div {
+    max-width: 80%; /* Réduit la largeur des suggestions à 80% */
+    margin: 0 auto; /* Centrer les suggestions dans leur conteneur */
+    padding: 5px;
+    display: flex;
+    align-items: center; /* Aligne les icônes et le texte */
+    border: 1px solid #ddd; /* Ajoute une bordure */
+    border-radius: 5px; /* Arrondit les bords */
+    background-color: #f9f9f9; /* Fond léger pour chaque suggestion */
+    cursor: pointer; /* Change le curseur en main lors du survol */
+}
+
+#suggestions div:hover {
+    background-color: #e0e0e0; /* Changer la couleur de fond au survol */
 }
 
