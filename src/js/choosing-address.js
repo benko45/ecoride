@@ -55,133 +55,128 @@ document.getElementById('address').addEventListener('input', function () {
                 const suggestionsDiv = document.getElementById('suggestions');
                 suggestionsDiv.innerHTML = ''; // Vide les anciennes suggestions
 
+                // Créer un tableau pour stocker les suggestions sous forme de texte
+                const suggestionsText = [];
+
                 suggestions.forEach((suggestion, index) => {
-                    // Crée un div pour chaque suggestion
-                    const div = document.createElement('div');
-                    div.classList.add('suggestion-item'); // Classe pour styliser les éléments
+                    // Décomposer l'adresse `display_name` en fonction des virgules
+                    const addressParts = suggestion.display_name.split(',');
 
-                    // Crée un conteneur pour l'icône au début du div (ici un SVG de cible)
-                    const iconStartContainer = document.createElement('div');
-                    iconStartContainer.style.display = 'flex';
-                    iconStartContainer.style.alignItems = 'center';
-                    iconStartContainer.style.justifyContent = 'center';
-                    iconStartContainer.style.width = '24px'; // Largeur contrôlée pour l'icône
-                    iconStartContainer.style.height = '24px'; // Hauteur contrôlée pour l'icône
+                    // Le dernier élément est le pays
+                    const country = addressParts[addressParts.length - 1]?.trim();
 
-                    // Crée le SVG de la cible pour l'icône de début dynamiquement
-                    const iconStart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    iconStart.setAttribute('viewBox', '0 0 24 24');
-                    iconStart.setAttribute('width', '16');
-                    iconStart.setAttribute('height', '16');
+                    // Si le pays est la France, construire l'adresse courte
+                    if (country === "France") {
+                        // Extraire les trois premiers et les deux derniers champs
+                        const number = addressParts[0]?.trim() || ''; // Numéro
+                        const street = addressParts[1]?.trim() || ''; // Voie
+                        const neighborhood = addressParts[2]?.trim() || ''; // Quartier
+                        const postalCode = addressParts[addressParts.length - 2]?.trim() || ''; // Code postal
+                        const country = addressParts[addressParts.length - 1]?.trim() || ''; // Pays (France)
 
-                    // Création de l'élément <circle> dans le SVG
-                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    circle.setAttribute('cx', '12');
-                    circle.setAttribute('cy', '12');
-                    circle.setAttribute('r', '9');
-                    circle.setAttribute('fill', 'none');
-                    circle.setAttribute('stroke', '#000');
-                    circle.setAttribute('stroke-linecap', 'round');
-                    circle.setAttribute('stroke-linejoin', 'round');
-                    circle.setAttribute('stroke-width', '2');
+                        // Construire l'adresse courte : numéro, voie, quartier, code postal, pays
+                        const shortAddress = `${number} ${street}, ${neighborhood}, ${postalCode}, ${country}`;
 
-                    // Création des lignes dans le SVG
-                    const line1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line1.setAttribute('x1', '12');
-                    line1.setAttribute('y1', '1');
-                    line1.setAttribute('x2', '12');
-                    line1.setAttribute('y2', '7');
-                    line1.setAttribute('stroke', '#000');
-                    line1.setAttribute('stroke-width', '2');
+                        // Crée un div pour chaque suggestion
+                        const div = document.createElement('div');
+                        div.classList.add('suggestion-item'); // Classe pour styliser les éléments
 
-                    const line2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line2.setAttribute('x1', '12');
-                    line2.setAttribute('y1', '17');
-                    line2.setAttribute('x2', '12');
-                    line2.setAttribute('y2', '23');
-                    line2.setAttribute('stroke', '#000');
-                    line2.setAttribute('stroke-width', '2');
+                        // Crée un conteneur pour l'icône au début du div (ici un SVG de cible)
+                        const iconStartContainer = document.createElement('div');
+                        iconStartContainer.style.display = 'flex';
+                        iconStartContainer.style.alignItems = 'center';
+                        iconStartContainer.style.justifyContent = 'center';
+                        iconStartContainer.style.width = '24px'; // Largeur contrôlée pour l'icône
+                        iconStartContainer.style.height = '24px'; // Hauteur contrôlée pour l'icône
 
-                    const line3 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line3.setAttribute('x1', '1');
-                    line3.setAttribute('y1', '12');
-                    line3.setAttribute('x2', '7');
-                    line3.setAttribute('y2', '12');
-                    line3.setAttribute('stroke', '#000');
-                    line3.setAttribute('stroke-width', '2');
+                        // Crée le SVG de la cible pour l'icône de début dynamiquement
+                        const iconStart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        iconStart.setAttribute('viewBox', '0 0 24 24');
+                        iconStart.setAttribute('width', '16');
+                        iconStart.setAttribute('height', '16');
 
-                    const line4 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line4.setAttribute('x1', '17');
-                    line4.setAttribute('y1', '12');
-                    line4.setAttribute('x2', '23');
-                    line4.setAttribute('y2', '12');
-                    line4.setAttribute('stroke', '#000');
-                    line4.setAttribute('stroke-width', '2');
+                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        circle.setAttribute('cx', '12');
+                        circle.setAttribute('cy', '12');
+                        circle.setAttribute('r', '9');
+                        circle.setAttribute('fill', 'none');
+                        circle.setAttribute('stroke', '#000');
+                        circle.setAttribute('stroke-linecap', 'round');
+                        circle.setAttribute('stroke-linejoin', 'round');
+                        circle.setAttribute('stroke-width', '2');
 
-                    const line5 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line5.setAttribute('x1', '12');
-                    line5.setAttribute('y1', '12');
-                    line5.setAttribute('x2', '12');
-                    line5.setAttribute('y2', '12');
-                    line5.setAttribute('stroke', '#000');
-                    line5.setAttribute('stroke-width', '2');
+                        // Ajouter l'élément SVG dans le conteneur
+                        iconStart.appendChild(circle);
+                        iconStartContainer.appendChild(iconStart);
 
-                    // Ajouter tous les éléments SVG dans le conteneur SVG
-                    iconStart.appendChild(circle);
-                    iconStart.appendChild(line1);
-                    iconStart.appendChild(line2);
-                    iconStart.appendChild(line3);
-                    iconStart.appendChild(line4);
-                    iconStart.appendChild(line5);
+                        // Crée un conteneur pour le texte de la suggestion
+                        const textContainer = document.createElement('div');
+                        textContainer.style.flex = '1';  // Utilise toute la largeur restante
+                        textContainer.textContent = shortAddress; // Texte de la suggestion (adresse courte)
 
-                    // Ajoute le SVG dans le conteneur
-                    iconStartContainer.appendChild(iconStart);
+                        // Crée un conteneur pour l'icône à la fin du div (ici un SVG simple)
+                        const iconEndContainer = document.createElement('div');
+                        iconEndContainer.style.display = 'flex';
+                        iconEndContainer.style.alignItems = 'center';
+                        iconEndContainer.style.justifyContent = 'center';
+                        iconEndContainer.style.width = '24px'; // Largeur contrôlée pour l'icône
+                        iconEndContainer.style.height = '24px'; // Hauteur contrôlée pour l'icône
 
-                    // Crée un conteneur pour le texte de la suggestion
-                    const textContainer = document.createElement('div');
-                    textContainer.style.flex = '1';  // Utilise toute la largeur restante
-                    textContainer.textContent = suggestion.display_name; // Texte de la suggestion
+                        // Crée l'icône pour l'icône de fin (SVG rouge)
+                        const iconEnd = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                        iconEnd.setAttribute('width', '16');
+                        iconEnd.setAttribute('height', '16');
+                        iconEnd.setAttribute('viewBox', '0 0 16 16');
+                        const circleEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        circleEnd.setAttribute('cx', '8');
+                        circleEnd.setAttribute('cy', '8');
+                        circleEnd.setAttribute('r', '6');
+                        circleEnd.setAttribute('fill', 'red');
+                        iconEnd.appendChild(circleEnd);
 
-                    // Crée un conteneur pour l'icône à la fin du div (ici un SVG simple)
-                    const iconEndContainer = document.createElement('div');
-                    iconEndContainer.style.display = 'flex';
-                    iconEndContainer.style.alignItems = 'center';
-                    iconEndContainer.style.justifyContent = 'center';
-                    iconEndContainer.style.width = '24px'; // Largeur contrôlée pour l'icône
-                    iconEndContainer.style.height = '24px'; // Hauteur contrôlée pour l'icône
+                        iconEndContainer.appendChild(iconEnd); // Ajoute le SVG dans le conteneur
 
-                    // Crée l'icône pour l'icône de fin (SVG rouge)
-                    const iconEnd = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                    iconEnd.setAttribute('width', '16');
-                    iconEnd.setAttribute('height', '16');
-                    iconEnd.setAttribute('viewBox', '0 0 16 16');
-                    const circleEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    circleEnd.setAttribute('cx', '8');
-                    circleEnd.setAttribute('cy', '8');
-                    circleEnd.setAttribute('r', '6');
-                    circleEnd.setAttribute('fill', 'red');
-                    iconEnd.appendChild(circleEnd);
+                        // Ajoute les trois conteneurs (icône de début, texte, icône de fin) dans le div principal
+                        div.appendChild(iconStartContainer); // Ajoute l'icône de début
+                        div.appendChild(textContainer); // Ajoute le texte
+                        div.appendChild(iconEndContainer); // Ajoute l'icône de fin
 
-                    iconEndContainer.appendChild(iconEnd); // Ajoute le SVG dans le conteneur
+                        // Ajoute un événement de clic pour sélectionner la suggestion
+                        div.addEventListener('click', () => {
+                            document.getElementById('address').value = shortAddress; // Remplir le champ avec l'adresse courte
+                            suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
+                        });
 
-                    // Ajoute les trois conteneurs (icône de début, texte, icône de fin) dans le div principal
-                    div.appendChild(iconStartContainer); // Ajoute l'icône de début
-                    div.appendChild(textContainer); // Ajoute le texte
-                    div.appendChild(iconEndContainer); // Ajoute l'icône de fin
+                        // Ajoute le div à la liste des suggestions
+                        suggestionsDiv.appendChild(div);
 
-                    // Ajoute un événement de clic pour sélectionner la suggestion
-                    div.addEventListener('click', () => {
-                        document.getElementById('address').value = suggestion.display_name;
-                        suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
-                    });
-
-                    // Ajoute le div à la liste des suggestions
-                    suggestionsDiv.appendChild(div);
+                        // Ajouter la suggestion dans le tableau des suggestions à enregistrer
+                        suggestionsText.push(shortAddress);
+                    }
                 });
+
+                // Créer un fichier texte avec les suggestions
+                const fileContent = suggestionsText.join('\n'); // Crée un contenu avec les suggestions séparées par des sauts de ligne
+
+                // Créer un Blob à partir du contenu des suggestions
+                const blob = new Blob([fileContent], { type: 'text/plain' });
+                
+                // Créer un lien pour permettre le téléchargement
+                const downloadLink = document.createElement('a');
+                downloadLink.href = URL.createObjectURL(blob);
+                downloadLink.download = 'suggestions_adresses.txt'; // Nom du fichier
+                downloadLink.textContent = 'Télécharger les suggestions';
+
+                // Ajoute le lien de téléchargement dans le DOM
+                suggestionsDiv.appendChild(downloadLink);
             })
             .catch(error => console.error('Erreur API:', error));
     }
 });
+
+
+
+
 
 
 
