@@ -305,2114 +305,2642 @@ html[theme=accessibility-dark] {
 }
 
 /* ✅ GÉNÉRATION DES CLASSES DE FOND        */
+/*    background-color */
 [theme=light] .background-primary {
   background-color: #425F0D;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-1 {
   background-color: rgba(66, 95, 13, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-2 {
   background-color: rgba(66, 95, 13, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-3 {
   background-color: rgba(66, 95, 13, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-4 {
   background-color: rgba(66, 95, 13, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-5 {
   background-color: rgba(66, 95, 13, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-6 {
   background-color: rgba(66, 95, 13, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-7 {
   background-color: rgba(66, 95, 13, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-8 {
   background-color: rgba(66, 95, 13, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-9 {
   background-color: rgba(66, 95, 13, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-primary-10 {
   background-color: #425f0d;
 }
 
+/*    background-color */
 [theme=light] .background-secondary {
   background-color: #77D625;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-1 {
   background-color: rgba(119, 214, 37, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-2 {
   background-color: rgba(119, 214, 37, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-3 {
   background-color: rgba(119, 214, 37, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-4 {
   background-color: rgba(119, 214, 37, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-5 {
   background-color: rgba(119, 214, 37, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-6 {
   background-color: rgba(119, 214, 37, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-7 {
   background-color: rgba(119, 214, 37, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-8 {
   background-color: rgba(119, 214, 37, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-9 {
   background-color: rgba(119, 214, 37, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-secondary-10 {
   background-color: #77d625;
 }
 
+/*    background-color */
 [theme=light] .background-success {
   background-color: #388E3C;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-1 {
   background-color: rgba(56, 142, 60, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-2 {
   background-color: rgba(56, 142, 60, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-3 {
   background-color: rgba(56, 142, 60, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-4 {
   background-color: rgba(56, 142, 60, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-5 {
   background-color: rgba(56, 142, 60, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-6 {
   background-color: rgba(56, 142, 60, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-7 {
   background-color: rgba(56, 142, 60, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-8 {
   background-color: rgba(56, 142, 60, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-9 {
   background-color: rgba(56, 142, 60, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-success-10 {
   background-color: #388e3c;
 }
 
+/*    background-color */
 [theme=light] .background-warning {
   background-color: #FFB74D;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-1 {
   background-color: rgba(255, 183, 77, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-2 {
   background-color: rgba(255, 183, 77, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-3 {
   background-color: rgba(255, 183, 77, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-4 {
   background-color: rgba(255, 183, 77, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-5 {
   background-color: rgba(255, 183, 77, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-6 {
   background-color: rgba(255, 183, 77, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-7 {
   background-color: rgba(255, 183, 77, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-8 {
   background-color: rgba(255, 183, 77, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-9 {
   background-color: rgba(255, 183, 77, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-warning-10 {
   background-color: #ffb74d;
 }
 
+/*    background-color */
 [theme=light] .background-danger {
   background-color: #D84315;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-1 {
   background-color: rgba(216, 67, 21, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-2 {
   background-color: rgba(216, 67, 21, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-3 {
   background-color: rgba(216, 67, 21, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-4 {
   background-color: rgba(216, 67, 21, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-5 {
   background-color: rgba(216, 67, 21, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-6 {
   background-color: rgba(216, 67, 21, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-7 {
   background-color: rgba(216, 67, 21, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-8 {
   background-color: rgba(216, 67, 21, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-9 {
   background-color: rgba(216, 67, 21, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-danger-10 {
   background-color: #d84315;
 }
 
+/*    background-color */
 [theme=light] .background-info {
   background-color: #4FC3F7;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-1 {
   background-color: rgba(79, 195, 247, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-2 {
   background-color: rgba(79, 195, 247, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-3 {
   background-color: rgba(79, 195, 247, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-4 {
   background-color: rgba(79, 195, 247, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-5 {
   background-color: rgba(79, 195, 247, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-6 {
   background-color: rgba(79, 195, 247, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-7 {
   background-color: rgba(79, 195, 247, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-8 {
   background-color: rgba(79, 195, 247, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-9 {
   background-color: rgba(79, 195, 247, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-info-10 {
   background-color: #4fc3f7;
 }
 
+/*    background-color */
 [theme=light] .background-light {
   background-color: #ffffff;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-1 {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-2 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-3 {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-4 {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-5 {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-7 {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-8 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-9 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-light-10 {
   background-color: white;
 }
 
+/*    background-color */
 [theme=light] .background-dark {
   background-color: #1B5E20;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-1 {
   background-color: rgba(27, 94, 32, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-2 {
   background-color: rgba(27, 94, 32, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-3 {
   background-color: rgba(27, 94, 32, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-4 {
   background-color: rgba(27, 94, 32, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-5 {
   background-color: rgba(27, 94, 32, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-6 {
   background-color: rgba(27, 94, 32, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-7 {
   background-color: rgba(27, 94, 32, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-8 {
   background-color: rgba(27, 94, 32, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-9 {
   background-color: rgba(27, 94, 32, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-dark-10 {
   background-color: #1b5e20;
 }
 
+/*    background-color */
 [theme=light] .background-body-bg {
   background-color: #E8F5E9;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-1 {
   background-color: rgba(232, 245, 233, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-2 {
   background-color: rgba(232, 245, 233, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-3 {
   background-color: rgba(232, 245, 233, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-4 {
   background-color: rgba(232, 245, 233, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-5 {
   background-color: rgba(232, 245, 233, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-6 {
   background-color: rgba(232, 245, 233, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-7 {
   background-color: rgba(232, 245, 233, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-8 {
   background-color: rgba(232, 245, 233, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-9 {
   background-color: rgba(232, 245, 233, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-bg-10 {
   background-color: #e8f5e9;
 }
 
+/*    background-color */
 [theme=light] .background-body {
   background-color: #425F0D;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-1 {
   background-color: rgba(66, 95, 13, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-2 {
   background-color: rgba(66, 95, 13, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-3 {
   background-color: rgba(66, 95, 13, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-4 {
   background-color: rgba(66, 95, 13, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-5 {
   background-color: rgba(66, 95, 13, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-6 {
   background-color: rgba(66, 95, 13, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-7 {
   background-color: rgba(66, 95, 13, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-8 {
   background-color: rgba(66, 95, 13, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-9 {
   background-color: rgba(66, 95, 13, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-body-10 {
   background-color: #425f0d;
 }
 
+/*    background-color */
 [theme=light] .background-link {
   background-color: #388E3C;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-1 {
   background-color: rgba(56, 142, 60, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-2 {
   background-color: rgba(56, 142, 60, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-3 {
   background-color: rgba(56, 142, 60, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-4 {
   background-color: rgba(56, 142, 60, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-5 {
   background-color: rgba(56, 142, 60, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-6 {
   background-color: rgba(56, 142, 60, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-7 {
   background-color: rgba(56, 142, 60, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-8 {
   background-color: rgba(56, 142, 60, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-9 {
   background-color: rgba(56, 142, 60, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-link-10 {
   background-color: #388e3c;
 }
 
+/*    background-color */
 [theme=light] .background-heading {
   background-color: #425F0D;
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-1 {
   background-color: rgba(66, 95, 13, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-2 {
   background-color: rgba(66, 95, 13, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-3 {
   background-color: rgba(66, 95, 13, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-4 {
   background-color: rgba(66, 95, 13, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-5 {
   background-color: rgba(66, 95, 13, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-6 {
   background-color: rgba(66, 95, 13, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-7 {
   background-color: rgba(66, 95, 13, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-8 {
   background-color: rgba(66, 95, 13, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-9 {
   background-color: rgba(66, 95, 13, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=light] .background-heading-10 {
   background-color: #425f0d;
 }
 
+/*    background-color */
 [theme=dark] .background-primary {
   background-color: #425F0D;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-1 {
   background-color: rgba(66, 95, 13, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-2 {
   background-color: rgba(66, 95, 13, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-3 {
   background-color: rgba(66, 95, 13, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-4 {
   background-color: rgba(66, 95, 13, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-5 {
   background-color: rgba(66, 95, 13, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-6 {
   background-color: rgba(66, 95, 13, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-7 {
   background-color: rgba(66, 95, 13, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-8 {
   background-color: rgba(66, 95, 13, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-9 {
   background-color: rgba(66, 95, 13, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-primary-10 {
   background-color: #425f0d;
 }
 
+/*    background-color */
 [theme=dark] .background-secondary {
   background-color: #77D625;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-1 {
   background-color: rgba(119, 214, 37, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-2 {
   background-color: rgba(119, 214, 37, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-3 {
   background-color: rgba(119, 214, 37, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-4 {
   background-color: rgba(119, 214, 37, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-5 {
   background-color: rgba(119, 214, 37, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-6 {
   background-color: rgba(119, 214, 37, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-7 {
   background-color: rgba(119, 214, 37, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-8 {
   background-color: rgba(119, 214, 37, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-9 {
   background-color: rgba(119, 214, 37, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-secondary-10 {
   background-color: #77d625;
 }
 
+/*    background-color */
 [theme=dark] .background-success {
   background-color: #66BB6A;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-1 {
   background-color: rgba(102, 187, 106, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-2 {
   background-color: rgba(102, 187, 106, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-3 {
   background-color: rgba(102, 187, 106, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-4 {
   background-color: rgba(102, 187, 106, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-5 {
   background-color: rgba(102, 187, 106, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-6 {
   background-color: rgba(102, 187, 106, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-7 {
   background-color: rgba(102, 187, 106, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-8 {
   background-color: rgba(102, 187, 106, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-9 {
   background-color: rgba(102, 187, 106, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-success-10 {
   background-color: #66bb6a;
 }
 
+/*    background-color */
 [theme=dark] .background-warning {
   background-color: #FFB74D;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-1 {
   background-color: rgba(255, 183, 77, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-2 {
   background-color: rgba(255, 183, 77, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-3 {
   background-color: rgba(255, 183, 77, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-4 {
   background-color: rgba(255, 183, 77, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-5 {
   background-color: rgba(255, 183, 77, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-6 {
   background-color: rgba(255, 183, 77, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-7 {
   background-color: rgba(255, 183, 77, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-8 {
   background-color: rgba(255, 183, 77, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-9 {
   background-color: rgba(255, 183, 77, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-warning-10 {
   background-color: #ffb74d;
 }
 
+/*    background-color */
 [theme=dark] .background-danger {
   background-color: #E57373;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-1 {
   background-color: rgba(229, 115, 115, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-2 {
   background-color: rgba(229, 115, 115, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-3 {
   background-color: rgba(229, 115, 115, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-4 {
   background-color: rgba(229, 115, 115, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-5 {
   background-color: rgba(229, 115, 115, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-6 {
   background-color: rgba(229, 115, 115, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-7 {
   background-color: rgba(229, 115, 115, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-8 {
   background-color: rgba(229, 115, 115, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-9 {
   background-color: rgba(229, 115, 115, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-danger-10 {
   background-color: #e57373;
 }
 
+/*    background-color */
 [theme=dark] .background-info {
   background-color: #4FC3F7;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-1 {
   background-color: rgba(79, 195, 247, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-2 {
   background-color: rgba(79, 195, 247, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-3 {
   background-color: rgba(79, 195, 247, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-4 {
   background-color: rgba(79, 195, 247, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-5 {
   background-color: rgba(79, 195, 247, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-6 {
   background-color: rgba(79, 195, 247, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-7 {
   background-color: rgba(79, 195, 247, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-8 {
   background-color: rgba(79, 195, 247, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-9 {
   background-color: rgba(79, 195, 247, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-info-10 {
   background-color: #4fc3f7;
 }
 
+/*    background-color */
 [theme=dark] .background-light {
   background-color: #000000;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-1 {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-2 {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-3 {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-4 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-5 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-6 {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-7 {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-8 {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-9 {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-light-10 {
   background-color: black;
 }
 
+/*    background-color */
 [theme=dark] .background-dark {
   background-color: #ffffff;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-1 {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-2 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-3 {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-4 {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-5 {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-7 {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-8 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-9 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-dark-10 {
   background-color: white;
 }
 
+/*    background-color */
 [theme=dark] .background-body-bg {
   background-color: #121A13;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-1 {
   background-color: rgba(18, 26, 19, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-2 {
   background-color: rgba(18, 26, 19, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-3 {
   background-color: rgba(18, 26, 19, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-4 {
   background-color: rgba(18, 26, 19, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-5 {
   background-color: rgba(18, 26, 19, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-6 {
   background-color: rgba(18, 26, 19, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-7 {
   background-color: rgba(18, 26, 19, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-8 {
   background-color: rgba(18, 26, 19, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-9 {
   background-color: rgba(18, 26, 19, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-bg-10 {
   background-color: #121a13;
 }
 
+/*    background-color */
 [theme=dark] .background-body {
   background-color: #425F0D;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-1 {
   background-color: rgba(66, 95, 13, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-2 {
   background-color: rgba(66, 95, 13, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-3 {
   background-color: rgba(66, 95, 13, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-4 {
   background-color: rgba(66, 95, 13, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-5 {
   background-color: rgba(66, 95, 13, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-6 {
   background-color: rgba(66, 95, 13, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-7 {
   background-color: rgba(66, 95, 13, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-8 {
   background-color: rgba(66, 95, 13, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-9 {
   background-color: rgba(66, 95, 13, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-body-10 {
   background-color: #425f0d;
 }
 
+/*    background-color */
 [theme=dark] .background-link {
   background-color: #388E3C;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-1 {
   background-color: rgba(56, 142, 60, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-2 {
   background-color: rgba(56, 142, 60, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-3 {
   background-color: rgba(56, 142, 60, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-4 {
   background-color: rgba(56, 142, 60, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-5 {
   background-color: rgba(56, 142, 60, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-6 {
   background-color: rgba(56, 142, 60, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-7 {
   background-color: rgba(56, 142, 60, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-8 {
   background-color: rgba(56, 142, 60, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-9 {
   background-color: rgba(56, 142, 60, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-link-10 {
   background-color: #388e3c;
 }
 
+/*    background-color */
 [theme=dark] .background-heading {
   background-color: #425F0D;
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-1 {
   background-color: rgba(66, 95, 13, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-2 {
   background-color: rgba(66, 95, 13, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-3 {
   background-color: rgba(66, 95, 13, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-4 {
   background-color: rgba(66, 95, 13, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-5 {
   background-color: rgba(66, 95, 13, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-6 {
   background-color: rgba(66, 95, 13, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-7 {
   background-color: rgba(66, 95, 13, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-8 {
   background-color: rgba(66, 95, 13, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-9 {
   background-color: rgba(66, 95, 13, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=dark] .background-heading-10 {
   background-color: #425f0d;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-primary {
   background-color: #1A1A1A;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-1 {
   background-color: rgba(26, 26, 26, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-2 {
   background-color: rgba(26, 26, 26, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-3 {
   background-color: rgba(26, 26, 26, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-4 {
   background-color: rgba(26, 26, 26, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-5 {
   background-color: rgba(26, 26, 26, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-6 {
   background-color: rgba(26, 26, 26, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-7 {
   background-color: rgba(26, 26, 26, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-8 {
   background-color: rgba(26, 26, 26, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-9 {
   background-color: rgba(26, 26, 26, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-primary-10 {
   background-color: #1a1a1a;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-secondary {
   background-color: #3B3B3B;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-1 {
   background-color: rgba(59, 59, 59, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-2 {
   background-color: rgba(59, 59, 59, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-3 {
   background-color: rgba(59, 59, 59, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-4 {
   background-color: rgba(59, 59, 59, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-5 {
   background-color: rgba(59, 59, 59, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-6 {
   background-color: rgba(59, 59, 59, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-7 {
   background-color: rgba(59, 59, 59, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-8 {
   background-color: rgba(59, 59, 59, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-9 {
   background-color: rgba(59, 59, 59, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-secondary-10 {
   background-color: #3b3b3b;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-success {
   background-color: #77D625;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-1 {
   background-color: rgba(119, 214, 37, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-2 {
   background-color: rgba(119, 214, 37, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-3 {
   background-color: rgba(119, 214, 37, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-4 {
   background-color: rgba(119, 214, 37, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-5 {
   background-color: rgba(119, 214, 37, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-6 {
   background-color: rgba(119, 214, 37, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-7 {
   background-color: rgba(119, 214, 37, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-8 {
   background-color: rgba(119, 214, 37, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-9 {
   background-color: rgba(119, 214, 37, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-success-10 {
   background-color: #77d625;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-warning {
   background-color: #8C5100;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-1 {
   background-color: rgba(140, 81, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-2 {
   background-color: rgba(140, 81, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-3 {
   background-color: rgba(140, 81, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-4 {
   background-color: rgba(140, 81, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-5 {
   background-color: rgba(140, 81, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-6 {
   background-color: rgba(140, 81, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-7 {
   background-color: rgba(140, 81, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-8 {
   background-color: rgba(140, 81, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-9 {
   background-color: rgba(140, 81, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-warning-10 {
   background-color: #8c5100;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-info {
   background-color: #004488;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-1 {
   background-color: rgba(0, 68, 136, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-2 {
   background-color: rgba(0, 68, 136, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-3 {
   background-color: rgba(0, 68, 136, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-4 {
   background-color: rgba(0, 68, 136, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-5 {
   background-color: rgba(0, 68, 136, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-6 {
   background-color: rgba(0, 68, 136, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-7 {
   background-color: rgba(0, 68, 136, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-8 {
   background-color: rgba(0, 68, 136, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-9 {
   background-color: rgba(0, 68, 136, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-info-10 {
   background-color: #004488;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-danger {
   background-color: #7D0000;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-1 {
   background-color: rgba(125, 0, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-2 {
   background-color: rgba(125, 0, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-3 {
   background-color: rgba(125, 0, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-4 {
   background-color: rgba(125, 0, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-5 {
   background-color: rgba(125, 0, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-6 {
   background-color: rgba(125, 0, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-7 {
   background-color: rgba(125, 0, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-8 {
   background-color: rgba(125, 0, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-9 {
   background-color: rgba(125, 0, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-danger-10 {
   background-color: #7d0000;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-body-bg {
   background-color: #FAFAFA;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-1 {
   background-color: rgba(250, 250, 250, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-2 {
   background-color: rgba(250, 250, 250, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-3 {
   background-color: rgba(250, 250, 250, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-4 {
   background-color: rgba(250, 250, 250, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-5 {
   background-color: rgba(250, 250, 250, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-6 {
   background-color: rgba(250, 250, 250, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-7 {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-8 {
   background-color: rgba(250, 250, 250, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-9 {
   background-color: rgba(250, 250, 250, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-bg-10 {
   background-color: #fafafa;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-body {
   background-color: #111111;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-1 {
   background-color: rgba(17, 17, 17, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-2 {
   background-color: rgba(17, 17, 17, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-3 {
   background-color: rgba(17, 17, 17, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-4 {
   background-color: rgba(17, 17, 17, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-5 {
   background-color: rgba(17, 17, 17, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-6 {
   background-color: rgba(17, 17, 17, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-7 {
   background-color: rgba(17, 17, 17, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-8 {
   background-color: rgba(17, 17, 17, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-9 {
   background-color: rgba(17, 17, 17, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-body-10 {
   background-color: #111111;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-light {
   background-color: #ffffff;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-1 {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-2 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-3 {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-4 {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-5 {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-7 {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-8 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-9 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-light-10 {
   background-color: white;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-dark {
   background-color: #000000;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-1 {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-2 {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-3 {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-4 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-5 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-6 {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-7 {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-8 {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-9 {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-dark-10 {
   background-color: black;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-link {
   background-color: #004488;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-1 {
   background-color: rgba(0, 68, 136, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-2 {
   background-color: rgba(0, 68, 136, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-3 {
   background-color: rgba(0, 68, 136, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-4 {
   background-color: rgba(0, 68, 136, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-5 {
   background-color: rgba(0, 68, 136, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-6 {
   background-color: rgba(0, 68, 136, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-7 {
   background-color: rgba(0, 68, 136, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-8 {
   background-color: rgba(0, 68, 136, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-9 {
   background-color: rgba(0, 68, 136, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-link-10 {
   background-color: #004488;
 }
 
+/*    background-color */
 [theme=accessibility-light] .background-heading {
   background-color: #1A1A1A;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-1 {
   background-color: rgba(26, 26, 26, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-2 {
   background-color: rgba(26, 26, 26, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-3 {
   background-color: rgba(26, 26, 26, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-4 {
   background-color: rgba(26, 26, 26, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-5 {
   background-color: rgba(26, 26, 26, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-6 {
   background-color: rgba(26, 26, 26, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-7 {
   background-color: rgba(26, 26, 26, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-8 {
   background-color: rgba(26, 26, 26, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-9 {
   background-color: rgba(26, 26, 26, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-light] .background-heading-10 {
   background-color: #1a1a1a;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-primary {
   background-color: #E5E5E5;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-1 {
   background-color: rgba(229, 229, 229, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-2 {
   background-color: rgba(229, 229, 229, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-3 {
   background-color: rgba(229, 229, 229, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-4 {
   background-color: rgba(229, 229, 229, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-5 {
   background-color: rgba(229, 229, 229, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-6 {
   background-color: rgba(229, 229, 229, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-7 {
   background-color: rgba(229, 229, 229, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-8 {
   background-color: rgba(229, 229, 229, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-9 {
   background-color: rgba(229, 229, 229, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-primary-10 {
   background-color: #e5e5e5;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-secondary {
   background-color: #ffffff;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-1 {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-2 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-3 {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-4 {
   background-color: rgba(255, 255, 255, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-5 {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-7 {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-8 {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-9 {
   background-color: rgba(255, 255, 255, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-secondary-10 {
   background-color: white;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-success {
   background-color: #77D625;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-1 {
   background-color: rgba(119, 214, 37, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-2 {
   background-color: rgba(119, 214, 37, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-3 {
   background-color: rgba(119, 214, 37, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-4 {
   background-color: rgba(119, 214, 37, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-5 {
   background-color: rgba(119, 214, 37, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-6 {
   background-color: rgba(119, 214, 37, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-7 {
   background-color: rgba(119, 214, 37, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-8 {
   background-color: rgba(119, 214, 37, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-9 {
   background-color: rgba(119, 214, 37, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-success-10 {
   background-color: #77d625;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-warning {
   background-color: #AD5E00;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-1 {
   background-color: rgba(173, 94, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-2 {
   background-color: rgba(173, 94, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-3 {
   background-color: rgba(173, 94, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-4 {
   background-color: rgba(173, 94, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-5 {
   background-color: rgba(173, 94, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-6 {
   background-color: rgba(173, 94, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-7 {
   background-color: rgba(173, 94, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-8 {
   background-color: rgba(173, 94, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-9 {
   background-color: rgba(173, 94, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-warning-10 {
   background-color: #ad5e00;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-info {
   background-color: #004488;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-1 {
   background-color: rgba(0, 68, 136, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-2 {
   background-color: rgba(0, 68, 136, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-3 {
   background-color: rgba(0, 68, 136, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-4 {
   background-color: rgba(0, 68, 136, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-5 {
   background-color: rgba(0, 68, 136, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-6 {
   background-color: rgba(0, 68, 136, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-7 {
   background-color: rgba(0, 68, 136, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-8 {
   background-color: rgba(0, 68, 136, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-9 {
   background-color: rgba(0, 68, 136, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-info-10 {
   background-color: #004488;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-danger {
   background-color: #990000;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-1 {
   background-color: rgba(153, 0, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-2 {
   background-color: rgba(153, 0, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-3 {
   background-color: rgba(153, 0, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-4 {
   background-color: rgba(153, 0, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-5 {
   background-color: rgba(153, 0, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-6 {
   background-color: rgba(153, 0, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-7 {
   background-color: rgba(153, 0, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-8 {
   background-color: rgba(153, 0, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-9 {
   background-color: rgba(153, 0, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-danger-10 {
   background-color: #990000;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-body-bg {
   background-color: #181818;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-1 {
   background-color: rgba(24, 24, 24, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-2 {
   background-color: rgba(24, 24, 24, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-3 {
   background-color: rgba(24, 24, 24, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-4 {
   background-color: rgba(24, 24, 24, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-5 {
   background-color: rgba(24, 24, 24, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-6 {
   background-color: rgba(24, 24, 24, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-7 {
   background-color: rgba(24, 24, 24, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-8 {
   background-color: rgba(24, 24, 24, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-9 {
   background-color: rgba(24, 24, 24, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-bg-10 {
   background-color: #181818;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-body {
   background-color: #EAEAEA;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-1 {
   background-color: rgba(234, 234, 234, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-2 {
   background-color: rgba(234, 234, 234, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-3 {
   background-color: rgba(234, 234, 234, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-4 {
   background-color: rgba(234, 234, 234, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-5 {
   background-color: rgba(234, 234, 234, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-6 {
   background-color: rgba(234, 234, 234, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-7 {
   background-color: rgba(234, 234, 234, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-8 {
   background-color: rgba(234, 234, 234, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-9 {
   background-color: rgba(234, 234, 234, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-body-10 {
   background-color: #eaeaea;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-light {
   background-color: #000000;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-1 {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-2 {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-3 {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-4 {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-5 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-6 {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-7 {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-8 {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-9 {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-light-10 {
   background-color: black;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-dark {
   background-color: #F5F5F5;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-1 {
   background-color: rgba(245, 245, 245, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-2 {
   background-color: rgba(245, 245, 245, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-3 {
   background-color: rgba(245, 245, 245, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-4 {
   background-color: rgba(245, 245, 245, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-5 {
   background-color: rgba(245, 245, 245, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-6 {
   background-color: rgba(245, 245, 245, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-7 {
   background-color: rgba(245, 245, 245, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-8 {
   background-color: rgba(245, 245, 245, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-9 {
   background-color: rgba(245, 245, 245, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-dark-10 {
   background-color: whitesmoke;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-link {
   background-color: #88C0D0;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-1 {
   background-color: rgba(136, 192, 208, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-2 {
   background-color: rgba(136, 192, 208, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-3 {
   background-color: rgba(136, 192, 208, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-4 {
   background-color: rgba(136, 192, 208, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-5 {
   background-color: rgba(136, 192, 208, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-6 {
   background-color: rgba(136, 192, 208, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-7 {
   background-color: rgba(136, 192, 208, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-8 {
   background-color: rgba(136, 192, 208, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-9 {
   background-color: rgba(136, 192, 208, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-link-10 {
   background-color: #88c0d0;
 }
 
+/*    background-color */
 [theme=accessibility-dark] .background-heading {
   background-color: #EAEAEA;
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-1 {
   background-color: rgba(234, 234, 234, 0.1);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-2 {
   background-color: rgba(234, 234, 234, 0.2);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-3 {
   background-color: rgba(234, 234, 234, 0.3);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-4 {
   background-color: rgba(234, 234, 234, 0.4);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-5 {
   background-color: rgba(234, 234, 234, 0.5);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-6 {
   background-color: rgba(234, 234, 234, 0.6);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-7 {
   background-color: rgba(234, 234, 234, 0.7);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-8 {
   background-color: rgba(234, 234, 234, 0.8);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-9 {
   background-color: rgba(234, 234, 234, 0.9);
 }
 
+/*    background-color-opacity */
 [theme=accessibility-dark] .background-heading-10 {
   background-color: #eaeaea;
 }

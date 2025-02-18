@@ -1,6 +1,4 @@
 "use strict";
-// choosing-address.js
-console.log("choosing-address.js est bien appliqué !");
 
 // Variable pour stocker la sélection de l'utilisateur
 var selectedTheme = localStorage.getItem("theme") || "auto";
@@ -44,144 +42,160 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
 
 
 //écoute la saisiesur la zone recherche-départ pour faire des propositions d'adresses
+
+const suggestionsDiv = document.getElementById('suggestions');
+const useCurrentLocationOptionText = 'Utiliser votre position'
+const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
+useCurrentLocationOption.id = 'use-location';
+suggestionsDiv.appendChild(useCurrentLocationOption); // Ajoute l'option "utiliser votre position"
+// const adressList = {
+//     "1": "1 rue de la paix, 75002 Paris, France",
+//     "2": "2 rue de la paix, 75002 Paris, France",
+//     "3": "3 rue de la paix, 75002 Paris, France",
+//     "4": "4 rue de la paix, 75002 Paris, France",
+// }
+// for (const key in adressList) {
+//     const address = adressList[key];
+//     const suggestion = createAddressSuggestion(address);
+//     suggestionsDiv.appendChild(suggestion);
+// }
+
+let userAgent = '';
+
 document.getElementById('address').addEventListener('input', function () {
     const query = this.value;
+    userAgent = generateRandomString()
     if (query.length > 2) {
         // Appel à l'API Nominatim pour récupérer les suggestions
-        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`)
+
+        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`, {
+            method: 'GET',
+            headers: {
+                'User-Agent': userAgent // Remplacez avec votre propre identification
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 const suggestions = data;
-                const suggestionsDiv = document.getElementById('suggestions');
                 suggestionsDiv.innerHTML = ''; // Vide les anciennes suggestions
-
-                // Créer un tableau pour stocker les suggestions sous forme de texte
-                const suggestionsText = [];
-
-                suggestions.forEach((suggestion, index) => {
+                suggestions.forEach((suggestion) => {
                     // Décomposer l'adresse `display_name` en fonction des virgules
                     const addressParts = suggestion.display_name.split(',');
-
+                    console.log(addressParts);
                     // Le dernier élément est le pays
                     const country = addressParts[addressParts.length - 1]?.trim();
-
                     // Si le pays est la France, construire l'adresse courte
-                    if (country === "France") {
-                        // Extraire les trois premiers et les deux derniers champs
-                        const number = addressParts[0]?.trim() || ''; // Numéro
-                        const street = addressParts[1]?.trim() || ''; // Voie
-                        const neighborhood = addressParts[2]?.trim() || ''; // Quartier
-                        const postalCode = addressParts[addressParts.length - 2]?.trim() || ''; // Code postal
-                        const country = addressParts[addressParts.length - 1]?.trim() || ''; // Pays (France)
-
+                    // if (country === "France") {
+                        
                         // Construire l'adresse courte : numéro, voie, quartier, code postal, pays
-                        const shortAddress = `${number} ${street}, ${neighborhood}, ${postalCode}, ${country}`;
+                        const shortAddress = cretaeShortAddress(addressParts);
 
-                        // Crée un div pour chaque suggestion
-                        const div = document.createElement('div');
-                        div.classList.add('suggestion-item'); // Classe pour styliser les éléments
-
-                        // Crée un conteneur pour l'icône au début du div (ici un SVG de cible)
-                        const iconStartContainer = document.createElement('div');
-                        iconStartContainer.style.display = 'flex';
-                        iconStartContainer.style.alignItems = 'center';
-                        iconStartContainer.style.justifyContent = 'center';
-                        iconStartContainer.style.width = '24px'; // Largeur contrôlée pour l'icône
-                        iconStartContainer.style.height = '24px'; // Hauteur contrôlée pour l'icône
-
-                        // Crée le SVG de la cible pour l'icône de début dynamiquement
-                        const iconStart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                        iconStart.setAttribute('viewBox', '0 0 24 24');
-                        iconStart.setAttribute('width', '16');
-                        iconStart.setAttribute('height', '16');
-
-                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                        circle.setAttribute('cx', '12');
-                        circle.setAttribute('cy', '12');
-                        circle.setAttribute('r', '9');
-                        circle.setAttribute('fill', 'none');
-                        circle.setAttribute('stroke', '#000');
-                        circle.setAttribute('stroke-linecap', 'round');
-                        circle.setAttribute('stroke-linejoin', 'round');
-                        circle.setAttribute('stroke-width', '2');
-
-                        // Ajouter l'élément SVG dans le conteneur
-                        iconStart.appendChild(circle);
-                        iconStartContainer.appendChild(iconStart);
-
-                        // Crée un conteneur pour le texte de la suggestion
-                        const textContainer = document.createElement('div');
-                        textContainer.style.flex = '1';  // Utilise toute la largeur restante
-                        textContainer.textContent = shortAddress; // Texte de la suggestion (adresse courte)
-
-                        // Crée un conteneur pour l'icône à la fin du div (ici un SVG simple)
-                        const iconEndContainer = document.createElement('div');
-                        iconEndContainer.style.display = 'flex';
-                        iconEndContainer.style.alignItems = 'center';
-                        iconEndContainer.style.justifyContent = 'center';
-                        iconEndContainer.style.width = '24px'; // Largeur contrôlée pour l'icône
-                        iconEndContainer.style.height = '24px'; // Hauteur contrôlée pour l'icône
-
-                        // Crée l'icône pour l'icône de fin (SVG rouge)
-                        const iconEnd = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-                        iconEnd.setAttribute('width', '16');
-                        iconEnd.setAttribute('height', '16');
-                        iconEnd.setAttribute('viewBox', '0 0 16 16');
-                        const circleEnd = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                        circleEnd.setAttribute('cx', '8');
-                        circleEnd.setAttribute('cy', '8');
-                        circleEnd.setAttribute('r', '6');
-                        circleEnd.setAttribute('fill', 'red');
-                        iconEnd.appendChild(circleEnd);
-
-                        iconEndContainer.appendChild(iconEnd); // Ajoute le SVG dans le conteneur
-
-                        // Ajoute les trois conteneurs (icône de début, texte, icône de fin) dans le div principal
-                        div.appendChild(iconStartContainer); // Ajoute l'icône de début
-                        div.appendChild(textContainer); // Ajoute le texte
-                        div.appendChild(iconEndContainer); // Ajoute l'icône de fin
-
-                        // Ajoute un événement de clic pour sélectionner la suggestion
-                        div.addEventListener('click', () => {
-                            document.getElementById('address').value = shortAddress; // Remplir le champ avec l'adresse courte
-                            suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
-                        });
-
+                        // Créer un div pour la suggestion
+                        const suggestedAddress = createAddressSuggestion(addressParts);
+                        // const suggestion = createAddressSuggestion(shortAddress);
                         // Ajoute le div à la liste des suggestions
-                        suggestionsDiv.appendChild(div);
+                        suggestionsDiv.appendChild(suggestedAddress);
 
-                        // Ajouter la suggestion dans le tableau des suggestions à enregistrer
-                        suggestionsText.push(shortAddress);
-                    }
+                        
+                    // }
                 });
-
-                // Créer un fichier texte avec les suggestions
-                const fileContent = suggestionsText.join('\n'); // Crée un contenu avec les suggestions séparées par des sauts de ligne
-
-                // Créer un Blob à partir du contenu des suggestions
-                const blob = new Blob([fileContent], { type: 'text/plain' });
-                
-                // Créer un lien pour permettre le téléchargement
-                const downloadLink = document.createElement('a');
-                downloadLink.href = URL.createObjectURL(blob);
-                downloadLink.download = 'suggestions_adresses.txt'; // Nom du fichier
-                downloadLink.textContent = 'Télécharger les suggestions';
-
-                // Ajoute le lien de téléchargement dans le DOM
-                suggestionsDiv.appendChild(downloadLink);
             })
             .catch(error => console.error('Erreur API:', error));
     }
 });
 
+function generateRandomString() {
+    // Définir l'ensemble des caractères possibles (lettres et chiffres)
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    // Générer une longueur aléatoire entre 10 et 15
+    const length = Math.floor(Math.random() * 6) + 10;
+
+    // Créer une chaîne de caractères aléatoire
+    let randomString = '';
+    for (let i = 0; i < length; i++) {
+        // Sélectionner un caractère aléatoire
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        randomString += characters[randomIndex];
+    }
+
+    randomString += '@gmail.com'; // Ajouter une mention pour OpenStreetMap
+
+    return randomString;
+}
+function cretaeShortAddress(addressParts) {
+    const number = addressParts[0]?.trim() || ''; // Numéro
+    const street = addressParts[1]?.trim() || ''; // Voie
+    const city = addressParts[addressParts.length - 6]?.trim() || ''; // Ville
+    const postalCode = addressParts[addressParts.length - 2]?.trim() || ''; // Code postal
+    const country = addressParts[addressParts.length - 1]?.trim() || ''; // Pays (France)
+
+    // Construire l'adresse courte : numéro, voie, quartier, code postal, pays
+    return `${number} ${street}, ${postalCode}, ${city}, ${country}`;
+}
+
+//Fonction pour créer les suggestions d'adresse
+function createAddressSuggestion(address) {
+    // Crée un div pour chaque suggestion
+    const suggestion = document.createElement('div');
+    suggestion.classList.add('suggestion', 'background-secondary-3'); // Classe pour styliser les éléments
+    // suggestion.style.width = '80%';
+
+    // Crée un conteneur pour le texte de la suggestion
+    const textContainer = document.createElement('div');
+    textContainer.classList.add('text-container'); // Classe pour styliser le texte
+        // Utilise toute la largeur
+    textContainer.style.flex = '1';  // Utilise toute la largeur restante
+    
+    textContainer.textContent = address; // Texte de la suggestion (adresse courte)
+
+    // Ajoute un événement de clic pour sélectionner la suggestion
+    suggestion.addEventListener('click', () => {
+        document.getElementById('address').value = address; // Remplir le champ avec l'adresse courte
+        suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
+
+        if(address !== useCurrentLocationOptionText) {
+            localStorage.setItem('selectedDepartureAddress', address);
+        } else {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude } = position.coords;
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`, {
+                    method: 'GET',
+                    headers: {
+                        'User-Agent': userAgent // Remplacez avec votre propre identification
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const shortAddress = cretaeShortAddress(data.display_name.split(',')); // Construire l'adresse courte
+                        localStorage.setItem('selectedDepartureAddress', shortAddress);
+                        document.getElementById('address').value = shortAddress;
+                    })
+                    .catch(error => console.error('Erreur API:', error));
+            });
+        }
+        alert('Adresse enregistrée dans localStorage : ' + localStorage.getItem('selectedDepartureAddress'));
+    });
+
+    // Ajoute les éléments dans le div principal
+    suggestion.appendChild(textContainer); // Ajoute le texte
+    // Ajouter le SVG de chevron après la suggestion
+    suggestion.appendChild(createChevronSVG()); // Ajoute le SVG de chevron à la fin des suggestions
+
+    return suggestion;
+}
+
+// Fonction pour créer le nouveau SVG (chevron)
+function createChevronSVG() {
+    const svg = document.createElement('i');
+    svg.classList.add('fa-solid', 'fa-chevron-right', 'custom-primary');
+    return svg;
+}
 
 
+const selectedAddress = localStorage.getItem('selectedDepartureAddress');
 
-
-
-
-
-
+document.getElementById('address').value = selectedAddress
 
 
 

@@ -45,9 +45,13 @@ document.getElementById("case-depart").addEventListener("click", function(event)
     window.location.href = "public/choosing-address.html";
 });
 
-// éviter que le champ de saisie input ne capte le clic et empêche la navigation
-// document.getElementById("form-depart").addEventListener("click", function(event) {
-//     event.stopPropagation();
-//     this.blur(); // Empêche la mise en focus de l'input
-// });
+// Récupérer l'adresse stockée dans localStorage
+const selectedAddress = localStorage.getItem('selectedDepartureAddress');
 
+if (selectedAddress) {
+    // Si une adresse a été enregistrée, l'afficher
+    document.getElementById('selected-departure-address').value = selectedAddress;
+} else {
+    // Si aucune adresse n'est sélectionnée
+    document.getElementById('selected-departure-address').value = 'Départ';
+}

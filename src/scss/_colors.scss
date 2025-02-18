@@ -1,0 +1,145 @@
+@import "../../node_modules/bootstrap/scss/functions";
+// @import "../../node_modules/bootstrap/scss/variables";
+// @import "../../node_modules/bootstrap/scss/variables-dark";
+// @import "../../node_modules/bootstrap/scss/maps";
+
+
+/**********************************************/
+// 🎨 Définition des palettes de couleurs
+/**********************************************/
+$themes: (
+  "light": (
+    "primary": #425F0D,  // Vert forêt
+    "secondary": #81C784, // Vert menthe doux
+    "success": #388E3C,  // Vert herbe fraîche
+    "warning": #FFB74D,  // Orange doux
+    "danger": #D84315,  // Rouge terre
+    "info": #4FC3F7,  // Bleu doux
+    "light": #F1F8E9,  // Vert pastel
+    "dark": #1B5E20,  // Vert foncé
+    "body-bg": #E8F5E9,  // Fond vert clair naturel
+    "body-color": #425F0D,  // Texte vert forêt
+    "link-color": #388E3C,   // Couleur des liens
+    "heading-color": #425F0D // Couleur des titres
+  ),
+  "dark": (
+    "primary": #4CAF50,  // Vert feuillage lumineux
+    "secondary": #81C784, // Vert tendre
+    "success": #66BB6A,  // Vert vif
+    "warning": #FFB74D,  // Orange automnal
+    "danger": #E57373,  // Rouge doux
+    "info": #4FC3F7,  // Bleu clair
+    "light": #A5D6A7,  // Vert clair
+    "dark": #1B5E20,  // Vert forêt profond
+    "body-bg": #121A13,  // Noir verdoyant
+    "body-color": #425F0D,  // Texte vert clair
+    "link-color": #388E3C,   // Couleur des liens
+    "heading-color": #425F0D // Couleur des titres
+  ),
+  "accessibility-light": (
+    "primary":   #1A1A1A, // Noir doux, excellent contraste
+    "secondary": #3B3B3B, // Gris très foncé
+    "success":   #77D625, // Vert profond avec fort contraste
+    "warning":   #8C5100, // Orange brun foncé pour bon contraste
+    "info":      #004488, // Bleu foncé mais lisible
+    "danger":    #7D0000, // Rouge sombre pour éviter saturation
+    "body-bg":   #FAFAFA, // Blanc légèrement teinté pour réduire l’éblouissement
+    "body-color":#111111, // Noir presque pur pour maximiser lisibilité
+    "light":     #E5E5E5, // Gris clair doux (évite le blanc pur)
+    "dark":      #000000,  // Noir pur pour sections contrastées
+    "link-color": #004488,   // Bleu foncé pour visibilité accrue
+    "heading-color": #1A1A1A // Titres bien définis, excellent contraste
+),
+  "accessibility-dark": (
+    "primary":   #005A32, // Vert foncé au lieu d'un gris clair
+    "secondary": #404040, // Gris foncé pour meilleur contraste
+    "success":   #77D625, // Vert profond et accessible
+    "warning":   #AD5E00, // Orange foncé compatible
+    "info":      #004488, // Bleu lisible
+    "danger":    #990000, // Rouge sombre et accessible
+    "body-bg":   #181818, // Noir atténué (moins fatiguant)
+    "body-color":#EAEAEA, // Texte clair lisible
+    "light":     #2B2B2B, // Gris foncé au lieu d'un gris trop clair
+    "dark":      #F5F5F5, // Gris clair pour ne pas être un blanc pur
+    "link-color": #88C0D0,  // Bleu lisible
+    "heading-color": #EAEAEA // Titres bien contrastés
+)
+
+
+
+
+);
+
+// 🌓 Génération dynamique des thèmes
+@mixin generate-theme($theme-name, $theme-colors) {
+    [data-bs-theme="#{$theme-name}"] {
+    // Création des variables CSS
+    @each $key, $value in $theme-colors {
+        // La variable de base
+        --bs-#{$key}: #{$value};
+        // On calcule les versions hover et active si $value est une couleur
+        --bs-#{$key}-hover: #{if(type-of($value) == 'color', darken($value, 10%), $value)};
+        --bs-#{$key}-active: #{if(type-of($value) == 'color', darken($value, 20%), $value)};
+      }
+
+    // Adaptation des composants Bootstrap
+
+    // Bouton primaire
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        &:hover { background-color: var(--bs-primary-hover); }
+        &:active { background-color: var(--bs-primary-active); }
+      }
+  
+      // Bouton success
+      .btn-success {
+        background-color: var(--bs-success);
+        border-color: var(--bs-success);
+        &:hover { background-color: var(--bs-success-hover); }
+        &:active { background-color: var(--bs-success-active); }
+      }
+  
+      // Bouton warning
+      .btn-warning {
+        background-color: var(--bs-warning);
+        border-color: var(--bs-warning);
+        &:hover { background-color: var(--bs-warning-hover); }
+        &:active { background-color: var(--bs-warning-active); }
+      }
+  
+      // Bouton danger
+      .btn-danger {
+        background-color: var(--bs-danger);
+        border-color: var(--bs-danger);
+        &:hover { background-color: var(--bs-danger-hover); }
+        &:active { background-color: var(--bs-danger-active); }
+      }
+  
+      // Bouton info
+      .btn-info {
+        background-color: var(--bs-info);
+        border-color: var(--bs-info);
+        &:hover { background-color: var(--bs-info-hover); }
+        &:active { background-color: var(--bs-info-active); }
+      }
+      
+      // Bouton link
+      .btn-link {
+        color: var(--bs-link-color);
+        &:hover { color: var(--bs-link-color-hover); }
+        &:active { color: var(--bs-link-color-active); }
+      }
+
+      // Dropdown-item
+      .dropdown-item {
+        &:hover { background-color: var(--bs-primary-hover); }
+        &:active { background-color: var(--bs-primary-active); }
+      }
+  }
+}
+
+// 🚀 Application des thèmes
+@each $theme-name, $theme-colors in $themes {
+  @include generate-theme($theme-name, $theme-colors);
+}
