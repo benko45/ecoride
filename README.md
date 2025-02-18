@@ -48,8 +48,8 @@ _Below is an example of how you can instruct your audience on installing and set
    git clone https://github.com/benko45/ecoride
    ```
 2. Launch index.hmtl
-   ```sh
-   npm install
+   ```cmd
+   start chrome \path\to\index.html
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
