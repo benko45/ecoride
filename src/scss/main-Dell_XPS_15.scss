@@ -1,0 +1,47 @@
+@import "variables";
+
+
+/*********************************************/
+// 🎨 Gestion des icônes de thème
+/*********************************************/
+// /* Masquer toutes les icônes par défaut */
+// .theme-icon {
+//     display: none;
+//   }
+
+// /* Afficher l'icône qui convient */
+// $theme-icons: (
+//     "auto": "auto",
+//     "light": "light",
+//     "dark": "dark",
+//     "accessibility-dark": "accessibility-dark",
+//     "accessibility-light": "accessibility-light"
+// );
+
+// @each $theme-name, $theme-icon in $theme-icons {
+//     [data-bs-theme="#{$theme-name}"] .icon-#{$theme-icon} {
+//         display: flex;
+//     }
+// }
+
+/* 🔍 Gestion des icônes de thème */
+.theme-icon {
+    display: none;
+}
+
+/* Afficher l'icône en fonction du mode actif */
+[data-selected-theme="auto"] .icon-auto {
+    display: flex !important;
+}
+
+[data-selected-theme="light"] .icon-light,
+[data-selected-theme="dark"] .icon-dark,
+[data-selected-theme="accessibility-light"] .icon-accessibility-light,
+[data-selected-theme="accessibility-dark"] .icon-accessibility-dark {
+    display: flex;
+}
+
+/* Masquer toutes les autres icônes en mode auto */
+[data-selected-theme="auto"] .theme-icon:not(.icon-auto) {
+    display: none !important;
+}
