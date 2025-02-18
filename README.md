@@ -4,7 +4,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is designed as part of the Graduate Developer Angular training provided by [![Studi][STUDI]](https://www.studi.com/fr).
+This project is designed as part of the Graduate Developer Angular training provided by [STUDI](https://www.studi.com/fr).
 <!-- Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
@@ -55,7 +55,6 @@ Project Link: [https://github.com/benko45/ecoride](https://github.com/benko45/ec
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[Click here to test the application on line]: https://benko45.github.io/ecoride
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
