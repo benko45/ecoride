@@ -7,7 +7,6 @@
 [Click here to test the application on line]
 
 This project is designed as part of the Graduate Developer Angular training provided by [STUDI](https://www.studi.com/fr).
-
 <!-- Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
@@ -18,7 +17,6 @@ This project is designed as part of the Graduate Developer Angular training prov
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
-
 <!-- This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples. -->
 
 * [![Next][Next.js]][Next-url]
@@ -52,31 +50,11 @@ This project is designed as part of the Graduate Developer Angular training prov
 <!-- CONTACT -->
 ## Contact
 
-Benoît Vicente - [@email](email@example.com)
+Benoît Vicente - benoit.vicente@hotmail.fr
 
 Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
