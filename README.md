@@ -4,14 +4,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[Click here to test the application on line]
-
-This project is designed as part of the Graduate Developer Angular training provided by [STUDI](https://www.studi.com/fr).
+This project is designed as part of the Graduate Developer Angular training provided by [![Studi][STUDI]](https://www.studi.com/fr).
 <!-- Here's why:
 * Your time should be focused on creating something amazing. A project that solves a problem and helps others
 * You shouldn't be doing the same tasks over and over like creating a README from scratch
 * You should implement DRY principles to the rest of your life :smile: -->
-
 <!-- Use the `BLANK_README.md` to get started. -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -52,7 +49,7 @@ This project is designed as part of the Graduate Developer Angular training prov
 
 Benoît Vicente - benoit.vicente@hotmail.fr
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/benko45/ecoride](https://github.com/benko45/ecoride)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
