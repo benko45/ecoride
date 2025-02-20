@@ -77,7 +77,8 @@ document.getElementById('address').addEventListener('input', function () {
             .then(response => response.json())
             .then(data => {
                 const suggestions = data;
-                suggestionsDiv.innerHTML = ''; // Vide les anciennes suggestions
+                // suggestionsDiv.innerHTML = ''; // Vide les anciennes suggestions
+                removeChildrenExceptFirst(suggestionsDiv)
                 suggestions.forEach((suggestion) => {
                     // Décomposer l'adresse `display_name` en fonction des virgules
                     const addressParts = suggestion.display_name.split(',');
@@ -85,19 +86,15 @@ document.getElementById('address').addEventListener('input', function () {
                     // Le dernier élément est le pays
                     const country = addressParts[addressParts.length - 1]?.trim();
                     // Si le pays est la France, construire l'adresse courte
-                    // if (country === "France") {
-                        
+                    if (country === "France") {
                         // Construire l'adresse courte : numéro, voie, quartier, code postal, pays
-                        const shortAddress = cretaeShortAddress(addressParts);
-
+                        const shortAddress = createShortddress(addressParts);
                         // Créer un div pour la suggestion
                         const suggestedAddress = createAddressSuggestion(addressParts);
                         // const suggestion = createAddressSuggestion(shortAddress);
                         // Ajoute le div à la liste des suggestions
                         suggestionsDiv.appendChild(suggestedAddress);
-
-                        
-                    // }
+                    }
                 });
             })
             .catch(error => console.error('Erreur API:', error));
@@ -123,7 +120,7 @@ function generateRandomString() {
 
     return randomString;
 }
-function cretaeShortAddress(addressParts) {
+function createShortddress(addressParts) {
     const number = addressParts[0]?.trim() || ''; // Numéro
     const street = addressParts[1]?.trim() || ''; // Voie
     const city = addressParts[addressParts.length - 6]?.trim() || ''; // Ville
@@ -152,7 +149,8 @@ function createAddressSuggestion(address) {
     // Ajoute un événement de clic pour sélectionner la suggestion
     suggestion.addEventListener('click', () => {
         document.getElementById('address').value = address; // Remplir le champ avec l'adresse courte
-        suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
+        // suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
+        removeChildrenExceptFirst(suggestionsDiv)
 
         if(address !== useCurrentLocationOptionText) {
             localStorage.setItem('selectedDepartureAddress', address);
@@ -167,7 +165,7 @@ function createAddressSuggestion(address) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        const shortAddress = cretaeShortAddress(data.display_name.split(',')); // Construire l'adresse courte
+                        const shortAddress = createShortddress(data.display_name.split(',')); // Construire l'adresse courte
                         localStorage.setItem('selectedDepartureAddress', shortAddress);
                         document.getElementById('address').value = shortAddress;
                     })
@@ -192,6 +190,19 @@ function createChevronSVG() {
     return svg;
 }
 
+/**
+ * Supprime tous les enfants d'un élément, sauf le premier
+ * @param {HTMLElement} parentElement - L'élément parent
+ */
+function removeChildrenExceptFirst(parentElement) {
+    // Vérifie si l'élément parent existe et a plus d'un enfant
+    if (parentElement && parentElement.children.length > 1) {
+        // Boucle à l'envers sur tous les enfants, en commençant par le dernier
+        for (let i = parentElement.children.length - 1; i > 0; i--) {
+            parentElement.removeChild(parentElement.children[i]);
+        }
+    }
+}
 
 const selectedAddress = localStorage.getItem('selectedDepartureAddress');
 
