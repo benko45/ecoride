@@ -58,9 +58,9 @@ html[theme="dark"] input.form-control:focus {
     cursor: pointer; /* Change le curseur en main lors du survol */
 }
 
- .suggestion:hover {
-     background-color: red; /* Changer la couleur de fond au survol */
-}
+//  .suggestion:hover {
+//      background-color: red; /* Changer la couleur de fond au survol */
+// }
 
 .suggestion {
     display: flex;

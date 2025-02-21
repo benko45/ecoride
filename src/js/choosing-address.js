@@ -64,8 +64,9 @@ let userAgent = '';
 
 document.getElementById('address').addEventListener('input', function () {
     const query = this.value;
-    userAgent = generateRandomString()
-    if (query.length > 2) {
+    // userAgent = generateRandomString()
+    userAgent = 'benoit.vicente@hotmail.fr'
+    if (query.length > 10) {
         // Appel à l'API Nominatim pour récupérer les suggestions
 
         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`, {
@@ -90,7 +91,7 @@ document.getElementById('address').addEventListener('input', function () {
                         // Construire l'adresse courte : numéro, voie, quartier, code postal, pays
                         const shortAddress = createShortddress(addressParts);
                         // Créer un div pour la suggestion
-                        const suggestedAddress = createAddressSuggestion(addressParts);
+                        const suggestedAddress = createAddressSuggestion(shortAddress);
                         // const suggestion = createAddressSuggestion(shortAddress);
                         // Ajoute le div à la liste des suggestions
                         suggestionsDiv.appendChild(suggestedAddress);
@@ -141,15 +142,17 @@ function createAddressSuggestion(address) {
     // Crée un conteneur pour le texte de la suggestion
     const textContainer = document.createElement('div');
     textContainer.classList.add('text-container'); // Classe pour styliser le texte
-        // Utilise toute la largeur
     textContainer.style.flex = '1';  // Utilise toute la largeur restante
-    
     textContainer.textContent = address; // Texte de la suggestion (adresse courte)
+    if(address === useCurrentLocationOptionText) {
+        suggestion.style.marginTop = '10px';
+    }
 
     // Ajoute un événement de clic pour sélectionner la suggestion
     suggestion.addEventListener('click', () => {
-        document.getElementById('address').value = address; // Remplir le champ avec l'adresse courte
-        // suggestionsDiv.innerHTML = ''; // Vide les suggestions après la sélection
+        if(address !== useCurrentLocationOptionText) {
+            document.getElementById('address').value = address; // Remplir le champ avec l'adresse courte
+        }
         removeChildrenExceptFirst(suggestionsDiv)
 
         if(address !== useCurrentLocationOptionText) {
