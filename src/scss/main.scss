@@ -172,8 +172,8 @@ svg symbol path{
 /*
 /************************************************/
 /*
-/* This class is used to create a defaut bottom-border.
-/* But beyond breakpoints, it will create a right-border.
+/* This class is used to create a defaut bottom-border under breakpoint.
+/* and a right-border beyond.
 /*
 /*     color: primary, secondary, success, danger, warning, info, light, dark, body-bg, body, link, heading
 /*     width: 0 to 10
@@ -294,10 +294,11 @@ svg symbol path{
     cursor: pointer;
 }
 
-#form-depart, #form-arrivee, #form-date, #form-nb-passagers {
+#selected-departure-address, #selected-arrival-address, #form-date, #form-nb-passagers {
     pointer-events: none; /* Désactive l'interaction directe */
 }
 
+/*          mise en forme du placeholder        */
 
 // Liste des infixes navigateurs pour `::placeholder`
 $browser-infix: ('::', '::-webkit-input-', ':-ms-input-'); 

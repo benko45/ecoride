@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr" theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrivée</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/custom-themes.css">
+    <link rel="stylesheet" href="css/choosing-arrival-address.css">
+
+
+</head>
+<body class="m-0 background-light">   
+    <!-- Formulaire de choix de l'adresse de départ -->
+    <div class="d-flex justify-content-center mt-4">
+        <div class="form-container pb-1 d-flex flex-row justify-content align-items-center rounded accessibility-border" style="width: 80%;">
+            <form method="POST" id="input-form" class="d-flex align-items-center background-light element-height-2">
+                    <div class="vertical-align-center ms-2">
+                        <a href="../index.html" class="vertical-align-center m-0 me-0 text-decoration-none">
+                            <i class="fa-solid fa-chevron-left custom-primary"></i>
+                        </a>
+                    </div>
+                    <label for="address" class="form-label visually-hidden"></label>
+                    <input type="text" class="form-control no-border txt-primary fs-13 fw-normal bg-transparent element-height-2" id="address" placeholder="Rue Blanche ou Café de la gare" autocomplete="off">
+            </form>
+        </div>
+    </div>
+    <div id="suggestions"></div>   
+    <script src="https://kit.fontawesome.com/06e14d9221.js" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.js" defer></script>
+    <script src="../src/js/choosing-arrival-address.js" defer></script>
+</body>
+</html>

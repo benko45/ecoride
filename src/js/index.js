@@ -39,6 +39,8 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
     }
 });
 
+
+/*                  CASE DEPART                  */
 //écoute le click sur la zone recherche-départ
 document.getElementById("case-depart").addEventListener("click", function(event) {
     // event.preventDefault();
@@ -55,3 +57,24 @@ if (selectedAddress) {
     // Si aucune adresse n'est sélectionnée
     document.getElementById('selected-departure-address').value = 'Départ';
 }
+
+
+/*                  CASE DEPART                  */
+//écoute le click sur la zone recherche-départ
+document.getElementById("case-arrivee").addEventListener("click", function(event) {
+    // event.preventDefault();
+    window.location.href = "public/choosing-arrival-address.html";
+});
+
+// Récupérer l'adresse stockée dans localStorage
+const selectedArrivalAddress = localStorage.getItem('selectedArrivalAddress');
+
+if (selectedArrivalAddress) {
+    // Si une adresse a été enregistrée, l'afficher
+    document.getElementById('selected-arrival-address').value = selectedArrivalAddress;
+} else {
+    // Si aucune adresse n'est sélectionnée
+    document.getElementById('selected-arrival-address').value = 'Arrivée';
+}
+
+

@@ -78,7 +78,6 @@ document.getElementById('address').addEventListener('input', function () {
             .then(response => response.json())
             .then(data => {
                 const suggestions = data;
-                // suggestionsDiv.innerHTML = ''; // Vide les anciennes suggestions
                 removeChildrenExceptFirst(suggestionsDiv)
                 suggestions.forEach((suggestion) => {
                     // Décomposer l'adresse `display_name` en fonction des virgules
@@ -92,7 +91,6 @@ document.getElementById('address').addEventListener('input', function () {
                         const shortAddress = createShortddress(addressParts);
                         // Créer un div pour la suggestion
                         const suggestedAddress = createAddressSuggestion(shortAddress);
-                        // const suggestion = createAddressSuggestion(shortAddress);
                         // Ajoute le div à la liste des suggestions
                         suggestionsDiv.appendChild(suggestedAddress);
                     }
