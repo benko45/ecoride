@@ -18,6 +18,8 @@ html[theme=light] {
   --custom-info-rgb: 79, 195, 247;
   --custom-light: #ffffff;
   --custom-light-rgb: 255, 255, 255;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #1B5E20;
   --custom-dark-rgb: 27, 94, 32;
   --custom-body-bg: #E8F5E9;
@@ -45,6 +47,8 @@ html[theme=dark] {
   --custom-info-rgb: 79, 195, 247;
   --custom-light: #000000;
   --custom-light-rgb: 0, 0, 0;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #ffffff;
   --custom-dark-rgb: 255, 255, 255;
   --custom-body-bg: #121A13;
@@ -76,6 +80,8 @@ html[theme=accessibility-light] {
   --custom-body-rgb: 17, 17, 17;
   --custom-light: #ffffff;
   --custom-light-rgb: 255, 255, 255;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #000000;
   --custom-dark-rgb: 0, 0, 0;
   --custom-link: #004488;
@@ -103,6 +109,8 @@ html[theme=accessibility-dark] {
   --custom-body-rgb: 234, 234, 234;
   --custom-light: #000000;
   --custom-light-rgb: 0, 0, 0;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #F5F5F5;
   --custom-dark-rgb: 245, 245, 245;
   --custom-link: #88C0D0;
@@ -138,6 +146,10 @@ html[theme=accessibility-dark] {
 
 [theme=light] .custom-light {
   color: #ffffff;
+}
+
+[theme=light] .custom-gray {
+  color: #d1d1d1;
 }
 
 [theme=light] .custom-dark {
@@ -186,6 +198,10 @@ html[theme=accessibility-dark] {
 
 [theme=dark] .custom-light {
   color: #000000;
+}
+
+[theme=dark] .custom-gray {
+  color: #d1d1d1;
 }
 
 [theme=dark] .custom-dark {
@@ -244,6 +260,10 @@ html[theme=accessibility-dark] {
   color: #ffffff;
 }
 
+[theme=accessibility-light] .custom-gray {
+  color: #d1d1d1;
+}
+
 [theme=accessibility-light] .custom-dark {
   color: #000000;
 }
@@ -290,6 +310,10 @@ html[theme=accessibility-dark] {
 
 [theme=accessibility-dark] .custom-light {
   color: #000000;
+}
+
+[theme=accessibility-dark] .custom-gray {
+  color: #d1d1d1;
 }
 
 [theme=accessibility-dark] .custom-dark {
@@ -688,6 +712,61 @@ html[theme=accessibility-dark] {
 /*    background-color-opacity */
 [theme=light] .background-light-10 {
   background-color: white;
+}
+
+/*    background-color */
+[theme=light] .background-gray {
+  background-color: #d1d1d1;
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-1 {
+  background-color: rgba(209, 209, 209, 0.1);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-2 {
+  background-color: rgba(209, 209, 209, 0.2);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-3 {
+  background-color: rgba(209, 209, 209, 0.3);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-4 {
+  background-color: rgba(209, 209, 209, 0.4);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-5 {
+  background-color: rgba(209, 209, 209, 0.5);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-6 {
+  background-color: rgba(209, 209, 209, 0.6);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-7 {
+  background-color: rgba(209, 209, 209, 0.7);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-8 {
+  background-color: rgba(209, 209, 209, 0.8);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-9 {
+  background-color: rgba(209, 209, 209, 0.9);
+}
+
+/*    background-color-opacity */
+[theme=light] .background-gray-10 {
+  background-color: #d1d1d1;
 }
 
 /*    background-color */
@@ -1348,6 +1427,61 @@ html[theme=accessibility-dark] {
 /*    background-color-opacity */
 [theme=dark] .background-light-10 {
   background-color: black;
+}
+
+/*    background-color */
+[theme=dark] .background-gray {
+  background-color: #d1d1d1;
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-1 {
+  background-color: rgba(209, 209, 209, 0.1);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-2 {
+  background-color: rgba(209, 209, 209, 0.2);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-3 {
+  background-color: rgba(209, 209, 209, 0.3);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-4 {
+  background-color: rgba(209, 209, 209, 0.4);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-5 {
+  background-color: rgba(209, 209, 209, 0.5);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-6 {
+  background-color: rgba(209, 209, 209, 0.6);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-7 {
+  background-color: rgba(209, 209, 209, 0.7);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-8 {
+  background-color: rgba(209, 209, 209, 0.8);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-9 {
+  background-color: rgba(209, 209, 209, 0.9);
+}
+
+/*    background-color-opacity */
+[theme=dark] .background-gray-10 {
+  background-color: #d1d1d1;
 }
 
 /*    background-color */
@@ -2121,6 +2255,61 @@ html[theme=accessibility-dark] {
 }
 
 /*    background-color */
+[theme=accessibility-light] .background-gray {
+  background-color: #d1d1d1;
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-1 {
+  background-color: rgba(209, 209, 209, 0.1);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-2 {
+  background-color: rgba(209, 209, 209, 0.2);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-3 {
+  background-color: rgba(209, 209, 209, 0.3);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-4 {
+  background-color: rgba(209, 209, 209, 0.4);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-5 {
+  background-color: rgba(209, 209, 209, 0.5);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-6 {
+  background-color: rgba(209, 209, 209, 0.6);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-7 {
+  background-color: rgba(209, 209, 209, 0.7);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-8 {
+  background-color: rgba(209, 209, 209, 0.8);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-9 {
+  background-color: rgba(209, 209, 209, 0.9);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-light] .background-gray-10 {
+  background-color: #d1d1d1;
+}
+
+/*    background-color */
 [theme=accessibility-light] .background-dark {
   background-color: #000000;
 }
@@ -2781,6 +2970,61 @@ html[theme=accessibility-dark] {
 }
 
 /*    background-color */
+[theme=accessibility-dark] .background-gray {
+  background-color: #d1d1d1;
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-1 {
+  background-color: rgba(209, 209, 209, 0.1);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-2 {
+  background-color: rgba(209, 209, 209, 0.2);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-3 {
+  background-color: rgba(209, 209, 209, 0.3);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-4 {
+  background-color: rgba(209, 209, 209, 0.4);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-5 {
+  background-color: rgba(209, 209, 209, 0.5);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-6 {
+  background-color: rgba(209, 209, 209, 0.6);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-7 {
+  background-color: rgba(209, 209, 209, 0.7);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-8 {
+  background-color: rgba(209, 209, 209, 0.8);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-9 {
+  background-color: rgba(209, 209, 209, 0.9);
+}
+
+/*    background-color-opacity */
+[theme=accessibility-dark] .background-gray-10 {
+  background-color: #d1d1d1;
+}
+
+/*    background-color */
 [theme=accessibility-dark] .background-dark {
   background-color: #F5F5F5;
 }
@@ -2962,6 +3206,8 @@ html[theme=light] {
   --custom-info-rgb: 79, 195, 247;
   --custom-light: #ffffff;
   --custom-light-rgb: 255, 255, 255;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #1B5E20;
   --custom-dark-rgb: 27, 94, 32;
   --custom-body-bg: #E8F5E9;
@@ -2989,6 +3235,8 @@ html[theme=dark] {
   --custom-info-rgb: 79, 195, 247;
   --custom-light: #000000;
   --custom-light-rgb: 0, 0, 0;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #ffffff;
   --custom-dark-rgb: 255, 255, 255;
   --custom-body-bg: #121A13;
@@ -3020,6 +3268,8 @@ html[theme=accessibility-light] {
   --custom-body-rgb: 17, 17, 17;
   --custom-light: #ffffff;
   --custom-light-rgb: 255, 255, 255;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #000000;
   --custom-dark-rgb: 0, 0, 0;
   --custom-link: #004488;
@@ -3047,6 +3297,8 @@ html[theme=accessibility-dark] {
   --custom-body-rgb: 234, 234, 234;
   --custom-light: #000000;
   --custom-light-rgb: 0, 0, 0;
+  --custom-gray: #d1d1d1;
+  --custom-gray-rgb: 209, 209, 209;
   --custom-dark: #F5F5F5;
   --custom-dark-rgb: 245, 245, 245;
   --custom-link: #88C0D0;
@@ -3402,6 +3654,56 @@ html[theme=light] .txt-light-9 {
 
 html[theme=light] .txt-light {
   color: #ffffff !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-1 {
+  color: rgba(209, 209, 209, 0.1) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-2 {
+  color: rgba(209, 209, 209, 0.2) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-3 {
+  color: rgba(209, 209, 209, 0.3) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-4 {
+  color: rgba(209, 209, 209, 0.4) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-5 {
+  color: rgba(209, 209, 209, 0.5) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-6 {
+  color: rgba(209, 209, 209, 0.6) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-7 {
+  color: rgba(209, 209, 209, 0.7) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-8 {
+  color: rgba(209, 209, 209, 0.8) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray-9 {
+  color: rgba(209, 209, 209, 0.9) !important;
+  font-weight: 400;
+}
+
+html[theme=light] .txt-gray {
+  color: #d1d1d1 !important;
   font-weight: 400;
 }
 
@@ -4002,6 +4304,56 @@ html[theme=dark] .txt-light-9 {
 
 html[theme=dark] .txt-light {
   color: #000000 !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-1 {
+  color: rgba(209, 209, 209, 0.1) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-2 {
+  color: rgba(209, 209, 209, 0.2) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-3 {
+  color: rgba(209, 209, 209, 0.3) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-4 {
+  color: rgba(209, 209, 209, 0.4) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-5 {
+  color: rgba(209, 209, 209, 0.5) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-6 {
+  color: rgba(209, 209, 209, 0.6) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-7 {
+  color: rgba(209, 209, 209, 0.7) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-8 {
+  color: rgba(209, 209, 209, 0.8) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray-9 {
+  color: rgba(209, 209, 209, 0.9) !important;
+  font-weight: 400;
+}
+
+html[theme=dark] .txt-gray {
+  color: #d1d1d1 !important;
   font-weight: 400;
 }
 
@@ -4705,6 +5057,56 @@ html[theme=accessibility-light] .txt-light {
   font-weight: 600;
 }
 
+html[theme=accessibility-light] .txt-gray-1 {
+  color: rgba(209, 209, 209, 0.1) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-2 {
+  color: rgba(209, 209, 209, 0.2) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-3 {
+  color: rgba(209, 209, 209, 0.3) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-4 {
+  color: rgba(209, 209, 209, 0.4) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-5 {
+  color: rgba(209, 209, 209, 0.5) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-6 {
+  color: rgba(209, 209, 209, 0.6) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-7 {
+  color: rgba(209, 209, 209, 0.7) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-8 {
+  color: rgba(209, 209, 209, 0.8) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray-9 {
+  color: rgba(209, 209, 209, 0.9) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-light] .txt-gray {
+  color: #d1d1d1 !important;
+  font-weight: 600;
+}
+
 html[theme=accessibility-light] .txt-dark-1 {
   color: rgba(0, 0, 0, 0.1) !important;
   font-weight: 600;
@@ -5302,6 +5704,56 @@ html[theme=accessibility-dark] .txt-light-9 {
 
 html[theme=accessibility-dark] .txt-light {
   color: #000000 !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-1 {
+  color: rgba(209, 209, 209, 0.1) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-2 {
+  color: rgba(209, 209, 209, 0.2) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-3 {
+  color: rgba(209, 209, 209, 0.3) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-4 {
+  color: rgba(209, 209, 209, 0.4) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-5 {
+  color: rgba(209, 209, 209, 0.5) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-6 {
+  color: rgba(209, 209, 209, 0.6) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-7 {
+  color: rgba(209, 209, 209, 0.7) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-8 {
+  color: rgba(209, 209, 209, 0.8) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray-9 {
+  color: rgba(209, 209, 209, 0.9) !important;
+  font-weight: 600;
+}
+
+html[theme=accessibility-dark] .txt-gray {
+  color: #d1d1d1 !important;
   font-weight: 600;
 }
 
@@ -5935,6 +6387,10 @@ html[theme=light] .text-shadow-small-light {
   text-shadow: 0 1px 3px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=light] .text-shadow-small-gray {
+  text-shadow: 0 1px 3px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=light] .text-shadow-small-dark {
   text-shadow: 0 1px 3px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -5983,6 +6439,10 @@ html[theme=light] .text-shadow-medium-light {
   text-shadow: 0 2px 4px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=light] .text-shadow-medium-gray {
+  text-shadow: 0 2px 4px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=light] .text-shadow-medium-dark {
   text-shadow: 0 2px 4px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6029,6 +6489,10 @@ html[theme=light] .text-shadow-large-info {
 
 html[theme=light] .text-shadow-large-light {
   text-shadow: 0 4px 8px rgba(var(--custom-light-rgb), 0.12);
+}
+
+html[theme=light] .text-shadow-large-gray {
+  text-shadow: 0 4px 8px rgba(var(--custom-gray-rgb), 0.12);
 }
 
 html[theme=light] .text-shadow-large-dark {
@@ -6083,6 +6547,10 @@ html[theme=dark] .text-shadow-small-light {
   text-shadow: 0 1px 3px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=dark] .text-shadow-small-gray {
+  text-shadow: 0 1px 3px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=dark] .text-shadow-small-dark {
   text-shadow: 0 1px 3px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6131,6 +6599,10 @@ html[theme=dark] .text-shadow-medium-light {
   text-shadow: 0 2px 4px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=dark] .text-shadow-medium-gray {
+  text-shadow: 0 2px 4px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=dark] .text-shadow-medium-dark {
   text-shadow: 0 2px 4px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6177,6 +6649,10 @@ html[theme=dark] .text-shadow-large-info {
 
 html[theme=dark] .text-shadow-large-light {
   text-shadow: 0 4px 8px rgba(var(--custom-light-rgb), 0.12);
+}
+
+html[theme=dark] .text-shadow-large-gray {
+  text-shadow: 0 4px 8px rgba(var(--custom-gray-rgb), 0.12);
 }
 
 html[theme=dark] .text-shadow-large-dark {
@@ -6239,6 +6715,10 @@ html[theme=accessibility-light] .text-shadow-small-light {
   text-shadow: 0 1px 3px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=accessibility-light] .text-shadow-small-gray {
+  text-shadow: 0 1px 3px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=accessibility-light] .text-shadow-small-dark {
   text-shadow: 0 1px 3px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6287,6 +6767,10 @@ html[theme=accessibility-light] .text-shadow-medium-light {
   text-shadow: 0 2px 4px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=accessibility-light] .text-shadow-medium-gray {
+  text-shadow: 0 2px 4px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=accessibility-light] .text-shadow-medium-dark {
   text-shadow: 0 2px 4px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6333,6 +6817,10 @@ html[theme=accessibility-light] .text-shadow-large-body {
 
 html[theme=accessibility-light] .text-shadow-large-light {
   text-shadow: 0 4px 8px rgba(var(--custom-light-rgb), 0.12);
+}
+
+html[theme=accessibility-light] .text-shadow-large-gray {
+  text-shadow: 0 4px 8px rgba(var(--custom-gray-rgb), 0.12);
 }
 
 html[theme=accessibility-light] .text-shadow-large-dark {
@@ -6387,6 +6875,10 @@ html[theme=accessibility-dark] .text-shadow-small-light {
   text-shadow: 0 1px 3px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=accessibility-dark] .text-shadow-small-gray {
+  text-shadow: 0 1px 3px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=accessibility-dark] .text-shadow-small-dark {
   text-shadow: 0 1px 3px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6435,6 +6927,10 @@ html[theme=accessibility-dark] .text-shadow-medium-light {
   text-shadow: 0 2px 4px rgba(var(--custom-light-rgb), 0.12);
 }
 
+html[theme=accessibility-dark] .text-shadow-medium-gray {
+  text-shadow: 0 2px 4px rgba(var(--custom-gray-rgb), 0.12);
+}
+
 html[theme=accessibility-dark] .text-shadow-medium-dark {
   text-shadow: 0 2px 4px rgba(var(--custom-dark-rgb), 0.12);
 }
@@ -6481,6 +6977,10 @@ html[theme=accessibility-dark] .text-shadow-large-body {
 
 html[theme=accessibility-dark] .text-shadow-large-light {
   text-shadow: 0 4px 8px rgba(var(--custom-light-rgb), 0.12);
+}
+
+html[theme=accessibility-dark] .text-shadow-large-gray {
+  text-shadow: 0 4px 8px rgba(var(--custom-gray-rgb), 0.12);
 }
 
 html[theme=accessibility-dark] .text-shadow-large-dark {

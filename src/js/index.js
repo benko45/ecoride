@@ -42,8 +42,11 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
 
 /*                  CASE DEPART                  */
 //écoute le click sur la zone recherche-départ
-document.getElementById("case-depart").addEventListener("click", function(event) {
+const caseDepart = document.getElementById("case-depart");
+
+caseDepart.addEventListener("click", function(event) {
     // event.preventDefault();
+    localStorage.setItem("clickSurItem", "true");
     window.location.href = "public/choosing-address.html";
 });
 
@@ -52,17 +55,19 @@ const selectedAddress = localStorage.getItem('selectedDepartureAddress');
 
 if (selectedAddress) {
     // Si une adresse a été enregistrée, l'afficher
-    document.getElementById('selected-departure-address').value = selectedAddress;
+    document.getElementById('selected-departure-address').innerHTML = selectedAddress;
 } else {
     // Si aucune adresse n'est sélectionnée
-    document.getElementById('selected-departure-address').value = 'Départ';
+    document.getElementById('selected-departure-address').innerHTML = 'Départ';
 }
 
 
-/*                  CASE DEPART                  */
-//écoute le click sur la zone recherche-départ
-document.getElementById("case-arrivee").addEventListener("click", function(event) {
+/*                  CASE ARRIVEE                  */
+//écoute le click sur la zone recherche-arrivée
+const caseArrivee = document.getElementById("case-arrivee");
+caseArrivee.addEventListener("click", function(event) {
     // event.preventDefault();
+    localStorage.setItem("clickSurItem", "true");
     window.location.href = "public/choosing-arrival-address.html";
 });
 
@@ -71,10 +76,17 @@ const selectedArrivalAddress = localStorage.getItem('selectedArrivalAddress');
 
 if (selectedArrivalAddress) {
     // Si une adresse a été enregistrée, l'afficher
-    document.getElementById('selected-arrival-address').value = selectedArrivalAddress;
+    document.getElementById('selected-arrival-address').innerHTML = selectedArrivalAddress;
 } else {
     // Si aucune adresse n'est sélectionnée
-    document.getElementById('selected-arrival-address').value = 'Arrivée';
+    document.getElementById('selected-arrival-address').innerHTML = 'Arrivée';
 }
 
-
+window.addEventListener('beforeunload', function (event) {
+    const aCliqueSurItem = localStorage.getItem('clickSurItem');
+    if (!aCliqueSurItem) {
+        localStorage.clear();
+    } else {
+            localStorage.removeItem('clickSurItem');
+    }
+});
