@@ -11,6 +11,7 @@
 
 /* ✅ GÉNÉRATION DES CLASSES DE FOND        */
 $opacities: (
+  "0": 0,  
   "1": 0.1,
   "2": 0.2,
   "3": 0.3,
@@ -24,13 +25,15 @@ $opacities: (
 );
 
 @each $theme-name, $colors in colors.$themes {
-  
   @each $color-name, $color-value in $colors {
     /*    background-color */
     [theme=#{$theme-name}] .background-#{$color-name} { background-color: $color-value; } 
     @each $opacity-name, $opacity-value in $opacities {
+      $r: red($color-value);
+      $g: green($color-value);
+      $b: blue($color-value);
       /*    background-color-opacity */
-      [theme=#{$theme-name}] .background-#{$color-name}-#{$opacity-name} { background-color: rgba($color-value, $opacity-value); } 
+      [theme=#{$theme-name}] .background-#{$color-name}-#{$opacity-name} { background-color: #{rgba($r, $g, $b, $opacity-value)}; } 
     }
   }
 }

@@ -42,11 +42,26 @@ body {
     display: none !important;
 }
 
+
+
+.myTitle{
+    position: absolute;
+    top: 2%; /* Ajuste la distance depuis le haut */
+    left: 50% !important;
+    transform: translate(-50%, 2%) !important;
+    z-index: 1050; /* S'assure que le menu est au-dessus */
+    @media screen and (min-width: $breakpoint) {
+        top: 10%; /* Ajuste la distance depuis le haut */
+        left: 50% !important;
+        transform: translate(-50%, 10%) !important;
+    }
+}
+
 .dropdown {
     position: absolute;
-    top: 10%; /* Ajuste la distance depuis le haut */
+    top: 15%; /* Ajuste la distance depuis le haut */
     left: 50% !important;
-    transform: translate(-50%, 10%) !important;
+    transform: translate(-50%, 15%) !important;
     z-index: 1050; /* S'assure que le menu est au-dessus */
     @media screen and (min-width: $breakpoint) {
         top: 25%; /* Ajuste la distance depuis le haut */
