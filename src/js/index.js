@@ -159,13 +159,25 @@ if (savedDate) {
 
 
 /******************************************************/
-/*               Chois du nombre de passagers         */
+/*               Choix du nombre de passagers         */
 /******************************************************/
 // Redirection vers la page de sélection du nombre de passagers
 document.getElementById("case-passengers").addEventListener("click", function() {
     localStorage.setItem("clickSurItem", "true");
     window.location.href = "public/choosing-passengers.html";
 });
+
+// initialisation du nombre de passagers
+let selectedPassengers;
+localStorage.getItem('selectedPassengers')
+    ? selectedPassengers = localStorage.getItem('selectedPassengers')
+    : selectedPassengers = 1;
+
+document.getElementById('passengers-nb').innerHTML = selectedPassengers;
+
+
+
+
 
 /******************************************************/
 /*               Validation du formulaire             */

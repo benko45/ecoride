@@ -2,7 +2,7 @@
 
 // Variable pour stocker la sélection de l'utilisateur
 var selectedTheme = localStorage.getItem("theme") || "auto";
-console.log(localStorage.getItem("theme"));
+// console.log(localStorage.getItem("theme"));
 
 // Fonction pour appliquer le thème effectif
 function applyTheme(theme) {
@@ -22,7 +22,7 @@ function applyTheme(theme) {
 }
 
 // Appliquer le thème immédiatement au chargement
-console.log(selectedTheme);
+// console.log(selectedTheme);
 applyTheme(selectedTheme);
 
 // **Écoute les changements du mode système en mode auto**

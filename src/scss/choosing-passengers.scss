@@ -1,0 +1,14 @@
+@use "styles/colors-variables" as colors;
+@use "styles/global-styles";
+
+#minus, #plus {
+  width: 30%
+}
+
+#passengers-nb{
+    width: 40%;
+}
+
+#passengers-nb-selector{
+    width: 60%
+}

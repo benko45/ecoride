@@ -173,7 +173,7 @@ function createAddressSuggestion(address) {
                     .catch(error => console.error('Erreur API:', error));
             });
         }
-        alert('Adresse enregistrée dans localStorage : ' + localStorage.getItem('selectedDepartureAddress'));
+        // alert('Adresse enregistrée dans localStorage : ' + localStorage.getItem('selectedDepartureAddress'));
     });
 
     // Ajoute les éléments dans le div principal
