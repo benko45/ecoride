@@ -42,10 +42,9 @@ $(document).ready(function() {
         language: 'fr',         // Langue en français
         container: '#date-depart'
     }).on('changeDate', function(e) {
-        const selectedDate = e.format();
-        $('#date-depart').text(selectedDate);
+        let selectedDate = e.format();
+        selectedDate = selectedDate.replace('.', '');
         localStorage.setItem('selectedDate', selectedDate);
-
         // Redirection vers la page précédente
         window.location.href = "../index.html";
     });

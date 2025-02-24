@@ -142,10 +142,48 @@ document.getElementById("case-date").addEventListener("click", function() {
 
 // Récupérer la date enregistrée dans le localStorage
 const savedDate = localStorage.getItem('selectedDate');
-
+// Obtenir le jour, la date et le mois actuels
+const today = new Date();
+const options = { weekday: 'short', day: '2-digit', month: 'short' };
+const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
 // Afficher la date dans la div si elle existe
 if (savedDate) {
+    if (savedDate === todayFormatted) {
+        $('#date-picker').text("Aujourd'hui");
+    } else {
     $('#date-picker').text(savedDate);
+    }
 } else {
-    $('#date-picker').text('Date');
+    $('#date-picker').text('Aujourd\'hui');
 }
+
+
+/******************************************************/
+/*               Chois du nombre de passagers         */
+/******************************************************/
+// Redirection vers la page de sélection du nombre de passagers
+document.getElementById("case-passengers").addEventListener("click", function() {
+    localStorage.setItem("clickSurItem", "true");
+    window.location.href = "public/choosing-passengers.html";
+});
+
+/******************************************************/
+/*               Validation du formulaire             */
+/******************************************************/
+document.getElementById("search").addEventListener("click", function() {
+
+    if(selectedDepartureAddress === selectedArrivalAddress) {
+        alert('Veuillez choisir des adresses différentes');
+    } else {
+        localStorage.setItem("clickSurItem", "true");
+        // Vérifier que les champs sont remplis
+        if(!localStorage.getItem('selectedDate')) {
+            localStorage.setItem('selectedDate', todayFormatted);
+        }
+        selectedDepartureAddress === 'Départ'
+            ? window.location.href = "public/choosing-address.html"
+            : selectedArrivalAddress === 'Arrivée'
+                ? window.location.href = "public/choosing-arrival-address.html"
+                : window.location.href = "public/choosing-traject.html";
+    }
+});
