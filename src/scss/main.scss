@@ -162,20 +162,9 @@ svg symbol path{
     overflow: hidden;   /* Cache le texte qui dépasse */
     text-overflow: ellipsis; /* Ajoute des points de suspension à la fin */
     padding-left: 10px;
-    background-color: var(--custom-light);
+    background-color: inherit;
     &:hover {
-        background-color: var(--custom-gray);
-    }
-}
-
-html[theme="light"] .myInput, html[theme="dark"] .myInput, html[theme="accessibility-light"] .myInput {
-    color: var(--custom-primary);
-}   
-
-html[theme="accessibility-dark"] .myInput {
-    color: var(--custom-dark);
-    &:hover {
-        color: var(--custom-light);
+        background-color: inherit;
     }
 }
 
@@ -183,6 +172,17 @@ html[theme="accessibility-dark"] .myInput {
     display: flex;
     padding: 2px;
     width : 100%;
+    &:hover {
+        background-color: var(--custom-gray);
+    }
+    &:hover #date-picker {
+        background-color: var(--custom-gray);
+    }
+}
+.search-container-2 {
+    display: flex;
+    padding: 2px;
+    width : 85%;
     &:hover {
         background-color: var(--custom-gray);
     }
@@ -337,5 +337,64 @@ $radius: 18px;
                 }
             } 
         }
+    }
+}
+
+
+/************************************************************/
+/*    animation des flèches d'inversion  départ-arrivée     */
+/************************************************************/
+.arrow-bounce {
+    overflow: visible;
+}
+.arrow-bounce path {
+    transition: transform 0.3s ease;
+}
+
+/* Animation au survol */
+.arrow-bounce:hover path:nth-child(1) {
+    animation: moveRight 0.5s ease forwards;
+}
+
+.arrow-bounce:hover path:nth-child(2) {
+    animation: moveLeft 0.5s ease forwards;
+}
+
+$translation: 2px;
+
+/* Animation de la flèche droite */
+@keyframes moveRight {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(#{$translation});  /* Va vers la droite */
+    }
+    100% {
+        transform: translateX(0);    /* Revient à la position d'origine */
+    }
+}
+
+/* Animation de la flèche gauche */
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(#{-1*$translation}); /* Va vers la gauche */
+    }
+    100% {
+        transform: translateX(0);    /* Revient à la position d'origine */
+    }
+}
+
+/************************************************************/
+/*                  stytle du date-picker                   */
+/************************************************************/
+.date-picker-div {
+    display: flex;
+    align-items: center;
+    &:hover {
+        background-color: var(--custom-gray);
     }
 }
