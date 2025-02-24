@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
     <link rel="stylesheet" href="public/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="public/css/custom-themes.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
     <link rel="stylesheet" href="public/css/main.css">
     <!-- <link rel="stylesheet" href="./css/test.css"> -->
 </head>
@@ -121,19 +121,31 @@
         <!-- menu trajet -->
         <div class="traject-container">
             <div class="row justify-content-center traject-search-bloc-width">
-                <div id="case-depart" class="col-lg-2 col-md-2 col-12 d-flex p-1 background-light premiere-cellule moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
+                <div id="case-depart" class="col-lg-2 col-md-2 col-12 d-flex p-1 txt-primary background-light premiere-cellule moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
                     <div class="search-container premiere-cellule-2">
-                        <div class="d-inline-flex align-items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-circle icon" viewBox="-2 -2 20 20">
-                                <path  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                            </svg>
+                        <div id="click-case-depart" class="search-container-2 premiere-cellule-2" >
+                            <div class="d-inline-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-circle icon" viewBox="-2 -2 20 20">
+                                    <path  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                </svg>
+                            </div>
+                            <div id="selected-departure-address" style="cursor: pointer;" class="myInput no-border fw-semibold fs-14">
+                                Départ
+                            </div>
                         </div>
-                        <div id="selected-departure-address" style="cursor: pointer;" class="myInput no-border fw-semibold fs-14">
-                            Départ
+                        <div id="bouncing-arrows" class="d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                width="25" height="25" 
+                                fill="currentColor" 
+                                class="bi bi-arrow-left-right arrow-bounce" 
+                                viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5"/>
+                                <path fill-rule="evenodd" d="M15 4.5a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5"/>
+                            </svg>
                         </div>
                     </div>
                 </div>
-                <div id="case-arrivee" class="col-lg-2 col-md-2 col-12 d-flex p-1 background-light moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
+                <div id="case-arrivee" class="col-lg-2 col-md-2 col-12 d-flex p-1 txt-primary background-light moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
                     <div class="search-container">
                         <div class="d-inline-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-circle icon" viewBox="-2 -2 20 20">
@@ -145,18 +157,30 @@
                         </div>
                     </div>
                 </div>
-                <div id="case-date" class="col-lg-2 col-md-2 col-12 p-3 txt-primary background-light bottom-border-secondary-1-50">
-                    <div class="d-inline-flex align-items-center">
-                        
+                <div id="case-date" class="col-lg-2 col-md-2 col-12 p-1 d-flex txt-primary background-light moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
+                    <div class="search-container align-items-center">
+                        <div class="d-inline-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-date" viewBox="0 0 16 16">
+                                <path d="M6.445 11.688V6.354h-.633A13 13 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                              </svg>
+                        </div>
+                        <div class="d-flex align-items-center p-2">
+                            <div id="date-picker" class="date-picker-div no-border fw-semibold fs-13 background-light" style="cursor: pointer;">
+                                Date
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="case-nb-passagers" class="col-lg-2 col-md-2 col-12 p-3 txt-primary background-light bottom-border-secondary-1-50">Colonne 4</div>
+                <div id="case-nb-passagers" class="col-lg-2 col-md-2 col-12 p-1 d-flex align-items-center txt-primary background-light bottom-border-secondary-1-50">Colonne 4</div>
                 <button class="col-lg-2 col-md-2 col-12 p-3 txt-light fw-semibold background-secondary d-flex derniere-cellule no-border justify-content-center align-items-center element-height-10 moving-border-primary-1-50 bottom-border-secondary-1-50" >Rechercher</button>
             </div>
         </div>
          <!-- fin menu trajet -->
-    <script src="public/js/jquery-3.7.1.min.js"></script>
-    <script src="public/js/bootstrap.bundle.js" defer></script>
-    <script src="src/js/index.js" defer></script>
+         <script src="public/js/jquery-3.7.1.min.js"></script>
+         <script src="public/js/bootstrap.bundle.js" defer></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js"></script>
+         <script src="src/js/index.js" defer></script>
 </body>
 </html>
