@@ -33,7 +33,7 @@ $opacities: (
       $g: green($color-value);
       $b: blue($color-value);
       /*    background-color-opacity */
-      [theme=#{$theme-name}] .background-#{$color-name}-#{$opacity-name} { background-color: #{rgba($r, $g, $b, $opacity-value)}; } 
+      [theme=#{$theme-name}] .background-#{$color-name}-#{$opacity-name} { background-color: rgba($r, $g, $b, $opacity-value); } 
     }
   }
 }

@@ -43,6 +43,48 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
     }
 });
 
+/******************************************************/
+/******************************************************/
+
+/******************************************************/
+/*                  Menu principal                    */
+/******************************************************/
+
+// S'assurer que le DOM est chargé
+document.addEventListener('DOMContentLoaded', function() {
+    // Cibler le toggle et la liste du menu
+    var menuToggle = document.getElementById('menu-toggle');
+    var menuList = document.getElementById('menu-list');
+    var animatedCaret = menuToggle;
+
+    // Ajouter un événement de clic
+    menuToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();  // Empêche le clic de se propager au document
+        
+        // Basculer l'affichage du menu
+        menuList.classList.remove('hide');
+        menuList.classList.toggle('show');
+
+        // Basculer l'animation du caret (avec l'icône Font Awesome)
+        animatedCaret.classList.toggle('show-caret');
+    });
+
+    // Cacher le menu si on clique en dehors
+    document.addEventListener('click', function(event) {
+        // Si le clic est en dehors du menu, on ferme
+        if (!menuToggle.contains(event.target) && !menuList.contains(event.target)) {
+            menuList.classList.remove('show');
+            menuList.classList.toggle('hide');
+            animatedCaret.classList.remove('show-caret');
+        }
+    });
+});
+
+
+
+
+
 
 /******************************************************/
 /*            Gestion des choix pour le trajet        */  
@@ -174,9 +216,6 @@ localStorage.getItem('selectedPassengers')
     : selectedPassengers = 1;
 
 document.getElementById('passengers-nb').innerHTML = selectedPassengers;
-
-
-
 
 
 /******************************************************/
