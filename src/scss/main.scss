@@ -115,6 +115,7 @@ body {
     vertical-align: middle;
     z-index: 1000;
     font-family: 'Font Awesome 6 Free';
+    user-select: none;
 }
 
 #menu-container {
@@ -314,6 +315,8 @@ svg symbol path{
     &:hover {
         background-color: inherit;
     }
+    /* Masquer le curseur clignotant dans les champs de texte ciblés */
+    user-select: none;
 }
 
 .search-container {
