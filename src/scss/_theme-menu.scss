@@ -1,0 +1,115 @@
+// @use 'sass:map';
+@use 'variables' as variables;
+/****************************************************/
+/*              🔍 Menu thème (dropdown) 
+/****************************************************/
+.theme-icon {
+    display: none;
+}
+
+/* Afficher l'icône en fonction du mode actif */
+[selected-theme="auto"] .icon-auto {
+    display: flex !important;
+}
+
+[selected-theme="light"] .icon-light,
+[selected-theme="dark"] .icon-dark,
+[selected-theme="accessibility-light"] .icon-accessibility-light,
+[selected-theme="accessibility-dark"] .icon-accessibility-dark {
+    display: flex;
+}
+
+/* Masquer toutes les autres icônes en mode auto */
+[selected-theme="auto"] .theme-icon:not(.icon-auto) {
+    display: none !important;
+}
+
+
+.dropdown {
+    position: absolute;
+    top: 15%; /* Ajuste la distance depuis le haut */
+    left: 50% !important;
+    transform: translate(-50%, 15%) !important;
+    z-index: 1050; /* S'assure que le menu est au-dessus */
+    @media screen and (min-width: variables.$breakpoint) {
+        top: 25%; /* Ajuste la distance depuis le haut */
+        left: 50% !important;
+        transform: translate(-50%, 25%) !important;
+    }
+}
+
+.dropdown-menu {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: max-content;
+}
+
+.dropdown-toggle::after {
+    border-top-color: var(--custom-primary) !important; /* Change la couleur de la flèche */
+}
+
+.dropdown ul {
+    background-color: var(--custom-light);
+}
+/*  formatage des icônes du menu thème */
+.icon-color {
+    fill: var(--custom-primary) !important;
+    stroke: var(--custom-primary) !important;
+    stroke-width: 1px;
+}
+
+button svg {
+    width: 16px;
+    height: 16px;
+}
+
+svg {
+    color: var(--custom-primary); /* Devrait colorer l'icône */
+}
+
+svg symbol path{
+    stroke-width: 5px !important;
+}
+
+.dropdown-item {
+    color: var(--custom-primary);
+    &:hover {
+        background-color: var(--custom-gray);
+    }
+}
+// html[theme="dark"] .dropdown-item, html[theme="accessibility-dark"] .dropdown-item{
+//     &:hover {
+//        color: var(--custom-gray);
+//        filter: brightness(100%);
+//     }
+// }
+
+/****************************************************/
+/*                  image de fond                   */
+/****************************************************/
+.background-image {
+    position: relative;
+
+    height: 100vh;
+    width: 100%;
+    // background-image: url('../../public/img/foret_et_terre_320_568.webp');
+    background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
+    background-size: cover; /* Remplit l’espace sans déformation */
+    background-position: top;
+        // ; /* Centre l’image */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Texte en blanc */
+    @media screen and (min-width: variables.$breakpoint) {
+        height: 50vh; /* La moitié de la hauteur de l'écran */
+        width: 100%;
+        // background-image: url('../../public/img/foret_et_terre_degrade.webp');
+        background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+        }
+}

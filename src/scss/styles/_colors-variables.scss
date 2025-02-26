@@ -4,64 +4,63 @@
 /**********************************************/
 $themes: (
     "light": (
-        "primary":   #425F0D,  // Vert lumineux
-        "secondary": #77D625, // Vert menthe doux
-        "success":   #388E3C,  // Vert herbe fraîche
-        "warning":   #FFB74D,  // Orange doux
-        "danger":    #D84315,  // Rouge terre
-        "info":      #4FC3F7,  // Bleu doux
-        "light":     #ffffff,  // blanc
-        "gray":      #d1d1d1,  // Gris clair
-        "dark":      #1B5E20,  // Vert foncé
-        "body-bg":   #E8F5E9,  // Fond vert clair naturel
-        "body":      #425F0D,  // Texte vert forêt
-        "link":      #388E3C,   // Couleur des liens
-        "heading":   #425F0D // Couleur des titres
+        "primary":   #93ce5f,
+        "secondary": #5ba11e,
+        "success":   #388E3C,
+        "warning":   #FFB74D,
+        "danger":    #D84315,
+        "info":      #4FC3F7,
+        "light":     #ffffff,
+        "gray":      #ededed,
+        "dark":      #1B5E20,
+        "body-bg":   #E8F5E9,
+        "body":      #425F0D,
+        "link":      #388E3C,
     ),
     "dark": (
-        "primary":   #425F0D,  // Vert feuillage lumineux
-        "secondary": #77D625, // Vert tendre
-        "success":   #66BB6A,  // Vert vif
-        "warning":   #FFB74D,  // Orange automnal
-        "danger":    #E57373,  // Rouge doux
-        "info":      #4FC3F7,  // Bleu clair
-        "light":     #000000,  // blanc
-        "gray":      #d1d1d1,  // Gris clair
-        "dark":      #ffffff,  // Vert forêt profond
-        "body-bg":   #121A13,  // Noir verdoyant
-        "body":      #425F0D,  // Texte vert clair
-        "link":      #388E3C,   // Couleur des liens
-        "heading":   #425F0D // Couleur des titres
+        "primary":   #93ce5f,
+        "secondary": #77D625,
+        "success":   #66BB6A,
+        "warning":   #FFB74D,
+        "danger":    #E57373,
+        "info":      #4FC3F7,
+        "light":     #000000,
+        "gray":      #ededed,
+        "dark":      #ffffff,
+        "body-bg":   #121A13,
+        "body":      #425F0D,
+        "link":      #388E3C,
+        "heading":   #425F0D 
     ),
     "accessibility-light": (
-        "primary":   #1A1A1A, // Noir doux, excellent contraste
-        "secondary": #3B3B3B, // Gris très foncé
-        "success":   #77D625, // Vert profond avec fort contraste
-        "warning":   #8C5100, // Orange brun foncé pour bon contraste
-        "info":      #004488, // Bleu foncé mais lisible
-        "danger":    #7D0000, // Rouge sombre pour éviter saturation
-        "body-bg":   #FAFAFA, // Blanc légèrement teinté pour réduire l’éblouissement
-        "body":      #111111, // Noir presque pur pour maximiser lisibilité
-        "light":     #ffffff, // blanc pur pour sections contrastées
-        "gray":      #d1d1d1,  // Gris clair
-        "dark":      #000000,  // Noir pur pour sections contrastées
-        "link":      #004488,   // Bleu foncé pour visibilité accrue
-        "heading":   #1A1A1A // Titres bien définis, excellent contraste
+        "primary":   #1A1A1A,
+        "secondary": #3B3B3B,
+        "success":   #77D625,
+        "warning":   #8C5100,
+        "info":      #004488,
+        "danger":    #7D0000,
+        "body-bg":   #FAFAFA,
+        "body":      #111111,
+        "light":     #ffffff,
+        "gray":      #ededed,
+        "dark":      #000000,
+        "link":      #004488,
+        "heading":   #1A1A1A
     ),
     "accessibility-dark": (
-        "primary":   #E5E5E5, 
+        "primary":   #ffffff, 
         "secondary": #ffffff, 
-        "success":   #77D625, // Vert profond et accessible
-        "warning":   #AD5E00, // Orange foncé compatible
-        "info":      #004488, // Bleu lisible
-        "danger":    #990000, // Rouge sombre et accessible
-        "body-bg":   #181818, // Noir atténué (moins fatiguant)
-        "body":      #EAEAEA, // Texte clair lisible
-        "light":     #000000, // Noir pur pour sections contrastées
-        "gray":      #d1d1d1,  // Gris clair
-        "dark":      #F5F5F5, // Gris clair pour ne pas être un blanc pur
-        "link":      #88C0D0,  // Bleu lisible
-        "heading":   #EAEAEA // Titres bien contrastés
+        "success":   #77D625,
+        "warning":   #AD5E00,
+        "info":      #004488,
+        "danger":    #990000,
+        "body-bg":   #181818,
+        "body":      #EAEAEA,
+        "light":     #000000,
+        "gray":      #ededed,
+        "dark":      #F5F5F5,
+        "link":      #88C0D0,
+        "heading":   #EAEAEA
     )
 );
 

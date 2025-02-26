@@ -43,6 +43,102 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
     }
 });
 
+/******************************************************/
+/******************************************************/
+
+/******************************************************/
+/*                  Menu principal                    */
+/******************************************************/
+
+// S'assurer que le DOM est chargé
+document.addEventListener('DOMContentLoaded', function() {
+    // Cibler le toggle et la liste du menu
+    var menuToggle = document.getElementById('menu-toggle');
+    var menuList = document.getElementById('menu-list');
+    var animatedCaret = menuToggle;
+
+    // Ajouter un événement de clic
+    menuToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();  // Empêche le clic de se propager au document
+        
+        // Basculer l'affichage du menu
+        menuList.classList.remove('hide');
+        menuList.classList.toggle('show');
+
+        // Basculer l'animation du caret (avec l'icône Font Awesome)
+        animatedCaret.classList.toggle('show-caret');
+    });
+
+    // Cacher le menu si on clique en dehors
+    document.addEventListener('click', function(event) {
+        // Si le clic est en dehors du menu, on ferme
+        if (!menuToggle.contains(event.target) && !menuList.contains(event.target)) {
+            menuList.classList.remove('show');
+            menuList.classList.toggle('hide');
+            animatedCaret.classList.remove('show-caret');
+        }
+    });
+});
+
+
+/***********************************************************/
+/*              En dessous de width 768px                  */
+/***********************************************************/
+
+const mediaQuery = window.matchMedia('(max-width: 768px)');
+const connexion = document.getElementById('connexion');
+const span_connexion = document.getElementById('span-connexion');
+// const nav = document.getElementById('nav');
+
+function handleMediaQueryChange(e) {
+    if (e.matches) {
+        connexion.classList.remove('p-3');
+        span_connexion.innerHTML = "Connexion";
+    }
+    /******************************************************/
+    /*   Calcul de la largeur des dropdown-item           */
+    /******************************************************/
+    const resizeElements = () => {
+        const lis = document.querySelectorAll('#nav li');
+        const as = document.querySelectorAll('#nav li a');
+
+        let maxWidth = 0;
+
+        // Trouver la largeur maximale
+        lis.forEach(element => {
+            const width = element.offsetWidth;
+            if(width > maxWidth) maxWidth = width;
+        });
+        console.log('Max Width:', maxWidth);
+
+        // Appliquer la largeur maximale à tous les éléments
+        lis.forEach(element => {
+            element.style.width = maxWidth + 'px';
+        });
+        as.forEach(element => {
+            element.style.width = maxWidth + 'px';
+        });
+    };
+    // Appeler la fonction au chargement de la page
+    resizeElements();
+
+    const liASpan = document.querySelectorAll('li a span');
+    liASpan.forEach(element => {
+        element.classList.remove('ps-2');
+    });
+}
+
+// Vérifie la taille de l'écran au chargement
+handleMediaQueryChange(mediaQuery);
+
+// Écoute les changements de taille d'écran
+mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+
+
+
+
 
 /******************************************************/
 /*            Gestion des choix pour le trajet        */  
@@ -174,9 +270,6 @@ localStorage.getItem('selectedPassengers')
     : selectedPassengers = 1;
 
 document.getElementById('passengers-nb').innerHTML = selectedPassengers;
-
-
-
 
 
 /******************************************************/
