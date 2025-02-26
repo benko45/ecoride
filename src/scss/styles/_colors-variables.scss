@@ -19,7 +19,8 @@ $themes: (
         "heading":   #425F0D // Couleur des titres
     ),
     "dark": (
-        "primary":   #425F0D,  // Vert feuillage lumineux
+        // "primary":   #425F0D,  // Vert feuillage lumineux
+        "primary":   hsl(92, 70%, 47%),  // Vert feuillage lumineux
         "secondary": #77D625, // Vert tendre
         "success":   #66BB6A,  // Vert vif
         "warning":   #FFB74D,  // Orange automnal

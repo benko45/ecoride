@@ -293,28 +293,28 @@ html[theme=light] {
 }
 
 html[theme=dark] {
-  --custom-primary-1: rgba(66, 95, 13, 0.1);
-  --custom-primary-rgb-1: 66, 95, 13;
-  --custom-primary-2: rgba(66, 95, 13, 0.2);
-  --custom-primary-rgb-2: 66, 95, 13;
-  --custom-primary-3: rgba(66, 95, 13, 0.3);
-  --custom-primary-rgb-3: 66, 95, 13;
-  --custom-primary-4: rgba(66, 95, 13, 0.4);
-  --custom-primary-rgb-4: 66, 95, 13;
-  --custom-primary-5: rgba(66, 95, 13, 0.5);
-  --custom-primary-rgb-5: 66, 95, 13;
-  --custom-primary-6: rgba(66, 95, 13, 0.6);
-  --custom-primary-rgb-6: 66, 95, 13;
-  --custom-primary-7: rgba(66, 95, 13, 0.7);
-  --custom-primary-rgb-7: 66, 95, 13;
-  --custom-primary-8: rgba(66, 95, 13, 0.8);
-  --custom-primary-rgb-8: 66, 95, 13;
-  --custom-primary-9: rgba(66, 95, 13, 0.9);
-  --custom-primary-rgb-9: 66, 95, 13;
-  --custom-primary-10: rgba(66, 95, 13, 1);
-  --custom-primary-rgb-10: 66, 95, 13;
-  --custom-primary: #425F0D;
-  --custom-primary-rgb: 66, 95, 13;
+  --custom-primary-1: rgba(114, 204, 36, 0.1);
+  --custom-primary-rgb-1: 114, 204, 36;
+  --custom-primary-2: rgba(114, 204, 36, 0.2);
+  --custom-primary-rgb-2: 114, 204, 36;
+  --custom-primary-3: rgba(114, 204, 36, 0.3);
+  --custom-primary-rgb-3: 114, 204, 36;
+  --custom-primary-4: rgba(114, 204, 36, 0.4);
+  --custom-primary-rgb-4: 114, 204, 36;
+  --custom-primary-5: rgba(114, 204, 36, 0.5);
+  --custom-primary-rgb-5: 114, 204, 36;
+  --custom-primary-6: rgba(114, 204, 36, 0.6);
+  --custom-primary-rgb-6: 114, 204, 36;
+  --custom-primary-7: rgba(114, 204, 36, 0.7);
+  --custom-primary-rgb-7: 114, 204, 36;
+  --custom-primary-8: rgba(114, 204, 36, 0.8);
+  --custom-primary-rgb-8: 114, 204, 36;
+  --custom-primary-9: rgba(114, 204, 36, 0.9);
+  --custom-primary-rgb-9: 114, 204, 36;
+  --custom-primary-10: rgba(114, 204, 36, 1);
+  --custom-primary-rgb-10: 114, 204, 36;
+  --custom-primary: hsl(92, 70%, 47%);
+  --custom-primary-rgb: 114, 204, 36;
   --custom-secondary-1: rgba(119, 214, 37, 0.1);
   --custom-secondary-rgb-1: 119, 214, 37;
   --custom-secondary-2: rgba(119, 214, 37, 0.2);
@@ -1213,7 +1213,7 @@ html[theme=accessibility-dark] {
 }
 
 [theme=dark] .custom-primary {
-  color: #425F0D;
+  color: hsl(92, 70%, 47%);
 }
 
 [theme=dark] .custom-secondary {
@@ -2151,62 +2151,62 @@ html[theme=accessibility-dark] {
 
 /*    background-color */
 [theme=dark] .background-primary {
-  background-color: #425F0D;
+  background-color: hsl(92, 70%, 47%);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-0 {
-  background-color: rgba(66, 95, 13, 0);
+  background-color: rgba(114, 204, 36, 0);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-1 {
-  background-color: rgba(66, 95, 13, 0.1);
+  background-color: rgba(114, 204, 36, 0.1);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-2 {
-  background-color: rgba(66, 95, 13, 0.2);
+  background-color: rgba(114, 204, 36, 0.2);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-3 {
-  background-color: rgba(66, 95, 13, 0.3);
+  background-color: rgba(114, 204, 36, 0.3);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-4 {
-  background-color: rgba(66, 95, 13, 0.4);
+  background-color: rgba(114, 204, 36, 0.4);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-5 {
-  background-color: rgba(66, 95, 13, 0.5);
+  background-color: rgba(114, 204, 36, 0.5);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-6 {
-  background-color: rgba(66, 95, 13, 0.6);
+  background-color: rgba(114, 204, 36, 0.6);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-7 {
-  background-color: rgba(66, 95, 13, 0.7);
+  background-color: rgba(114, 204, 36, 0.7);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-8 {
-  background-color: rgba(66, 95, 13, 0.8);
+  background-color: rgba(114, 204, 36, 0.8);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-9 {
-  background-color: rgba(66, 95, 13, 0.9);
+  background-color: rgba(114, 204, 36, 0.9);
 }
 
 /*    background-color-opacity */
 [theme=dark] .background-primary-10 {
-  background-color: rgb(66, 95, 13);
+  background-color: rgb(114, 204, 36);
 }
 
 /*    background-color */
@@ -4781,28 +4781,28 @@ html[theme=light] {
 }
 
 html[theme=dark] {
-  --custom-primary-1: rgba(66, 95, 13, 0.1);
-  --custom-primary-rgb-1: 66, 95, 13;
-  --custom-primary-2: rgba(66, 95, 13, 0.2);
-  --custom-primary-rgb-2: 66, 95, 13;
-  --custom-primary-3: rgba(66, 95, 13, 0.3);
-  --custom-primary-rgb-3: 66, 95, 13;
-  --custom-primary-4: rgba(66, 95, 13, 0.4);
-  --custom-primary-rgb-4: 66, 95, 13;
-  --custom-primary-5: rgba(66, 95, 13, 0.5);
-  --custom-primary-rgb-5: 66, 95, 13;
-  --custom-primary-6: rgba(66, 95, 13, 0.6);
-  --custom-primary-rgb-6: 66, 95, 13;
-  --custom-primary-7: rgba(66, 95, 13, 0.7);
-  --custom-primary-rgb-7: 66, 95, 13;
-  --custom-primary-8: rgba(66, 95, 13, 0.8);
-  --custom-primary-rgb-8: 66, 95, 13;
-  --custom-primary-9: rgba(66, 95, 13, 0.9);
-  --custom-primary-rgb-9: 66, 95, 13;
-  --custom-primary-10: rgba(66, 95, 13, 1);
-  --custom-primary-rgb-10: 66, 95, 13;
-  --custom-primary: #425F0D;
-  --custom-primary-rgb: 66, 95, 13;
+  --custom-primary-1: rgba(114, 204, 36, 0.1);
+  --custom-primary-rgb-1: 114, 204, 36;
+  --custom-primary-2: rgba(114, 204, 36, 0.2);
+  --custom-primary-rgb-2: 114, 204, 36;
+  --custom-primary-3: rgba(114, 204, 36, 0.3);
+  --custom-primary-rgb-3: 114, 204, 36;
+  --custom-primary-4: rgba(114, 204, 36, 0.4);
+  --custom-primary-rgb-4: 114, 204, 36;
+  --custom-primary-5: rgba(114, 204, 36, 0.5);
+  --custom-primary-rgb-5: 114, 204, 36;
+  --custom-primary-6: rgba(114, 204, 36, 0.6);
+  --custom-primary-rgb-6: 114, 204, 36;
+  --custom-primary-7: rgba(114, 204, 36, 0.7);
+  --custom-primary-rgb-7: 114, 204, 36;
+  --custom-primary-8: rgba(114, 204, 36, 0.8);
+  --custom-primary-rgb-8: 114, 204, 36;
+  --custom-primary-9: rgba(114, 204, 36, 0.9);
+  --custom-primary-rgb-9: 114, 204, 36;
+  --custom-primary-10: rgba(114, 204, 36, 1);
+  --custom-primary-rgb-10: 114, 204, 36;
+  --custom-primary: hsl(92, 70%, 47%);
+  --custom-primary-rgb: 114, 204, 36;
   --custom-secondary-1: rgba(119, 214, 37, 0.1);
   --custom-secondary-rgb-1: 119, 214, 37;
   --custom-secondary-2: rgba(119, 214, 37, 0.2);
@@ -6298,52 +6298,52 @@ html[theme=light] .txt-heading {
 }
 
 html[theme=dark] .txt-primary-1 {
-  color: rgba(66, 95, 13, 0.1) !important;
+  color: rgba(114, 204, 36, 0.1) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-2 {
-  color: rgba(66, 95, 13, 0.2) !important;
+  color: rgba(114, 204, 36, 0.2) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-3 {
-  color: rgba(66, 95, 13, 0.3) !important;
+  color: rgba(114, 204, 36, 0.3) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-4 {
-  color: rgba(66, 95, 13, 0.4) !important;
+  color: rgba(114, 204, 36, 0.4) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-5 {
-  color: rgba(66, 95, 13, 0.5) !important;
+  color: rgba(114, 204, 36, 0.5) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-6 {
-  color: rgba(66, 95, 13, 0.6) !important;
+  color: rgba(114, 204, 36, 0.6) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-7 {
-  color: rgba(66, 95, 13, 0.7) !important;
+  color: rgba(114, 204, 36, 0.7) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-8 {
-  color: rgba(66, 95, 13, 0.8) !important;
+  color: rgba(114, 204, 36, 0.8) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary-9 {
-  color: rgba(66, 95, 13, 0.9) !important;
+  color: rgba(114, 204, 36, 0.9) !important;
   font-weight: 400;
 }
 
 html[theme=dark] .txt-primary {
-  color: #425F0D !important;
+  color: hsl(92, 70%, 47%) !important;
   font-weight: 400;
 }
 

@@ -90,9 +90,15 @@ body {
         display: flex;
         align-items: center;
         height: 50px;
+        width: 100%;
         :hover {
             color: white !important;
             background-color: var(--custom-primary) !important;  // Bleu Bootstrap pour contraste
+        }
+        text-decoration: none;
+        margin: 0;
+        .fa-solid {
+            padding: 0;
         }
     }
 }
@@ -115,6 +121,7 @@ body {
     vertical-align: middle;
     z-index: 1000;
     font-family: 'Font Awesome 6 Free';
+    font-size: 1.5rem;
     user-select: none;
 }
 
@@ -143,6 +150,44 @@ body {
     60% {
         transform: translateY(-3px);
     }
+}
+
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    // padding: 10px;
+    border-bottom: 1px solid var(--custom-primary);
+    cursor: pointer;
+    &:hover, &:hover * {
+        background-color: var(--custom-primary);
+        color: white;
+    }
+}
+
+.my-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.icon-left {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.text-item {
+    flex-grow: 1;
+}
+
+.icon-right {
+    margin-left: auto;
+    font-size: 16px;
 }
 
 /****************************************************/
@@ -251,7 +296,8 @@ svg symbol path{
 
     height: 100vh;
     width: 100%;
-    background-image: url('../../public/img/foret_et_terre_320_568.webp');
+    // background-image: url('../../public/img/foret_et_terre_320_568.webp');
+    background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
     background-size: cover; /* Remplit l’espace sans déformation */
     background-position: top;
         // ; /* Centre l’image */
@@ -264,7 +310,8 @@ svg symbol path{
     @media screen and (min-width: $breakpoint) {
         height: 50vh; /* La moitié de la hauteur de l'écran */
         width: 100%;
-        background-image: url('../../public/img/foret_et_terre_degrade.webp');
+        // background-image: url('../../public/img/foret_et_terre_degrade.webp');
+        background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
         // display: flex;
         // justify-content: center;
         // align-items: center;
