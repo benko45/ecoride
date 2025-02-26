@@ -65,6 +65,15 @@
     }
   }
 }
+@media screen and (min-width: 768px) {
+  @for $i from 5 through 100 {
+    @if $i%5 == 0 {
+      .element-height-#{$i} {
+        height: #{$i * 0.6* 1vh};
+      }
+    }
+  }
+} 
 
 /**********************************************/
 /* accessibility border */

@@ -82,6 +82,60 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+/***********************************************************/
+/*              En dessous de width 768px                  */
+/***********************************************************/
+
+const mediaQuery = window.matchMedia('(max-width: 768px)');
+const connexion = document.getElementById('connexion');
+const span_connexion = document.getElementById('span-connexion');
+// const nav = document.getElementById('nav');
+
+function handleMediaQueryChange(e) {
+    if (e.matches) {
+        connexion.classList.remove('p-3');
+        span_connexion.innerHTML = "Connexion";
+    }
+    /******************************************************/
+    /*   Calcul de la largeur des dropdown-item           */
+    /******************************************************/
+    const resizeElements = () => {
+        const lis = document.querySelectorAll('#nav li');
+        const as = document.querySelectorAll('#nav li a');
+
+        let maxWidth = 0;
+
+        // Trouver la largeur maximale
+        lis.forEach(element => {
+            const width = element.offsetWidth;
+            if(width > maxWidth) maxWidth = width;
+        });
+        console.log('Max Width:', maxWidth);
+
+        // Appliquer la largeur maximale à tous les éléments
+        lis.forEach(element => {
+            element.style.width = maxWidth + 'px';
+        });
+        as.forEach(element => {
+            element.style.width = maxWidth + 'px';
+        });
+    };
+    // Appeler la fonction au chargement de la page
+    resizeElements();
+
+    const liASpan = document.querySelectorAll('li a span');
+    liASpan.forEach(element => {
+        element.classList.remove('ps-2');
+    });
+}
+
+// Vérifie la taille de l'écran au chargement
+handleMediaQueryChange(mediaQuery);
+
+// Écoute les changements de taille d'écran
+mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+
 
 
 

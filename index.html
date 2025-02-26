@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="./css/test.css"> -->
 </head>
 <body class="background-light">
-    <nav id="nav" class="background-light">
+    <nav id="nav" class="d-flex align-items-center">
         <div id="menu" class="d-flex align-items-center">
             <div>
                 <!-- Bouton de toggle avec caret animé -->
@@ -23,36 +23,47 @@
 
                 </div>
                 <!-- Liste du menu avec hide par défaut -->
-                <ul id="menu-list" class="p-3 shadow">
-                    <li class="list-item d-flex bottom-border-secondary-1-50">
+                <ul id="menu-list" class="shadow">
+                    <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
                         <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-solid fa-car"></i>
-                            <span class="text-item ps-2">Vos trajets</span>
-                            <i class="icon-right fa-solid fa-chevron-right"></i>
+                            <i class="icon-left fa-solid fa-magnifying-glass"></i>
+                            <span class="text-item ps-2">Rechercher</span>
                         </a>
                     </li>
-                    <li class="list-item d-flex bottom-border-secondary-1-50">
+                    <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
+                        <a class="my-dropdown-item txt-primary fs-20" href="#">
+                            <i class="icon-left fa-solid fa-circle-plus"></i>
+                            <span class="text-item ps-2">Publier</span>
+                        </a>
+                    </li>
+                    <li class="list-item d-flex bottom-border-secondary-1-50 px-3">
+                        <a class="my-dropdown-item txt-primary fs-20" href="#">
+                            <i class="icon-left fa-solid fa-car"></i>
+                            <span class="text-item ps-2">Trajets</span>
+                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
+                        </a>
+                    </li>
+                    <li class="list-item d-flex bottom-border-secondary-1-50 px-3">
                         <a class="my-dropdown-item txt-primary fs-20" href="#">
                             <i class="icon-left fa-regular fa-address-book"></i>
                             <span class="text-item ps-2">Contact</span>
-                            <i class="icon-right fa-solid fa-chevron-right"></i>
+                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
                         </a>
                     </li>
-                    <li class="list-item d-flex bottom-border-secondary-1-50">
+                    <li class="hide-under-md list-item d-flex bottom-border-secondary-1-50 px-3">
                         <a class="my-dropdown-item txt-primary fs-20" href="#">
                             <i class="icon-left fa-regular fa-user"></i>
                             <span class="text-item ps-2">Profil</span>
-                            <i class="icon-right fa-solid fa-chevron-right"></i>
+                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
                         </a>
                     </li>
-                    <li class="list-item d-flex">
+                    <li  id="connexion" class="list-item d-flex p-3">
                         <a class="my-dropdown-item txt-primary fs-20" href="#">
                             <i class="icon-left fa-solid fa-arrow-right-from-bracket"></i>
-                            <span class="text-item ps-2">Déconnexion</span>
-                            <i class="icon-right fa-solid fa-chevron-right"></i>
+                            <span id="span-connexion" class="text-item ps-2">Déconnexion</span>
+                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
                         </a>
                     </li>
-                    
                 </ul>
             </div>
         </div>
@@ -235,7 +246,7 @@
                     </div>
                 </div>
             </div>
-            <button id="search" class="col-lg-2 col-md-2 col-12 p-3 txt-light fw-semibold background-secondary d-flex derniere-cellule no-border justify-content-center align-items-center element-height-10 moving-border-primary-1-50 bottom-border-secondary-1-50" >Rechercher</button>
+            <button id="search" class="col-lg-2 col-md-2 col-12 p-3 txt-light fw-semibold background-primary d-flex derniere-cellule no-border justify-content-center align-items-center element-height-10 moving-border-primary-1-50 bottom-border-secondary-1-50" >Rechercher</button>
         </div>
     </div>
     <!-- fin menu trajet -->
