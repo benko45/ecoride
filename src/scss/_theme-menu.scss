@@ -96,20 +96,24 @@ svg symbol path{
     background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
     background-size: cover; /* Remplit l’espace sans déformation */
     background-position: top;
-        // ; /* Centre l’image */
-
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: white; /* Texte en blanc */
+    color: white;
     @media screen and (min-width: variables.$breakpoint) {
         height: 50vh; /* La moitié de la hauteur de l'écran */
         width: 100%;
         // background-image: url('../../public/img/foret_et_terre_degrade.webp');
         background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
         }
+}
+.responsive-img {
+    display: none; /* Cacher toutes les images par défaut */
+    width: 100%;
+    height: auto;
+}
+
+.visible {
+    display: block; /* Afficher seulement l'image sélectionnée */
 }

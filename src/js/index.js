@@ -136,8 +136,64 @@ handleMediaQueryChange(mediaQuery);
 mediaQuery.addEventListener('change', handleMediaQueryChange);
 
 
+/******************************************************/
+/*    Choix de l'image de fond selon l'écran          */
+/******************************************************/
+// Configuration : Règles pour sélectionner l'image
+const rules = [
+    {
+        className: 'img-mobile',
+        condition: () => window.innerWidth <= 768
+    },
+    {
+        className: 'img-tablet',
+        condition: () => window.innerWidth > 768 
+    }
+];
 
+// Fonction de sélection de l'image optimale
+const selectImage = () => {
+    // Cacher toutes les images
+    document.querySelectorAll('.responsive-img').forEach(img => {
+        img.classList.add('hidden');
+        img.classList.remove('visible');
+    });
 
+    // Parcourir les règles et afficher l'image qui correspond à la condition
+    for (let rule of rules) {
+        if (rule.condition()) {
+            const img = document.querySelector(`.${rule.className}`);
+            img.classList.add('visible');
+            img.classList.remove('hidden');
+            break;
+        }
+    }
+};
+
+// // Appeler la fonction au chargement de la page
+// selectImage();
+// // Réévaluer lors du redimensionnement de l'écran
+// window.addEventListener('resize', selectImage);
+
+window.addEventListener('load', () => {
+    selectImage();
+    window.addEventListener('resize', selectImage);
+});
+
+console.log("Début du script");
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded déclenché");
+});
+
+window.addEventListener('load', () => {
+    console.log("window.onload déclenché");
+});
+
+console.log("Images détectées :");
+document.querySelectorAll('.responsive-img').forEach(img => {
+    console.log(img);
+});
 
 
 /******************************************************/
