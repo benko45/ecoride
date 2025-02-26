@@ -202,9 +202,9 @@ body {
     color:  var(--custom-primary);
     width: auto;
     @media screen and (min-width: $breakpoint) {
-        top: 5%; /* Ajuste la distance depuis le haut */
-        left: 50% !important;
-        transform: translate(-50%, -5%) !important;
+        top: 1%; /* Ajuste la distance depuis le haut */
+        left: 25% !important;
+        transform: translate(-25%, -1%) !important;
         // color: var(--custom-secondary);
     }
 }
