@@ -110,6 +110,10 @@ function handleMediaQueryChange(e) {
             const width = element.offsetWidth;
             if(width > maxWidth) maxWidth = width;
         });
+        as.forEach(element => {
+            const width = element.offsetWidth;
+            if(width > maxWidth) maxWidth = width;
+        });
         console.log('Max Width:', maxWidth);
 
         // Appliquer la largeur maximale à tous les éléments
