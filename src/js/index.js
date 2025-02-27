@@ -201,6 +201,8 @@ window.addEventListener('load', () => {
 // document.querySelectorAll('.responsive-img').forEach(img => {
 //     console.log(img);
 // });
+console.log('Viewport Width:', window.innerWidth);
+console.log('Document Width:', document.documentElement.scrollWidth);
 
 
 /******************************************************/
