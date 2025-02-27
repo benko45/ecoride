@@ -147,11 +147,11 @@ const rules = [
     },
     {
         className: 'img-tablet',
-        condition: () => window.innerWidth < 1600 
+        condition: () => window.innerWidth <= 1600 
     },
     {
         className: 'img-desktop',
-        condition: () => window.innerWidth >= 1600 
+        condition: () => window.innerWidth > 1600 
     }
 ];
 
