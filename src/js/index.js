@@ -143,11 +143,11 @@ mediaQuery.addEventListener('change', handleMediaQueryChange);
 const rules = [
     {
         className: 'img-mobile',
-        condition: () => window.innerWidth <= 768
+        condition: () => window.innerWidth < 768
     },
     {
         className: 'img-tablet',
-        condition: () => window.innerWidth > 768 
+        condition: () => window.innerWidth >= 768 
     }
 ];
 
