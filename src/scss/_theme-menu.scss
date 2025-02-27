@@ -111,7 +111,16 @@ svg symbol path{
 .responsive-img {
     display: none; /* Cacher toutes les images par défaut */
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.cover {
+    height: 50vh;              /* 50% de la hauteur de l'écran */
+    width: 100%;               /* Prend toute la largeur du conteneur */
+    // object-fit: cover;         /* Couvre tout l'espace sans déformer */
+    // object-position: center top; /* Centre horizontalement, focus sur le haut */
 }
 
 .visible {
