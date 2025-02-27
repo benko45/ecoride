@@ -201,8 +201,15 @@ window.addEventListener('load', () => {
 // document.querySelectorAll('.responsive-img').forEach(img => {
 //     console.log(img);
 // });
+// console.log('Viewport Width:', window.innerWidth);
+// console.log('Document Width:', document.documentElement.scrollWidth);
+const body = document.body;
+const html = document.documentElement;
+const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, 
+                          html.clientWidth, html.scrollWidth, html.offsetWidth);
+
 console.log('Viewport Width:', window.innerWidth);
-console.log('Document Width:', document.documentElement.scrollWidth);
+console.log('Max Document Width:', maxWidth);
 
 
 /******************************************************/
