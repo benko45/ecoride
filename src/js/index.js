@@ -170,30 +170,26 @@ const selectImage = () => {
     }
 };
 
-// // Appeler la fonction au chargement de la page
-// selectImage();
-// // Réévaluer lors du redimensionnement de l'écran
-// window.addEventListener('resize', selectImage);
-
 window.addEventListener('load', () => {
     selectImage();
     window.addEventListener('resize', selectImage);
 });
 
-console.log("Début du script");
+/*          code de debug               */
+// console.log("Début du script");
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOMContentLoaded déclenché");
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     console.log("DOMContentLoaded déclenché");
+// });
 
-window.addEventListener('load', () => {
-    console.log("window.onload déclenché");
-});
+// window.addEventListener('load', () => {
+//     console.log("window.onload déclenché");
+// });
 
-console.log("Images détectées :");
-document.querySelectorAll('.responsive-img').forEach(img => {
-    console.log(img);
-});
+// console.log("Images détectées :");
+// document.querySelectorAll('.responsive-img').forEach(img => {
+//     console.log(img);
+// });
 
 
 /******************************************************/

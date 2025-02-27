@@ -1,0 +1,53 @@
+@use "variables" as variables;
+/****************************************************/
+/*                  image de fond                   */
+/****************************************************/
+.background-image {
+    position: relative;
+
+    height: 100vh;
+    width: 100%;
+    // background-image: url('../../public/img/foret_et_terre_320_568.webp');
+    background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
+    background-size: cover; /* Remplit l’espace sans déformation */
+    background-position: top;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    @media screen and (min-width: variables.$breakpoint) {
+        height: 50vh; /* La moitié de la hauteur de l'écran */
+        width: 100%;
+        // background-image: url('../../public/img/foret_et_terre_degrade.webp');
+        background-image: url('../../public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg');
+        }
+}
+
+/****************************************************/
+/*                  image de fond                   */
+/****************************************************/
+/*                  Image par défaut                */
+/****************************************************/
+.responsive-img {
+    display: none;
+    width: 100%; 
+    height: 100vh;
+    object-fit: cover;
+    object-position: center top;
+}
+/****************************************************/
+/*                  image de fond                   */
+/****************************************************/
+/*                  style grande taille             */
+/****************************************************/
+.cover {
+    width: 100%; 
+    height: 50vh; 
+    object-fit: cover; /* Remplit l’espace */
+    object-position: center top; /* Centre horizontalement, focus sur le haut */
+}
+
+.visible {
+    display: block;
+}
