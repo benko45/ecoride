@@ -16,18 +16,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow-x: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    overscroll-behavior-x: none;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
 }
 
 @media screen and (max-width : variables.$breakpoint) {
