@@ -89,12 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const connexion = document.getElementById('connexion');
 const span_connexion = document.getElementById('span-connexion');
-// const nav = document.getElementById('nav');
+const traject_container_container = document.getElementById('traject-container-container');
 
 function handleMediaQueryChange(e) {
     if (e.matches) {
         connexion.classList.remove('p-3');
         span_connexion.innerHTML = "Connexion";
+        traject_container_container.removeAttribute('top');
     }
     /******************************************************/
     /*   Calcul de la largeur des dropdown-item           */
