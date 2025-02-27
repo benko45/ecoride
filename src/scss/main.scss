@@ -217,7 +217,8 @@ body {
     }
 
     #menu{
-        padding: 0 10px;
+        width: 100vw;
+        padding: 0;
     }
     .my-dropdown-item {
         display: flex;
@@ -237,7 +238,7 @@ body {
         justify-content: space-around;
         align-items: center;
         list-style: none;
-        padding: 5px;
+        padding: 0;
         margin: 0;
         width: 100%;
         z-index: 1000; 
@@ -287,7 +288,11 @@ body {
         }
     }
 }
-
+@media screen and (max-width: 425px) {
+    #menu-list li a span {
+        font-size: 0.75rem;
+    }
+}
 /****************************************************/
 /*          Mise en forme du titre                  */    
 /****************************************************/
