@@ -7,10 +7,6 @@
 @use "background-img";
 
 // @debug 'test de débogage';
-* {
-    outline: 1px solid red;
-}
-
 html, body {
     image-rendering: pixelated;
     transform-style: preserve-3d;
