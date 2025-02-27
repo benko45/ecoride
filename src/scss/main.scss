@@ -8,6 +8,11 @@
 
 // @debug 'test de débogage';
 
+html, body {
+    image-rendering: pixelated;
+    transform-style: preserve-3d;
+}
+
 body {
     margin: 0;
     padding: 0;
