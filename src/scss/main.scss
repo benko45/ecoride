@@ -1,10 +1,10 @@
 @use 'sass:map';
 @use "styles/colors-variables" as colors;
 @use "styles/global-styles";
-@use "traject-search";
+@use "index/traject-search";
 @use "variables" as variables;
-@use "theme-menu";
-@use "background-img";
+@use "index/theme-menu";
+@use "index/background-img";
 
 // @debug 'test de débogage';
 

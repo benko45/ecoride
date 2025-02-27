@@ -1,6 +1,6 @@
 @use 'sass:map';
-@use "styles/colors-variables" as colors;
-@use "variables" as variables;
+@use "../styles/colors-variables" as colors;
+@use "../variables" as variables;
 
 /********************************************************/
 /* formatage de la zone de recherche de trajet */

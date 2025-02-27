@@ -222,7 +222,7 @@ const caseDepart = document.getElementById("click-case-depart");
 caseDepart.addEventListener("click", function() {
     // event.preventDefault();
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-address.html";
+    window.location.href = "public/html/choosing-address.html";
 });
 
 // Récupérer l'adresse stockée dans localStorage
@@ -245,7 +245,7 @@ const caseArrivee = document.getElementById("case-arrivee");
 caseArrivee.addEventListener("click", function() {
     // event.preventDefault();
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-arrival-address.html";
+    window.location.href = "public/html/choosing-arrival-address.html";
 });
 
 // Récupérer l'adresse stockée dans localStorage
@@ -302,7 +302,7 @@ window.addEventListener('beforeunload', function (event) {
 // Redirection vers la page de sélection de date
 document.getElementById("case-date").addEventListener("click", function() {
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-date.html";
+    window.location.href = "public/html/choosing-date.html";
 });
 
 // Récupérer la date enregistrée dans le localStorage
@@ -329,7 +329,7 @@ if (savedDate) {
 // Redirection vers la page de sélection du nombre de passagers
 document.getElementById("case-passengers").addEventListener("click", function() {
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-passengers.html";
+    window.location.href = "public/html/choosing-passengers.html";
 });
 
 // initialisation du nombre de passagers
@@ -355,9 +355,9 @@ document.getElementById("search").addEventListener("click", function() {
             localStorage.setItem('selectedDate', todayFormatted);
         }
         selectedDepartureAddress === 'Départ'
-            ? window.location.href = "public/choosing-address.html"
+            ? window.location.href = "public/html/choosing-address.html"
             : selectedArrivalAddress === 'Arrivée'
-                ? window.location.href = "public/choosing-arrival-address.html"
-                : window.location.href = "public/choosing-traject.html";
+                ? window.location.href = "public/html/choosing-arrival-address.html"
+                : window.location.href = "public/html/choosing-traject.html";
     }
 });
