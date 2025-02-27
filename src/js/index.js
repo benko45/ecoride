@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const connexion = document.getElementById('connexion');
 const span_connexion = document.getElementById('span-connexion');
-// const nav = document.getElementById('nav');
+// const traject_container_container = document.getElementById('traject-container-container');
 
 function handleMediaQueryChange(e) {
     if (e.matches) {
@@ -114,7 +114,7 @@ function handleMediaQueryChange(e) {
             const width = element.offsetWidth;
             if(width > maxWidth) maxWidth = width;
         });
-        console.log('Max Width:', maxWidth);
+        // console.log('Max Width:', maxWidth);
 
         // Appliquer la largeur maximale à tous les éléments
         lis.forEach(element => {
@@ -198,6 +198,15 @@ window.addEventListener('load', () => {
 // document.querySelectorAll('.responsive-img').forEach(img => {
 //     console.log(img);
 // });
+// console.log('Viewport Width:', window.innerWidth);
+// console.log('Document Width:', document.documentElement.scrollWidth);
+// const body = document.body;
+// const html = document.documentElement;
+// const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, 
+//                           html.clientWidth, html.scrollWidth, html.offsetWidth);
+
+// console.log('Viewport Width:', window.innerWidth);
+// console.log('Max Document Width:', maxWidth);
 
 
 /******************************************************/
