@@ -139,6 +139,9 @@ handleMediaQueryChange(mediaQuery);
 // Écoute les changements de taille d'écran
 mediaQuery.addEventListener('change', handleMediaQueryChange);
 
+window.addEventListener('resize', () => {
+    console.log(`Viewport Width: ${window.innerWidth}px, Height: ${window.innerHeight}px`);
+});
 
 /******************************************************/
 /*    Choix de l'image de fond selon l'écran          */
