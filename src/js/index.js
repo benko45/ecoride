@@ -139,9 +139,6 @@ handleMediaQueryChange(mediaQuery);
 // Écoute les changements de taille d'écran
 mediaQuery.addEventListener('change', handleMediaQueryChange);
 
-window.addEventListener('resize', () => {
-    console.log(`Viewport Width: ${window.innerWidth}px, Height: ${window.innerHeight}px`);
-});
 
 /******************************************************/
 /*    Choix de l'image de fond selon l'écran          */
@@ -203,13 +200,13 @@ window.addEventListener('load', () => {
 // });
 // console.log('Viewport Width:', window.innerWidth);
 // console.log('Document Width:', document.documentElement.scrollWidth);
-const body = document.body;
-const html = document.documentElement;
-const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, 
-                          html.clientWidth, html.scrollWidth, html.offsetWidth);
+// const body = document.body;
+// const html = document.documentElement;
+// const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, 
+//                           html.clientWidth, html.scrollWidth, html.offsetWidth);
 
-console.log('Viewport Width:', window.innerWidth);
-console.log('Max Document Width:', maxWidth);
+// console.log('Viewport Width:', window.innerWidth);
+// console.log('Max Document Width:', maxWidth);
 
 
 /******************************************************/
