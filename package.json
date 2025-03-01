@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "@barba/core": "^2.10.3",
-    "bootstrap": "^5.3.3",
-    "gasp": "^0.0.2"
+    "bootstrap": "^5.3.3"
   }
 }
