@@ -1137,6 +1137,8 @@ html[theme=accessibility-dark] {
 
 /************************************************/
 #filter-container {
+  width: 90%; /* S'assure qu'il prend toute la largeur */
+  max-width: 90vw; /* S'assure qu'il ne dépasse pas la largeur de l'écran */
   margin-left: 15px;
   border: 0.5px solid var(--custom-primary-8);
   border-radius: 10px;

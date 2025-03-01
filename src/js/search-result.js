@@ -24,10 +24,9 @@ filterDate.innerHTML = localStorage.getItem('selectedDate');
 filterPassengersNb.innerHTML = ', ' + localStorage.getItem('selectedPassengers') + ' passager' + s(localStorage.getItem('selectedPassengers'));
 
 // Ajuste la largeur des éléments de filtre : windwow.innerWidth / 2 - 50px
-adjustLine_1_ItemWidth(filterDepartureAddress, 50);
-adjustLine_1_ItemWidth(filterArrivalAddress, 50);
+adjustLine_1_ItemWidth([filterDepartureAddress, filterArrivalAddress], 50);
 
-// click su filter container
+// click sur filter container
 document.getElementById('filter-container').addEventListener('click', function() {
     window.location.href = '../../index.html';
 });

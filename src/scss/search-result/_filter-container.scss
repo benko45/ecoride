@@ -3,6 +3,8 @@
 @use "../variables";
 
 #filter-container{
+    width: 90%;                /* S'assure qu'il prend toute la largeur */
+    max-width: 90vw;          /* S'assure qu'il ne dépasse pas la largeur de l'écran */
     margin-left: 15px;
     border: 0.5px solid var(--custom-primary-8);
     border-radius: 10px;
@@ -57,3 +59,54 @@
     }
 }
 
+// #line_1 {
+//     display: flex;
+//     flex-wrap: nowrap;          /* Empêche le retour à la ligne */
+//     width: 100%;                /* S'assure de ne pas dépasser le parent */
+//     overflow: hidden;
+//     box-sizing: border-box;
+//   }
+  
+//   #line_1 > * {
+//     flex-shrink: 1;             /* Permet aux enfants de rétrécir */
+//     min-width: 0;               /* Autorise le rétrécissement */
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//   }
+
+//   #line_1 {
+//     display: flex;
+//     justify-content: space-between;
+//     flex-wrap: nowrap;
+//     width: 100%;
+//     max-width: 100%;               /* Empêche le dépassement du parent */
+//     overflow: hidden;              /* Cache tout débordement */
+//     box-sizing: border-box;
+//   }
+  
+//   #line_1 > * {
+//     flex-shrink: 1;                /* Permet le rétrécissement */
+//     flex-grow: 0;                  /* Empêche l'expansion */
+//     min-width: 0;                  /* Autorise le rétrécissement */
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//   }
+//   #filter-departure-address,
+//   #filter-arrival-address {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     max-width: 100%;               /* Empêche le dépassement */
+//     box-sizing: border-box;
+//     flex-shrink: 1;
+//     flex-grow: 0;
+//     min-width: 0;
+//   }
+
+//   #filter-abstract, #line_1, #filter-departure-address, #filter-arrival-address {
+//     overflow: visible !important;
+//     outline: 1px solid red;
+//   }
+  
