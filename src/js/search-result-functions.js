@@ -15,8 +15,9 @@ export const adjustLine_1_ItemWidth = (container, elements, margin) => {
     // Fonction pour ajuster la largeur
     const adjustWidth = () => {
         const rightArrowWidth = document.getElementById('filter-right-arrow').offsetWidth;
+        const filterButtonWidth = document.getElementById('filter-button').offsetWidth;
         const containerwWidth = container.clientWidth;
-        const commonWidth = ((containerwWidth - container.style.margin * 2) / 2) - margin - rightArrowWidth;
+        const commonWidth = ((containerwWidth - container.style.margin * 2) / 2) - margin - rightArrowWidth - filterButtonWidth;
 
         // Applique cette même largeur à tous les éléments
         elements.forEach(element => {

@@ -1143,6 +1143,7 @@ html[theme=accessibility-dark] {
   border: 0.5px solid var(--custom-primary-8);
   border-radius: 10px;
   padding: 10px;
+  justify-content: space-between;
 }
 #filter-container #chevron-left {
   color: var(--custom-primary);
@@ -1182,6 +1183,22 @@ html[theme=accessibility-dark] {
   font-size: 0.7rem;
   font-weight: 400;
   color: var(--custom-primary-6);
+}
+#filter-container #filter-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--custom-primary);
+  color: var(--custom-light);
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 5px 0 0 0;
+  font-size: 0.7rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+#filter-container #filter-button:hover {
+  background-color: var(--custom-primary-8);
 }
 
 #search-result-container {
