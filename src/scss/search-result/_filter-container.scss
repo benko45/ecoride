@@ -11,6 +11,7 @@
     padding: 10px;
     #chevron-left{
         color: var(--custom-primary);
+        margin: 0 5px 0 0;
     }
     #filter-abstract{
         display: flex;
@@ -20,7 +21,6 @@
         #line_1{
             $text-width: 130px;
             display: flex;
-            // justify-content: space-between;
             align-items: center;
             font-size: 0.70rem;
             font-weight: 400;

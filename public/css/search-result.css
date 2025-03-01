@@ -1146,6 +1146,7 @@ html[theme=accessibility-dark] {
 }
 #filter-container #chevron-left {
   color: var(--custom-primary);
+  margin: 0 5px 0 0;
 }
 #filter-container #filter-abstract {
   display: flex;
