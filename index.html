@@ -13,62 +13,64 @@
     <link rel="stylesheet" href="public/css/main.css">
     <!-- <link rel="stylesheet" href="./css/test.css"> -->
 </head>
-<body class="background-light">
-    <nav id="nav" class="d-flex align-items-center">
-        <div id="menu" class="d-flex align-items-center">
-            <div style="width:100%;">
-                <!-- Bouton de toggle avec caret animé -->
-                <div id="menu-toggle" class="d-inline-block text-decoration-none" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="user-photo" width="50" height="50" class="rounded-circle">
-                    <i class="fa-solid fa-chevron-down caret-icon"></i>
+<body class="background-light" data-barba="wrapper">
+    <main data-barba="container" data-barba-namespace="home"></main>
+        <nav id="nav" class="d-flex align-items-center">
+            <div id="menu" class="d-flex align-items-center">
+                <div style="width:100%;">
+                    <!-- Bouton de toggle avec caret animé -->
+                    <div id="menu-toggle" class="d-inline-block text-decoration-none" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="user-photo" width="50" height="50" class="rounded-circle">
+                        <i class="fa-solid fa-chevron-down caret-icon"></i>
 
+                    </div>
+                    <!-- Liste du menu avec hide par défaut -->
+                    <ul id="menu-list" class="shadow">
+                        <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
+                            <a class="my-dropdown-item txt-primary fs-20" href="#">
+                                <i class="icon-left fa-solid fa-magnifying-glass"></i>
+                                <span class="text-item ps-2">Rechercher</span>
+                            </a>
+                        </li>
+                        <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
+                            <a class="my-dropdown-item txt-primary fs-20" href="#">
+                                <i class="icon-left fa-solid fa-circle-plus"></i>
+                                <span class="text-item ps-2">Publier</span>
+                            </a>
+                        </li>
+                        <li class="list-item d-flex bottom-border-secondary-1-50 px-3">
+                            <a class="my-dropdown-item txt-primary fs-20" href="#">
+                                <i class="icon-left fa-solid fa-car"></i>
+                                <span class="text-item ps-2">Trajets</span>
+                                <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="list-item d-flex bottom-border-secondary-1-50 px-3">
+                            <a class="my-dropdown-item txt-primary fs-20" href="#">
+                                <i class="icon-left fa-regular fa-address-book"></i>
+                                <span class="text-item ps-2">Contact</span>
+                                <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="hide-under-md list-item d-flex bottom-border-secondary-1-50 px-3">
+                            <a class="my-dropdown-item txt-primary fs-20" href="#">
+                                <i class="icon-left fa-regular fa-user"></i>
+                                <span class="text-item ps-2">Profil</span>
+                                <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li  id="connexion" class="list-item d-flex p-3">
+                            <a class="my-dropdown-item txt-primary fs-20" href="#">
+                                <i class="icon-left fa-solid fa-arrow-right-from-bracket"></i>
+                                <span id="span-connexion" class="text-item ps-2">Déconnexion</span>
+                                <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <!-- Liste du menu avec hide par défaut -->
-                <ul id="menu-list" class="shadow">
-                    <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
-                        <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-solid fa-magnifying-glass"></i>
-                            <span class="text-item ps-2">Rechercher</span>
-                        </a>
-                    </li>
-                    <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
-                        <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-solid fa-circle-plus"></i>
-                            <span class="text-item ps-2">Publier</span>
-                        </a>
-                    </li>
-                    <li class="list-item d-flex bottom-border-secondary-1-50 px-3">
-                        <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-solid fa-car"></i>
-                            <span class="text-item ps-2">Trajets</span>
-                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
-                        </a>
-                    </li>
-                    <li class="list-item d-flex bottom-border-secondary-1-50 px-3">
-                        <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-regular fa-address-book"></i>
-                            <span class="text-item ps-2">Contact</span>
-                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
-                        </a>
-                    </li>
-                    <li class="hide-under-md list-item d-flex bottom-border-secondary-1-50 px-3">
-                        <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-regular fa-user"></i>
-                            <span class="text-item ps-2">Profil</span>
-                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
-                        </a>
-                    </li>
-                    <li  id="connexion" class="list-item d-flex p-3">
-                        <a class="my-dropdown-item txt-primary fs-20" href="#">
-                            <i class="icon-left fa-solid fa-arrow-right-from-bracket"></i>
-                            <span id="span-connexion" class="text-item ps-2">Déconnexion</span>
-                            <i class="hide-under-md icon-right fa-solid fa-chevron-right"></i>
-                        </a>
-                    </li>
-                </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </main>
 
     <!-- Définition de symbols pour le menu dropdown de choix du thème -->
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">

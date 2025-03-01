@@ -2,6 +2,8 @@
 // @use "styles/global-styles";
 @use "search-result/filter-container";
 @use "search-result/search-result-container";
+@use "transitions";
+
 
 body {
     margin: 0;

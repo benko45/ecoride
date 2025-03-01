@@ -1,6 +1,13 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
+import { initBarba } from './barba.js';
+
+// Lance Barba.js après le chargement du DOM
+document.addEventListener("DOMContentLoaded", () => {
+    initBarba();
+});
+
 /******************************************************/
 /******************************************************/
 applyTheme();

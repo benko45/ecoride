@@ -1216,6 +1216,26 @@ html[theme=accessibility-dark] {
   justify-content: center;
 }
 
+/* Conteneur de la page pour l'animation */
+/* Cache temporairement les pages entrantes pour éviter le flash */
+[data-barba=container] {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Animation d'entrée */
+.page-enter-active {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Animation de sortie */
+.page-leave-active {
+  opacity: 0 !important;
+  transform: translateX(-100%) !important;
+}
+
 body {
   margin: 0;
   padding: 0;
