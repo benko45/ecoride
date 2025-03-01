@@ -295,9 +295,14 @@ document.getElementById("case-passengers").addEventListener("click", function() 
 
 // initialisation du nombre de passagers
 let selectedPassengers;
-localStorage.getItem('selectedPassengers')
-    ? selectedPassengers = localStorage.getItem('selectedPassengers')
-    : selectedPassengers = 1;
+if(localStorage.getItem('selectedPassengers')){
+    selectedPassengers = localStorage.getItem('selectedPassengers')
+    }
+    else {
+        selectedPassengers = 1;
+        localStorage.setItem('selectedPassengers', 1);
+    }
+
 
 document.getElementById('passengers-nb').innerHTML = selectedPassengers;
 

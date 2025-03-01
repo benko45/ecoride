@@ -1,7 +1,7 @@
-@use 'sass:map';
-@use "styles/colors-variables" as colors;
-@use "styles/global-styles";
-@use "variables";
+// @use "styles/colors-variables";
+// @use "styles/global-styles";
+@use "search-result/filter-container";
+@use "search-result/search-result-container";
 
 body {
     margin: 0;

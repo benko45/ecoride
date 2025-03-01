@@ -1,0 +1,59 @@
+@use 'sass:map';
+@use '../styles/colors-variables' as colors;
+@use "../variables";
+
+#filter-container{
+    margin-left: 15px;
+    border: 0.5px solid var(--custom-primary-8);
+    border-radius: 10px;
+    padding: 10px;
+    #chevron-left{
+        color: var(--custom-primary);
+    }
+    #filter-abstract{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 5px;
+        #line_1{
+            $text-width: 130px;
+            display: flex;
+            // justify-content: space-between;
+            align-items: center;
+            font-size: 0.70rem;
+            font-weight: 400;
+            color: var(--custom-primary);
+            #filter-departure-address{
+                display: block;
+                white-space: nowrap;         /* Empêche le texte de passer à la ligne */
+                overflow: hidden;            /* Cache le texte qui dépasse le conteneur */
+                text-overflow:ellipsis;      /* Ajoute des points de suspension */
+            }
+            #filter-right-arrow{
+                color: var(--custom-primary-8); 
+            }
+            #filter-arrival-address{
+                display: block;
+                white-space: nowrap;         /* Empêche le texte de passer à la ligne */
+                overflow: hidden;            /* Cache le texte qui dépasse le conteneur */
+                text-overflow: ellipsis;     /* Ajoute des points de suspension */
+            }
+        }
+        #line_2 {
+            $text-width: 150px;
+            display: flex;
+            // justify-content: space-between;
+            align-items: center;
+            font-size: 0.70rem;
+            font-weight: 400;
+            color: var(--custom-primary-6);
+            // #filter-date {
+            //     margin-right: 10px;
+            // }
+            // #filter-passengers-nb {
+            //     margin-left: 10px;
+            // }
+        }
+    }
+}
+
