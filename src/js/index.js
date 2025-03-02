@@ -1,12 +1,6 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import { initBarba } from './barba.js';
-
-// Lance Barba.js après le chargement du DOM
-document.addEventListener("DOMContentLoaded", () => {
-    initBarba();
-});
 
 /******************************************************/
 /******************************************************/
@@ -190,7 +184,9 @@ const caseDepart = document.getElementById("click-case-depart");
 caseDepart.addEventListener("click", function() {
     // event.preventDefault();
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/html/choosing-address.html";
+    // window.location.href = "public/html/choosing-address.html";
+    // Utiliser Barba.js pour la transition
+    barba.go("/public/html/choosing-address.html");
 });
 
 // Récupérer l'adresse stockée dans localStorage

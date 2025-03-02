@@ -1,6 +1,3 @@
-import barba from '@barba/core';
-import gsap from 'gsap';
-
 export const initBarba = () => {
     barba.init({
         transitions: [{
