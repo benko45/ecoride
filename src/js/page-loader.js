@@ -41,12 +41,25 @@ function loadPage(url) {
                     pageContent.innerHTML = newContent;
                     // pageContent.style.display = "block"; // Assurer la visibilité
                     console.log("✅ `#page-content` mis à jour avec le nouveau contenu !");
-                    // Recharger les styles CSS
-                    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-                        const newLink = link.cloneNode();
-                        newLink.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
-                        link.parentNode.replaceChild(newLink, link);
-                    });
+                    // // Recharger les styles CSS
+                    // let cssLinks = [...document.querySelectorAll('link[rel="stylesheet"]')]
+                    //     .map(link => link.href)
+                    //     .join("\n");
+                    // console.log(cssLinks);
+
+                    // document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+                    //     // const newLink = link.cloneNode();
+                    //     // newLink.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
+                    //     // console.log("✅ Nouveau lien CSS :", newLink.href);
+                    //     // link.parentNode.replaceChild(newLink, link);
+                    //     let href = link.getAttribute('href') 
+                    //     .split('?')[0]; 
+  
+                    //     let newHref = href + '?v=' + new Date().getMilliseconds(); 
+                        
+                    //     link.setAttribute('href', newHref); 
+                    // });
+                    reloadStylesheets()
                     console.log("✅ Styles CSS rechargés !");
 
                     gsap.fromTo(pageContent, {
@@ -66,6 +79,24 @@ function loadPage(url) {
                 })
                 .catch(error => console.error("❌ Erreur lors du chargement de la page :", error));
         }
+    });
+}
+
+// Permet de recharger les styles CSS de la page
+function reloadStylesheets() {
+    console.log("🔄 Rechargement des styles CSS...");
+
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+        // Désactiver temporairement les styles
+        link.disabled = true;
+
+        setTimeout(() => {
+            const newLink = link.cloneNode();
+            newLink.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
+            link.parentNode.replaceChild(newLink, link);
+
+            console.log("✅ CSS rechargé :", newLink.href);
+        }, 150); // On laisse un court délai pour forcer le recalcul des styles
     });
 }
 
@@ -152,10 +183,6 @@ function reloadScripts() {
         document.body.appendChild(moduleScript);
     }, 300);
 }
-
-
-
-
 
     // Gère la navigation avec le bouton "Retour" du navigateur
     window.addEventListener("popstate", () => {
