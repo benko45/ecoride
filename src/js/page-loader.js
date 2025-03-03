@@ -124,7 +124,7 @@ function reloadScripts() {
         if (window.location.hostname === "benko45.github.io") {
             scriptSrc = scriptSrc.replace("/public/html/", "/"); // ✅ Supprime `/public/html/` en prod
         }
-        
+
         console.log("✅ Nouveau chemin du script :", scriptSrc);
 
         // Ajouter un nouveau script cloné pour exécuter le JS
@@ -140,7 +140,7 @@ function reloadScripts() {
     setTimeout(() => {
         const choosingScriptPath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
             ? "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
-            : "src/js/choosing-address.js";  // ✅ GitHub Pages : `src/js/` sans `/` devant
+            : "/src/js/choosing-address.js";  // ✅ GitHub Pages : `/src/js/`
 
         console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
 
