@@ -71,13 +71,17 @@ function loadPage(url) {
 
 // Permet de recharger les scripts spécifiques à chaque page
 function reloadScripts() {
-    console.log("🔹 Rechargement des scripts après la transition...");
+    console.log("🔹 Début du rechargement des scripts...");
+    console.log("🌎 Hostname :", window.location.hostname);
+    console.log("🌍 Origin :", window.location.origin);
 
     document.querySelectorAll("script").forEach(oldScript => {
         let scriptSrc = oldScript.src;
 
         if (!scriptSrc) return; // Ignorer les scripts sans `src`
         
+        console.log("📜 Script trouvé :", scriptSrc);
+
         // Exclure certains scripts du rechargement
         if (scriptSrc.includes("jquery") || scriptSrc.includes("fiveserver.js")) {
             console.log("⚠️ Ignoré :", scriptSrc);
@@ -89,14 +93,35 @@ function reloadScripts() {
             return;
         }
 
-        // 🔹 Correction du chemin pour les scripts locaux
+        // 🔹 Vérifier si le script est un fichier local (pas un CDN)
         if (scriptSrc.startsWith(window.location.origin)) {
             let basePath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost" 
                 ? "/public/"
                 : "/";
-            
-            scriptSrc = scriptSrc.replace(window.location.origin, basePath);
+
+            // Récupérer le chemin relatif sans le domaine
+            scriptSrc = scriptSrc.replace(window.location.origin, ""); 
+
+            // ✅ Supprimer le mauvais préfixe `public/html/`
+            scriptSrc = scriptSrc.replace(/^\/public\/html\//, "/");
+
+            // ✅ Appliquer la correction selon le chemin
+            if (scriptSrc.startsWith("/public/js/")) {
+                scriptSrc = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+                    ? scriptSrc
+                    : scriptSrc.replace("/public/", "/");
+            } 
+            else if (scriptSrc.startsWith("/src/js/")) {
+                scriptSrc = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+                    ? scriptSrc
+                    : scriptSrc.replace(/^\/src\//, "src/");
+            }
+
+            // ✅ Éviter les doubles `/` dans le chemin
+            scriptSrc = scriptSrc.replace(/\/+/g, "/");
         }
+
+        console.log("✅ Nouveau chemin du script :", scriptSrc);
 
         // Ajouter un nouveau script cloné pour exécuter le JS
         const newScript = document.createElement("script");
@@ -109,16 +134,21 @@ function reloadScripts() {
 
     // 🔹 Recharger `choosing-address.js` correctement en tant que module
     setTimeout(() => {
+        const choosingScriptPath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+            ? "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
+            : "src/js/choosing-address.js";  // ✅ GitHub Pages : `src/js/` sans `/` devant
+
+        console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
+
         const moduleScript = document.createElement("script");
-        moduleScript.src = (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") 
-            ? "/public/js/choosing-address.js"
-            : "/js/choosing-address.js";
+        moduleScript.src = choosingScriptPath;
         moduleScript.type = "module";
         moduleScript.defer = true;
         document.body.appendChild(moduleScript);
-        console.log("✅ `choosing-address.js` forcé après la transition !");
     }, 300);
 }
+
+
 
 
 
