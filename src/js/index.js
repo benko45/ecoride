@@ -1,48 +1,10 @@
 "use strict";
 
+import { applyTheme } from './apply-theme.js';
+
 /******************************************************/
-/*            Gestion des Thèmes                      */
 /******************************************************/
-
-// Variable pour stocker la sélection de l'utilisateur
-var selectedTheme = localStorage.getItem("theme") || "auto";
-
-// Fonction pour appliquer le thème effectif
-function applyTheme(theme) {
-    // Déterminer le vrai thème utilisé (light ou dark) en cas de "auto"
-    var effectiveTheme = (theme === "auto")
-        ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light")
-        : theme;
-
-    // **1️⃣ Met à jour Bootstrap (applique la couleur correcte)**
-    document.documentElement.setAttribute("theme", effectiveTheme);
-
-    // **2️⃣ Stocke le thème sélectionné pour l'affichage correct de l'icône**
-    document.documentElement.setAttribute("selected-theme", theme);
-
-    // Sauvegarder le thème dans le localStorage pour la prochaine fois
-    localStorage.setItem("theme", theme);
-}
-
-// Appliquer le thème immédiatement au chargement
-applyTheme(selectedTheme);
-
-// Gestion des clics sur le dropdown
-var dropdownItems = document.querySelectorAll('.dropdown-item');
-dropdownItems.forEach(function (item) {
-    item.addEventListener('click', function () {
-        selectedTheme = this.getAttribute('theme');
-        applyTheme(selectedTheme);
-    });
-});
-
-// **Écoute les changements du mode système en mode auto**
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (event) {
-    if (selectedTheme === "auto") {
-        applyTheme("auto");
-    }
-});
-
+applyTheme();
 /******************************************************/
 /******************************************************/
 
@@ -89,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const mediaQuery = window.matchMedia('(max-width: 768px)');
 const connexion = document.getElementById('connexion');
 const span_connexion = document.getElementById('span-connexion');
-// const nav = document.getElementById('nav');
+// const traject_container_container = document.getElementById('traject-container-container');
 
 function handleMediaQueryChange(e) {
     if (e.matches) {
@@ -114,7 +76,7 @@ function handleMediaQueryChange(e) {
             const width = element.offsetWidth;
             if(width > maxWidth) maxWidth = width;
         });
-        console.log('Max Width:', maxWidth);
+        // console.log('Max Width:', maxWidth);
 
         // Appliquer la largeur maximale à tous les éléments
         lis.forEach(element => {
@@ -198,6 +160,15 @@ window.addEventListener('load', () => {
 // document.querySelectorAll('.responsive-img').forEach(img => {
 //     console.log(img);
 // });
+// console.log('Viewport Width:', window.innerWidth);
+// console.log('Document Width:', document.documentElement.scrollWidth);
+// const body = document.body;
+// const html = document.documentElement;
+// const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, 
+//                           html.clientWidth, html.scrollWidth, html.offsetWidth);
+
+// console.log('Viewport Width:', window.innerWidth);
+// console.log('Max Document Width:', maxWidth);
 
 
 /******************************************************/
@@ -213,7 +184,7 @@ const caseDepart = document.getElementById("click-case-depart");
 caseDepart.addEventListener("click", function() {
     // event.preventDefault();
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-address.html";
+    // window.location.href = "public/html/choosing-address.html";
 });
 
 // Récupérer l'adresse stockée dans localStorage
@@ -236,7 +207,7 @@ const caseArrivee = document.getElementById("case-arrivee");
 caseArrivee.addEventListener("click", function() {
     // event.preventDefault();
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-arrival-address.html";
+    window.location.href = "public/html/choosing-arrival-address.html";
 });
 
 // Récupérer l'adresse stockée dans localStorage
@@ -293,7 +264,7 @@ window.addEventListener('beforeunload', function (event) {
 // Redirection vers la page de sélection de date
 document.getElementById("case-date").addEventListener("click", function() {
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-date.html";
+    window.location.href = "public/html/choosing-date.html";
 });
 
 // Récupérer la date enregistrée dans le localStorage
@@ -320,14 +291,19 @@ if (savedDate) {
 // Redirection vers la page de sélection du nombre de passagers
 document.getElementById("case-passengers").addEventListener("click", function() {
     localStorage.setItem("clickSurItem", "true");
-    window.location.href = "public/choosing-passengers.html";
+    window.location.href = "public/html/choosing-passengers.html";
 });
 
 // initialisation du nombre de passagers
 let selectedPassengers;
-localStorage.getItem('selectedPassengers')
-    ? selectedPassengers = localStorage.getItem('selectedPassengers')
-    : selectedPassengers = 1;
+if(localStorage.getItem('selectedPassengers')){
+    selectedPassengers = localStorage.getItem('selectedPassengers')
+    }
+    else {
+        selectedPassengers = 1;
+        localStorage.setItem('selectedPassengers', 1);
+    }
+
 
 document.getElementById('passengers-nb').innerHTML = selectedPassengers;
 
@@ -346,9 +322,9 @@ document.getElementById("search").addEventListener("click", function() {
             localStorage.setItem('selectedDate', todayFormatted);
         }
         selectedDepartureAddress === 'Départ'
-            ? window.location.href = "public/choosing-address.html"
+            ? window.location.href = "public/html/choosing-address.html"
             : selectedArrivalAddress === 'Arrivée'
-                ? window.location.href = "public/choosing-arrival-address.html"
-                : window.location.href = "public/choosing-traject.html";
+                ? window.location.href = "public/html/choosing-arrival-address.html"
+                : window.location.href = "public/html/search-result.html";
     }
 });
