@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ Page-loader.js chargé !");
+    // console.log("✅ Page-loader.js chargé !");
     
     // Détection des clics sur les boutons de navigation dynamique
     document.body.addEventListener("click", function (event) {
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             const url = target.getAttribute("data-navigate");
-            console.log("✅ Navigation détectée vers :", url);
+            // console.log("✅ Navigation détectée vers :", url);
             loadPage(url);
         }
     });
@@ -22,7 +22,7 @@ function loadPage(url) {
         return;
     }
 
-    console.log("🔹 Chargement de la page :", url);
+    // console.log("🔹 Chargement de la page :", url);
 
     // Animation de sortie
     gsap.to(pageContent, {
@@ -36,14 +36,10 @@ function loadPage(url) {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, "text/html");
                     const newContent = doc.getElementById("page-content").innerHTML;
-
                     // Remplace le contenu
                     pageContent.innerHTML = newContent;
                     // pageContent.style.display = "block"; // Assurer la visibilité
-
-                    reloadStylesheets()
-                    console.log("✅ Styles CSS rechargés !");
-
+                    // console.log("✅ Styles CSS rechargés !");
                     gsap.fromTo(pageContent, {
                         opacity: 0,
                         x: "100%",
@@ -52,10 +48,8 @@ function loadPage(url) {
                         x: "0%",
                         duration: 0.5
                     });
-
                     // Met à jour l'URL dans l'historique
                     history.pushState(null, null, url);
-
                     // Recharge les scripts dynamiques
                     reloadScripts();
                 })
@@ -64,56 +58,56 @@ function loadPage(url) {
     });
 }
 
-// Permet de recharger les styles CSS de la page
-function reloadStylesheets() {
-    console.log("🔄 Rechargement des styles CSS...");
+// // Permet de recharger les styles CSS de la page
+// function reloadStylesheets() {
+//     // console.log("🔄 Rechargement des styles CSS...");
 
-    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-        let cssHref = link.href;
+//     document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+//         let cssHref = link.href;
 
-        console.log("📜 CSS détecté :", cssHref);
+//         // console.log("📜 CSS détecté :", cssHref);
 
-        // **Correction des chemins**
-        if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
-            // ✅ Supprimer `/public/html/` en trop en local
-            cssHref = cssHref.replace("/public/html/", "/public/");
-        } else if (window.location.hostname === "benko45.github.io") {
-            // ✅ Correction pour GitHub Pages → `/ecoride/public/css/`
-            cssHref = cssHref.replace("/public/html/", "/ecoride/public/");
-        }
+//         // **Correction des chemins**
+//         if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
+//             // ✅ Supprimer `/public/html/` en trop en local
+//             cssHref = cssHref.replace("/public/html/", "/public/");
+//         } else if (window.location.hostname === "benko45.github.io") {
+//             // ✅ Correction pour GitHub Pages → `/ecoride/public/css/`
+//             cssHref = cssHref.replace("/public/html/", "/ecoride/public/");
+//         }
 
-        // ✅ Ajouter un timestamp pour forcer le rechargement
-        const newLink = link.cloneNode();
-        newLink.href = cssHref.split("?")[0] + "?v=" + new Date().getTime();
+//         // ✅ Ajouter un timestamp pour forcer le rechargement
+//         const newLink = link.cloneNode();
+//         newLink.href = cssHref.split("?")[0] + "?v=" + new Date().getTime();
 
-        // ✅ Remplacer l'ancien lien CSS
-        link.parentNode.replaceChild(newLink, link);
+//         // ✅ Remplacer l'ancien lien CSS
+//         link.parentNode.replaceChild(newLink, link);
 
-        console.log("✅ CSS rechargé avec le bon chemin :", newLink.href);
-    });
-}
+//         // console.log("✅ CSS rechargé avec le bon chemin :", newLink.href);
+//     });
+// }
 
 // Permet de recharger les scripts spécifiques à chaque page
 function reloadScripts() {
-    console.log("🔹 Début du rechargement des scripts...");
-    console.log("🌎 Hostname :", window.location.hostname);
-    console.log("🌍 Origin :", window.location.origin);
+    // console.log("🔹 Début du rechargement des scripts...");
+    // console.log("🌎 Hostname :", window.location.hostname);
+    // console.log("🌍 Origin :", window.location.origin);
 
     document.querySelectorAll("script").forEach(oldScript => {
         let scriptSrc = oldScript.src;
 
         if (!scriptSrc) return; // Ignorer les scripts sans `src`
         
-        console.log("📜 Script trouvé :", scriptSrc);
+        // console.log("📜 Script trouvé :", scriptSrc);
 
         // Exclure certains scripts du rechargement
         if (scriptSrc.includes("jquery") || scriptSrc.includes("fiveserver.js")) {
-            console.log("⚠️ Ignoré :", scriptSrc);
+            // console.log("⚠️ Ignoré :", scriptSrc);
             return;
         }
 
         if (oldScript.getAttribute("type") === "module") {
-            console.log("⚠️ Ignoré : `type=module` doit être rechargé manuellement :", scriptSrc);
+            // console.log("⚠️ Ignoré : `type=module` doit être rechargé manuellement :", scriptSrc);
             return;
         }
 
@@ -149,7 +143,7 @@ function reloadScripts() {
             scriptSrc = scriptSrc.replace("/public/html/", "/"); // ✅ Supprime `/public/html/` en prod
         }
 
-        console.log("✅ Nouveau chemin du script :", scriptSrc);
+        // console.log("✅ Nouveau chemin du script :", scriptSrc);
 
         // Ajouter un nouveau script cloné pour exécuter le JS
         const newScript = document.createElement("script");
@@ -157,17 +151,17 @@ function reloadScripts() {
         newScript.defer = true;
         document.body.appendChild(newScript);
 
-        console.log("✅ Script rechargé :", newScript.src);
+        // console.log("✅ Script rechargé :", newScript.src);
     });
 
     // 🔹 Recharger `choosing-address.js` correctement en tant que module
     setTimeout(() => {
-        console.log(window.location.hostname);   
+        // console.log(window.location.hostname);   
         const choosingScriptPath = window.location.hostname === "benko45.github.io"
             ? "/ecoride/src/js/choosing-address.js"  // ✅ GitHub Pages : utiliser `/ecoride/`
             : "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
 
-        console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
+        // console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
 
         const moduleScript = document.createElement("script");
         moduleScript.src = choosingScriptPath;
