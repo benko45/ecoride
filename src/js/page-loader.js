@@ -98,11 +98,6 @@ function reloadScripts() {
             let basePath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost" 
                 ? "/public/"
                 : "/";
-
-            // **⚠️ Correction uniquement pour GitHub Pages**
-            if (window.location.hostname === "benko45.github.io") {
-                scriptSrc = scriptSrc.replace("/public/html/", "/"); // ✅ Supprime `/public/html/` en prod
-            }
             
             // Récupérer le chemin relatif sans le domaine
             scriptSrc = scriptSrc.replace(window.location.origin, ""); 
@@ -125,7 +120,11 @@ function reloadScripts() {
             // ✅ Éviter les doubles `/` dans le chemin
             scriptSrc = scriptSrc.replace(/\/+/g, "/");
         }
-
+        // **⚠️ Correction uniquement pour GitHub Pages**
+        if (window.location.hostname === "benko45.github.io") {
+            scriptSrc = scriptSrc.replace("/public/html/", "/"); // ✅ Supprime `/public/html/` en prod
+        }
+        
         console.log("✅ Nouveau chemin du script :", scriptSrc);
 
         // Ajouter un nouveau script cloné pour exécuter le JS
