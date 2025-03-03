@@ -74,7 +74,7 @@ function reloadScripts() {
     console.log("🔹 Rechargement des scripts après la transition...");
 
     document.querySelectorAll("script").forEach(oldScript => {
-        const scriptSrc = oldScript.src;
+        let scriptSrc = oldScript.src;
 
         if (!scriptSrc) return; // Ignorer les scripts sans `src`
         
@@ -85,8 +85,17 @@ function reloadScripts() {
         }
 
         if (oldScript.getAttribute("type") === "module") {
-            console.log("⚠️ Ignoré : `type=module` ne peut pas être rechargé dynamiquement :", scriptSrc);
+            console.log("⚠️ Ignoré : `type=module` doit être rechargé manuellement :", scriptSrc);
             return;
+        }
+
+        // 🔹 Correction du chemin pour les scripts locaux
+        if (scriptSrc.startsWith(window.location.origin)) {
+            let basePath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost" 
+                ? "/public/"
+                : "/";
+            
+            scriptSrc = scriptSrc.replace(window.location.origin, basePath);
         }
 
         // Ajouter un nouveau script cloné pour exécuter le JS
@@ -98,16 +107,21 @@ function reloadScripts() {
         console.log("✅ Script rechargé :", newScript.src);
     });
 
+    // 🔹 Recharger `choosing-address.js` correctement en tant que module
     setTimeout(() => {
-        const script = document.createElement("script");
-        script.src = "/src/js/choosing-address.js"; // Vérifie bien le bon chemin !
-        script.type = "module";
-        script.defer = true;
-        document.body.appendChild(script);
+        const moduleScript = document.createElement("script");
+        moduleScript.src = (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") 
+            ? "/public/js/choosing-address.js"
+            : "/js/choosing-address.js";
+        moduleScript.type = "module";
+        moduleScript.defer = true;
+        document.body.appendChild(moduleScript);
         console.log("✅ `choosing-address.js` forcé après la transition !");
     }, 300);
+}
 
-    }
+
+
     // Gère la navigation avec le bouton "Retour" du navigateur
     window.addEventListener("popstate", () => {
     loadPage(window.location.pathname);
