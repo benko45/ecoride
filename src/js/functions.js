@@ -101,7 +101,6 @@ export function applyDynamicStyles(HTMLElement){
         HTMLElement.style.padding = '5px';
         HTMLElement.style.borderRadius = '5px'; // Arrondit les bords
         HTMLElement.style.cursor = 'pointer'; // Change le curseur en main lors du survol
-        HTMLElement.style.border = '1px solid black';
         HTMLElement.classList.add('background-secondary-3'); // Classe pour styliser les éléments
     }
     if(HTMLElement.classList.contains('text-container')){
