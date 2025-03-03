@@ -155,7 +155,7 @@ function reloadScripts() {
     });
 
     // 🔹 Recharger `choosing-address.js` correctement en tant que module
-    setTimeout(() => {
+    // setTimeout(() => {
         // console.log(window.location.hostname);   
         const choosingScriptPath = window.location.hostname === "benko45.github.io"
             ? "/ecoride/src/js/choosing-address.js"  // ✅ GitHub Pages : utiliser `/ecoride/`
@@ -168,7 +168,7 @@ function reloadScripts() {
         moduleScript.type = "module";
         moduleScript.defer = true;
         document.body.appendChild(moduleScript);
-    }, 300);
+    // }, 0);
 }
 
     // Gère la navigation avec le bouton "Retour" du navigateur
