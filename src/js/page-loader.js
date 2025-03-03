@@ -40,25 +40,7 @@ function loadPage(url) {
                     // Remplace le contenu
                     pageContent.innerHTML = newContent;
                     // pageContent.style.display = "block"; // Assurer la visibilité
-                    console.log("✅ `#page-content` mis à jour avec le nouveau contenu !");
-                    // // Recharger les styles CSS
-                    // let cssLinks = [...document.querySelectorAll('link[rel="stylesheet"]')]
-                    //     .map(link => link.href)
-                    //     .join("\n");
-                    // console.log(cssLinks);
 
-                    // document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-                    //     // const newLink = link.cloneNode();
-                    //     // newLink.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
-                    //     // console.log("✅ Nouveau lien CSS :", newLink.href);
-                    //     // link.parentNode.replaceChild(newLink, link);
-                    //     let href = link.getAttribute('href') 
-                    //     .split('?')[0]; 
-  
-                    //     let newHref = href + '?v=' + new Date().getMilliseconds(); 
-                        
-                    //     link.setAttribute('href', newHref); 
-                    // });
                     reloadStylesheets()
                     console.log("✅ Styles CSS rechargés !");
 
@@ -87,16 +69,27 @@ function reloadStylesheets() {
     console.log("🔄 Rechargement des styles CSS...");
 
     document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-        // Désactiver temporairement les styles
-        link.disabled = true;
+        let cssHref = link.href;
 
-        setTimeout(() => {
-            const newLink = link.cloneNode();
-            newLink.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
-            link.parentNode.replaceChild(newLink, link);
+        console.log("📜 CSS détecté :", cssHref);
 
-            console.log("✅ CSS rechargé :", newLink.href);
-        }, 150); // On laisse un court délai pour forcer le recalcul des styles
+        // **Correction des chemins**
+        if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
+            // ✅ Supprimer `/public/html/` en trop en local
+            cssHref = cssHref.replace("/public/html/", "/public/");
+        } else if (window.location.hostname === "benko45.github.io") {
+            // ✅ Correction pour GitHub Pages → `/ecoride/public/css/`
+            cssHref = cssHref.replace("/public/html/", "/ecoride/public/");
+        }
+
+        // ✅ Ajouter un timestamp pour forcer le rechargement
+        const newLink = link.cloneNode();
+        newLink.href = cssHref.split("?")[0] + "?v=" + new Date().getTime();
+
+        // ✅ Remplacer l'ancien lien CSS
+        link.parentNode.replaceChild(newLink, link);
+
+        console.log("✅ CSS rechargé avec le bon chemin :", newLink.href);
     });
 }
 
