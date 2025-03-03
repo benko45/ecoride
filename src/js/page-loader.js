@@ -142,9 +142,7 @@ function reloadScripts() {
         if (window.location.hostname === "benko45.github.io") {
             scriptSrc = scriptSrc.replace("/public/html/", "/"); // ✅ Supprime `/public/html/` en prod
         }
-
         // console.log("✅ Nouveau chemin du script :", scriptSrc);
-
         // Ajouter un nouveau script cloné pour exécuter le JS
         const newScript = document.createElement("script");
         newScript.src = scriptSrc;
@@ -153,22 +151,16 @@ function reloadScripts() {
 
         // console.log("✅ Script rechargé :", newScript.src);
     });
-
     // 🔹 Recharger `choosing-address.js` correctement en tant que module
-    // setTimeout(() => {
-        // console.log(window.location.hostname);   
-        const choosingScriptPath = window.location.hostname === "benko45.github.io"
-            ? "/ecoride/src/js/choosing-address.js"  // ✅ GitHub Pages : utiliser `/ecoride/`
-            : "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
-
-        // console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
-
-        const moduleScript = document.createElement("script");
-        moduleScript.src = choosingScriptPath;
-        moduleScript.type = "module";
-        moduleScript.defer = true;
-        document.body.appendChild(moduleScript);
-    // }, 0);
+    const choosingScriptPath = window.location.hostname === "benko45.github.io"
+        ? "/ecoride/src/js/choosing-address.js"  // ✅ GitHub Pages : utiliser `/ecoride/`
+        : "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
+    // console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
+    const moduleScript = document.createElement("script");
+    moduleScript.src = choosingScriptPath;
+    moduleScript.type = "module";
+    moduleScript.defer = true;
+    document.body.appendChild(moduleScript);
 }
 
     // Gère la navigation avec le bouton "Retour" du navigateur
