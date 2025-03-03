@@ -99,14 +99,14 @@ function reloadScripts() {
                 ? "/public/"
                 : "/";
 
-            // Récupérer le chemin relatif sans le domaine
-            scriptSrc = scriptSrc.replace(window.location.origin, ""); 
-
             // **⚠️ Correction uniquement pour GitHub Pages**
             if (window.location.hostname === "benko45.github.io") {
                 scriptSrc = scriptSrc.replace("/public/html/", "/"); // ✅ Supprime `/public/html/` en prod
             }
             
+            // Récupérer le chemin relatif sans le domaine
+            scriptSrc = scriptSrc.replace(window.location.origin, ""); 
+
             // ✅ Supprimer le mauvais préfixe `public/html/`
             scriptSrc = scriptSrc.replace(/^\/public\/html\//, "/");
 
