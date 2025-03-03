@@ -140,7 +140,7 @@ function reloadScripts() {
     setTimeout(() => {
         const choosingScriptPath = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
             ? "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
-            : "/src/js/choosing-address.js";  // ✅ GitHub Pages : `/src/js/`
+            : "/ecoride/src/js/choosing-address.js";  // ✅ GitHub Pages : utiliser `/ecoride/`
 
         console.log("🔹 Chargement forcé de `choosing-address.js` :", choosingScriptPath);
 
