@@ -185,8 +185,6 @@ caseDepart.addEventListener("click", function() {
     // event.preventDefault();
     localStorage.setItem("clickSurItem", "true");
     // window.location.href = "public/html/choosing-address.html";
-    // Utiliser Barba.js pour la transition
-    barba.go("/public/html/choosing-address.html");
 });
 
 // Récupérer l'adresse stockée dans localStorage

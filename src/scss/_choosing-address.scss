@@ -28,37 +28,31 @@ html[theme="dark"] input.form-control:focus {
 }
 
 #suggestions {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px; /* Espacement entre chaque suggestion */
+    
 }
 
 
-.suggestion {
-    // max-width: 80%; /* Réduit la largeur des suggestions à 80% */
+#suggestions .suggestion {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 80% !important;
     margin: 0 auto; /* Centrer les suggestions dans leur conteneur */
     padding: 5px;
     display: flex;
     align-items: center; /* Aligne les icônes et le texte */
     border-radius: 5px; /* Arrondit les bords */
     cursor: pointer; /* Change le curseur en main lors du survol */
+    border: 1px solid black !important;
+}
+#suggestions .text-container {
+    font-size: medium !important;
+    color: var(--custom-primary) !important;
+    width : 80% !important;
 }
 
-//  .suggestion:hover {
-//      background-color: red; /* Changer la couleur de fond au survol */
-// }
-
-.suggestion {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 80%;
-}
-
-.text-container {
-    font-size: medium;
-    color: var(--custom-primary);
-    width : 80%;
-}
