@@ -138,6 +138,7 @@ function reloadScripts() {
 
     // 🔹 Recharger `choosing-address.js` correctement en tant que module
     setTimeout(() => {
+        console.log(window.location.hostname);   
         const choosingScriptPath = window.location.hostname === "benko45.github.io"
             ? "/ecoride/src/js/choosing-address.js"  // ✅ GitHub Pages : utiliser `/ecoride/`
             : "/src/js/choosing-address.js"  // ✅ Correction : utiliser `src/` en local
