@@ -11,14 +11,15 @@
 //     justify-content: center;
 //     align-items: center;
 //     height: 100vh;
+//     position: relative;
 // }
 
 .traject-container {
-    position: absolute;
-    // top: 50% !important;
+    position: absolute !important;
+    top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 70%;
+    width: 70% !important;
     @media screen and (max-width: 425px) {
         top: 50% !important;
     }

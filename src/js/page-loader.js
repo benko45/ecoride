@@ -196,26 +196,10 @@ function addNewScript(scriptSrc, scriptName) {
                 console.warn("⚠️ `applyTheme()` introuvable après rechargement !");
             }
         }
-
-        if(scriptName === "index.js") {
-            console.log("📌 Ré-exécution manuelle de `index.js` après rechargement...");
-            import(scriptSrc)
-                .then(module => {
-                    if (module.initIndex) {
-                        module.initIndex();
-                        console.log("✅ `initIndex()` exécuté après rechargement !");
-                    } else {
-                        console.warn("⚠️ `initIndex()` introuvable après rechargement !");
-                    }
-                })
-            }
     };
 
     document.body.appendChild(newScript);
 }
-
-
-
 
 
 // Gère la navigation avec le bouton "Retour" du navigateur
