@@ -65,8 +65,14 @@ export function createAddressSuggestion(address, parentElement) {
         }
         removeChildrenExceptFirst(parentElement)
         const userAgent = 'benoit.vicente@hotmail.fr';
+        // 🔹 Détermine quel champ enregistrer en fonction de la page actuelle
+        console.log("🔄 window.location.pathname :", window.location.pathname);
+        let storageKey = window.location.pathname.includes("choosing-address.html") 
+        ? "selectedDepartureAddress" 
+        : "selectedArrivalAddress";
+        console.log("🔄 storageKey :", storageKey);
         if(address !== useCurrentLocationOptionText) {
-            localStorage.setItem('selectedDepartureAddress', address);
+            localStorage.setItem(storageKey, address);
         } else {
             navigator.geolocation.getCurrentPosition((position) => {
                 const { latitude, longitude } = position.coords;
@@ -79,7 +85,7 @@ export function createAddressSuggestion(address, parentElement) {
                     .then(response => response.json())
                     .then(data => {
                         const shortAddress = createShortddress(data.display_name.split(',')); // Construire l'adresse courte
-                        localStorage.setItem('selectedDepartureAddress', shortAddress);
+                        localStorage.setItem(storageKey, shortAddress);
                         document.getElementById('address').value = shortAddress;
                     })
                     .catch(error => console.error('Erreur API:', error));
@@ -223,6 +229,23 @@ export function restoreDepartureAddress() {
         console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
         
         const departureField = document.getElementById("selected-departure-address");
+        if (departureField) {
+            departureField.textContent = savedAddress;
+            console.log("✅ Adresse affichée dans index.html :", savedAddress);
+        } else {
+            console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
+        }
+    } else {
+        console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
+    }
+}
+export function restoreArrivalAddress() {
+    const savedAddress = localStorage.getItem("selectedArrivalAddress");
+
+    if (savedAddress) {
+        console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
+        
+        const departureField = document.getElementById("selected-arrival-address");
         if (departureField) {
             departureField.textContent = savedAddress;
             console.log("✅ Adresse affichée dans index.html :", savedAddress);

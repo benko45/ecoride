@@ -236,6 +236,9 @@ $radius: 18px;
 /************************************************************/
 /*    animation des flèches d'inversion  départ-arrivée     */
 /************************************************************/
+#bouncing-arrows {
+    z-index: 1500;
+}
 .arrow-bounce {
     overflow: visible;
 }
