@@ -107,9 +107,7 @@ function reloadScripts(url) {
     console.log(`🔄 Vérification : rechargement des scripts pour ${pageName}`);
     if (url.includes("index.html")) {
         console.log("📌 Exécution forcée de restoreDepartureAddress() après transition...");
-        // setTimeout(() => {
-            restoreDepartureAddress();
-        // }, 200);
+        restoreDepartureAddress();
     }
     
     if (scriptsToReload[pageName]) {
