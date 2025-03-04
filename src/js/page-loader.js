@@ -1,3 +1,6 @@
+import { storeStyles, applyStoredStyles } from "./functions.js";
+import { applyTheme } from "./apply-theme.js";
+
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
     
@@ -26,20 +29,20 @@ document.addEventListener("DOMContentLoaded", function () {
 // Fonction pour charger une page avec AJAX + animation GSAP
 function loadPage(url) {
     const pageContent = document.getElementById("page-content");
-    // const currentURL = window.location.pathname;
 
-    // console.log(`🚀 Début de la transition : ${currentURL} → ${url}`);
-
-    let exitDirection = "-100%";  // Sortie par la gauche (par défaut)
-    let enterDirection = "100%";  // Entrée par la droite (par défaut)
+    let exitDirection = "-100%";  
+    let enterDirection = "100%";  
 
     if (url.includes("choosing-address.html")) {
-        exitDirection = "-100%"; // Sort par la gauche
-        enterDirection = "100%"; // Entre par la droite
+        exitDirection = "-100%"; 
+        enterDirection = "100%"; 
     } else if (url.includes("index.html")) {
-        exitDirection = "100%"; // Sort par la droite
-        enterDirection = "-100%"; // Entre par la gauche
+        exitDirection = "100%"; 
+        enterDirection = "-100%"; 
     }
+
+    // 🔹 Sauvegarde les styles avant de quitter la page actuelle
+    // storeStyles();
 
     // ✅ Animation de sortie
     gsap.to(pageContent, {
@@ -55,7 +58,18 @@ function loadPage(url) {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, "text/html");
                     const newContent = doc.getElementById("page-content").innerHTML;
-                    pageContent.innerHTML = newContent;
+                    pageContent.innerHTML = newContent
+                    setTimeout(() => {
+                        console.log("🔄 Vérification du DOM après transition...");
+                        
+                        if (window.location.pathname.includes("choosing-address.html")) {
+                            const addressInput = document.querySelector("#address");
+                            console.log(addressInput ? "✅ #address trouvé ! La page est bien chargée." : "❌ #address introuvable !");
+                        } else if (window.location.pathname.includes("index.html")) {
+                            const menuToggle = document.querySelector("#menu-toggle");
+                            console.log(menuToggle ? "✅ #menu-toggle trouvé ! La page est bien chargée." : "❌ #menu-toggle introuvable !");
+                        }
+                    }, 500);
 
                     console.log("✅ Nouveau contenu inséré, animation d'entrée...");
 
@@ -68,12 +82,13 @@ function loadPage(url) {
                         x: "0%",
                         duration: 0.5
                     });
-
+                    // ✅ Mettre à jour l'URL dans l'historique
+                    history.pushState(null, null, url)
                     console.log("✅ Nouvelle page chargée avec transition !");
 
-                    // 🔄 Recharger les scripts et styles après la transition
-                    reloadScripts(url);
-
+                    // 🔄 Appliquer les styles et recharger les scripts après la transition
+                    applyStoredStyles();
+                    reloadScripts(url);                    
                 })
                 .catch(error => console.error("❌ Erreur lors du chargement de la page :", error));
         }
@@ -81,20 +96,117 @@ function loadPage(url) {
 }
 
 function reloadScripts(url) {
-    // 📌 Extraire le nom de la page cible (sans `.html`)
     let pageName = url.split("/").pop().replace(".html", "");
 
-    // Détermine le bon chemin en fonction de l'environnement (local ou GitHub Pages)
-    const scriptPath = window.location.hostname === "benko45.github.io"
-        ? `/ecoride/src/js/${pageName}.js`
-        : `/src/js/${pageName}.js`;
+    // 📌 Scripts spécifiques à chaque page
+    const scriptsToReload = {
+        "index": ["index.js", "apply-theme.js"], // 📌 On recharge `applyTheme.js`
+        "choosing-address": ["choosing-address.js"]
+    };
+    
+    console.log(`🔄 Vérification : rechargement des scripts pour ${pageName}`);
 
-    console.log(`🔄 Rechargement du script : ${scriptPath}`);
+    if (scriptsToReload[pageName]) {
+        scriptsToReload[pageName].forEach(script => {
+            const scriptPath = window.location.hostname === "benko45.github.io"
+                ? `/ecoride/src/js/${script}`
+                : `/src/js/${script}`;
 
-    const moduleScript = document.createElement("script");
-    moduleScript.src = scriptPath;
-    moduleScript.type = "module";
-    moduleScript.defer = true;
-    document.body.appendChild(moduleScript);
+            console.log(`🔄 Tentative de rechargement : ${scriptPath}`);
+
+            removeAndReloadScript(scriptPath, script);
+        });
+    }
 }
+
+/**
+ * 🔄 Supprime un script existant et le recharge avec un délai pour éviter les conflits
+ */
+function removeAndReloadScript(scriptSrc, scriptName) {
+    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
+
+    if (existingScript) {
+        console.warn(`⚠️ Suppression du script existant : ${scriptSrc}`);
+        existingScript.remove();
+
+        setTimeout(() => {
+            const checkScript = document.querySelector(`script[src="${scriptSrc}"]`);
+            if (checkScript) {
+                console.error(`❌ Échec de la suppression du script : ${scriptSrc}`);
+            } else {
+                console.log(`✅ Script supprimé avec succès : ${scriptSrc}`);
+                addNewScript(scriptSrc, scriptName);
+            }
+        }, 200); // Augmentation du délai pour éviter toute collision
+    } else {
+        console.log(`✅ Aucun script trouvé, chargement direct : ${scriptSrc}`);
+        addNewScript(scriptSrc, scriptName);
+    }
+}
+
+/**
+ * 🔄 Ajoute un script et force son exécution
+ */
+function addNewScript(scriptSrc, scriptName) {
+    const newScript = document.createElement("script");
+    newScript.src = scriptSrc;
+    newScript.type = "module";
+    newScript.defer = true;
+
+    newScript.onload = () => {
+        console.log(`✅ Script rechargé et exécuté : ${scriptSrc}`);
+        
+        if (scriptName === "choosing-address.js") {
+            console.log("📌 Ré-exécution manuelle de `choosing-address.js` après rechargement...");
+            import(scriptSrc)
+                .then(module => {
+                    if (module.initChoosingAddress) {
+                        module.initChoosingAddress();
+                        console.log("✅ `initChoosingAddress()` exécuté après rechargement !");
+                    } else {
+                        console.warn("⚠️ `initChoosingAddress()` introuvable après rechargement !");
+                    }
+                })
+                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
+        }
+
+        if (scriptName === "apply-theme.js") {
+            console.log("🎨 Ré-exécution de `applyTheme()`...");
+            if (typeof applyTheme === "function") {
+                applyTheme();
+                console.log("✅ `applyTheme()` exécuté !");
+            } else {
+                console.warn("⚠️ `applyTheme()` introuvable après rechargement !");
+            }
+        }
+
+        if(scriptName === "index.js") {
+            console.log("📌 Ré-exécution manuelle de `index.js` après rechargement...");
+            import(scriptSrc)
+                .then(module => {
+                    if (module.initIndex) {
+                        module.initIndex();
+                        console.log("✅ `initIndex()` exécuté après rechargement !");
+                    } else {
+                        console.warn("⚠️ `initIndex()` introuvable après rechargement !");
+                    }
+                })
+            }
+    };
+
+    document.body.appendChild(newScript);
+}
+
+
+
+
+
+// Gère la navigation avec le bouton "Retour" du navigateur
+window.addEventListener("popstate", function () {
+    console.log("🔙 Bouton retour du navigateur détecté !");
+    
+    // Charger la page en fonction de l'URL actuelle (sans recharger toute la page)
+    loadPage(window.location.pathname);
+});
+
 

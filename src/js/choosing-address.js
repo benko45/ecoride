@@ -2,65 +2,184 @@
 
 import { applyTheme } from './apply-theme.js';
 import { createShortddress, createAddressSuggestion, removeChildrenExceptFirst, applyDynamicStyles, useCurrentLocationOptionText  } from './functions.js';
-/******************************************************/
-/******************************************************/
-applyTheme();
-/******************************************************/
-/******************************************************/
 
-//écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
+// console.log("✅ choosing-address.js chargé et exécuté !");
+// document.addEventListener("DOMContentLoaded", () => {
+//     console.log("✅ DOM complètement chargé, exécution des événements...");
+// });
 
-// console.log("choosing-address.js est exécuté...");
-const inputField = document.getElementById('address');
+// /******************************************************/
+// /******************************************************/
+// applyTheme();
+// /******************************************************/
+// /******************************************************/
 
-if (!inputField) {
-    console.warn("Champ d'adresse introuvable !");
-}
+// //écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
 
-// // console.log("✅ Élément `.suggestions` ajouté :", document.querySelector('#suggestions'));
-const suggestionsDiv = document.getElementById('suggestions');
-suggestionsDiv.classList.add('suggestions'); // Classe pour styliser les éléments
-applyDynamicStyles(suggestionsDiv);
+// // console.log("choosing-address.js est exécuté...");
+// const inputField = document.getElementById('address');
 
-const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
-suggestionsDiv.appendChild(useCurrentLocationOption);
+// if (!inputField) {
+//     console.warn("Champ d'adresse introuvable !");
+// }
 
-const userAgent = 'benoit.vicente@hotmail.fr';
+// // // console.log("✅ Élément `.suggestions` ajouté :", document.querySelector('#suggestions'));
+// const suggestionsDiv = document.getElementById('suggestions');
+// suggestionsDiv.classList.add('suggestions'); // Classe pour styliser les éléments
+// applyDynamicStyles(suggestionsDiv);
 
-// console.log("Ajout de l'événement `input` au champ d'adresse...");
-inputField.addEventListener('input', function () {
-    // console.log("L'utilisateur a tapé :", this.value); // Vérifier si l'événement fonctionne
+// const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
+// suggestionsDiv.appendChild(useCurrentLocationOption);
 
-    const query = this.value;
+// const userAgent = 'benoit.vicente@hotmail.fr';
+
+// // console.log("Ajout de l'événement `input` au champ d'adresse...");
+// inputField.addEventListener('input', function () {
+//     // console.log("L'utilisateur a tapé :", this.value); // Vérifier si l'événement fonctionne
+
+//     const query = this.value;
     
 
-    if (query.length > 10) {
-        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`, {
-            method: 'GET',
-            headers: { 'User-Agent': userAgent }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // console.log("Réponse API reçue :", data); // Vérifier si la requête est bien envoyée
-            removeChildrenExceptFirst(suggestionsDiv);
-            data.forEach((suggestion) => {
-                const addressParts = suggestion.display_name.split(',');
-                const country = addressParts[addressParts.length - 1]?.trim();
-                if (country === "France") {
-                    const shortAddress = createShortddress(addressParts);
-                    const suggestedAddress = createAddressSuggestion(shortAddress, suggestionsDiv);
-                    suggestionsDiv.appendChild(suggestedAddress);
-                }
-            });
-        })
-        .catch(error => console.error('Erreur API:', error));
-    }
-});
+//     if (query.length > 10) {
+//         fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`, {
+//             method: 'GET',
+//             headers: { 'User-Agent': userAgent }
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             // console.log("Réponse API reçue :", data); // Vérifier si la requête est bien envoyée
+//             removeChildrenExceptFirst(suggestionsDiv);
+//             data.forEach((suggestion) => {
+//                 const addressParts = suggestion.display_name.split(',');
+//                 const country = addressParts[addressParts.length - 1]?.trim();
+//                 if (country === "France") {
+//                     const shortAddress = createShortddress(addressParts);
+//                     const suggestedAddress = createAddressSuggestion(shortAddress, suggestionsDiv);
+//                     suggestionsDiv.appendChild(suggestedAddress);
+//                 }
+//             });
+//         })
+//         .catch(error => console.error('Erreur API:', error));
+//     }
+// });
 
-const selectedAddress = localStorage.getItem('selectedDepartureAddress');
-if (selectedAddress) {
-    document.getElementById('address').value = selectedAddress;
+// const selectedAddress = localStorage.getItem('selectedDepartureAddress');
+// if (selectedAddress) {
+//     document.getElementById('address').value = selectedAddress;
+// }
+
+// setTimeout(() => {
+//     console.log("🔄 JE SUIS ICIIIIIIIIIIIII");
+//     const inputField = document.getElementById('address');
+//     if (inputField) {
+//         console.log("✅ Vérification : champ d'adresse trouvé !");
+//         console.log("🔄 Ajout de l'événement `input` après transition...");
+//         inputField.addEventListener('input', function () {
+//             console.log("📩 L'utilisateur a tapé :", this.value);
+//         });
+//     } else {
+//         console.error("❌ Problème : champ d'adresse introuvable après la transition !");
+//     }
+// }, 500);
+
+
+export function initChoosingAddress() {
+    "use strict";
+
+    console.log("✅ choosing-address.js chargé et exécuté !");
+    document.addEventListener("DOMContentLoaded", () => {
+        console.log("✅ DOM complètement chargé, exécution des événements...");
+    });
+
+    /******************************************************/
+    /******************************************************/
+    applyTheme();
+    /******************************************************/
+    /******************************************************/
+
+    //écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
+
+    // console.log("choosing-address.js est exécuté...");
+    const inputField = document.getElementById('address');
+
+    if (!inputField) {
+        console.warn("Champ d'adresse introuvable !");
+    }
+
+    // // console.log("✅ Élément `.suggestions` ajouté :", document.querySelector('#suggestions'));
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.classList.add('suggestions'); // Classe pour styliser les éléments
+    applyDynamicStyles(suggestionsDiv);
+
+    const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
+    suggestionsDiv.appendChild(useCurrentLocationOption);
+
+    const userAgent = 'benoit.vicente@hotmail.fr';
+
+    // console.log("Ajout de l'événement `input` au champ d'adresse...");
+    inputField.addEventListener('input', function () {
+        // console.log("L'utilisateur a tapé :", this.value); // Vérifier si l'événement fonctionne
+
+        const query = this.value;
+        
+
+        if (query.length > 10) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`, {
+                method: 'GET',
+                headers: { 'User-Agent': userAgent }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // console.log("Réponse API reçue :", data); // Vérifier si la requête est bien envoyée
+                removeChildrenExceptFirst(suggestionsDiv);
+                data.forEach((suggestion) => {
+                    const addressParts = suggestion.display_name.split(',');
+                    const country = addressParts[addressParts.length - 1]?.trim();
+                    if (country === "France") {
+                        const shortAddress = createShortddress(addressParts);
+                        const suggestedAddress = createAddressSuggestion(shortAddress, suggestionsDiv);
+                        suggestionsDiv.appendChild(suggestedAddress);
+                    }
+                });
+            })
+            .catch(error => console.error('Erreur API:', error));
+        }
+    });
+
+    const selectedAddress = localStorage.getItem('selectedDepartureAddress');
+    if (selectedAddress) {
+        document.getElementById('address').value = selectedAddress;
+    }
+
+    setTimeout(() => {
+        console.log("🔄 JE SUIS ICIIIIIIIIIIIII");
+        const inputField = document.getElementById('address');
+        if (inputField) {
+            console.log("✅ Vérification : champ d'adresse trouvé !");
+            console.log("🔄 Ajout de l'événement `input` après transition...");
+            inputField.addEventListener('input', function () {
+                console.log("📩 L'utilisateur a tapé :", this.value);
+            });
+        } else {
+            console.error("❌ Problème : champ d'adresse introuvable après la transition !");
+        }
+    }, 500);
 }
 
+export function restoreDepartureAddress() {
+    const savedAddress = localStorage.getItem("selectedDepartureAddress");
 
-
+    if (savedAddress) {
+        console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
+        
+        const departureField = document.getElementById("selected-departure-address");
+        if (departureField) {
+            departureField.textContent = savedAddress;
+            console.log("✅ Adresse affichée dans index.html :", savedAddress);
+        } else {
+            console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
+        }
+    } else {
+        console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
+    }
+}

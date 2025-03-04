@@ -15,7 +15,7 @@
 </head>
 <body class="background-light">
     <div id="page-content">
-        <nav id="nav" class="d-flex align-items-center">
+        <nav id="nav" class="d-flex align-items-center" data-dynamic-style="nav">
             <div id="menu" class="d-flex align-items-center">
                 <div style="width:100%;">
                     <!-- Bouton de toggle avec caret animé -->
@@ -25,7 +25,7 @@
 
                     </div>
                     <!-- Liste du menu avec hide par défaut -->
-                    <ul id="menu-list" class="shadow">
+                    <ul id="menu-list" class="shadow"  data-dynamic-style>
                         <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
                             <a class="my-dropdown-item txt-primary fs-20" href="#">
                                 <i class="icon-left fa-solid fa-magnifying-glass"></i>
@@ -104,7 +104,7 @@
             public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_425.jpg 425w,
             public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_768.jpg 768w"
         sizes="100vw"
-        alt="Image mobile">
+        alt="Image mobile"  data-dynamic-style="image-mobile">
 
         <img class="responsive-img hidden cover img-tablet"
         src="public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg" 
@@ -113,7 +113,7 @@
             public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
             public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w"
         sizes="50vw"
-        alt="Image tablette">
+        alt="Image tablette" data-dynamic-style="image-tablet">
 
         <img class="responsive-img hidden cover img-desktop"
         src="public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg" 
@@ -122,14 +122,14 @@
             public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
             public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w"
         sizes="50vw"
-        alt="Image grand écran">
+        alt="Image grand écran" data-dynamic-style="image-desktop">
 
         <!-- Titre -->
-        <div class="myTitle d-flex justify-content-center align-items-center fs-60">
+        <div class="myTitle d-flex justify-content-center align-items-center fs-60" data-dynamic-style="title">
             EcoRide
         </div>
         <!-- Menu dropdown pour choisir le theme -->
-        <div class="dropdown">
+        <div class="dropdown" data-dynamic-style="dropdown">
             <!-- Bouton de sélection de thème -->
             <button class="btn dropdown-toggle d-flex align-items-center background-body-bg"
             id="themeToggle"
@@ -210,8 +210,8 @@
         </div>
         <!-- Fin du menu dropdown pour choisir le theme -->    
         <!-- menu trajet -->
-        <div id="taject-container-container">
-            <div class="traject-container">
+        <!-- <div id="traject-container-container"> -->
+            <div class="traject-container"  data-dynamic-style="traject">
                 <div class="row justify-content-center traject-search-bloc-width">
                     <div id="case-depart" data-navigate="public/html/choosing-address.html" class="col-lg-2 col-md-2 col-12 d-flex p-1 txt-primary background-light premiere-cellule moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
                         <div class="search-container premiere-cellule-2">
@@ -279,7 +279,7 @@
                     <button id="search" class="col-lg-2 col-md-2 col-12 p-3 txt-light fw-semibold background-primary d-flex derniere-cellule no-border justify-content-center align-items-center element-height-10 moving-border-primary-1-50 bottom-border-secondary-1-50" >Rechercher</button>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
         <!-- fin menu trajet -->
     </div>
 
@@ -288,7 +288,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="src/js/page-loader.js"></script>
+        <script type="module" src="src/js/page-loader.js"></script>
         <script type="module" src="src/js/index.js" defer></script>
 </body>
 </html>

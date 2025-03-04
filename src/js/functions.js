@@ -1,3 +1,36 @@
+// Configuration : Règles pour sélectionner l'image
+const rules = [
+    {
+        className: 'img-mobile',
+        condition: () => window.innerWidth < 768
+    },
+    {
+        className: 'img-tablet',
+        condition: () => window.innerWidth <= 1600 
+    },
+    {
+        className: 'img-desktop',
+        condition: () => window.innerWidth > 1600 
+    }
+];
+export const selectImage = () => {
+    // Cacher toutes les images
+    document.querySelectorAll('.responsive-img').forEach(img => {
+        img.classList.add('hidden');
+        img.classList.remove('visible');
+    });
+
+    // Parcourir les règles et afficher l'image qui correspond à la condition
+    for (let rule of rules) {
+        if (rule.condition()) {
+            const img = document.querySelector(`.${rule.className}`);
+            img.classList.add('visible');
+            img.classList.remove('hidden');
+            break;
+        }
+    }
+};
+
 export function createShortddress(addressParts) {
     const number = addressParts[0]?.trim() || ''; // Numéro
     const street = addressParts[1]?.trim() || ''; // Voie
@@ -109,4 +142,77 @@ export function applyDynamicStyles(HTMLElement){
         HTMLElement.style.width = '80%';
         HTMLElement.style.flex = '1';  // Utilise toute la largeur restante
     }
+}
+
+export function storeStyles() {
+    const stylesToStore = {};
+
+    document.querySelectorAll("[data-dynamic-style]").forEach(el => {
+        const computedStyles = window.getComputedStyle(el);
+        const elementStyles = {};
+
+        // 🔹 Sauvegarde des styles nécessaires
+        ["top", "left", "right", "bottom", "width", "height", "display", "position", "opacity", "z-index"].forEach(property => {
+            elementStyles[property] = computedStyles.getPropertyValue(property);
+        });
+
+        // 🔹 Sauvegarde les classes associées à l'élément
+        elementStyles["classList"] = Array.from(el.classList);
+
+        // 🔹 Associe les styles au sélecteur de l'élément
+        stylesToStore[el.dataset.dynamicStyle] = elementStyles;
+    });
+
+    // 📦 Stocke l'objet complet dans localStorage
+    localStorage.setItem("styles", JSON.stringify(stylesToStore));
+    console.log("✅ Styles sauvegardés :", stylesToStore);
+}
+
+export function applyStoredStyles() { 
+    const storedStyles = localStorage.getItem("styles");
+
+    if (!storedStyles) {
+        console.warn("⚠️ Aucun style enregistré dans localStorage.");
+        return;
+    }
+
+    const stylesObject = JSON.parse(storedStyles);
+    console.log("🔄 Application des styles enregistrés...");
+
+    document.querySelectorAll("[data-dynamic-style]").forEach(el => {
+        
+        const savedStyles = stylesObject[el.dataset.dynamicStyle];
+
+        if (savedStyles) {
+            // 🔹 Applique les styles enregistrés
+            Object.entries(savedStyles).forEach(([property, value]) => {
+                if (property !== "classList") {
+                    el.style.setProperty(property, value);
+                }
+            });
+
+            // 🔹 Réapplique les classes CSS enregistrées
+            el.className = savedStyles["classList"].join(" ");
+
+            console.log(`✅ Styles appliqués à ${el.dataset.dynamicStyle}`);
+        }
+    });
+    // ✅ Forçage du recalcul des images et exécution de `selectImage()`
+    console.log("🔄 Forçage de l'affichage de l'image correcte...");
+
+    // 🔹 Vérifier si on est sur index.html avant d'exécuter selectImage()
+    if (window.location.pathname.includes("index.html")) {
+        if (typeof selectImage === "function") {
+            selectImage();
+            console.log("✅ `selectImage()` exécuté !");
+        } else {
+            console.warn("⚠️ `selectImage()` n'est pas défini après la transition !");
+        }
+    } else {
+        console.log("⏭️ `selectImage()` ignoré car nous ne sommes pas sur index.html.");
+}
+
+    
+    // 🔄 Forcer un reflow pour éviter les problèmes d'affichage
+    // document.body.offsetHeight;
 }
