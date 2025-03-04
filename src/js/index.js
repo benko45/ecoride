@@ -3,9 +3,23 @@
 import { applyTheme } from './apply-theme.js';
 import{ selectImage, storeStyles} from './functions.js';
 
-applyTheme();
-selectImage();
-export function initIndex() {
+// applyTheme();
+// // const rules = [
+// //     {
+// //         className: 'img-mobile',
+// //         condition: () => window.innerWidth < 768
+// //     },
+// //     {
+// //         className: 'img-tablet',
+// //         condition: () => window.innerWidth <= 1600 
+// //     },
+// //     {
+// //         className: 'img-desktop',
+// //         condition: () => window.innerWidth > 1600 
+// //     }
+// // ];
+// selectImage();
+// export function initIndex() {
     console.log("✅ index.js chargé et exécuté !");
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -282,4 +296,4 @@ export function initIndex() {
                     : window.location.href = "public/html/search-result.html";
         }
     });
-}
+// }

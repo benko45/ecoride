@@ -1,4 +1,4 @@
-import { storeStyles, applyStoredStyles } from "./functions.js";
+import { storeStyles, applyStoredStyles, restoreDepartureAddress } from "./functions.js";
 import { applyTheme } from "./apply-theme.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -105,7 +105,13 @@ function reloadScripts(url) {
     };
     
     console.log(`🔄 Vérification : rechargement des scripts pour ${pageName}`);
-
+    if (url.includes("index.html")) {
+        console.log("📌 Exécution forcée de restoreDepartureAddress() après transition...");
+        // setTimeout(() => {
+            restoreDepartureAddress();
+        // }, 200);
+    }
+    
     if (scriptsToReload[pageName]) {
         scriptsToReload[pageName].forEach(script => {
             const scriptPath = window.location.hostname === "benko45.github.io"
@@ -117,6 +123,17 @@ function reloadScripts(url) {
             removeAndReloadScript(scriptPath, script);
         });
     }
+    console.log(`🔄 Vérification : rechargement de ${url}`);
+
+    setTimeout(() => {
+        const scriptTest = document.querySelector(`script[src*="index.js"]`);
+        if (scriptTest) {
+            console.log("✅ `NOUVEAU TEST index.js` bien rechargé :", scriptTest.src);
+        } else {
+            console.error("❌ `NOUVEAU TEST index.js` ne s'est pas rechargé !");
+        }
+    }, 500);
+
 }
 
 /**

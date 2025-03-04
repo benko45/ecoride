@@ -165,21 +165,3 @@ export function initChoosingAddress() {
         }
     }, 500);
 }
-
-export function restoreDepartureAddress() {
-    const savedAddress = localStorage.getItem("selectedDepartureAddress");
-
-    if (savedAddress) {
-        console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
-        
-        const departureField = document.getElementById("selected-departure-address");
-        if (departureField) {
-            departureField.textContent = savedAddress;
-            console.log("✅ Adresse affichée dans index.html :", savedAddress);
-        } else {
-            console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
-        }
-    } else {
-        console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
-    }
-}
