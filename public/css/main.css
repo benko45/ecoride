@@ -182065,18 +182065,12 @@ html[theme=dark] .accessibility-border {
 /********************************************************/
 /* formatage de la zone de recherche de trajet */
 /********************************************************/
-#traject-container-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .traject-container {
-  position: absolute;
+  position: absolute !important;
+  top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 70%;
+  width: 70% !important;
 }
 @media screen and (max-width: 425px) {
   .traject-container {
@@ -182112,14 +182106,10 @@ html[theme=dark] .accessibility-border {
   overflow: hidden; /* Cache le texte qui dépasse */
   text-overflow: ellipsis; /* Ajoute des points de suspension à la fin */
   padding-left: 10px;
-  background-color: inherit;
   /* Masquer le curseur clignotant dans les champs de texte ciblés */
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-.myInput:hover {
-  background-color: inherit;
 }
 
 .search-container {
@@ -182128,22 +182118,21 @@ html[theme=dark] .accessibility-border {
   width: 100%;
   height: 100%;
 }
-.search-container:hover {
-  background-color: var(--custom-gray);
-}
-.search-container:hover #date-picker {
-  background-color: var(--custom-gray);
-}
 
 .search-container-2 {
   display: flex;
   padding: 2px;
   width: 85%;
 }
-.search-container-2:hover {
-  background-color: var(--custom-gray);
-}
 
+@media screen and (min-width: 768px) {
+  .search-container:hover {
+    background-color: var(--custom-gray);
+  }
+  .search-container:hover #date-picker {
+    background-color: var(--custom-gray);
+  }
+}
 /*  certains coins de la première cellule et de la dernière doivent
     s'arrondir différemment selon leur positionnement en ligne ou en colonne*/
 .premiere-cellule {
@@ -305643,6 +305632,10 @@ html[theme=dark] .accessibility-border {
 /************************************************************/
 /*    animation des flèches d'inversion  départ-arrivée     */
 /************************************************************/
+#bouncing-arrows {
+  z-index: 1500;
+}
+
 .arrow-bounce {
   overflow: visible;
 }
@@ -305841,6 +305834,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
 }
 
 @media screen and (max-width: 768px) {
@@ -306010,6 +306004,9 @@ body {
   }
 }
 @media screen and (max-width: 768px) {
+  #content-id {
+    position: relative;
+  }
   #nav {
     justify-content: center !important;
     position: fixed;

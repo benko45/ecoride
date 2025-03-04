@@ -182062,5 +182062,5 @@ html[theme=dark] .accessibility-border {
 }
 
 .datepicker {
-  padding-left: 30px;
+  padding-left: 30px !important;
 }/*# sourceMappingURL=choosing-date.css.map */

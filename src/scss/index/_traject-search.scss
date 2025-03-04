@@ -51,10 +51,10 @@
     overflow: hidden;   /* Cache le texte qui dépasse */
     text-overflow: ellipsis; /* Ajoute des points de suspension à la fin */
     padding-left: 10px;
-    background-color: inherit;
-    &:hover {
-        background-color: inherit;
-    }
+    // background-color: inherit;
+    // &:hover {
+    //     background-color: inherit;
+    // }
     /* Masquer le curseur clignotant dans les champs de texte ciblés */
     user-select: none;
 }
@@ -70,18 +70,13 @@
     padding: 2px;
     width : 85%;        
 }
-// min-width: variables.$breakpoint
+//min-width: variables.$breakpoint
 @media screen and (min-width: variables.$breakpoint) {
     .search-container {
         &:hover {
             background-color: var(--custom-gray);
         }
         &:hover #date-picker {
-            background-color: var(--custom-gray);
-        }
-    }
-    .search-container-2{
-        &:hover {
             background-color: var(--custom-gray);
         }
     }
