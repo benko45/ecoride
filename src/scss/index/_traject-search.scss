@@ -58,25 +58,32 @@
     /* Masquer le curseur clignotant dans les champs de texte ciblés */
     user-select: none;
 }
-
+// par défaut
 .search-container {
     display: flex;
     padding: 2px;
     width : 100%;
     height: 100%;
-    &:hover {
-        background-color: var(--custom-gray);
-    }
-    &:hover #date-picker {
-        background-color: var(--custom-gray);
-    }
 }
 .search-container-2 {
     display: flex;
     padding: 2px;
-    width : 85%;
-    &:hover {
-        background-color: var(--custom-gray);
+    width : 85%;        
+}
+// min-width: variables.$breakpoint
+@media screen and (min-width: variables.$breakpoint) {
+    .search-container {
+        &:hover {
+            background-color: var(--custom-gray);
+        }
+        &:hover #date-picker {
+            background-color: var(--custom-gray);
+        }
+    }
+    .search-container-2{
+        &:hover {
+            background-color: var(--custom-gray);
+        }
     }
 }
 
