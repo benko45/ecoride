@@ -130,11 +130,13 @@ function reloadScripts(url) {
                 link.remove();
             }
         });
-    
+        const scriptPath = window.location.hostname === "benko45.github.io"
+                ? `/ecoride`
+                : ``;
         // Recharger les styles d'index.html
         const stylesToLoad = [
-            "/public/css/main.css", 
-            "/public/css/custom-themes.css"
+            `${scriptPath}/public/css/main.css`, 
+            `${scriptPath}/public/css/custom-themes.css`
         ];
         
         stylesToLoad.forEach(stylePath => {
