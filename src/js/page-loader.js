@@ -82,16 +82,14 @@ function loadPage(url) {
 }
 
 function reloadScripts(url) {
+    /* chargement des js */
     const scriptTest = document.querySelector(`script[src*="index.js"]`);
     if (scriptTest) {
         console.log("✅ index.js a bien été ajouté au DOM :", scriptTest.src);
     } else {
         console.error("❌ index.js ne s'est pas rechargé !");
     }
-
     let pageName = url.split("/").pop().replace(".html", "");
-
-    // 📌 Scripts spécifiques à chaque page
     const scriptsToReload = {
         "index": ["index.js", "apply-theme.js"], // 📌 On recharge `applyTheme.js`
         "choosing-address": ["choosing-address.js"],
@@ -99,9 +97,7 @@ function reloadScripts(url) {
         "choosing-date": ["choosing-date.js"],
         "choosing-passengers": ["choosing-passengers.js"]
     };
-    
-    // console.log(`🔄 Vérification : rechargement des scripts pour ${pageName}`);
-    if (scriptsToReload[pageName]) {
+        if (scriptsToReload[pageName]) {
         scriptsToReload[pageName].forEach(script => {
             const scriptPath = window.location.hostname === "benko45.github.io"
                 ? `/ecoride/src/js/${script}`
@@ -112,6 +108,7 @@ function reloadScripts(url) {
             removeAndReloadScript(scriptPath, script);
         });
     }
+    /* chargement des bootstrap-icons */
     const biLink = document.querySelector("link[href*='bootstrap-icons']");
     if (!biLink) {
         const link = document.createElement("link");
@@ -120,6 +117,7 @@ function reloadScripts(url) {
         document.head.appendChild(link);
         console.log("✅ Bootstrap Icons rechargé !");
     }
+    // 🔄 Gestion des styles css pour la transition choosing-passengers.html->index.html
     if (url.includes("index.html")) {
         console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
     
@@ -131,21 +129,29 @@ function reloadScripts(url) {
             }
         });
         const scriptPath = window.location.hostname === "benko45.github.io"
-                ? `/ecoride`
-                : ``;
+        ? "/ecoride"
+        : "";
         // Recharger les styles d'index.html
         const stylesToLoad = [
             `${scriptPath}/public/css/main.css`, 
-            `${scriptPath}/public/css/custom-themes.css`
+            `${scriptPath}/public/css/custom-themes.css`,
+            `${scriptPath}/public/css/bootstrap.css` // ⚠️ Ajouté pour éviter des erreurs
         ];
-        
+        // Suppression des anciens styles non nécessaires (exemple : ceux de choosing-passengers)
+        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+            if (link.href.includes("choosing-passengers.css") || link.href.includes("choosing-arrival-address.css")) {
+                console.log("❌ Suppression des styles obsolètes :", link.href);
+                link.remove();
+            }
+        });
+        // Ajout des styles nécessaires
         stylesToLoad.forEach(stylePath => {
             if (!document.querySelector(`link[href="${stylePath}"]`)) {
                 const newLink = document.createElement("link");
                 newLink.rel = "stylesheet";
                 newLink.href = stylePath;
                 document.head.appendChild(newLink);
-                console.log("✅ Feuille de style rechargée :", stylePath);
+                console.log("✅ Feuille de style ajoutée :", stylePath);
             }
         });
         restoreDepartureAddress();
