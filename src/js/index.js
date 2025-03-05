@@ -238,6 +238,7 @@ const options = { weekday: 'short', day: '2-digit', month: 'short' };
 const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
 // Afficher la date dans la div si elle existe
 if (savedDate) {
+    console.log('savedDate:', savedDate);
     if (savedDate === todayFormatted) {
         $('#date-picker').text("Aujourd'hui");
     } else {
@@ -503,20 +504,34 @@ export function initIndex(){
 
     // Récupérer la date enregistrée dans le localStorage
     const savedDate = localStorage.getItem('selectedDate');
-    // Obtenir le jour, la date et le mois actuels
-    const today = new Date();
-    const options = { weekday: 'short', day: '2-digit', month: 'short' };
-    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
+
     // Afficher la date dans la div si elle existe
     if (savedDate) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        const dayAfterTomorrow = new Date(today);
+        const options = { weekday: 'short', day: '2-digit', month: 'short' };
+        tomorrow.setDate(today.getDate() + 1);
+        dayAfterTomorrow.setDate(today.getDate() + 2);
+    
+        // Formatage des dates pour comparaison (YYYY-MM-DD)
+        const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
+        const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
+        const dayAfterTomorrowFormatted = dayAfterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
+    
         if (savedDate === todayFormatted) {
             $('#date-picker').text("Aujourd'hui");
+        } else if (savedDate === tomorrowFormatted) {
+            $('#date-picker').text("Demain");
+        } else if (savedDate === dayAfterTomorrowFormatted) {
+            $('#date-picker').text("Après-demain");
         } else {
-        $('#date-picker').text(savedDate);
+            $('#date-picker').text(savedDate);
         }
     } else {
-        $('#date-picker').text('Aujourd\'hui');
+        $('#date-picker').text("Aujourd'hui");
     }
+    
 
 
     /******************************************************/
