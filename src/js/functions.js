@@ -148,8 +148,15 @@ export function applyDynamicStyles(HTMLElement){
         HTMLElement.style.width = '80%';
         HTMLElement.style.flex = '1';  // Utilise toute la largeur restante
     }
+    if(HTMLElement.classList.contains('datepicker')){
+        HTMLElement.style.padding = '15px 0 0 30px';
+    }
 }
 
+/**********************************************************/
+/*  Stockage des styles CSS de choosing-address.scss      */
+/*                     et choosing-arrival-address.scss   */
+/**********************************************************/
 export function storeStyles() {
     const stylesToStore = {};
 

@@ -29,7 +29,6 @@ export function initChoosingAddress() {
     // // console.log("✅ Élément `.suggestions` ajouté :", document.querySelector('#suggestions'));
     const suggestionsDiv = document.getElementById('suggestions');
     suggestionsDiv.classList.add('suggestions'); // Classe pour styliser les éléments
-    applyDynamicStyles(suggestionsDiv);
 
     const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
     suggestionsDiv.appendChild(useCurrentLocationOption);

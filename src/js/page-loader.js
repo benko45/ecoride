@@ -1,5 +1,6 @@
-import { storeStyles, applyStoredStyles, restoreDepartureAddress, restoreArrivalAddress } from "./functions.js";
+import { applyStoredStyles, restoreDepartureAddress, restoreArrivalAddress } from "./functions.js";
 import { applyTheme } from "./apply-theme.js";
+import { ensureCorrectStylesheet } from "./choosing-passengers.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
@@ -53,8 +54,9 @@ function loadPage(url) {
                     const doc = parser.parseFromString(html, "text/html");
                     const newContent = doc.getElementById("page-content").innerHTML;
                     pageContent.innerHTML = newContent;               
-
-                    // console.log("✅ Nouveau contenu inséré, animation d'entrée...");
+                    // 🔄 Recharger les styles css de choosing-passengers.css
+                    ensureCorrectStylesheet("choosing-passengers"); 
+                    // et supprimer ceux de mains.css
 
                     // ✅ Animation d'entrée
                     gsap.fromTo(pageContent, {
@@ -69,8 +71,9 @@ function loadPage(url) {
                     history.pushState(null, null, url)
                     // console.log("✅ Nouvelle page chargée avec transition !");
 
-                    // 🔄 Appliquer les styles et recharger les scripts après la transition
+                    // 🔄 Appliquer les styles
                     applyStoredStyles();
+                    // 🔄 Recharger les scripts
                     reloadScripts(url);                    
                 })
                 .catch(error => console.error("❌ Erreur lors du chargement de la page :", error));
@@ -103,7 +106,6 @@ function reloadScripts(url) {
         restoreDepartureAddress();
         restoreArrivalAddress();
     }
-    
     if (scriptsToReload[pageName]) {
         scriptsToReload[pageName].forEach(script => {
             const scriptPath = window.location.hostname === "benko45.github.io"
@@ -115,6 +117,15 @@ function reloadScripts(url) {
             removeAndReloadScript(scriptPath, script);
         });
     }
+    const biLink = document.querySelector("link[href*='bootstrap-icons']");
+    if (!biLink) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"; // 📌 Vérifie l'URL exacte
+        document.head.appendChild(link);
+        console.log("✅ Bootstrap Icons rechargé !");
+    }
+    
 }
 
 /**
@@ -205,6 +216,33 @@ function addNewScript(scriptSrc, scriptName) {
                 })
                 .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
         }
+        if (scriptName === "choosing-date.js") {
+            // console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
+            import(scriptSrc)
+                .then(module => {
+                    if (module.initChoosingDate) {
+                        module.initChoosingDate();
+                        console.log("✅ `initChoosingDate()` exécuté après rechargement !");
+                    } else {
+                        console.warn("⚠️ `initChoosingDate()` introuvable après rechargement !");
+                    }
+                })
+                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
+        }
+        if (scriptName === "choosing-passengers.js") {
+            console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
+            import(scriptSrc)
+                .then(module => {
+                    if (module.initChoosingPassengers) {
+                        module.initChoosingPassengers();
+                        console.log("✅ `initChoosingPassengerss()` exécuté après rechargement !");
+                    } else {
+                        console.warn("⚠️ `initChoosingPassengers()` introuvable après rechargement !");
+                    }
+                })
+                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
+        }
+        
     };
 
     document.body.appendChild(newScript);
