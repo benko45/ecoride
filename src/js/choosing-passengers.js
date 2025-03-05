@@ -77,20 +77,20 @@ export function ensureCorrectStylesheet() {
         let isAlreadyLoaded = Array.from(existingStyles).some(link => link.href.includes(cssPath));
 
         if (!isAlreadyLoaded) {
-            console.log(`🔄 Chargement dynamique de la feuille de style : ${cssPath}`);
+            //console.log(`🔄 Chargement dynamique de la feuille de style : ${cssPath}`);
             const newLink = document.createElement("link");
             newLink.rel = "stylesheet";
             newLink.href = cssPath;
             document.head.appendChild(newLink);
         } else {
-            console.log(`✅ La feuille de style ${cssPath} est déjà chargée.`);
+            //console.log(`✅ La feuille de style ${cssPath} est déjà chargée.`);
         }
     }
-    console.log(`🔍 Vérification du CSS dans le DOM :`, document.querySelectorAll("link[rel='stylesheet']"));
+    //console.log(`🔍 Vérification du CSS dans le DOM :`, document.querySelectorAll("link[rel='stylesheet']"));
 
     document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
         if (link.href.includes("main.css")) {
-            console.log(`🚨 Suppression de la feuille de style obsolète : ${link.href}`);
+            //console.log(`🚨 Suppression de la feuille de style obsolète : ${link.href}`);
             link.remove();
         }
     });

@@ -38,7 +38,7 @@ function loadPage(url) {
         enterDirection = "-100%";
     }
 
-    console.log(`🚀 Préchargement de ${url} avant la transition...`);
+    //console.log(`🚀 Préchargement de ${url} avant la transition...`);
 
     // 1️⃣ 🔄 Précharger la nouvelle page AVANT l’animation
     fetch(url)
@@ -49,11 +49,11 @@ function loadPage(url) {
             const newContent = doc.getElementById("page-content");
 
             if (!newContent) {
-                console.error("❌ ERREUR : #page-content absent du nouveau document !");
+                //console.error("❌ ERREUR : #page-content absent du nouveau document !");
                 return;
             }
 
-            console.log("✅ Page préchargée, début de la transition...");
+            //console.log("✅ Page préchargée, début de la transition...");
 
             // 2️⃣ 🔄 Création de la timeline GSAP
             const tl = gsap.timeline({
@@ -66,7 +66,7 @@ function loadPage(url) {
                 // ⏳ Pause et chargement du nouveau contenu
                 .add(() => {
                     pageContent.innerHTML = newContent.innerHTML;
-                    console.log("✅ Nouveau contenu inséré !");
+                    //console.log("✅ Nouveau contenu inséré !");
                     
                     // 🔄 Recharger les styles spécifiques
                     ensureCorrectStylesheet("choosing-passengers");
@@ -83,7 +83,7 @@ function loadPage(url) {
 
             // ✅ Mise à jour de l’historique
             history.pushState(null, null, url);
-            console.log("✅ URL mise à jour :", url);
+            //console.log("✅ URL mise à jour :", url);
         })
         .catch(error => console.error("❌ Erreur lors du chargement AJAX :", error));
 }
@@ -140,9 +140,9 @@ function addNewScript(scriptSrc, scriptName) {
                 .then(module => {
                     if (module.initIndex) {
                         module.initIndex();
-                        console.log("✅ `initIndex()` exécuté !");
+                        //console.log("✅ `initIndex()` exécuté !");
                     } else {
-                        console.warn("⚠️ `initIndex()` introuvable !");
+                        //console.warn("⚠️ `initIndex()` introuvable !");
                     }
                 })
                 .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
@@ -191,22 +191,22 @@ function addNewScript(scriptSrc, scriptName) {
                 .then(module => {
                     if (module.initChoosingDate) {
                         module.initChoosingDate();
-                        console.log("✅ `initChoosingDate()` exécuté après rechargement !");
+                        //console.log("✅ `initChoosingDate()` exécuté après rechargement !");
                     } else {
-                        console.warn("⚠️ `initChoosingDate()` introuvable après rechargement !");
+                        //console.warn("⚠️ `initChoosingDate()` introuvable après rechargement !");
                     }
                 })
                 .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
         }
         if (scriptName === "choosing-passengers.js") {
-            console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
+            //console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
             import(scriptSrc)
                 .then(module => {
                     if (module.initChoosingPassengers) {
                         module.initChoosingPassengers();
-                        console.log("✅ `initChoosingPassengerss()` exécuté après rechargement !");
+                        //console.log("✅ `initChoosingPassengerss()` exécuté après rechargement !");
                     } else {
-                        console.warn("⚠️ `initChoosingPassengers()` introuvable après rechargement !");
+                        //console.warn("⚠️ `initChoosingPassengers()` introuvable après rechargement !");
                     }
                 })
                 .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
@@ -229,9 +229,9 @@ window.addEventListener("popstate", function () {
 function loadingJavaScripts(url) {
     const scriptTest = document.querySelector(`script[src*="index.js"]`);
     if (scriptTest) {
-        console.log("✅ index.js a bien été ajouté au DOM :", scriptTest.src);
+        //console.log("✅ index.js a bien été ajouté au DOM :", scriptTest.src);
     } else {
-        console.error("❌ index.js ne s'est pas rechargé !");
+        //console.error("❌ index.js ne s'est pas rechargé !");
     }
     let pageName = url.split("/").pop().replace(".html", "");
     const scriptsToReload = {
@@ -247,7 +247,7 @@ function loadingJavaScripts(url) {
                 ? `/ecoride/src/js/${script}`
                 : `/src/js/${script}`;
 
-            console.log(`🔄 Tentative de rechargement : ${scriptPath}`);
+            //console.log(`🔄 Tentative de rechargement : ${scriptPath}`);
 
             removeAndReloadScript(scriptPath, script);
         });
@@ -261,18 +261,18 @@ function loadingBootstrapIcons() {
         link.rel = "stylesheet";
         link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"; // 📌 Vérifie l'URL exacte
         document.head.appendChild(link);
-        console.log("✅ Bootstrap Icons rechargé !");
+        //console.log("✅ Bootstrap Icons rechargé !");
     }
 }
 
 function loadingIndexStyles(url) {
     if (url.includes("index.html")) {
-        console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
+        //console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
     
         // Supprimer les anciennes feuilles de style
         document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
             if (link.href.includes("choosing-passengers.css")) {
-                console.log("❌ Suppression du CSS de choosing-passengers :", link.href);
+                //console.log("❌ Suppression du CSS de choosing-passengers :", link.href);
                 link.remove();
             }
         });
@@ -288,7 +288,7 @@ function loadingIndexStyles(url) {
         // Suppression des anciens styles non nécessaires (exemple : ceux de choosing-passengers)
         document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
             if (link.href.includes("choosing-passengers.css") || link.href.includes("choosing-arrival-address.css")) {
-                console.log("❌ Suppression des styles obsolètes :", link.href);
+                //console.log("❌ Suppression des styles obsolètes :", link.href);
                 link.remove();
             }
         });
@@ -299,7 +299,7 @@ function loadingIndexStyles(url) {
                 newLink.rel = "stylesheet";
                 newLink.href = stylePath;
                 document.head.appendChild(newLink);
-                console.log("✅ Feuille de style ajoutée :", stylePath);
+                //console.log("✅ Feuille de style ajoutée :", stylePath);
             }
         });
         restoreDepartureAddress();

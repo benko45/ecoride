@@ -3,11 +3,11 @@
 import { applyTheme } from './apply-theme.js';
 import{ selectImage, storeStyles} from './functions.js';
 
-console.log("✅ index.js chargé et exécuté !");
+//console.log("✅ index.js chargé et exécuté !");
 
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("✅ DOM complètement chargé, exécution des événements...");
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     console.log("✅ DOM complètement chargé, exécution des événements...");
+// });
 
 /******************************************************/
 /******************************************************/
@@ -140,7 +140,7 @@ caseDepart.addEventListener("click", function() {
 
 // Récupérer l'adresse stockée dans localStorage
 let selectedDepartureAddress = localStorage.getItem('selectedDepartureAddress');
-console.log(selectedDepartureAddress);
+// console.log(selectedDepartureAddress);
 if ('selectedDepartureAddress: ', selectedDepartureAddress) {
     // Si une adresse a été enregistrée, l'afficher
     document.getElementById('selected-departure-address').innerHTML = selectedDepartureAddress;

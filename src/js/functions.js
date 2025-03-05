@@ -178,7 +178,7 @@ export function storeStyles() {
 
     // 📦 Stocke l'objet complet dans localStorage
     localStorage.setItem("styles", JSON.stringify(stylesToStore));
-    console.log("✅ Styles sauvegardés :", stylesToStore);
+    // console.log("✅ Styles sauvegardés :", stylesToStore);
 }
 
 export function applyStoredStyles() { 
