@@ -30,55 +30,62 @@ document.addEventListener("DOMContentLoaded", function () {
 // Fonction pour charger une page avec AJAX + animation GSAP
 function loadPage(url) {
     const pageContent = document.getElementById("page-content");
-
-    let exitDirection = "-100%";  
-    let enterDirection = "100%";  
+    let exitDirection = "-100%";
+    let enterDirection = "100%";
 
     if (url.includes("index.html")) {
         exitDirection = "100%";
         enterDirection = "-100%";
     }
 
-    // ✅ Animation de sortie
-    gsap.to(pageContent, {
-        opacity: 0,
-        x: exitDirection,
-        duration: 0.5,
-        onComplete: () => {
-            // console.log("✅ Animation de sortie terminée, chargement de la nouvelle page :", url);
+    console.log(`🚀 Préchargement de ${url} avant la transition...`);
 
-            fetch(url)
-                .then(response => response.text())
-                .then(html => {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(html, "text/html");
-                    const newContent = doc.getElementById("page-content").innerHTML;
-                    pageContent.innerHTML = newContent;               
-                    // 🔄 Recharger les styles css de choosing-passengers.css
-                    ensureCorrectStylesheet("choosing-passengers"); 
-                    // et supprimer ceux de mains.css
+    // 1️⃣ 🔄 Précharger la nouvelle page AVANT l’animation
+    fetch(url)
+        .then(response => response.text())
+        .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            const newContent = doc.getElementById("page-content");
 
-                    // ✅ Animation d'entrée
-                    gsap.fromTo(pageContent, {
-                        opacity: 0,
-                        x: enterDirection,
-                    }, {
-                        opacity: 1,
-                        x: "0%",
-                        duration: 0.5
-                    });
-                    // ✅ Mettre à jour l'URL dans l'historique
-                    history.pushState(null, null, url)
-                    // console.log("✅ Nouvelle page chargée avec transition !");
+            if (!newContent) {
+                console.error("❌ ERREUR : #page-content absent du nouveau document !");
+                return;
+            }
 
-                    // 🔄 Appliquer les styles
+            console.log("✅ Page préchargée, début de la transition...");
+
+            // 2️⃣ 🔄 Création de la timeline GSAP
+            const tl = gsap.timeline({
+                defaults: { ease: "power2.inOut", duration: 0.5 }
+            });
+
+            // 🎭 Animation de sortie
+            tl.to(pageContent, { opacity: 0, x: exitDirection })
+
+                // ⏳ Pause et chargement du nouveau contenu
+                .add(() => {
+                    pageContent.innerHTML = newContent.innerHTML;
+                    console.log("✅ Nouveau contenu inséré !");
+                    
+                    // 🔄 Recharger les styles spécifiques
+                    ensureCorrectStylesheet("choosing-passengers");
+
+                    // 🔄 Appliquer les styles stockés
                     applyStoredStyles();
-                    // 🔄 Recharger les scripts
-                    reloadScripts(url);                    
+
+                    // 🔄 Recharger les scripts dynamiques
+                    reloadScripts(url);
                 })
-                .catch(error => console.error("❌ Erreur lors du chargement de la page :", error));
-        }
-    });
+
+                // 🎭 Animation d’entrée
+                .fromTo(pageContent, { opacity: 0, x: enterDirection }, { opacity: 1, x: "0%" });
+
+            // ✅ Mise à jour de l’historique
+            history.pushState(null, null, url);
+            console.log("✅ URL mise à jour :", url);
+        })
+        .catch(error => console.error("❌ Erreur lors du chargement AJAX :", error));
 }
 
 function reloadScripts(url) {
