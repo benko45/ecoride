@@ -101,11 +101,6 @@ function reloadScripts(url) {
     };
     
     // console.log(`🔄 Vérification : rechargement des scripts pour ${pageName}`);
-    if (url.includes("index.html")) {
-        // console.log("📌 Exécution forcée de restoreDepartureAddress() après transition...");
-        restoreDepartureAddress();
-        restoreArrivalAddress();
-    }
     if (scriptsToReload[pageName]) {
         scriptsToReload[pageName].forEach(script => {
             const scriptPath = window.location.hostname === "benko45.github.io"
@@ -124,6 +119,35 @@ function reloadScripts(url) {
         link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"; // 📌 Vérifie l'URL exacte
         document.head.appendChild(link);
         console.log("✅ Bootstrap Icons rechargé !");
+    }
+    if (url.includes("index.html")) {
+        console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
+    
+        // Supprimer les anciennes feuilles de style
+        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+            if (link.href.includes("choosing-passengers.css")) {
+                console.log("❌ Suppression du CSS de choosing-passengers :", link.href);
+                link.remove();
+            }
+        });
+    
+        // Recharger les styles d'index.html
+        const stylesToLoad = [
+            "/public/css/main.css", 
+            "/public/css/custom-themes.css"
+        ];
+        
+        stylesToLoad.forEach(stylePath => {
+            if (!document.querySelector(`link[href="${stylePath}"]`)) {
+                const newLink = document.createElement("link");
+                newLink.rel = "stylesheet";
+                newLink.href = stylePath;
+                document.head.appendChild(newLink);
+                console.log("✅ Feuille de style rechargée :", stylePath);
+            }
+        });
+        restoreDepartureAddress();
+        restoreArrivalAddress();
     }
     
 }
