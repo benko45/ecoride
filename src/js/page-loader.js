@@ -83,81 +83,11 @@ function loadPage(url) {
 
 function reloadScripts(url) {
     /* chargement des js */
-    const scriptTest = document.querySelector(`script[src*="index.js"]`);
-    if (scriptTest) {
-        console.log("✅ index.js a bien été ajouté au DOM :", scriptTest.src);
-    } else {
-        console.error("❌ index.js ne s'est pas rechargé !");
-    }
-    let pageName = url.split("/").pop().replace(".html", "");
-    const scriptsToReload = {
-        "index": ["index.js", "apply-theme.js"], // 📌 On recharge `applyTheme.js`
-        "choosing-address": ["choosing-address.js"],
-        "choosing-arrival-address": ["choosing-arrival-address.js"],
-        "choosing-date": ["choosing-date.js"],
-        "choosing-passengers": ["choosing-passengers.js"]
-    };
-        if (scriptsToReload[pageName]) {
-        scriptsToReload[pageName].forEach(script => {
-            const scriptPath = window.location.hostname === "benko45.github.io"
-                ? `/ecoride/src/js/${script}`
-                : `/src/js/${script}`;
-
-            console.log(`🔄 Tentative de rechargement : ${scriptPath}`);
-
-            removeAndReloadScript(scriptPath, script);
-        });
-    }
+    loadingJavaScripts(url);
     /* chargement des bootstrap-icons */
-    const biLink = document.querySelector("link[href*='bootstrap-icons']");
-    if (!biLink) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"; // 📌 Vérifie l'URL exacte
-        document.head.appendChild(link);
-        console.log("✅ Bootstrap Icons rechargé !");
-    }
+    loadingBootstrapIcons();
     // 🔄 Gestion des styles css pour la transition choosing-passengers.html->index.html
-    if (url.includes("index.html")) {
-        console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
-    
-        // Supprimer les anciennes feuilles de style
-        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
-            if (link.href.includes("choosing-passengers.css")) {
-                console.log("❌ Suppression du CSS de choosing-passengers :", link.href);
-                link.remove();
-            }
-        });
-        const scriptPath = window.location.hostname === "benko45.github.io"
-        ? "/ecoride"
-        : "";
-        // Recharger les styles d'index.html
-        const stylesToLoad = [
-            `${scriptPath}/public/css/main.css`, 
-            `${scriptPath}/public/css/custom-themes.css`,
-            `${scriptPath}/public/css/bootstrap.css` // ⚠️ Ajouté pour éviter des erreurs
-        ];
-        // Suppression des anciens styles non nécessaires (exemple : ceux de choosing-passengers)
-        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
-            if (link.href.includes("choosing-passengers.css") || link.href.includes("choosing-arrival-address.css")) {
-                console.log("❌ Suppression des styles obsolètes :", link.href);
-                link.remove();
-            }
-        });
-        // Ajout des styles nécessaires
-        stylesToLoad.forEach(stylePath => {
-            if (!document.querySelector(`link[href="${stylePath}"]`)) {
-                const newLink = document.createElement("link");
-                newLink.rel = "stylesheet";
-                newLink.href = stylePath;
-                document.head.appendChild(newLink);
-                console.log("✅ Feuille de style ajoutée :", stylePath);
-            }
-        });
-        restoreDepartureAddress();
-        restoreArrivalAddress();
-    }
-    
+    loadingIndexStyles(url);
 }
 
 /**
@@ -289,4 +219,83 @@ window.addEventListener("popstate", function () {
     loadPage(window.location.pathname);
 });
 
+function loadingJavaScripts(url) {
+    const scriptTest = document.querySelector(`script[src*="index.js"]`);
+    if (scriptTest) {
+        console.log("✅ index.js a bien été ajouté au DOM :", scriptTest.src);
+    } else {
+        console.error("❌ index.js ne s'est pas rechargé !");
+    }
+    let pageName = url.split("/").pop().replace(".html", "");
+    const scriptsToReload = {
+        "index": ["index.js", "apply-theme.js"], // 📌 On recharge `applyTheme.js`
+        "choosing-address": ["choosing-address.js"],
+        "choosing-arrival-address": ["choosing-arrival-address.js"],
+        "choosing-date": ["choosing-date.js"],
+        "choosing-passengers": ["choosing-passengers.js"]
+    };
+        if (scriptsToReload[pageName]) {
+        scriptsToReload[pageName].forEach(script => {
+            const scriptPath = window.location.hostname === "benko45.github.io"
+                ? `/ecoride/src/js/${script}`
+                : `/src/js/${script}`;
 
+            console.log(`🔄 Tentative de rechargement : ${scriptPath}`);
+
+            removeAndReloadScript(scriptPath, script);
+        });
+    }
+}
+
+function loadingBootstrapIcons() {
+    const biLink = document.querySelector("link[href*='bootstrap-icons']");
+    if (!biLink) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"; // 📌 Vérifie l'URL exacte
+        document.head.appendChild(link);
+        console.log("✅ Bootstrap Icons rechargé !");
+    }
+}
+
+function loadingIndexStyles(url) {
+    if (url.includes("index.html")) {
+        console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
+    
+        // Supprimer les anciennes feuilles de style
+        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+            if (link.href.includes("choosing-passengers.css")) {
+                console.log("❌ Suppression du CSS de choosing-passengers :", link.href);
+                link.remove();
+            }
+        });
+        const scriptPath = window.location.hostname === "benko45.github.io"
+        ? "/ecoride"
+        : "";
+        // Recharger les styles d'index.html
+        const stylesToLoad = [
+            `${scriptPath}/public/css/main.css`, 
+            `${scriptPath}/public/css/custom-themes.css`,
+            `${scriptPath}/public/css/bootstrap.css` // ⚠️ Ajouté pour éviter des erreurs
+        ];
+        // Suppression des anciens styles non nécessaires (exemple : ceux de choosing-passengers)
+        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+            if (link.href.includes("choosing-passengers.css") || link.href.includes("choosing-arrival-address.css")) {
+                console.log("❌ Suppression des styles obsolètes :", link.href);
+                link.remove();
+            }
+        });
+        // Ajout des styles nécessaires
+        stylesToLoad.forEach(stylePath => {
+            if (!document.querySelector(`link[href="${stylePath}"]`)) {
+                const newLink = document.createElement("link");
+                newLink.rel = "stylesheet";
+                newLink.href = stylePath;
+                document.head.appendChild(newLink);
+                console.log("✅ Feuille de style ajoutée :", stylePath);
+            }
+        });
+        restoreDepartureAddress();
+        restoreArrivalAddress();
+    }
+}

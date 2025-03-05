@@ -182063,4 +182063,8 @@ html[theme=dark] .accessibility-border {
 
 .datepicker {
   padding-left: 30px !important;
+}
+
+#page-content {
+  will-change: transform, opacity;
 }/*# sourceMappingURL=choosing-date.css.map */

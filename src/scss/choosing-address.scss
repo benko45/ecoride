@@ -3,6 +3,10 @@
 @use "styles/global-styles";
 @use "variables";
 
+#page-content {
+    will-change: transform, opacity;
+}
+
 #address {
     width: 100%;
 }
