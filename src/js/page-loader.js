@@ -107,15 +107,13 @@ function removeAndReloadScript(scriptSrc, scriptName) {
         // console.warn(`⚠️ Suppression du script existant : ${scriptSrc}`);
         existingScript.remove();
 
-        setTimeout(() => {
-            const checkScript = document.querySelector(`script[src="${scriptSrc}"]`);
-            if (checkScript) {
-                // console.error(`❌ Échec de la suppression du script : ${scriptSrc}`);
-            } else {
-                // console.log(`✅ Script supprimé avec succès : ${scriptSrc}`);
-                addNewScript(scriptSrc, scriptName);
-            }
-        }, 200); // Augmentation du délai pour éviter toute collision
+        const checkScript = document.querySelector(`script[src="${scriptSrc}"]`);
+        if (checkScript) {
+            // console.error(`❌ Échec de la suppression du script : ${scriptSrc}`);
+        } else {
+            // console.log(`✅ Script supprimé avec succès : ${scriptSrc}`);
+            addNewScript(scriptSrc, scriptName);
+        }
     } else {
         // console.log(`✅ Aucun script trouvé, chargement direct : ${scriptSrc}`);
         addNewScript(scriptSrc, scriptName);

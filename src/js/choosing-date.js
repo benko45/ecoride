@@ -4,7 +4,7 @@ import { applyTheme } from './apply-theme.js';
 import { applyDynamicStyles} from './functions.js';
 
 export function initChoosingDate() {
-    console.log("✅ `initChoosingDate()` exécuté !");
+    // console.log("✅ `initChoosingDate()` exécuté !");
     /******************************************************/
     /******************************************************/
     applyTheme();
@@ -37,8 +37,8 @@ export function initChoosingDate() {
 
             localStorage.setItem('longSelectedDate', longSelectedDate);
 
-            console.log('selectedDate:', selectedDate);
-            console.log('longSelectedDate:', longSelectedDate);
+            // console.log('selectedDate:', selectedDate);
+            // console.log('longSelectedDate:', longSelectedDate);
         });
 
         // Si une date est enregistrée, on la sélectionne et on la surligne
@@ -50,7 +50,7 @@ export function initChoosingDate() {
         }
         const datePickers = document.getElementsByClassName('datepicker');
         if (datePickers.length > 0) {
-            console.log('Datepicker trouvé !');
+            // console.log('Datepicker trouvé !');
             Array.from(datePickers).forEach(el => applyDynamicStyles(el));
         } else {
             console.warn('Aucun datepicker trouvé !');

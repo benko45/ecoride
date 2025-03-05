@@ -6,7 +6,7 @@ import { createShortddress, createAddressSuggestion, removeChildrenExceptFirst, 
 export function initChoosingAddress() {
     "use strict";
 
-    console.log("✅ choosing-address.js chargé et exécuté !");
+    // console.log("✅ choosing-address.js chargé et exécuté !");
     document.addEventListener("DOMContentLoaded", () => {
         console.log("✅ DOM complètement chargé, exécution des événements...");
     });
@@ -69,18 +69,4 @@ export function initChoosingAddress() {
     if (selectedAddress) {
         document.getElementById('address').value = selectedAddress;
     }
-
-    setTimeout(() => {
-        console.log("🔄 JE SUIS ICIIIIIIIIIIIII");
-        const inputField = document.getElementById('address');
-        if (inputField) {
-            console.log("✅ Vérification : champ d'adresse trouvé !");
-            console.log("🔄 Ajout de l'événement `input` après transition...");
-            inputField.addEventListener('input', function () {
-                console.log("📩 L'utilisateur a tapé :", this.value);
-            });
-        } else {
-            console.error("❌ Problème : champ d'adresse introuvable après la transition !");
-        }
-    }, 500);
 }

@@ -183,9 +183,9 @@ export function updateBouncingArrows() {
         console.error("❌ ERREUR : #bouncing-arrows introuvable !");
         return;
     }
-    console.log('updateBouncingArrows() selectedDepartureAddress: ', localStorage.getItem('selectedDepartureAddress'));
-    console.log('updateBouncingArrows() selectedArrivalAddress: ', localStorage.getItem('selectedArrivalAddress'));
-    console.log('test:',  (localStorage.getItem('selectedDepartureAddress')  && localStorage.getItem('selectedArrivalAddress')) || (localStorage.getItem('selectedDepartureAddress') === localStorage.getItem('selectedArrivalAddress')))
+    // console.log('updateBouncingArrows() selectedDepartureAddress: ', localStorage.getItem('selectedDepartureAddress'));
+    // console.log('updateBouncingArrows() selectedArrivalAddress: ', localStorage.getItem('selectedArrivalAddress'));
+    // console.log('test:',  (localStorage.getItem('selectedDepartureAddress')  && localStorage.getItem('selectedArrivalAddress')) || (localStorage.getItem('selectedDepartureAddress') === localStorage.getItem('selectedArrivalAddress')))
     const dep = localStorage.getItem('selectedDepartureAddress');
     const arr = localStorage.getItem('selectedArrivalAddress');
     if( dep !== arr && dep && arr) {
@@ -294,7 +294,7 @@ document.getElementById("search").addEventListener("click", function() {
 });
 
 export function initIndex(){
-    console.log("✅ index.js chargé et exécuté !");
+    // console.log("✅ index.js chargé et exécuté !");
 
     document.addEventListener("DOMContentLoaded", () => {
         console.log("✅ DOM complètement chargé, exécution des événements...");
@@ -431,7 +431,7 @@ export function initIndex(){
 
     // Récupérer l'adresse stockée dans localStorage
     let selectedDepartureAddress = localStorage.getItem('selectedDepartureAddress');
-    console.log(selectedDepartureAddress);
+    // console.log(selectedDepartureAddress);
     if ('selectedDepartureAddress: ', selectedDepartureAddress) {
         // Si une adresse a été enregistrée, l'afficher
         document.getElementById('selected-departure-address').innerHTML = selectedDepartureAddress;

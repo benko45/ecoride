@@ -4,15 +4,15 @@ import { applyTheme } from './apply-theme.js';
 import { createShortddress, createAddressSuggestion, removeChildrenExceptFirst, applyDynamicStyles, useCurrentLocationOptionText  } from './functions.js';
 
 export function initChoosingArrivalAddress() {
-    console.log("✅ `initChoosingArrivalAddress()` exécuté !");
+    // console.log("✅ `initChoosingArrivalAddress()` exécuté !");
     
     const inputField = document.getElementById('address');
 
-    if (!inputField) {
-        console.error("❌ ERREUR : #address introuvable !");
-    } else {
-        console.log("✅ #address trouvé !");
-    }
+    // if (!inputField) {
+    //     console.error("❌ ERREUR : #address introuvable !");
+    // } else {
+    //     console.log("✅ #address trouvé !");
+    // }
 
         /******************************************************/
     /******************************************************/

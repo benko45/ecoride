@@ -66,11 +66,11 @@ export function createAddressSuggestion(address, parentElement) {
         removeChildrenExceptFirst(parentElement)
         const userAgent = 'benoit.vicente@hotmail.fr';
         // 🔹 Détermine quel champ enregistrer en fonction de la page actuelle
-        console.log("🔄 window.location.pathname :", window.location.pathname);
+        // console.log("🔄 window.location.pathname :", window.location.pathname);
         let storageKey = window.location.pathname.includes("choosing-address.html") 
         ? "selectedDepartureAddress" 
         : "selectedArrivalAddress";
-        console.log("🔄 storageKey :", storageKey);
+        // console.log("🔄 storageKey :", storageKey);
         if(address !== useCurrentLocationOptionText) {
             localStorage.setItem(storageKey, address);
         } else {
@@ -184,13 +184,13 @@ export function storeStyles() {
 export function applyStoredStyles() { 
     const storedStyles = localStorage.getItem("styles");
 
-    if (!storedStyles) {
-        console.warn("⚠️ Aucun style enregistré dans localStorage.");
-        return;
-    }
+    // if (!storedStyles) {
+    //     console.warn("⚠️ Aucun style enregistré dans localStorage.");
+    //     return;
+    // }
 
     const stylesObject = JSON.parse(storedStyles);
-    console.log("🔄 Application des styles enregistrés...");
+    // console.log("🔄 Application des styles enregistrés...");
 
     document.querySelectorAll("[data-dynamic-style]").forEach(el => {
         
@@ -207,22 +207,22 @@ export function applyStoredStyles() {
             // 🔹 Réapplique les classes CSS enregistrées
             el.className = savedStyles["classList"].join(" ");
 
-            console.log(`✅ Styles appliqués à ${el.dataset.dynamicStyle}`);
+            // console.log(`✅ Styles appliqués à ${el.dataset.dynamicStyle}`);
         }
     });
     // ✅ Forçage du recalcul des images et exécution de `selectImage()`
-    console.log("🔄 Forçage de l'affichage de l'image correcte...");
+    // console.log("🔄 Forçage de l'affichage de l'image correcte...");
 
     // 🔹 Vérifier si on est sur index.html avant d'exécuter selectImage()
     if (window.location.pathname.includes("index.html")) {
         if (typeof selectImage === "function") {
             selectImage();
-            console.log("✅ `selectImage()` exécuté !");
+            // console.log("✅ `selectImage()` exécuté !");
         } else {
-            console.warn("⚠️ `selectImage()` n'est pas défini après la transition !");
+            // console.warn("⚠️ `selectImage()` n'est pas défini après la transition !");
         }
     } else {
-        console.log("⏭️ `selectImage()` ignoré car nous ne sommes pas sur index.html.");
+        // console.log("⏭️ `selectImage()` ignoré car nous ne sommes pas sur index.html.");
 }
 
     
@@ -233,33 +233,33 @@ export function restoreDepartureAddress() {
     const savedAddress = localStorage.getItem("selectedDepartureAddress");
 
     if (savedAddress) {
-        console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
+        // console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
         
         const departureField = document.getElementById("selected-departure-address");
         if (departureField) {
             departureField.textContent = savedAddress;
-            console.log("✅ Adresse affichée dans index.html :", savedAddress);
+            // console.log("✅ Adresse affichée dans index.html :", savedAddress);
         } else {
-            console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
+            // console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
         }
     } else {
-        console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
+        // console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
     }
 }
 export function restoreArrivalAddress() {
     const savedAddress = localStorage.getItem("selectedArrivalAddress");
 
     if (savedAddress) {
-        console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
+        // console.log("🔄 Récupération de l'adresse enregistrée :", savedAddress);
         
         const departureField = document.getElementById("selected-arrival-address");
         if (departureField) {
             departureField.textContent = savedAddress;
-            console.log("✅ Adresse affichée dans index.html :", savedAddress);
+            // console.log("✅ Adresse affichée dans index.html :", savedAddress);
         } else {
-            console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
+            // console.warn("⚠️ Élément `#selected-departure-address` introuvable !");
         }
     } else {
-        console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
+        // console.warn("⚠️ Aucune adresse enregistrée dans localStorage !");
     }
 }
