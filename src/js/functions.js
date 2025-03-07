@@ -48,14 +48,6 @@ export const selectImage = () => {
 
             console.log(`🎨 Image sélectionnée AVANT correction : ${prefix}${newSrc}`);
 
-            // // ✅ Application du préfixe dynamique
-            // if (newSrc) {
-            //     newSrc = prefix + newSrc;
-            // }
-            // if (newSrcset ) {
-            //     newSrcset = prefix + newSrcset;
-            // }
-
             // ✅ Vérifier si l'image est déjà bien appliquée avant modification
             if (selectedImage.getAttribute("src") !== newSrc) {
                 selectedImage.onload = () => {
