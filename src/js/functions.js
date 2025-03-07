@@ -18,7 +18,7 @@ export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
     
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
-    const prefix = window.location.hostname === "benko45.github.io" ? "." : "";
+    const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
 
     // Cacher toutes les images et supprimer `src` et `srcset`
     document.querySelectorAll('.responsive-img').forEach(img => {
