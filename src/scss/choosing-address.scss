@@ -31,32 +31,10 @@ html[theme="dark"] input.form-control:focus {
     border: 1px solid transparent;
 }
 
-// .suggestions {
-//     display: flex !important;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     gap: 10px; /* Espacement entre chaque suggestion */
-    
-// }
+$placeholderPrefixes: ("::", "::-webkit-input-", "::-moz-", ":-ms-input-", "::-ms-input-");
 
-
-// .suggestions .suggestion {
-//     display: flex !important;
-//     flex-direction: row !important;
-//     align-items: center !important;
-//     width: 80% !important;
-//     margin: 0 auto; /* Centrer les suggestions dans leur conteneur */
-//     padding: 5px;
-//     display: flex;
-//     align-items: center; /* Aligne les icônes et le texte */
-//     border-radius: 5px; /* Arrondit les bords */
-//     cursor: pointer; /* Change le curseur en main lors du survol */
-//     border: 1px solid black !important;
-// }
-// .suggestions .text-container {
-//     font-size: medium !important;
-//     color: var(--custom-primary) !important;
-//     width : 80% !important;
-// }
-
+@each $prefix in $placeholderPrefixes {
+    input#{$prefix}placeholder {
+        color: var(--custom-primary) !important;
+    }
+}
