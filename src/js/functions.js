@@ -43,18 +43,18 @@ export const selectImage = () => {
 
         setTimeout(() => {
             // ✅ Récupérer les chemins d’image depuis `data-src` et `data-srcset`
-            let newSrc = prefix +selectedImage.getAttribute("data-src");
+            let newSrc = prefix + selectedImage.getAttribute("data-src");
             let newSrcset = prefix + selectedImage.getAttribute("data-srcset");
 
             console.log(`🎨 Image sélectionnée AVANT correction : ${prefix}${newSrc}`);
 
-            // ✅ Application du préfixe dynamique
-            if (newSrc) {
-                newSrc = prefix + newSrc;
-            }
-            if (newSrcset ) {
-                newSrcset = prefix + newSrcset;
-            }
+            // // ✅ Application du préfixe dynamique
+            // if (newSrc) {
+            //     newSrc = prefix + newSrc;
+            // }
+            // if (newSrcset ) {
+            //     newSrcset = prefix + newSrcset;
+            // }
 
             // ✅ Vérifier si l'image est déjà bien appliquée avant modification
             if (selectedImage.getAttribute("src") !== newSrc) {
