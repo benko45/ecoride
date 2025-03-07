@@ -1,6 +1,4 @@
-import { applyStoredStyles, restoreDepartureAddress, restoreArrivalAddress } from "./functions.js";
-import { applyTheme } from "./apply-theme.js";
-import { ensureCorrectStylesheet } from "./choosing-passengers.js";
+import { selectImage } from "./functions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
@@ -28,279 +26,136 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Fonction pour charger une page avec AJAX + animation GSAP
-function loadPage(url) {
+
+async function loadPage(url) {
+    console.log(`🚀 Début du chargement de la page : ${url}`);
     const pageContent = document.getElementById("page-content");
-    let exitDirection = "-100%";
-    let enterDirection = "100%";
 
-    if (url.includes("index.html")) {
-        exitDirection = "100%";
-        enterDirection = "-100%";
-    }
+    try {
+        // ✅ 1️⃣ Animation de sortie avec GSAP
+        await gsap.to(pageContent, { opacity: 0, x: "-100%", duration: 0.5 });
 
-    //console.log(`🚀 Préchargement de ${url} avant la transition...`);
+        // ✅ 2️⃣ Supprimer les anciens styles CSS
+        removeOldCSS();
 
-    // 1️⃣ 🔄 Précharger la nouvelle page AVANT l’animation
-    fetch(url)
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const newContent = doc.getElementById("page-content");
+        // ✅ 2️⃣ Préchargement de la nouvelle page
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
 
-            if (!newContent) {
-                //console.error("❌ ERREUR : #page-content absent du nouveau document !");
-                return;
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        // ✅ 3️⃣ Mise à jour du contenu
+        pageContent.innerHTML = doc.getElementById("page-content").innerHTML;
+        console.log("✅ Nouveau contenu inséré !");
+
+        // ✅ 5️⃣ Charger dynamiquement le bon CSS
+        await loadCSS(url);
+
+        // ✅ 4️⃣ Animation d’entrée avec GSAP
+        await gsap.fromTo(pageContent, { opacity: 0, x: "100%" }, { opacity: 1, x: "0%", duration: 0.5 });
+
+        // ✅ 5️⃣ Importation dynamique du bon script
+        await importDynamicScript(url);
+
+        // ✅ Force la mise à jour de l'image de fond
+        setTimeout(() => {
+            console.log(`🔍 URL actuelle après transition : ${window.location.pathname}`);
+            if (window.location.pathname.includes("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("public/html/")) {
+                console.log("✅ selectImage() exécuté pour index.html");
+                selectImage();
             }
-
-            //console.log("✅ Page préchargée, début de la transition...");
-
-            // 2️⃣ 🔄 Création de la timeline GSAP
-            const tl = gsap.timeline({
-                defaults: { ease: "power2.inOut", duration: 0.5 }
-            });
-
-            // 🎭 Animation de sortie
-            tl.to(pageContent, { opacity: 0, x: exitDirection })
-
-                // ⏳ Pause et chargement du nouveau contenu
-                .add(() => {
-                    pageContent.innerHTML = newContent.innerHTML;
-                    //console.log("✅ Nouveau contenu inséré !");
-                    
-                    // 🔄 Recharger les styles spécifiques
-                    ensureCorrectStylesheet("choosing-passengers");
-
-                    // 🔄 Appliquer les styles stockés
-                    applyStoredStyles();
-
-                    // 🔄 Recharger les scripts dynamiques
-                    reloadScripts(url);
-                })
-
-                // 🎭 Animation d’entrée
-                .fromTo(pageContent, { opacity: 0, x: enterDirection }, { opacity: 1, x: "0%" });
-
-            // ✅ Mise à jour de l’historique
-            history.pushState(null, null, url);
-            //console.log("✅ URL mise à jour :", url);
-        })
-        .catch(error => console.error("❌ Erreur lors du chargement AJAX :", error));
-}
-
-function reloadScripts(url) {
-    /* chargement des js */
-    loadingJavaScripts(url);
-    /* chargement des bootstrap-icons */
-    loadingBootstrapIcons();
-    // 🔄 Gestion des styles css pour la transition choosing-passengers.html->index.html
-    loadingIndexStyles(url);
-}
-
-/**
- * 🔄 Supprime un script existant et le recharge avec un délai pour éviter les conflits
- */
-function removeAndReloadScript(scriptSrc, scriptName) {
-    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
-
-    if (existingScript) {
-        // console.warn(`⚠️ Suppression du script existant : ${scriptSrc}`);
-        existingScript.remove();
-
-        const checkScript = document.querySelector(`script[src="${scriptSrc}"]`);
-        if (checkScript) {
-            // console.error(`❌ Échec de la suppression du script : ${scriptSrc}`);
-        } else {
-            // console.log(`✅ Script supprimé avec succès : ${scriptSrc}`);
-            addNewScript(scriptSrc, scriptName);
-        }
-    } else {
-        // console.log(`✅ Aucun script trouvé, chargement direct : ${scriptSrc}`);
-        addNewScript(scriptSrc, scriptName);
-    }
-}
-
-/**
- * 🔄 Ajoute un script et force son exécution
- */
-function addNewScript(scriptSrc, scriptName) {
-    const newScript = document.createElement("script");
-    newScript.src = scriptSrc;
-    newScript.type = "module";
-    newScript.defer = true;
-
-    newScript.onload = () => {
-        // console.log(`✅ Script rechargé et exécuté : ${scriptSrc}`);
+        }, 100); // Petite pause pour s'assurer que le DOM est bien mis à jour
         
-        if (scriptName === "index.js") {
-            // console.log("📌 Ré-exécution de `index.js` après rechargement...");
-            import(scriptSrc)
-                .then(module => {
-                    if (module.initIndex) {
-                        module.initIndex();
-                        //console.log("✅ `initIndex()` exécuté !");
-                    } else {
-                        //console.warn("⚠️ `initIndex()` introuvable !");
-                    }
-                })
-                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
-        }
-
-        if (scriptName === "apply-theme.js") {
-            // console.log("🎨 Ré-exécution de `applyTheme()`...");
-            if (typeof applyTheme === "function") {
-                applyTheme();
-                // console.log("✅ `applyTheme()` exécuté !");
-            } else {
-                // console.warn("⚠️ `applyTheme()` introuvable après rechargement !");
-            }
-        }
-
-        if (scriptName === "choosing-address.js") {
-            // console.log("📌 Ré-exécution manuelle de `choosing-address.js` après rechargement...");
-            import(scriptSrc)
-                .then(module => {
-                    if (module.initChoosingAddress) {
-                        module.initChoosingAddress();
-                        // console.log("✅ `initChoosingAddress()` exécuté après rechargement !");
-                    } else {
-                        // console.warn("⚠️ `initChoosingAddress()` introuvable après rechargement !");
-                    }
-                })
-                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
-        }
-
-        if (scriptName === "choosing-arrival-address.js") {
-            // console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
-            import(scriptSrc)
-                .then(module => {
-                    if (module.initChoosingArrivalAddress) {
-                        module.initChoosingArrivalAddress();
-                        // console.log("✅ `initChoosingArrivalAddress()` exécuté après rechargement !");
-                    } else {
-                        // console.warn("⚠️ `initChoosingArrivalAddress()` introuvable après rechargement !");
-                    }
-                })
-                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
-        }
-        if (scriptName === "choosing-date.js") {
-            // console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
-            import(scriptSrc)
-                .then(module => {
-                    if (module.initChoosingDate) {
-                        module.initChoosingDate();
-                        //console.log("✅ `initChoosingDate()` exécuté après rechargement !");
-                    } else {
-                        //console.warn("⚠️ `initChoosingDate()` introuvable après rechargement !");
-                    }
-                })
-                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
-        }
-        if (scriptName === "choosing-passengers.js") {
-            //console.log("📌 Ré-exécution manuelle de `choosing-arrival-address.js` après rechargement...");
-            import(scriptSrc)
-                .then(module => {
-                    if (module.initChoosingPassengers) {
-                        module.initChoosingPassengers();
-                        //console.log("✅ `initChoosingPassengerss()` exécuté après rechargement !");
-                    } else {
-                        //console.warn("⚠️ `initChoosingPassengers()` introuvable après rechargement !");
-                    }
-                })
-                .catch(err => console.error(`❌ Erreur lors de l'import de ${scriptSrc}`, err));
-        }
         
-    };
+        // ✅ 6️⃣ Mise à jour de l’historique
+        history.pushState(null, null, url);
+        console.log(`✅ URL mise à jour : ${url}`);
 
-    document.body.appendChild(newScript);
-}
-
-
-// Gère la navigation avec le bouton "Retour" du navigateur
-window.addEventListener("popstate", function () {
-    // console.log("🔙 Bouton retour du navigateur détecté !");
-    
-    // Charger la page en fonction de l'URL actuelle (sans recharger toute la page)
-    loadPage(window.location.pathname);
-});
-
-function loadingJavaScripts(url) {
-    const scriptTest = document.querySelector(`script[src*="index.js"]`);
-    if (scriptTest) {
-        //console.log("✅ index.js a bien été ajouté au DOM :", scriptTest.src);
-    } else {
-        //console.error("❌ index.js ne s'est pas rechargé !");
-    }
-    let pageName = url.split("/").pop().replace(".html", "");
-    const scriptsToReload = {
-        "index": ["index.js", "apply-theme.js"], // 📌 On recharge `applyTheme.js`
-        "choosing-address": ["choosing-address.js"],
-        "choosing-arrival-address": ["choosing-arrival-address.js"],
-        "choosing-date": ["choosing-date.js"],
-        "choosing-passengers": ["choosing-passengers.js"]
-    };
-        if (scriptsToReload[pageName]) {
-        scriptsToReload[pageName].forEach(script => {
-            const scriptPath = window.location.hostname === "benko45.github.io"
-                ? `/ecoride/src/js/${script}`
-                : `/src/js/${script}`;
-
-            //console.log(`🔄 Tentative de rechargement : ${scriptPath}`);
-
-            removeAndReloadScript(scriptPath, script);
-        });
+    } catch (error) {
+        console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
 
-function loadingBootstrapIcons() {
-    const biLink = document.querySelector("link[href*='bootstrap-icons']");
-    if (!biLink) {
+function removeOldCSS() {
+    document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+        if (link.href.includes("choosing-")) { // Supprime uniquement les styles liés aux pages dynamiques
+            console.log(`❌ Suppression du CSS : ${link.href}`);
+            link.remove();
+        }
+    });
+}
+
+async function loadCSS(url) {
+    return new Promise((resolve, reject) => {
+        let cssFile = "";
+
+        // 🔹 Déterminer quel fichier CSS charger selon l'URL
+        if (url.includes("choosing-address.html")) {
+            cssFile = "public/css/choosing-address.css";
+        } else if (url.includes("choosing-arrival-address.html")) {
+            cssFile = "public/css/choosing-arrival-address.css";
+        } else if (url.includes("choosing-date.html")) {
+            cssFile = "public/css/choosing-date.css";
+        } else if (url.includes("choosing-passengers.html")) {
+            cssFile = "public/css/choosing-passengers.css";
+        } else if (url.includes("index.html")) {
+            cssFile = "public/css/main.css";
+        }
+
+        if (!cssFile) {
+            console.log("⚠️ Aucun fichier CSS trouvé pour cette page.");
+            return resolve();
+        }
+
+        // Vérifier si le CSS est déjà chargé
+        if (document.querySelector(`link[href="${cssFile}"]`)) {
+            console.log(`🔹 CSS déjà chargé : ${cssFile}`);
+            return resolve();
+        }
+
+        // Ajouter le fichier CSS dynamiquement
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"; // 📌 Vérifie l'URL exacte
+        link.href = cssFile;
+        link.onload = () => {
+            console.log(`✅ CSS chargé : ${cssFile}`);
+            resolve();
+        };
+        link.onerror = () => {
+            console.error(`❌ Erreur de chargement CSS : ${cssFile}`);
+            reject();
+        };
+
         document.head.appendChild(link);
-        //console.log("✅ Bootstrap Icons rechargé !");
-    }
+    });
 }
 
-function loadingIndexStyles(url) {
-    if (url.includes("index.html")) {
-        //console.log("🔄 Suppression des styles obsolètes et rechargement des styles de index.html");
-    
-        // Supprimer les anciennes feuilles de style
-        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
-            if (link.href.includes("choosing-passengers.css")) {
-                //console.log("❌ Suppression du CSS de choosing-passengers :", link.href);
-                link.remove();
-            }
-        });
-        const scriptPath = window.location.hostname === "benko45.github.io"
-        ? "/ecoride"
-        : "";
-        // Recharger les styles d'index.html
-        const stylesToLoad = [
-            `${scriptPath}/public/css/main.css`, 
-            `${scriptPath}/public/css/custom-themes.css`,
-            `${scriptPath}/public/css/bootstrap.css` // ⚠️ Ajouté pour éviter des erreurs
-        ];
-        // Suppression des anciens styles non nécessaires (exemple : ceux de choosing-passengers)
-        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
-            if (link.href.includes("choosing-passengers.css") || link.href.includes("choosing-arrival-address.css")) {
-                //console.log("❌ Suppression des styles obsolètes :", link.href);
-                link.remove();
-            }
-        });
-        // Ajout des styles nécessaires
-        stylesToLoad.forEach(stylePath => {
-            if (!document.querySelector(`link[href="${stylePath}"]`)) {
-                const newLink = document.createElement("link");
-                newLink.rel = "stylesheet";
-                newLink.href = stylePath;
-                document.head.appendChild(newLink);
-                //console.log("✅ Feuille de style ajoutée :", stylePath);
-            }
-        });
-        restoreDepartureAddress();
-        restoreArrivalAddress();
+async function importDynamicScript(url) {
+    try {
+        if (url.includes("choosing-address.html")) {
+            const module = await import("./choosing-address.js");
+            module.initChoosingAddress();
+            console.log("✅ `choosing-address.js` chargé !");
+        } else if (url.includes("choosing-arrival-address.html")) {
+            const module = await import("./choosing-arrival-address.js");
+            module.initChoosingArrivalAddress();
+            console.log("✅ `choosing-arrival-address.js` chargé !");
+        } else if (url.includes(`choosing-date.html`)) {
+            const module = await import("./choosing-date.js");
+            module.initChoosingDate();
+            console.log("✅ `choosing-date.js` chargé !");
+        } else if (url.includes("choosing-passengers.html")) {
+            const module = await import("./choosing-passengers.js");
+            module.initChoosingPassengers();
+            console.log("✅ `choosing-passengers.js` chargé !");
+        } else if (url.includes("index.html")) {
+            const module = await import("./index.js");
+            module.initIndex();
+            console.log("✅ `index.js` chargé !");
+        }
+    } catch (error) {
+        console.error("❌ Erreur lors du chargement du script :", error);
     }
 }

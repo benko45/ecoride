@@ -5,10 +5,6 @@ import{ selectImage, storeStyles} from './functions.js';
 
 //console.log("✅ index.js chargé et exécuté !");
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     console.log("✅ DOM complètement chargé, exécution des événements...");
-// });
-
 /******************************************************/
 /******************************************************/
 applyTheme();

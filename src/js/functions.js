@@ -13,23 +13,52 @@ const rules = [
         condition: () => window.innerWidth > 1600 
     }
 ];
+
 export const selectImage = () => {
+    console.log("🖼️ selectImage() appelée !");
+    
     // Cacher toutes les images
     document.querySelectorAll('.responsive-img').forEach(img => {
+        img.removeAttribute("src");
+        img.removeAttribute("srcset");
         img.classList.add('hidden');
         img.classList.remove('visible');
     });
 
-    // Parcourir les règles et afficher l'image qui correspond à la condition
+    let selectedImage = null;
     for (let rule of rules) {
         if (rule.condition()) {
-            const img = document.querySelector(`.${rule.className}`);
-            img.classList.add('visible');
-            img.classList.remove('hidden');
+            selectedImage = document.querySelector(`.${rule.className}`);
+            selectedImage.classList.add('visible');
+            selectedImage.classList.remove('hidden');
             break;
         }
     }
+
+    if (selectedImage) {
+        setTimeout(() => {
+            // ✅ Utiliser getAttribute() pour récupérer le bon chemin
+            const newSrc = selectedImage.getAttribute("data-src");
+            const newSrcset = selectedImage.getAttribute("data-srcset");
+
+            console.log(`🎨 Image sélectionnée AVANT correction : ${selectedImage.src}`);
+
+            // ✅ Appliquer le bon chemin maintenant
+            if (newSrc) {
+                selectedImage.src = newSrc;
+            }
+            if (newSrcset) {
+                selectedImage.srcset = newSrcset;
+            }
+
+            console.log(`✅ Image appliquée : ${selectedImage.src}`);
+        }, 0); //✅ Repousse l'exécution à la prochaine itération de l'event loop
+    } else {
+        console.log("❌ Aucune image sélectionnée !");
+    }
 };
+
+
 
 export function createShortddress(addressParts) {
     const number = addressParts[0]?.trim() || ''; // Numéro
