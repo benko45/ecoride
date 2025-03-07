@@ -112,12 +112,12 @@ async function loadPage(url) {
               }
 
               // ✅ 🔄 Correction : Attendre `index.js` avant `selectImage()`
-              if (scriptToExecute === "index.js") {
-                  setTimeout(() => {
-                      console.log("✅ selectImage() exécuté pour index.html");
-                      selectImage();
-                  }, 100); //✅ Repousse l'exécution à la prochaine itération de l'event loop
-              }
+            //   if (scriptToExecute === "index.js") {
+            //       setTimeout(() => {
+            //           console.log("✅ selectImage() exécuté pour index.html");
+            //           selectImage();
+            //       }, 100); //✅ Repousse l'exécution à la prochaine itération de l'event loop
+            //   }
 
               // ✅ 🔄 Vérifier et recharger Bootstrap Icons
               setTimeout(ensureBootstrapIcons, 0);

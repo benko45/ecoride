@@ -110,11 +110,10 @@ mediaQuery.addEventListener('change', handleMediaQueryChange);
 /*    Choix de l'image de fond selon l'écran          */
 /******************************************************/
 // Fonction de sélection de l'image optimale
-selectImage();
-
 window.addEventListener('DOMContentLoaded', () => {
-    selectImage();
-    window.addEventListener('resize', selectImage);
+    if(window.location.pathname.includes('index.html')){
+        selectImage();
+    }
 });
 
 
