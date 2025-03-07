@@ -18,16 +18,34 @@ export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
     
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
-    // const prefix = window.location.hostname === "benko45.github.io" ? "" : "";
-    // console.log('prefix :', prefix);
-    // Cacher toutes les images et supprimer `src` et `srcset`
+    const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
+
     document.querySelectorAll('.responsive-img').forEach(img => {
         img.classList.add('hidden');
         img.classList.remove('visible');
         img.removeAttribute("src");
         img.removeAttribute("srcset");
     });
-
+    document.querySelector('.img-mobile').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg`);
+    document.querySelector('.img-mobile').setAttribute("srcset",
+                               `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`
+                            );
+    document.querySelector('.img-tablet').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg`);
+    document.querySelector('.img-tablet').setAttribute("srcset", 
+                                `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`
+                            );
+    document.querySelector('.img-tablet').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg`);
+    document.querySelector('.img-tablet').setAttribute("srcset", 
+                                `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`
+                            );
+                                                                                      
     let selectedImage = null;
     for (let rule of rules) {
         if (rule.condition()) {
@@ -40,28 +58,6 @@ export const selectImage = () => {
         // ✅ Marquer l’image comme visible sans la charger immédiatement
         selectedImage.classList.add('visible');
         selectedImage.classList.remove('hidden');
-
-        setTimeout(() => {
-            // ✅ Récupérer les chemins d’image depuis `data-src` et `data-srcset`
-            let newSrc = selectedImage.getAttribute("data-src");
-            let newSrcset = selectedImage.getAttribute("data-srcset");
-
-            console.log(`🎨 Image sélectionnée AVANT correction : ${newSrc}`);
-
-            // ✅ Vérifier si l'image est déjà bien appliquée avant modification
-            if (selectedImage.getAttribute("src") !== newSrc) {
-                selectedImage.onload = () => {
-                    console.log(`✅ Image chargée avec succès : ${selectedImage.getAttribute("src")}`);
-                };
-                selectedImage.setAttribute("src", newSrc);
-            }
-
-            if (selectedImage.getAttribute("srcset") !== newSrcset) {
-                selectedImage.setAttribute("srcset", newSrcset);
-            }
-
-            console.log(`✅ Image appliquée : ${selectedImage.getAttribute("src")}`);
-        }, 50); // Légère attente pour garantir que le DOM est bien mis à jour
     } else {
         console.log("❌ Aucune image sélectionnée !");
     }
