@@ -17,46 +17,72 @@ const rules = [
 export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
     
-    // Cacher toutes les images
+    // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
+    const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
+
+    // Cacher toutes les images et supprimer `src` et `srcset`
     document.querySelectorAll('.responsive-img').forEach(img => {
-        img.removeAttribute("src");
-        img.removeAttribute("srcset");
         img.classList.add('hidden');
         img.classList.remove('visible');
+        img.removeAttribute("src");
+        img.removeAttribute("srcset");
     });
 
     let selectedImage = null;
     for (let rule of rules) {
         if (rule.condition()) {
             selectedImage = document.querySelector(`.${rule.className}`);
-            selectedImage.classList.add('visible');
-            selectedImage.classList.remove('hidden');
             break;
         }
     }
 
     if (selectedImage) {
+        // ✅ Marquer l’image comme visible sans la charger immédiatement
+        selectedImage.classList.add('visible');
+        selectedImage.classList.remove('hidden');
+
         setTimeout(() => {
-            // ✅ Utiliser getAttribute() pour récupérer le bon chemin
-            const newSrc = selectedImage.getAttribute("data-src");
-            const newSrcset = selectedImage.getAttribute("data-srcset");
+            // ✅ Récupérer les chemins d’image depuis `data-src` et `data-srcset`
+            let newSrc = selectedImage.getAttribute("data-src");
+            let newSrcset = selectedImage.getAttribute("data-srcset");
 
             console.log(`🎨 Image sélectionnée AVANT correction : ${newSrc}`);
 
-            // ✅ Appliquer le bon chemin maintenant
+            // // ✅ Correction dynamique des chemins d'image
+            // if (newSrc && newSrc.includes("public/html/public/")) {
+            //     newSrc = newSrc.replace("public/html/public/", "public/");
+            // }
+            // if (newSrcset && newSrcset.includes("public/html/public/")) {
+            //     newSrcset = newSrcset.replace("public/html/public/", "public/");
+            // }
+
+            // ✅ Application du préfixe dynamique
             if (newSrc) {
-                selectedImage.src = newSrc;
+                newSrc = prefix + newSrc;
             }
-            if (newSrcset) {
-                selectedImage.srcset = newSrcset;
+            if (newSrcset ) {
+                newSrcset = prefix + newSrcset;
             }
 
-            console.log(`✅ Image appliquée : ${selectedImage.src}`);
-        }, 0); //✅ Repousse l'exécution à la prochaine itération de l'event loop
+            // ✅ Vérifier si l'image est déjà bien appliquée avant modification
+            if (selectedImage.getAttribute("src") !== newSrc) {
+                selectedImage.onload = () => {
+                    console.log(`✅ Image chargée avec succès : ${selectedImage.getAttribute("src")}`);
+                };
+                selectedImage.setAttribute("src", newSrc);
+            }
+
+            if (selectedImage.getAttribute("srcset") !== newSrcset) {
+                selectedImage.setAttribute("srcset", newSrcset);
+            }
+
+            console.log(`✅ Image appliquée : ${selectedImage.getAttribute("src")}`);
+        }, 50); // Légère attente pour garantir que le DOM est bien mis à jour
     } else {
         console.log("❌ Aucune image sélectionnée !");
     }
 };
+
 
 
 export function createShortddress(addressParts) {
