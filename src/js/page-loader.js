@@ -52,10 +52,6 @@ async function loadPage(url) {
 
         // ✅ 5️⃣ Charger dynamiquement le bon CSS
         await loadCSS(url);
-        // setTimeout(() => { // Petite pause pour s'assurer que le CSS est bien chargé
-        //     pageContent.offsetHeight; // ✅ Forcer un recalcul des styles
-        // }, 100);
-        // pageContent.offsetHeight; // ✅ Forcer un recalcul des styles
 
         // ✅ 4️⃣ Animation d’entrée avec GSAP
         await gsap.fromTo(pageContent, { opacity: 0, x: "100%" }, { opacity: 1, x: "0%", duration: 0.5 });
@@ -70,8 +66,9 @@ async function loadPage(url) {
                 console.log("✅ selectImage() exécuté pour index.html");
                 selectImage();
             }
-        }, 100); // Petite pause pour s'assurer que le DOM est bien mis à jour
+        }, 0); // ✅ Repousse l'exécution à la prochaine itération de l'event loop
 
+        setTimeout(ensureBootstrapIcons, 0); // ✅ Repousse l'exécution à la prochaine itération de l'event loop
         // ✅ 6️⃣ Mise à jour de l’historique
         history.pushState(null, null, url);
         console.log(`✅ URL mise à jour : ${url}`);
@@ -93,20 +90,21 @@ function removeOldCSS() {
 async function loadCSS(url) {
     return new Promise((resolve, reject) => {
         let cssFile = "";
+        const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride/" : "";
 
         // 🔹 Déterminer quel fichier CSS charger selon l'URL
         if (url.includes("choosing-address.html")) {
-            cssFile = "public/css/choosing-address.css";
+            cssFile = `${prefix}public/css/choosing-address.css`;
         } else if (url.includes("choosing-arrival-address.html")) {
-            cssFile = "public/css/choosing-arrival-address.css";
+            cssFile = `${prefix}public/css/choosing-arrival-address.css`;
         } else if (url.includes("choosing-date.html")) {
-            cssFile = "public/css/choosing-date.css";
+            cssFile = `${prefix}public/css/choosing-date.css`;
         } else if (url.includes("choosing-passengers.html")) {
-            cssFile = "public/css/choosing-passengers.css";
+            cssFile = `${prefix}public/css/choosing-passengers.css`;
         } else if (url.includes("index.html")) {
-            cssFile = "public/css/main.css";
+            cssFile = `${prefix}public/css/main.css`;
         }
-
+        
         if (!cssFile) {
             console.log("⚠️ Aucun fichier CSS trouvé pour cette page.");
             return resolve();
@@ -137,28 +135,44 @@ async function loadCSS(url) {
 
 async function importDynamicScript(url) {
     try {
+        const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride/" : "/";
+
+        // 🔹 Déterminer quel fichier JS importer selon l'URL
         if (url.includes("choosing-address.html")) {
-            const module = await import("./choosing-address.js");
+            const module = await import(`${prefix}src/js/choosing-address.js`);
             module.initChoosingAddress();
             console.log("✅ `choosing-address.js` chargé !");
         } else if (url.includes("choosing-arrival-address.html")) {
-            const module = await import("./choosing-arrival-address.js");
+            const module = await import(`${prefix}src/js/choosing-arrival-address.js`);
             module.initChoosingArrivalAddress();
             console.log("✅ `choosing-arrival-address.js` chargé !");
-        } else if (url.includes(`choosing-date.html`)) {
-            const module = await import("./choosing-date.js");
+        } else if (url.includes("choosing-date.html")) {
+            const module = await import(`${prefix}src/js/choosing-date.js`);
             module.initChoosingDate();
             console.log("✅ `choosing-date.js` chargé !");
         } else if (url.includes("choosing-passengers.html")) {
-            const module = await import("./choosing-passengers.js");
+            const module = await import(`${prefix}src/js/choosing-passengers.js`);
             module.initChoosingPassengers();
             console.log("✅ `choosing-passengers.js` chargé !");
         } else if (url.includes("index.html")) {
-            const module = await import("./index.js");
+            const module = await import(`${prefix}src/js/index.js`);
             module.initIndex();
             console.log("✅ `index.js` chargé !");
         }
+        
     } catch (error) {
         console.error("❌ Erreur lors du chargement du script :", error);
+    }
+}
+
+function ensureBootstrapIcons() {
+    if (!document.querySelector('link[href*="bootstrap-icons"]')) {
+        console.log("🔄 Rechargement de Bootstrap Icons...");
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css";
+        document.head.appendChild(link);
+    } else {
+        console.log("✅ Bootstrap Icons déjà chargé.");
     }
 }
