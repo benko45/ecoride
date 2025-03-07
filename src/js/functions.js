@@ -23,9 +23,8 @@ export const selectImage = () => {
     document.querySelectorAll('.responsive-img').forEach(img => {
         img.classList.add('hidden');
         img.classList.remove('visible');
-        img.removeAttribute("src");
-        img.removeAttribute("srcset");
     });
+
     document.querySelector('.img-mobile').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg`);
     document.querySelector('.img-mobile').setAttribute("srcset",
                                `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
@@ -55,7 +54,6 @@ export const selectImage = () => {
     }
 
     if (selectedImage) {
-        // ✅ Marquer l’image comme visible sans la charger immédiatement
         selectedImage.classList.add('visible');
         selectedImage.classList.remove('hidden');
     } else {
