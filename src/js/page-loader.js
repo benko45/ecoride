@@ -80,7 +80,6 @@ async function loadPage(url) {
         } else if (url.includes("choosing-passengers.html")) {
             scriptToExecute = "choosing-passengers.js";
         }
-
         // ✅ 8️⃣ Rendre `tempContainer` immédiatement visible pour éviter le glitch
         tempContainer.style.opacity = "1";
 
