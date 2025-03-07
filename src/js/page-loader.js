@@ -81,12 +81,6 @@ async function loadPage(url) {
             scriptToExecute = "choosing-passengers.js";
         }
 
-        // ✅ 7️⃣ Exécuter immédiatement `index.js` si on charge `index.html` pour éviter le glitch
-        if (scriptToExecute === "index.js") {
-            console.log("⚡ Chargement immédiat de `index.js` pour éviter le glitch");
-            await importDynamicScript(url);
-        }
-
         // ✅ 8️⃣ Rendre `tempContainer` immédiatement visible pour éviter le glitch
         tempContainer.style.opacity = "1";
 
@@ -110,14 +104,6 @@ async function loadPage(url) {
                   console.log(`✅ Chargement du script : ${scriptToExecute}`);
                   await importDynamicScript(url);
               }
-
-              // ✅ 🔄 Correction : Attendre `index.js` avant `selectImage()`
-            //   if (scriptToExecute === "index.js") {
-            //       setTimeout(() => {
-            //           console.log("✅ selectImage() exécuté pour index.html");
-            //           selectImage();
-            //       }, 100); //✅ Repousse l'exécution à la prochaine itération de l'event loop
-            //   }
 
               // ✅ 🔄 Vérifier et recharger Bootstrap Icons
               setTimeout(ensureBootstrapIcons, 0);
