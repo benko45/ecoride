@@ -182092,32 +182092,26 @@ html[theme=dark] input.form-control:focus {
   border: 1px solid transparent;
 }
 
-#suggestions {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; /* Espacement entre chaque suggestion */
+input::-moz-placeholder {
+  color: var(--custom-primary) !important;
 }
 
-.suggestion {
-  margin: 0 auto; /* Centrer les suggestions dans leur conteneur */
-  padding: 5px;
-  display: flex;
-  align-items: center; /* Aligne les icônes et le texte */
-  border-radius: 5px; /* Arrondit les bords */
-  cursor: pointer; /* Change le curseur en main lors du survol */
+input::placeholder {
+  color: var(--custom-primary) !important;
 }
 
-.suggestion {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 80%;
+input::-webkit-input-placeholder {
+  color: var(--custom-primary) !important;
 }
 
-.text-container {
-  font-size: medium;
-  color: var(--custom-primary);
-  width: 80%;
+input::-moz-placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input:-ms-input-placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input::-ms-input-placeholder {
+  color: var(--custom-primary) !important;
 }/*# sourceMappingURL=choosing-arrival-address.css.map */

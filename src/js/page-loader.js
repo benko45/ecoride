@@ -52,6 +52,10 @@ async function loadPage(url) {
 
         // ✅ 5️⃣ Charger dynamiquement le bon CSS
         await loadCSS(url);
+        // setTimeout(() => { // Petite pause pour s'assurer que le CSS est bien chargé
+        //     pageContent.offsetHeight; // ✅ Forcer un recalcul des styles
+        // }, 100);
+        // pageContent.offsetHeight; // ✅ Forcer un recalcul des styles
 
         // ✅ 4️⃣ Animation d’entrée avec GSAP
         await gsap.fromTo(pageContent, { opacity: 0, x: "100%" }, { opacity: 1, x: "0%", duration: 0.5 });
@@ -67,8 +71,7 @@ async function loadPage(url) {
                 selectImage();
             }
         }, 100); // Petite pause pour s'assurer que le DOM est bien mis à jour
-        
-        
+
         // ✅ 6️⃣ Mise à jour de l’historique
         history.pushState(null, null, url);
         console.log(`✅ URL mise à jour : ${url}`);

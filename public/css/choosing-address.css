@@ -182090,4 +182090,28 @@ html[theme=light] input.form-control:focus {
 html[theme=dark] input.form-control:focus {
   box-shadow: none;
   border: 1px solid transparent;
+}
+
+input::-moz-placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input::placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input::-webkit-input-placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input::-moz-placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input:-ms-input-placeholder {
+  color: var(--custom-primary) !important;
+}
+
+input::-ms-input-placeholder {
+  color: var(--custom-primary) !important;
 }/*# sourceMappingURL=choosing-address.css.map */
