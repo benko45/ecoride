@@ -18,8 +18,8 @@ export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
     
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
-    const prefix = window.location.hostname === "benko45.github.io" ? "" : "";
-    console.log('prefix :', prefix);
+    // const prefix = window.location.hostname === "benko45.github.io" ? "" : "";
+    // console.log('prefix :', prefix);
     // Cacher toutes les images et supprimer `src` et `srcset`
     document.querySelectorAll('.responsive-img').forEach(img => {
         img.classList.add('hidden');
@@ -43,10 +43,10 @@ export const selectImage = () => {
 
         setTimeout(() => {
             // ✅ Récupérer les chemins d’image depuis `data-src` et `data-srcset`
-            let newSrc = prefix + selectedImage.getAttribute("data-src");
-            let newSrcset = prefix + selectedImage.getAttribute("data-srcset");
+            let newSrc = selectedImage.getAttribute("data-src");
+            let newSrcset = selectedImage.getAttribute("data-srcset");
 
-            console.log(`🎨 Image sélectionnée AVANT correction : ${prefix}${newSrc}`);
+            console.log(`🎨 Image sélectionnée AVANT correction : ${newSrc}`);
 
             // ✅ Vérifier si l'image est déjà bien appliquée avant modification
             if (selectedImage.getAttribute("src") !== newSrc) {
