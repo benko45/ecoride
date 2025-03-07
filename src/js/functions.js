@@ -46,15 +46,7 @@ export const selectImage = () => {
             let newSrc = selectedImage.getAttribute("data-src");
             let newSrcset = selectedImage.getAttribute("data-srcset");
 
-            console.log(`🎨 Image sélectionnée AVANT correction : ${newSrc}`);
-
-            // // ✅ Correction dynamique des chemins d'image
-            // if (newSrc && newSrc.includes("public/html/public/")) {
-            //     newSrc = newSrc.replace("public/html/public/", "public/");
-            // }
-            // if (newSrcset && newSrcset.includes("public/html/public/")) {
-            //     newSrcset = newSrcset.replace("public/html/public/", "public/");
-            // }
+            console.log(`🎨 Image sélectionnée AVANT correction : ${prefix}${newSrc}`);
 
             // ✅ Application du préfixe dynamique
             if (newSrc) {
