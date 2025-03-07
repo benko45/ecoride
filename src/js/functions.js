@@ -19,7 +19,7 @@ export const selectImage = () => {
     
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
     const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
-
+    console.log('prefix :', prefix);
     // Cacher toutes les images et supprimer `src` et `srcset`
     document.querySelectorAll('.responsive-img').forEach(img => {
         img.classList.add('hidden');
