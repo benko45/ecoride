@@ -54,7 +54,10 @@ async function loadPage(url) {
         await loadCSS(url);
 
         // ✅ 4️⃣ Animation d’entrée avec GSAP
-        await gsap.fromTo(pageContent, { opacity: 0, x: "100%" }, { opacity: 1, x: "0%", duration: 0.5 });
+        // 9️⃣ Animation d’entrée avec GSAP
+        setTimeout(() => {
+            gsap.fromTo(pageContent, { opacity: 0, x: "100%" }, { opacity: 1, x: "0%", duration: 0.5 });
+        }, 5);
 
         // ✅ 5️⃣ Importation dynamique du bon script
         await importDynamicScript(url);
