@@ -25,19 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Fonction pour charger une page avec AJAX + animation GSAP
-
+// ✅ Fonction pour charger une page avec AJAX + animation GSAP
 async function loadPage(url) {
     console.log(`🚀 Début du chargement de la page : ${url}`);
     const pageContent = document.getElementById("page-content");
 
+    // 🟢 1️⃣ Créer un conteneur temporaire pour charger la nouvelle page
+    let tempContainer = document.createElement("div");
+    tempContainer.style.position = "absolute";
+    tempContainer.style.top = "0";
+    tempContainer.style.left = "0"; 
+    tempContainer.style.width = "100%";
+    tempContainer.style.height = "100%";
+    tempContainer.style.opacity = "0"; 
+    tempContainer.style.zIndex = "100"; 
+    document.body.appendChild(tempContainer);
+
     try {
-        // ✅ 1️⃣ Animation de sortie avec GSAP
-        await gsap.to(pageContent, { opacity: 0, x: "-100%", duration: 0.5 });
-
-        // ✅ 2️⃣ Supprimer les anciens styles CSS
-        removeOldCSS();
-
         // ✅ 2️⃣ Préchargement de la nouvelle page
         const response = await fetch(url);
         if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
@@ -46,40 +50,88 @@ async function loadPage(url) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, "text/html");
 
-        // ✅ 3️⃣ Mise à jour du contenu
-        pageContent.innerHTML = doc.getElementById("page-content").innerHTML;
-        console.log("✅ Nouveau contenu inséré !");
+        // ✅ 3️⃣ Corriger dynamiquement les chemins des images
+        doc.querySelectorAll("img").forEach(img => {
+            if (img.getAttribute("data-src")) {
+                img.setAttribute("src", img.getAttribute("data-src"));
+            }
+            if (img.getAttribute("data-srcset")) {
+                img.setAttribute("srcset", img.getAttribute("data-srcset"));
+            }
+        });
 
-        // ✅ 5️⃣ Charger dynamiquement le bon CSS
+        // ✅ 4️⃣ Insérer le nouveau contenu dans `tempContainer`
+        tempContainer.innerHTML = doc.getElementById("page-content").innerHTML;
+
+        // ✅ 5️⃣ Charger dynamiquement le CSS avant d'afficher la nouvelle page
+        removeOldCSS();
         await loadCSS(url);
 
-        // ✅ 4️⃣ Animation d’entrée avec GSAP
-        // 9️⃣ Animation d’entrée avec GSAP
-        setTimeout(() => {
-            gsap.fromTo(pageContent, { opacity: 0, x: "100%" }, { opacity: 1, x: "0%", duration: 0.5 });
-        }, 5);
+        // ✅ 6️⃣ Déterminer quel script doit être exécuté après la transition
+        let scriptToExecute = null;
+        if (url.includes("index.html") || url === "/" || url === "/ecoride/") {
+            scriptToExecute = "index.js";
+        } else if (url.includes("choosing-address.html")) {
+            scriptToExecute = "choosing-address.js";
+        } else if (url.includes("choosing-arrival-address.html")) {
+            scriptToExecute = "choosing-arrival-address.js";
+        } else if (url.includes("choosing-date.html")) {
+            scriptToExecute = "choosing-date.js";
+        } else if (url.includes("choosing-passengers.html")) {
+            scriptToExecute = "choosing-passengers.js";
+        }
 
-        // ✅ 5️⃣ Importation dynamique du bon script
-        await importDynamicScript(url);
+        // ✅ 7️⃣ Exécuter immédiatement `index.js` si on charge `index.html` pour éviter le glitch
+        if (scriptToExecute === "index.js") {
+            console.log("⚡ Chargement immédiat de `index.js` pour éviter le glitch");
+            await importDynamicScript(url);
+        }
 
-        // ✅ Force la mise à jour de l'image de fond
-        setTimeout(() => {
-            console.log(`🔍 URL actuelle après transition : ${window.location.pathname}`);
-            if (window.location.pathname.includes("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("public/html/")) {
-                console.log("✅ selectImage() exécuté pour index.html");
-                selectImage();
-            }
-        }, 0); // ✅ Repousse l'exécution à la prochaine itération de l'event loop
+        // ✅ 8️⃣ Rendre `tempContainer` immédiatement visible pour éviter le glitch
+        tempContainer.style.opacity = "1";
 
-        setTimeout(ensureBootstrapIcons, 0); // ✅ Repousse l'exécution à la prochaine itération de l'event loop
-        // ✅ 6️⃣ Mise à jour de l’historique
-        history.pushState(null, null, url);
-        console.log(`✅ URL mise à jour : ${url}`);
+        // ✅ 9️⃣ Animation de transition avec `gsap.timeline()`
+        let tl = gsap.timeline();
+
+        tl.set(tempContainer, { x: "100%" }) 
+          .to(tempContainer, { x: "0%", duration: 0.5, ease: "power2.inOut" }) 
+          .to(pageContent, { opacity: 0, x: "-50%", duration: 0.5, ease: "power2.inOut" }, "-=0.4") 
+          .add(async () => {
+              // ✅ 🔟 Remplacement propre du contenu
+              pageContent.innerHTML = tempContainer.innerHTML;
+              pageContent.style.opacity = "1"; 
+              pageContent.style.transform = "translateX(0%)"; 
+
+              // ✅ 🏁 Supprimer `tempContainer` proprement après la transition
+              tempContainer.remove();
+
+              // ✅ 📌 Charger dynamiquement le bon script après la transition
+              if (scriptToExecute) {
+                  console.log(`✅ Chargement du script : ${scriptToExecute}`);
+                  await importDynamicScript(url);
+              }
+
+              // ✅ 🔄 Correction : Attendre `index.js` avant `selectImage()`
+              if (scriptToExecute === "index.js") {
+                  setTimeout(() => {
+                      console.log("✅ selectImage() exécuté pour index.html");
+                      selectImage();
+                  }, 100); //✅ Repousse l'exécution à la prochaine itération de l'event loop
+              }
+
+              // ✅ 🔄 Vérifier et recharger Bootstrap Icons
+              setTimeout(ensureBootstrapIcons, 0);
+
+              // ✅ 🔄 Mise à jour de l’historique de navigation
+              history.pushState(null, null, url);
+              console.log(`✅ URL mise à jour : ${url}`);
+          });
 
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
+
 
 function removeOldCSS() {
     document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
@@ -166,6 +218,7 @@ async function importDynamicScript(url) {
     } catch (error) {
         console.error("❌ Erreur lors du chargement du script :", error);
     }
+    console.log("🔹 Fin de importDynamicScript");
 }
 
 function ensureBootstrapIcons() {

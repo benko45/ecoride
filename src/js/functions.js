@@ -41,7 +41,7 @@ export const selectImage = () => {
             const newSrc = selectedImage.getAttribute("data-src");
             const newSrcset = selectedImage.getAttribute("data-srcset");
 
-            console.log(`🎨 Image sélectionnée AVANT correction : ${selectedImage.src}`);
+            console.log(`🎨 Image sélectionnée AVANT correction : ${newSrc}`);
 
             // ✅ Appliquer le bon chemin maintenant
             if (newSrc) {
@@ -57,7 +57,6 @@ export const selectImage = () => {
         console.log("❌ Aucune image sélectionnée !");
     }
 };
-
 
 
 export function createShortddress(addressParts) {
