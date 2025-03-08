@@ -1,4 +1,4 @@
-import { generatePageSnapshot, applyStoredStyles, selectImage } from "./functions.js";
+import { applyStoredStyles, selectImage } from "./functions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
@@ -202,87 +202,255 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 // }
 async function loadPage(url) {
-    console.log(`🚀 Chargement et pré-stabilisation de la page : ${url}`);
+    console.log(`🚀 loadPage() appelé pour : ${url}`);
+
     const pageContent = document.getElementById("page-content");
 
-    let scriptToExecute = null;
-    if (url.includes("index.html")) {
-        scriptToExecute = "index.js";
-    } else if (url.includes("choosing-address.html")) {
-        scriptToExecute = "choosing-address.js";
-    } else if (url.includes("choosing-arrival-address.html")) {
-        scriptToExecute = "choosing-arrival-address.js";
-    } else if (url.includes("choosing-date.html")) {
-        scriptToExecute = "choosing-date.js";
-    } else if (url.includes("choosing-passengers.html")) {
-        scriptToExecute = "choosing-passengers.js";
-    }
+    // let scriptToExecute = null;
+    // if (url.includes("index.html")) {
+    //     scriptToExecute = "index.js";
+    // } else if (url.includes("choosing-address.html")) {
+    //     scriptToExecute = "choosing-address.js";
+    // }
 
     try {
-        // ✅ Étape 1 : Générer et stabiliser la page cible AVANT la transition
+        // ✅ Générer et stabiliser la page cible AVANT la transition
         console.log(`📸 Préparation de la page cible : ${url}`);
-        let newContent = await generatePageSnapshot(url, scriptToExecute);
+        await generatePageSnapshot(url);
 
-        // ✅ Étape 2 : Création et configuration de `tempContainer`
+        // ✅ Création et configuration de `tempContainer`
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
-        tempContainer.style.left = "100%"; // Départ hors écran à droite
+        tempContainer.style.left = "100%"; // Départ hors écran
         tempContainer.style.width = "100%";
         tempContainer.style.height = "100%";
         tempContainer.style.zIndex = "100";
         tempContainer.style.backgroundColor = "var(--custom-light)";
         document.body.appendChild(tempContainer);
 
-        // ✅ Étape 3 : Suppression des anciens CSS et chargement des nouveaux
-        removeOldCSS();
-        await loadCSS(url);
+        // ✅ Appliquer le snapshot avant la transition
+        await applySnapshot(tempContainer, url);
 
-        // ✅ Étape 4 : Injecter `choosing-address.html` stabilisé dans `tempContainer`
-        tempContainer.innerHTML = newContent;
-        console.log("📌 `tempContainer` est maintenant rempli avec `choosing-address.html` stabilisé.");
-
-        // ✅ Étape 5 : Appliquer les styles avant la transition
-        applyStoredStyles(tempContainer, async (scriptName) => {
-        console.log(`🚀 Styles appliqués, exécution de ${scriptName}`);
-
-        // ✅ Étape 6 : Vérifier que `tempContainer` est bien visible avant l'animation
-        tempContainer.style.display = "block";
-        tempContainer.style.opacity = "1";
-
-        // ✅ Étape 7 : Forcer la position initiale
-        tempContainer.style.transform = "translateX(100%)";
-
-        // ✅ Étape 8 : Attendre un court instant pour s’assurer que le DOM est bien mis à jour
-        let tl = gsap.timeline();
-        tl.to(tempContainer, { x: "-100%", duration: 0.5, ease: "power2.inOut" })
-            .add(async () => {
-                // ✅ Étape 9 : Remplacement final après transition
+        // ✅ Animation de transition
+        gsap.to(tempContainer, {
+            x: "-100%",
+            duration: 5,
+            ease: "power2.inOut",
+            onComplete: () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
-                pageContent.style.backgroundColor = tempContainer.style.backgroundColor;
                 tempContainer.remove();
-                history.pushState(null, null, url);
-                console.log(`✅ URL mise à jour : ${url}`);
-
-                // ✅ Étape 10 : Recalcul des images et chargement des icônes
-                setTimeout(() => {
-                    selectImage();
-                    ensureBootstrapIcons();
-                }, 50);
-
-                // ✅ Étape 11 : Exécution forcée du script après la transition
-                if (scriptName) {
-                    console.log(`🚀 Forçage de l'exécution de ${scriptName} après la transition.`);
-                    await importDynamicScript(scriptName);
-                    console.log(`✅ ${scriptName} bien exécuté après la transition.`);
-                }
-            });
+                console.log(`✅ Transition terminée vers ${url}`);
+            }
         });
 
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
+    window.addEventListener("popstate", function () {
+        console.log("↩️ Retour en arrière détecté !");
+        loadPage(location.href);
+    });    
 }
+
+export async function generatePageSnapshot(url) {
+    console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
+
+    let iframe = document.createElement("iframe");
+    iframe.style.position = "absolute";
+    iframe.style.visibility = "hidden";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    document.body.appendChild(iframe);
+
+    iframe.src = new URL(url, window.location.origin).href;
+    console.log("🔍 Chargement de l'iframe avec URL :", iframe.src);
+
+    return new Promise((resolve, reject) => {
+        iframe.onload = async () => {
+            try {
+                let doc = iframe.contentDocument || iframe.contentWindow.document;
+                let iframeWindow = iframe.contentWindow;
+
+                if (!doc) {
+                    throw new Error("❌ ERREUR : DOM de l'iframe inaccessible !");
+                }
+
+                console.log("📜 DOM de l’iframe récupéré avec succès !");
+
+                // ✅ Attendre `window.onload` pour être sûr que tout est chargé
+                await waitForIframeLoad(iframeWindow);
+
+                // ✅ Détecter TOUS les scripts (modules et classiques)
+                let scripts = [...doc.head.querySelectorAll("script"), ...doc.body.querySelectorAll("script")];
+                console.log(`📜 ${scripts.length} scripts détectés dans head et body :`);
+
+                scripts.forEach((script, index) => {
+                    console.log(`  ${index + 1}. ${script.src || "[inline script]"} (${script.type || "text/javascript"})`);
+                });
+
+                // ✅ Exécuter chaque script AVANT la capture
+                for (let script of scripts) {
+                    await executeScriptInIframe(script, iframeWindow);
+                }
+
+                // ✅ Attendre que `fetch()` ait bien ajouté les suggestions avant la capture
+                await waitForSuggestions(doc);
+
+                let pageContentElement = doc.getElementById("page-content");
+
+                if (!pageContentElement) {
+                    throw new Error("❌ Erreur : `#page-content` introuvable dans la page chargée !");
+                }
+
+                console.log("✅ `#page-content` trouvé, capture en cours...");
+
+                let pageSnapshot = pageContentElement.cloneNode(true);
+                pageSnapshot.querySelectorAll("*").forEach(el => {
+                    const computedStyles = window.getComputedStyle(el);
+                    el.setAttribute("style", computedStyles.cssText);
+                });
+
+                localStorage.setItem("pageSnapshot", pageSnapshot.outerHTML);
+                console.log("✅ Page figée et stockée avec scripts appliqués !");
+
+                document.body.removeChild(iframe);
+                resolve(pageSnapshot.outerHTML);
+            } catch (error) {
+                console.error("❌ Erreur lors de la capture de la page :", error);
+                reject(error);
+            }
+        };
+    });
+}
+
+
+async function waitForIframeLoad(iframeWindow) {
+    return new Promise((resolve) => {
+        if (iframeWindow.document.readyState === "complete") {
+            console.log("✅ L'iframe est déjà complètement chargé !");
+            resolve();
+        } else {
+            console.log("⏳ Attente de `window.onload` dans l'iframe...");
+            iframeWindow.addEventListener("load", () => {
+                console.log("✅ `window.onload` déclenché dans l'iframe !");
+                resolve();
+            });
+        }
+    });
+}
+
+async function waitForSuggestions(doc) {
+    return new Promise((resolve) => {
+        let suggestionsDiv = doc.getElementById("suggestions");
+
+        if (!suggestionsDiv) {
+            console.warn("⚠️ `suggestionsDiv` introuvable, passage immédiat à la capture.");
+            return resolve();
+        }
+
+        console.log("🕵️ Vérification immédiate du contenu de `suggestionsDiv`...");
+
+        // ✅ Si des éléments sont déjà présents, pas besoin d'attendre
+        if (suggestionsDiv.children.length > 0) {
+            console.log("✅ `suggestionsDiv` est déjà rempli, capture immédiate !");
+            return resolve();
+        }
+
+        console.log("🕵️ Attente que des suggestions soient ajoutées dynamiquement...");
+
+        let timeout;
+        let observer = new MutationObserver(() => {
+            console.log("🔄 Mutation détectée dans `suggestionsDiv`...");
+
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                if (suggestionsDiv.children.length > 0) { // Vérifie si des suggestions ont été ajoutées
+                    console.log("✅ Suggestions détectées, prêt pour la capture !");
+                    observer.disconnect();
+                    resolve();
+                }
+            }, 500);
+        });
+
+        observer.observe(suggestionsDiv, { childList: true, subtree: true });
+
+        // ✅ Timeout global pour éviter d'attendre indéfiniment
+        setTimeout(() => {
+            console.warn("⚠️ Timeout atteint, capture du DOM malgré tout.");
+            console.log("📦 Contenu final de `suggestionsDiv` :", suggestionsDiv.innerHTML);
+            observer.disconnect();
+            resolve();
+        }, 3000);
+    });
+}
+
+
+
+async function executeScriptInIframe(scriptElement, iframeWindow) {
+    return new Promise((resolve, reject) => {
+        let doc = iframeWindow.document;
+        let newScript = doc.createElement("script");
+
+        if (scriptElement.src) {
+            newScript.src = scriptElement.src;
+            newScript.async = false;
+
+            if (scriptElement.type === "module") {
+                newScript.type = "module";
+            }
+
+            newScript.onload = () => {
+                console.log(`✅ Script exécuté : ${scriptElement.src}`);
+                resolve();
+            };
+
+            newScript.onerror = () => {
+                console.error(`❌ Erreur de chargement du script ${scriptElement.src}`);
+                reject();
+            };
+
+            doc.body.appendChild(newScript);
+        } else {
+            try {
+                newScript.textContent = scriptElement.textContent;
+                newScript.type = scriptElement.type || "text/javascript";
+                doc.body.appendChild(newScript);
+                console.log(`✅ Script inline exécuté.`);
+                resolve();
+            } catch (error) {
+                console.error(`❌ Erreur d'exécution du script inline`, error);
+                reject(error);
+            }
+        }
+    });
+}
+
+
+
+
+
+
+async function applySnapshot(tempContainer, url) {
+    console.log("🔄 Application du snapshot de la page...");
+    
+    const savedSnapshot = localStorage.getItem("pageSnapshot");
+    
+    if (!savedSnapshot) {
+        console.warn("⚠️ Aucun snapshot trouvé, chargement direct...");
+        tempContainer.innerHTML = `<p>Erreur de chargement de la page.</p>`;
+        return;
+    }
+    
+    tempContainer.innerHTML = savedSnapshot;
+
+    // ✅ Mise à jour de l'URL
+    history.pushState(null, null, url);
+
+    console.log("✅ Snapshot appliqué avec succès !");
+}
+
+
 
 
 function removeOldCSS() {
