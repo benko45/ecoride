@@ -213,6 +213,68 @@ export function storeStyles() {
     // console.log("✅ Styles sauvegardés :", stylesToStore);
 }
 
+export async function generatePageSnapshot(url, scriptToExecute) {
+    console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
+
+    // ✅ Créer un `iframe` invisible pour charger la page
+    let iframe = document.createElement("iframe");
+    iframe.style.position = "absolute";
+    iframe.style.visibility = "hidden";
+    iframe.style.width = "0";
+    iframe.style.height = "0";
+    document.body.appendChild(iframe);
+
+    return new Promise((resolve, reject) => {
+        iframe.onload = async () => {
+            try {
+                let doc = iframe.contentDocument || iframe.contentWindow.document;
+
+                // ✅ Attendre que tous les styles soient chargés
+                let stylesheetsLoaded = new Promise((res) => {
+                    let interval = setInterval(() => {
+                        let stylesLoaded = Array.from(doc.styleSheets).every(sheet => sheet.href);
+                        if (stylesLoaded) {
+                            clearInterval(interval);
+                            res();
+                        }
+                    }, 50);
+                });
+
+                await stylesheetsLoaded;
+                console.log("🎨 Tous les CSS sont chargés pour la nouvelle page.");
+
+                // ✅ Exécuter le script AVANT la capture du contenu
+                if (scriptToExecute) {
+                    console.log(`🚀 Exécution du script : ${scriptToExecute}`);
+                    await importDynamicScript(scriptToExecute);
+                }
+
+                // ✅ Capturer le contenu de la nouvelle page après exécution du JS
+                let pageSnapshot = doc.getElementById("page-content").cloneNode(true);
+
+                // 🔹 Appliquer les styles calculés en dur
+                pageSnapshot.querySelectorAll("*").forEach(el => {
+                    const computedStyles = window.getComputedStyle(el);
+                    el.setAttribute("style", computedStyles.cssText);
+                });
+
+                // ✅ Stocker la page figée
+                localStorage.setItem("pageSnapshot", pageSnapshot.outerHTML);
+                console.log("✅ Page de destination enregistrée avec styles et scripts appliqués !");
+
+                document.body.removeChild(iframe);
+                resolve(pageSnapshot.outerHTML);
+            } catch (error) {
+                console.error("❌ Erreur lors de la capture de la page :", error);
+                reject(error);
+            }
+        };
+
+        // ✅ Charger la page cible avec un chemin absolu
+        iframe.src = new URL(url, window.location.origin).href;
+    });
+}
+
 //v0
 export function applyStoredStyles(tempContainer, callback, scriptName = null) { 
     console.log("🔄 Récupération de l'état enregistré de la page...");

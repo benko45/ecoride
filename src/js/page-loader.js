@@ -1,4 +1,4 @@
-import { saveCurrentPageState, applyStoredStyles, selectImage } from "./functions.js";
+import { generatePageSnapshot, applyStoredStyles, selectImage } from "./functions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             const url = target.href;
             // 🔹 Sauvegarde de l’état actuel de la page avant la transition
-            saveCurrentPageState();
+            // saveCurrentPageState();
             loadPage(url);
         }
     });
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             const url = target.getAttribute("data-navigate");
             // 🔹 Sauvegarde de l’état actuel de la page avant la transition
-            saveCurrentPageState();
+            // saveCurrentPageState();
             loadPage(url);
         }
     });
@@ -202,116 +202,87 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }
 // }
 async function loadPage(url) {
-    console.log(`🚀 Chargement de la page : ${url}`);
+    console.log(`🚀 Chargement et pré-stabilisation de la page : ${url}`);
     const pageContent = document.getElementById("page-content");
 
-    // Créer un conteneur temporaire pour la nouvelle page
-    let tempContainer = document.createElement("div");
-    tempContainer.style.position = "absolute";
-    tempContainer.style.top = "0";
-    tempContainer.style.left = "100%";
-    tempContainer.style.width = "100%";
-    tempContainer.style.height = "100%";
-    tempContainer.style.zIndex = "100";
-    tempContainer.style.backgroundColor = "var(--custom-light)";
-    document.body.appendChild(tempContainer);
-
-    let isReturningToIndex = url.includes("index.html") || url === "/" || url === "/ecoride/";
+    let scriptToExecute = null;
+    if (url.includes("index.html")) {
+        scriptToExecute = "index.js";
+    } else if (url.includes("choosing-address.html")) {
+        scriptToExecute = "choosing-address.js";
+    } else if (url.includes("choosing-arrival-address.html")) {
+        scriptToExecute = "choosing-arrival-address.js";
+    } else if (url.includes("choosing-date.html")) {
+        scriptToExecute = "choosing-date.js";
+    } else if (url.includes("choosing-passengers.html")) {
+        scriptToExecute = "choosing-passengers.js";
+    }
 
     try {
-        if (isReturningToIndex) {
-            console.log("📌 Retour vers index.html, récupération de l'état enregistré...");
-            applyStoredStyles(tempContainer, () => {
-                console.log("📌 `aps0` appliqué, tempContainer est bien rempli avec index.html.");
-            }, "index.js");
-        } else {
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
+        // ✅ Étape 1 : Générer et stabiliser la page cible AVANT la transition
+        console.log(`📸 Préparation de la page cible : ${url}`);
+        let newContent = await generatePageSnapshot(url, scriptToExecute);
 
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            tempContainer.innerHTML = doc.getElementById("page-content").innerHTML;
-        }
+        // ✅ Étape 2 : Création et configuration de `tempContainer`
+        let tempContainer = document.createElement("div");
+        tempContainer.style.position = "absolute";
+        tempContainer.style.top = "0";
+        tempContainer.style.left = "100%"; // Départ hors écran à droite
+        tempContainer.style.width = "100%";
+        tempContainer.style.height = "100%";
+        tempContainer.style.zIndex = "100";
+        tempContainer.style.backgroundColor = "var(--custom-light)";
+        document.body.appendChild(tempContainer);
 
+        // ✅ Étape 3 : Suppression des anciens CSS et chargement des nouveaux
         removeOldCSS();
         await loadCSS(url);
 
-        let scriptToExecute = null;
-        if (isReturningToIndex) {
-            scriptToExecute = "index.js";
-        } else if (url.includes("choosing-address.html")) {
-            scriptToExecute = "choosing-address.js";
-        } else if (url.includes("choosing-arrival-address.html")) {
-            scriptToExecute = "choosing-arrival-address.js";
-        } else if (url.includes("choosing-date.html")) {
-            scriptToExecute = "choosing-date.js";
-        } else if (url.includes("choosing-passengers.html")) {
-            scriptToExecute = "choosing-passengers.js";
-        }
+        // ✅ Étape 4 : Injecter `choosing-address.html` stabilisé dans `tempContainer`
+        tempContainer.innerHTML = newContent;
+        console.log("📌 `tempContainer` est maintenant rempli avec `choosing-address.html` stabilisé.");
 
-        if (!isReturningToIndex && scriptToExecute) {
-            console.log(`✅ Chargement du script : ${scriptToExecute}`);
-            await importDynamicScript(url);
-        }
+        // ✅ Étape 5 : Appliquer les styles avant la transition
+        applyStoredStyles(tempContainer, async (scriptName) => {
+        console.log(`🚀 Styles appliqués, exécution de ${scriptName}`);
 
-        requestAnimationFrame(() => {
-            console.log("🔄 Application des styles enregistrés à tempContainer...");
-            applyStoredStyles(tempContainer, (scriptName) => {
+        // ✅ Étape 6 : Vérifier que `tempContainer` est bien visible avant l'animation
+        tempContainer.style.display = "block";
+        tempContainer.style.opacity = "1";
+
+        // ✅ Étape 7 : Forcer la position initiale
+        tempContainer.style.transform = "translateX(100%)";
+
+        // ✅ Étape 8 : Attendre un court instant pour s’assurer que le DOM est bien mis à jour
+        let tl = gsap.timeline();
+        tl.to(tempContainer, { x: "-100%", duration: 0.5, ease: "power2.inOut" })
+            .add(async () => {
+                // ✅ Étape 9 : Remplacement final après transition
+                pageContent.innerHTML = tempContainer.innerHTML;
+                pageContent.style.backgroundColor = tempContainer.style.backgroundColor;
+                tempContainer.remove();
+                history.pushState(null, null, url);
+                console.log(`✅ URL mise à jour : ${url}`);
+
+                // ✅ Étape 10 : Recalcul des images et chargement des icônes
+                setTimeout(() => {
+                    selectImage();
+                    ensureBootstrapIcons();
+                }, 50);
+
+                // ✅ Étape 11 : Exécution forcée du script après la transition
                 if (scriptName) {
-                    console.log(`🚀 Exécution forcée de ${scriptName} après application des styles...`);
-                    importDynamicScript(scriptName).then(() => {
-                        console.log(`✅ ${scriptName} appliqué avec succès !`);
-                    });
+                    console.log(`🚀 Forçage de l'exécution de ${scriptName} après la transition.`);
+                    await importDynamicScript(scriptName);
+                    console.log(`✅ ${scriptName} bien exécuté après la transition.`);
                 }
-            }, scriptToExecute);
-
-            document.body.offsetHeight;
-
-            let tl = gsap.timeline();
-            tl.to(tempContainer, { x: "-100%", duration: 0.5, ease: "power2.inOut" })
-              .add(() => {
-                  pageContent.innerHTML = tempContainer.innerHTML;
-                  pageContent.style.backgroundColor = tempContainer.style.backgroundColor;
-                  tempContainer.remove();
-                  history.pushState(null, null, url);
-                  console.log(`✅ URL mise à jour : ${url}`);
-
-                  setTimeout(() => {
-                      console.log("🔄 Vérification de l'image après la transition...");
-                      selectImage();
-                      ensureBootstrapIcons();
-                  }, 50);
-
-                  if (isReturningToIndex) {
-                      console.log(`🔄 Réexécution de index.js après retour.`);
-                      importDynamicScript("index.js").then(() => {
-                          console.log("✅ index.js appliqué après retour");
-                          setTimeout(() => {
-                              console.log("🔄 Sécurisation du recalcul d'image après index.js");
-                              selectImage();
-                          }, 50);
-                      });
-                  }
-              });
+            });
         });
+
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function removeOldCSS() {
