@@ -34,7 +34,8 @@ export function updateBouncingArrows() {
     applyTheme();
     /******************************************************/
     /******************************************************/
-
+    // Stocker les styles avant la transition
+    storeStyles();
     /******************************************************/
     /*                  Menu principal                    */
     /******************************************************/
@@ -133,12 +134,13 @@ export function updateBouncingArrows() {
     /******************************************************/
     /*    Choix de l'image de fond selon l'écran          */
     /******************************************************/
+    selectImage();
     // Fonction de sélection de l'image optimale
-    window.addEventListener('DOMContentLoaded', () => {
-        if(window.location.pathname.includes('index.html')){
-            selectImage();
-        }
-    });
+    // window.addEventListener('DOMContentLoaded', () => {
+    //     if(window.location.pathname.includes('index.html')){
+    //         selectImage();
+    //     }
+    // });
 
 
     /******************************************************/
@@ -301,7 +303,8 @@ export function initIndex(){
     applyTheme();
     /******************************************************/
     /******************************************************/
-
+    // Stocker les styles avant la transition
+    storeStyles();
     /******************************************************/
     /*                  Menu principal                    */
     /******************************************************/
@@ -400,13 +403,14 @@ export function initIndex(){
     /******************************************************/
     /*    Choix de l'image de fond selon l'écran          */
     /******************************************************/
-    // Fonction de sélection de l'image optimale
     selectImage();
+    // Fonction de sélection de l'image optimale
+    // window.addEventListener('DOMContentLoaded', () => {
+    //     if(window.location.pathname.includes('index.html')){
+    //         selectImage();
+    //     }
+    // });
 
-    window.addEventListener('DOMContentLoaded', () => {
-        selectImage();
-        window.addEventListener('resize', selectImage);
-    });
 
 
     /******************************************************/

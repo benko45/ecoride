@@ -213,54 +213,59 @@ export function storeStyles() {
     // console.log("✅ Styles sauvegardés :", stylesToStore);
 }
 
-export function applyStoredStyles() { 
-    const storedStyles = localStorage.getItem("styles");
+//v0
+export function applyStoredStyles(tempContainer, callback, scriptName = null) { 
+    console.log("🔄 Récupération de l'état enregistré de la page...");
 
-    // if (!storedStyles) {
-    //     console.warn("⚠️ Aucun style enregistré dans localStorage.");
-    //     return;
-    // }
+    const savedState = localStorage.getItem("savedPageState");
 
-    const stylesObject = JSON.parse(storedStyles);
-    // console.log("🔄 Application des styles enregistrés...");
+    if (!savedState) {
+        console.warn("⚠️ Aucun état enregistré trouvé.");
+        if (callback) callback(scriptName);
+        return;
+    }
 
-    document.querySelectorAll("[data-dynamic-style]").forEach(el => {
-        
-        const savedStyles = stylesObject[el.dataset.dynamicStyle];
+    // Injecter le HTML enregistré directement dans tempContainer
+    tempContainer.innerHTML = savedState;
+    console.log("📌 tempContainer est maintenant rempli avec le contenu enregistré");
 
-        if (savedStyles) {
-            // 🔹 Applique les styles enregistrés
-            Object.entries(savedStyles).forEach(([property, value]) => {
-                if (property !== "classList") {
-                    el.style.setProperty(property, value);
-                }
-            });
+    // Forcer un reflow et un repaint
+    tempContainer.offsetHeight;
+    tempContainer.getBoundingClientRect();
 
-            // 🔹 Réapplique les classes CSS enregistrées
-            el.className = savedStyles["classList"].join(" ");
+    // ✅ Exécuter la callback après un délai pour garantir que les styles sont appliqués
+    setTimeout(() => {
+        console.log("🔍 Vérification après application du contenu sauvegardé.");
+        if (callback) callback(scriptName);
+    }, 100);
+}
 
-            // console.log(`✅ Styles appliqués à ${el.dataset.dynamicStyle}`);
-        }
+
+// Fonction pour sauvegarder l'état de la page
+export function saveCurrentPageState() {
+    console.log("📄 Enregistrement de l'état final de la page...");
+
+    // Cloner le contenu de #page-content
+    let pageContentClone = document.getElementById("page-content").cloneNode(true);
+
+    // Enregistrer tous les styles inline des éléments
+    pageContentClone.querySelectorAll("*").forEach(el => {
+        const computedStyles = window.getComputedStyle(el);
+        el.setAttribute("style", computedStyles.cssText);
     });
-    // ✅ Forçage du recalcul des images et exécution de `selectImage()`
-    // console.log("🔄 Forçage de l'affichage de l'image correcte...");
 
-    // 🔹 Vérifier si on est sur index.html avant d'exécuter selectImage()
-    if (window.location.pathname.includes("index.html")) {
-        if (typeof selectImage === "function") {
-            selectImage();
-            // console.log("✅ `selectImage()` exécuté !");
-        } else {
-            // console.warn("⚠️ `selectImage()` n'est pas défini après la transition !");
-        }
-    } else {
-        // console.log("⏭️ `selectImage()` ignoré car nous ne sommes pas sur index.html.");
+    // Sauvegarder le HTML transformé
+    localStorage.setItem("savedPageState", pageContentClone.outerHTML);
+    console.log("✅ État de la page enregistré !");
 }
 
-    
-    // 🔄 Forcer un reflow pour éviter les problèmes d'affichage
-    // document.body.offsetHeight;
-}
+
+
+
+
+
+
+
 export function restoreDepartureAddress() {
     const savedAddress = localStorage.getItem("selectedDepartureAddress");
 

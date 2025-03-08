@@ -1,4 +1,4 @@
-import { selectImage } from "./functions.js";
+import { saveCurrentPageState, applyStoredStyles, selectImage } from "./functions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             const url = target.href;
-            // console.log("✅ Navigation détectée vers :", url);
+            // 🔹 Sauvegarde de l’état actuel de la page avant la transition
+            saveCurrentPageState();
             loadPage(url);
         }
     });
@@ -19,57 +20,225 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             const url = target.getAttribute("data-navigate");
-            // console.log("✅ Navigation détectée vers :", url);
+            // 🔹 Sauvegarde de l’état actuel de la page avant la transition
+            saveCurrentPageState();
             loadPage(url);
         }
     });
 });
+//v0
+// async function loadPage(url) {
+//     console.log(`🚀 Chargement de la page : ${url}`);
+//     const pageContent = document.getElementById("page-content");
+    
+//     // Créer un conteneur temporaire pour la nouvelle page
+//     let tempContainer = document.createElement("div");
+//     tempContainer.style.position = "absolute";
+//     tempContainer.style.top = "0";
+//     tempContainer.style.left = "100%"; // Départ hors écran (droite)
+//     tempContainer.style.width = "100%";
+//     tempContainer.style.height = "100%";
+//     tempContainer.style.zIndex = "100";
+//     tempContainer.style.backgroundColor = "var(--custom-light)"; // Fixer le background
+//     document.body.appendChild(tempContainer);
 
-// ✅ Fonction pour charger une page avec AJAX + animation GSAP
+//     try {
+//         const response = await fetch(url);
+//         if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
+
+//         const html = await response.text();
+//         const parser = new DOMParser();
+//         const doc = parser.parseFromString(html, "text/html");
+//         tempContainer.innerHTML = doc.getElementById("page-content").innerHTML;
+
+//         removeOldCSS();
+//         await loadCSS(url);
+
+//         let scriptToExecute = null;
+//         if (url.includes("index.html") || url === "/" || url === "/ecoride/") {
+//             scriptToExecute = "index.js";
+//         } else if (url.includes("choosing-address.html")) {
+//             scriptToExecute = "choosing-address.js";
+//         } else if (url.includes("choosing-arrival-address.html")) {
+//             scriptToExecute = "choosing-arrival-address.js";
+//         } else if (url.includes("choosing-date.html")) {
+//             scriptToExecute = "choosing-date.js";
+//         } else if (url.includes("choosing-passengers.html")) {
+//             scriptToExecute = "choosing-passengers.js";
+//         }
+
+//         // Charger dynamiquement le script AVANT la transition
+//         if (scriptToExecute) {
+//             console.log(`✅ Chargement du script : ${scriptToExecute}`);
+//             await importDynamicScript(url);
+//         }
+        
+//         // Animation GSAP - La nouvelle page entre en recouvrant l'ancienne
+//         let tl = gsap.timeline();
+//         tl.to(tempContainer, { x: "-100%", duration: 3, ease: "power2.inOut" })
+//           .add(() => {
+//               pageContent.innerHTML = tempContainer.innerHTML;
+//               pageContent.style.backgroundColor = tempContainer.style.backgroundColor; // Assurer la bonne couleur
+//               tempContainer.remove();
+//               history.pushState(null, null, url);
+//               console.log(`✅ URL mise à jour : ${url}`);
+              
+//               // Vérification avant d'exécuter selectImage() et ensureBootstrapIcons
+//               setTimeout(() => {
+//                   if (document.querySelector(".responsive-img")) {
+//                       console.log("🔄 Recalibrage de l'image après stabilisation du layout...");
+//                       document.body.offsetHeight;
+//                       selectImage();
+//                       ensureBootstrapIcons();
+//                   } else {
+//                       console.warn("⚠️ Aucune image responsive trouvée, selectImage() annulé.");
+//                   }
+//               }, 100);
+//           });
+//     } catch (error) {
+//         console.error("❌ Erreur lors du chargement de la page :", error);
+//     }
+// }
+//v1
+// async function loadPage(url) {
+//     console.log(`🚀 Chargement de la page : ${url}`);
+//     const pageContent = document.getElementById("page-content");
+    
+//     // Créer un conteneur temporaire pour la nouvelle page
+//     let tempContainer = document.createElement("div");
+//     tempContainer.style.position = "absolute";
+//     tempContainer.style.top = "0";
+//     tempContainer.style.left = "100%"; // Départ hors écran (droite)
+//     tempContainer.style.width = "100%";
+//     tempContainer.style.height = "100%";
+//     tempContainer.style.zIndex = "100";
+//     tempContainer.style.backgroundColor = "var(--custom-light)"; // Fixer le background
+//     document.body.appendChild(tempContainer);
+
+//     try {
+//         const response = await fetch(url);
+//         if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
+
+//         const html = await response.text();
+//         const parser = new DOMParser();
+//         const doc = parser.parseFromString(html, "text/html");
+//         tempContainer.innerHTML = doc.getElementById("page-content").innerHTML;
+
+//         removeOldCSS();
+//         await loadCSS(url);
+
+//         let scriptToExecute = null;
+//         let isReturningToIndex = url.includes("index.html") || url === "/" || url === "/ecoride/";
+//         if (isReturningToIndex) {
+//             scriptToExecute = "index.js";
+//         } else if (url.includes("choosing-address.html")) {
+//             scriptToExecute = "choosing-address.js";
+//         } else if (url.includes("choosing-arrival-address.html")) {
+//             scriptToExecute = "choosing-arrival-address.js";
+//         } else if (url.includes("choosing-date.html")) {
+//             scriptToExecute = "choosing-date.js";
+//         } else if (url.includes("choosing-passengers.html")) {
+//             scriptToExecute = "choosing-passengers.js";
+//         }
+
+//         // Charger dynamiquement le script AVANT la transition
+//         if (!isReturningToIndex && scriptToExecute) {
+//             console.log(`✅ Chargement du script : ${scriptToExecute}`);
+//             await importDynamicScript(url);
+//         }
+        
+//         // Attendre la fin de l’insertion et forcer le recalcul des styles
+//         requestAnimationFrame(() => {
+//             console.log("🔄 Application des styles enregistrés à tempContainer...");
+//             let isReturningToIndex = url.includes("index.html") || url === "/" || url === "/ecoride/";
+//             applyStoredStyles(tempContainer, (scriptName) => {
+//                 if (scriptName) {
+//                     console.log(`🚀 Exécution forcée de ${scriptName} après application des styles...`);
+//                     importDynamicScript(scriptName).then(() => {
+//                         console.log(`✅ ${scriptName} appliqué avec succès !`);
+//                     });
+//                 }
+//             }, "index.js", isReturningToIndex);
+            
+            
+//             document.body.offsetHeight; // Forcer le recalcul du layout
+
+//             let tl = gsap.timeline();
+//             tl.to(tempContainer, { x: "-100%", duration: 3, ease: "power2.inOut" })
+//               .add(() => {
+//                   pageContent.innerHTML = tempContainer.innerHTML;
+//                   pageContent.style.backgroundColor = tempContainer.style.backgroundColor; // Assurer la bonne couleur
+//                   tempContainer.remove();
+//                   history.pushState(null, null, url);
+//                   console.log(`✅ URL mise à jour : ${url}`);
+                  
+//                   // Vérification avant d'exécuter selectImage() et ensureBootstrapIcons
+//                   setTimeout(() => {
+//                       if (document.querySelector(".responsive-img")) {
+//                           console.log("🔄 Recalibrage de l'image après stabilisation du layout...");
+//                           document.body.offsetHeight;
+//                           selectImage();
+//                           ensureBootstrapIcons();
+//                       } else {
+//                           console.warn("⚠️ Aucune image responsive trouvée, selectImage() annulé.");
+//                       }
+//                   }, 100);
+                  
+//                   // ✅ Exécuter index.js seulement au retour vers l'index
+//                   if (isReturningToIndex) {
+//                       console.log(`🔄 Réexécution de index.js après retour.`);
+//                       importDynamicScript("index.js").then(() => {
+//                           console.log("✅ index.js appliqué après retour");
+//                           setTimeout(() => {
+//                               console.log("🔄 Sécurisation du recalcul d'image après index.js");
+//                               selectImage();
+//                           }, 50);
+//                       });
+//                   }
+//               });
+//         });
+//     } catch (error) {
+//         console.error("❌ Erreur lors du chargement de la page :", error);
+//     }
+// }
 async function loadPage(url) {
-    console.log(`🚀 Début du chargement de la page : ${url}`);
+    console.log(`🚀 Chargement de la page : ${url}`);
     const pageContent = document.getElementById("page-content");
 
-    // 🟢 1️⃣ Créer un conteneur temporaire pour charger la nouvelle page
+    // Créer un conteneur temporaire pour la nouvelle page
     let tempContainer = document.createElement("div");
     tempContainer.style.position = "absolute";
     tempContainer.style.top = "0";
-    tempContainer.style.left = "0"; 
+    tempContainer.style.left = "100%";
     tempContainer.style.width = "100%";
     tempContainer.style.height = "100%";
-    tempContainer.style.opacity = "0"; 
-    tempContainer.style.zIndex = "100"; 
+    tempContainer.style.zIndex = "100";
+    tempContainer.style.backgroundColor = "var(--custom-light)";
     document.body.appendChild(tempContainer);
 
+    let isReturningToIndex = url.includes("index.html") || url === "/" || url === "/ecoride/";
+
     try {
-        // ✅ 2️⃣ Préchargement de la nouvelle page
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
+        if (isReturningToIndex) {
+            console.log("📌 Retour vers index.html, récupération de l'état enregistré...");
+            applyStoredStyles(tempContainer, () => {
+                console.log("📌 `aps0` appliqué, tempContainer est bien rempli avec index.html.");
+            }, "index.js");
+        } else {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`❌ Erreur HTTP ${response.status}`);
 
-        const html = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, "text/html");
+            tempContainer.innerHTML = doc.getElementById("page-content").innerHTML;
+        }
 
-        // ✅ 3️⃣ Corriger dynamiquement les chemins des images
-        doc.querySelectorAll("img").forEach(img => {
-            if (img.getAttribute("data-src")) {
-                img.setAttribute("src", img.getAttribute("data-src"));
-            }
-            if (img.getAttribute("data-srcset")) {
-                img.setAttribute("srcset", img.getAttribute("data-srcset"));
-            }
-        });
-
-        // ✅ 4️⃣ Insérer le nouveau contenu dans `tempContainer`
-        tempContainer.innerHTML = doc.getElementById("page-content").innerHTML;
-
-        // ✅ 5️⃣ Charger dynamiquement le CSS avant d'afficher la nouvelle page
         removeOldCSS();
         await loadCSS(url);
 
-        // ✅ 6️⃣ Déterminer quel script doit être exécuté après la transition
         let scriptToExecute = null;
-        if (url.includes("index.html") || url === "/" || url === "/ecoride/") {
+        if (isReturningToIndex) {
             scriptToExecute = "index.js";
         } else if (url.includes("choosing-address.html")) {
             scriptToExecute = "choosing-address.js";
@@ -80,42 +249,69 @@ async function loadPage(url) {
         } else if (url.includes("choosing-passengers.html")) {
             scriptToExecute = "choosing-passengers.js";
         }
-        // ✅ 8️⃣ Rendre `tempContainer` immédiatement visible pour éviter le glitch
-        tempContainer.style.opacity = "1";
 
-        // ✅ 9️⃣ Animation de transition avec `gsap.timeline()`
-        let tl = gsap.timeline();
+        if (!isReturningToIndex && scriptToExecute) {
+            console.log(`✅ Chargement du script : ${scriptToExecute}`);
+            await importDynamicScript(url);
+        }
 
-        tl.set(tempContainer, { x: "100%" }) 
-          .to(tempContainer, { x: "0%", duration: 0.5, ease: "power2.inOut" }) 
-          .to(pageContent, { opacity: 0, x: "-50%", duration: 0.5, ease: "power2.inOut" }, "-=0.4") 
-          .add(async () => {
-              // ✅ 🔟 Remplacement propre du contenu
-              pageContent.innerHTML = tempContainer.innerHTML;
-              pageContent.style.opacity = "1"; 
-              pageContent.style.transform = "translateX(0%)"; 
+        requestAnimationFrame(() => {
+            console.log("🔄 Application des styles enregistrés à tempContainer...");
+            applyStoredStyles(tempContainer, (scriptName) => {
+                if (scriptName) {
+                    console.log(`🚀 Exécution forcée de ${scriptName} après application des styles...`);
+                    importDynamicScript(scriptName).then(() => {
+                        console.log(`✅ ${scriptName} appliqué avec succès !`);
+                    });
+                }
+            }, scriptToExecute);
 
-              // ✅ 🏁 Supprimer `tempContainer` proprement après la transition
-              tempContainer.remove();
+            document.body.offsetHeight;
 
-              // ✅ 📌 Charger dynamiquement le bon script après la transition
-              if (scriptToExecute) {
-                  console.log(`✅ Chargement du script : ${scriptToExecute}`);
-                  await importDynamicScript(url);
-              }
+            let tl = gsap.timeline();
+            tl.to(tempContainer, { x: "-100%", duration: 0.5, ease: "power2.inOut" })
+              .add(() => {
+                  pageContent.innerHTML = tempContainer.innerHTML;
+                  pageContent.style.backgroundColor = tempContainer.style.backgroundColor;
+                  tempContainer.remove();
+                  history.pushState(null, null, url);
+                  console.log(`✅ URL mise à jour : ${url}`);
 
-              // ✅ 🔄 Vérifier et recharger Bootstrap Icons
-              setTimeout(ensureBootstrapIcons, 0);
+                  setTimeout(() => {
+                      console.log("🔄 Vérification de l'image après la transition...");
+                      selectImage();
+                      ensureBootstrapIcons();
+                  }, 50);
 
-              // ✅ 🔄 Mise à jour de l’historique de navigation
-              history.pushState(null, null, url);
-              console.log(`✅ URL mise à jour : ${url}`);
-          });
-
+                  if (isReturningToIndex) {
+                      console.log(`🔄 Réexécution de index.js après retour.`);
+                      importDynamicScript("index.js").then(() => {
+                          console.log("✅ index.js appliqué après retour");
+                          setTimeout(() => {
+                              console.log("🔄 Sécurisation du recalcul d'image après index.js");
+                              selectImage();
+                          }, 50);
+                      });
+                  }
+              });
+        });
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function removeOldCSS() {
