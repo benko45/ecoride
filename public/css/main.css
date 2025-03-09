@@ -306075,6 +306075,11 @@ body {
   #menu-list li a .fa-solid {
     padding: 0;
   }
+  #menu-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 @media screen and (max-width: 425px) {
   #menu-list li a span {

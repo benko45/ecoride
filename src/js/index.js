@@ -3,27 +3,6 @@
 import { applyTheme } from './apply-theme.js';
 import{ selectImage, storeStyles} from './functions.js';
 
-// document.body.addEventListener("click", (event) => {
-//     setTimeout(() => {
-//         let dropdown = document.querySelector(".dropdown");
-//         if (!dropdown) {
-//             console.warn("⚠️ `.dropdown` a disparu après un clic sur :", event.target);
-//             console.trace(); // 🔍 Voir la source exacte
-//             debugger; // 🛑 Pause pour inspection dans DevTools
-//         }
-//     }, 50);
-// });
-
-let dropdown = document.querySelector(".dropdown");
-if (dropdown) {
-    ["click", "focus", "blur", "mousedown", "mouseup", "mouseenter", "mouseleave"].forEach(eventType => {
-        dropdown.addEventListener(eventType, (event) => {
-            console.log(`🔍 Événement détecté : ${eventType} sur .dropdown`, event);
-        });
-    });
-}
-
-
 /******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
 /******************************************************/
@@ -61,36 +40,35 @@ applyTheme();
 /******************************************************/
 
 // S'assurer que le DOM est chargé
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Cibler le toggle et la liste du menu
-//     var menuToggle = document.getElementById('menu-toggle');
-//     var menuList = document.getElementById('menu-list');
-//     var animatedCaret = menuToggle;
+document.addEventListener('DOMContentLoaded', function() {
+    // Cibler le toggle et la liste du menu
+    var menuToggle = document.getElementById('menu-toggle');
+    var menuList = document.getElementById('menu-list');
+    var animatedCaret = menuToggle;
 
-//     // Ajouter un événement de clic
-//     menuToggle.addEventListener('click', function(event) {
-//         event.preventDefault();
-//         event.stopPropagation();  // Empêche le clic de se propager au document
+    // Ajouter un événement de clic
+    menuToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();  // Empêche le clic de se propager au document
         
-//         // Basculer l'affichage du menu
-//         menuList.classList.remove('hide');
-//         menuList.classList.toggle('show');
+        // Basculer l'affichage du menu
+        menuList.classList.remove('hide');
+        menuList.classList.toggle('show');
 
-//         // Basculer l'animation du caret (avec l'icône Font Awesome)
-//         animatedCaret.classList.toggle('show-caret');
-//     });
+        // Basculer l'animation du caret (avec l'icône Font Awesome)
+        animatedCaret.classList.toggle('show-caret');
+    });
 
-//     // Cacher le menu si on clique en dehors
-//     document.addEventListener('click', function(event) {
-//         // Si le clic est en dehors du menu, on ferme
-//         if (!menuToggle.contains(event.target) && !menuList.contains(event.target)) {
-//             menuList.classList.remove('show');
-//             menuList.classList.toggle('hide');
-//             animatedCaret.classList.remove('show-caret');
-//         }
-//     });
-//     // storeStyles();
-// });
+    // Cacher le menu si on clique en dehors
+    document.addEventListener('click', function(event) {
+        // Si le clic est en dehors du menu, on ferme
+        if (!menuToggle.contains(event.target) && !menuList.contains(event.target)) {
+            menuList.classList.remove('show');
+            menuList.classList.toggle('hide');
+            animatedCaret.classList.remove('show-caret');
+        }
+    });
+});
 
 
 /***********************************************************/
@@ -145,7 +123,7 @@ function handleMediaQueryChange(e) {
 }
 
 // Vérifie la taille de l'écran au chargement
-// handleMediaQueryChange(mediaQuery);
+handleMediaQueryChange(mediaQuery);
 
 // Écoute les changements de taille d'écran
 mediaQuery.addEventListener('change', handleMediaQueryChange);

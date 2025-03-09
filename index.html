@@ -16,9 +16,9 @@
 </head>
 <body class="background-light">
     <div id="page-content">
-        <nav id="nav" class="d-flex align-items-center" data-dynamic-style="nav">
-            <div id="menu" class="d-flex align-items-center">
-                <div style="width:100%;">
+        <nav id="nav" class="d-flex align-items-center">
+            <div id="menu" class="d-flex align-items-center justify-content-between">
+                <div id="menu-div">
                     <!-- Bouton de toggle avec caret animé -->
                     <div id="menu-toggle" class="d-inline-block text-decoration-none" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="user-photo" width="50" height="50" class="rounded-circle">
@@ -26,7 +26,7 @@
 
                     </div>
                     <!-- Liste du menu avec hide par défaut -->
-                    <ul id="menu-list" class="shadow"  data-dynamic-style>
+                    <ul id="menu-list" class="shadow">
                         <li class="hide-beyond-md list-item d-flex bottom-border-secondary-1-50 px-3">
                             <a class="my-dropdown-item txt-primary fs-20" href="#">
                                 <i class="icon-left fa-solid fa-magnifying-glass"></i>
@@ -98,7 +98,6 @@
         <img class="responsive-img hidden img-mobile"
         src="/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_768.jpg"
         srcset="
-            /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_320.jpg 320w, 
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_375.jpg 375w, 
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_425.jpg 425w,
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_portrait_768.jpg 768w"
@@ -111,7 +110,7 @@
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w"
         sizes="50vw"
-        alt="Image tablette" data-dynamic-style="image-tablet">
+        alt="Image tablette">
         <img class="responsive-img hidden cover img-desktop"
         src="/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg" 
         srcset="
@@ -119,10 +118,10 @@
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
             /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w"
         sizes="50vw"
-        alt="Image grand écran" data-dynamic-style="image-desktop">
+        alt="Image grand écran">
 
         <!-- Titre -->
-        <div class="myTitle d-flex justify-content-center align-items-center fs-60" data-dynamic-style="title">
+        <div class="myTitle d-flex justify-content-center align-items-center fs-60">
             EcoRide
         </div>
         <!-- Menu dropdown pour choisir le theme -->
@@ -207,7 +206,7 @@
         </div>
         <!-- Fin du menu dropdown pour choisir le theme -->    
         <!-- menu trajet -->
-        <div class="traject-container"  data-dynamic-style="traject">
+        <div class="traject-container">
             <div class="row justify-content-center traject-search-bloc-width">
                 <div id="case-depart" data-navigate="public/html/choosing-address.html" class="col-lg-2 col-md-2 col-12 d-flex p-1 txt-primary background-light premiere-cellule moving-border-primary-1-50 bottom-border-secondary-1-50 element-height-10">
                     <div class="search-container premiere-cellule-2">

@@ -278,6 +278,11 @@ body {
             }
         }
     }
+    #menu-div {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
 }
 @media screen and (max-width: 425px) {
     #menu-list li a span {
