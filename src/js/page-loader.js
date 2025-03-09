@@ -1,4 +1,4 @@
-import { applyStoredStyles, selectImage } from "./functions.js";
+import { applyDynamicStyles, selectImage } from "./functions.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     // console.log("✅ Page-loader.js chargé !");
@@ -230,7 +230,7 @@ async function loadPage(url) {
         document.body.appendChild(tempContainer);
 
         // ✅ Appliquer le snapshot avant la transition
-        await applySnapshot(tempContainer, url);
+        applySnapshot(tempContainer, url);
 
         // ✅ Animation de transition
         gsap.to(tempContainer, {
@@ -278,25 +278,30 @@ export async function generatePageSnapshot(url) {
 
                 console.log("📜 DOM de l’iframe récupéré avec succès !");
 
-                // ✅ Attendre `window.onload` pour être sûr que tout est chargé
-                await waitForIframeLoad(iframeWindow);
+                // ✅ Charger dynamiquement les styles CSS
+                await loadCSSForPage(doc, url);
 
+                // ✅ Vérifier quels fichiers CSS sont chargés dans `<head>`
+                console.log("📋 Liste des fichiers CSS actuellement dans `<head>` :");
+                document.querySelectorAll("link[rel='stylesheet']").forEach((link, index) => {
+                    console.log(`  ${index + 1}. ${link.href}`);
+                });
+                
                 // ✅ Détecter TOUS les scripts (modules et classiques)
                 let scripts = [...doc.head.querySelectorAll("script"), ...doc.body.querySelectorAll("script")];
                 console.log(`📜 ${scripts.length} scripts détectés dans head et body :`);
 
-                scripts.forEach((script, index) => {
-                    console.log(`  ${index + 1}. ${script.src || "[inline script]"} (${script.type || "text/javascript"})`);
-                });
+                // scripts.forEach((script, index) => {
+                //     console.log(`  ${index + 1}. ${script.src || "[inline script]"} (${script.type || "text/javascript"})`);
+                // });
 
                 // ✅ Exécuter chaque script AVANT la capture
                 for (let script of scripts) {
                     await executeScriptInIframe(script, iframeWindow);
                 }
-
-                // ✅ Attendre que `fetch()` ait bien ajouté les suggestions avant la capture
-                await waitForSuggestions(doc);
-
+                console.log("⏳ Pause de 200ms pour assurer l'application des styles JS...");
+                await new Promise(res => setTimeout(res, 200));
+                
                 let pageContentElement = doc.getElementById("page-content");
 
                 if (!pageContentElement) {
@@ -312,7 +317,7 @@ export async function generatePageSnapshot(url) {
                 });
 
                 localStorage.setItem("pageSnapshot", pageSnapshot.outerHTML);
-                console.log("✅ Page figée et stockée avec scripts appliqués !");
+                console.log("✅ Page figée et stockée avec scripts et styles appliqués !");
 
                 document.body.removeChild(iframe);
                 resolve(pageSnapshot.outerHTML);
@@ -323,69 +328,6 @@ export async function generatePageSnapshot(url) {
         };
     });
 }
-
-
-async function waitForIframeLoad(iframeWindow) {
-    return new Promise((resolve) => {
-        if (iframeWindow.document.readyState === "complete") {
-            console.log("✅ L'iframe est déjà complètement chargé !");
-            resolve();
-        } else {
-            console.log("⏳ Attente de `window.onload` dans l'iframe...");
-            iframeWindow.addEventListener("load", () => {
-                console.log("✅ `window.onload` déclenché dans l'iframe !");
-                resolve();
-            });
-        }
-    });
-}
-
-async function waitForSuggestions(doc) {
-    return new Promise((resolve) => {
-        let suggestionsDiv = doc.getElementById("suggestions");
-
-        if (!suggestionsDiv) {
-            console.warn("⚠️ `suggestionsDiv` introuvable, passage immédiat à la capture.");
-            return resolve();
-        }
-
-        console.log("🕵️ Vérification immédiate du contenu de `suggestionsDiv`...");
-
-        // ✅ Si des éléments sont déjà présents, pas besoin d'attendre
-        if (suggestionsDiv.children.length > 0) {
-            console.log("✅ `suggestionsDiv` est déjà rempli, capture immédiate !");
-            return resolve();
-        }
-
-        console.log("🕵️ Attente que des suggestions soient ajoutées dynamiquement...");
-
-        let timeout;
-        let observer = new MutationObserver(() => {
-            console.log("🔄 Mutation détectée dans `suggestionsDiv`...");
-
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                if (suggestionsDiv.children.length > 0) { // Vérifie si des suggestions ont été ajoutées
-                    console.log("✅ Suggestions détectées, prêt pour la capture !");
-                    observer.disconnect();
-                    resolve();
-                }
-            }, 500);
-        });
-
-        observer.observe(suggestionsDiv, { childList: true, subtree: true });
-
-        // ✅ Timeout global pour éviter d'attendre indéfiniment
-        setTimeout(() => {
-            console.warn("⚠️ Timeout atteint, capture du DOM malgré tout.");
-            console.log("📦 Contenu final de `suggestionsDiv` :", suggestionsDiv.innerHTML);
-            observer.disconnect();
-            resolve();
-        }, 3000);
-    });
-}
-
-
 
 async function executeScriptInIframe(scriptElement, iframeWindow) {
     return new Promise((resolve, reject) => {
@@ -401,7 +343,7 @@ async function executeScriptInIframe(scriptElement, iframeWindow) {
             }
 
             newScript.onload = () => {
-                console.log(`✅ Script exécuté : ${scriptElement.src}`);
+                // console.log(`✅ Script exécuté : ${scriptElement.src}`);
                 resolve();
             };
 
@@ -416,7 +358,7 @@ async function executeScriptInIframe(scriptElement, iframeWindow) {
                 newScript.textContent = scriptElement.textContent;
                 newScript.type = scriptElement.type || "text/javascript";
                 doc.body.appendChild(newScript);
-                console.log(`✅ Script inline exécuté.`);
+                // console.log(`✅ Script inline exécuté.`);
                 resolve();
             } catch (error) {
                 console.error(`❌ Erreur d'exécution du script inline`, error);
@@ -426,29 +368,100 @@ async function executeScriptInIframe(scriptElement, iframeWindow) {
     });
 }
 
+async function loadCSSForPage(doc, url) {
+    return new Promise((resolve) => {
+        let existingStyles = Array.from(document.querySelectorAll("link[rel='stylesheet']")).map(link => link.href);
+        let newStyles = [];
+
+        if (!url.startsWith("http")) {
+            url = new URL(url, window.location.origin).href;
+        }
+
+        console.log(`🌍 URL de base utilisée : ${url}`);
+
+        let stylesheets = doc.querySelectorAll("link[rel='stylesheet']");
+
+        stylesheets.forEach((link) => {
+            if (!link.href) {
+                console.warn("⚠️ Un fichier CSS sans `href` a été ignoré.");
+                return;
+            }
+
+            let absoluteHref = link.href;
+            if (link.href.includes("/public/css/")) {
+                try {
+                    absoluteHref = link.href.startsWith("http") ? link.href : new URL(link.href, url).href;
+                    console.log(`🔗 Reconstruction de l'URL pour : ${link.href} → ${absoluteHref}`);
+                } catch (error) {
+                    console.error(`❌ Erreur lors de la construction de l'URL pour : ${link.href}`, error);
+                    return;
+                }
+            } else {
+                console.log(`🔗 Fichier CSS externe détecté : ${link.href} (pas modifié)`);
+            }
+
+            console.log(`📋 Vérification avant ajout : ${absoluteHref}`);
+            console.log(`   Est déjà dans existingStyles ? ${existingStyles.includes(absoluteHref)}`);
+            
+            if (!existingStyles.includes(absoluteHref)) {
+                newStyles.push(absoluteHref);
+            }
+        });
+
+        console.log(`📜 ${newStyles.length} nouveaux fichiers CSS détectés pour cette page :`, newStyles);
+
+        if (newStyles.length === 0) {
+            resolve(); // Rien à charger
+            return;
+        }
+
+        let loadedCount = 0;
+        newStyles.forEach((href) => {
+            let newLink = document.createElement("link");
+            newLink.rel = "stylesheet";
+            newLink.href = href;
+            newLink.onload = () => {
+                loadedCount++;
+                if (loadedCount === newStyles.length) {
+                    console.log("✅ Tous les fichiers CSS nécessaires ont été chargés !");
+                    setTimeout(resolve, 200); // ⏳ Attendre 200ms avant de continuer
+                }
+            };
+            newLink.onerror = () => {
+                console.error(`❌ Erreur de chargement du fichier CSS : ${href}`);
+                loadedCount++;
+                if (loadedCount === newStyles.length) resolve();
+            };
+            document.head.appendChild(newLink);
+        });
+    });
+}
 
 
-
-
-
-async function applySnapshot(tempContainer, url) {
+export function applySnapshot(tempContainer) {
     console.log("🔄 Application du snapshot de la page...");
-    
+
     const savedSnapshot = localStorage.getItem("pageSnapshot");
-    
+
     if (!savedSnapshot) {
-        console.warn("⚠️ Aucun snapshot trouvé, chargement direct...");
-        tempContainer.innerHTML = `<p>Erreur de chargement de la page.</p>`;
+        console.warn("⚠️ Aucun snapshot enregistré trouvé.");
         return;
     }
-    
+
+    // ✅ Injecter le snapshot dans `tempContainer`
     tempContainer.innerHTML = savedSnapshot;
-
-    // ✅ Mise à jour de l'URL
-    history.pushState(null, null, url);
-
     console.log("✅ Snapshot appliqué avec succès !");
+
+    // ✅ Réappliquer les styles dynamiques après l’injection du snapshot
+    setTimeout(() => {
+        console.log("🎨 Réapplication des styles dynamiques après transition...");
+        document.querySelectorAll("*").forEach(el => {
+            applyDynamicStyles(el);
+        });
+        console.log("✅ Styles dynamiques réappliqués !");
+    }, 100);
 }
+
 
 
 

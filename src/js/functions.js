@@ -156,6 +156,7 @@ export function removeChildrenExceptFirst(parentElement) {
 }
 
 export function applyDynamicStyles(HTMLElement){
+    console.log(`🎨 Application des styles dynamiques sur : ${HTMLElement.className}`);
     if(HTMLElement.classList.contains('suggestions')){
         HTMLElement.style.display = 'flex';
         HTMLElement.style.flexDirection = 'column';
@@ -291,13 +292,14 @@ export function applyStoredStyles(tempContainer, callback, scriptName = null) {
     tempContainer.innerHTML = savedState;
     console.log("📌 tempContainer est maintenant rempli avec le contenu enregistré");
 
-    // Forcer un reflow et un repaint
-    tempContainer.offsetHeight;
-    tempContainer.getBoundingClientRect();
-
-    // ✅ Exécuter la callback après un délai pour garantir que les styles sont appliqués
+    // ✅ Réappliquer les styles dynamiques après le chargement du snapshot
     setTimeout(() => {
-        console.log("🔍 Vérification après application du contenu sauvegardé.");
+        console.log("🎨 Réapplication des styles dynamiques après transition...");
+        tempContainer.querySelectorAll("*").forEach(el => {
+            applyDynamicStyles(el);
+        });
+        console.log("✅ Styles dynamiques réappliqués !");
+        
         if (callback) callback(scriptName);
     }, 100);
 }
