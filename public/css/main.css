@@ -305717,7 +305717,7 @@ html[theme=dark] .accessibility-border {
 }
 
 .dropdown {
-  position: absolute;
+  position: absolute !important;
   top: 15%; /* Ajuste la distance depuis le haut */
   left: 50% !important;
   transform: translate(-50%, 15%) !important;

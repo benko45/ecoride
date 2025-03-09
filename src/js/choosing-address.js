@@ -7,9 +7,9 @@ import { createShortddress, createAddressSuggestion, removeChildrenExceptFirst, 
 "use strict";
 
 // console.log("✅ choosing-address.js chargé et exécuté !");
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("✅ DOM complètement chargé, exécution des événements...");
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//     console.log("✅ DOM complètement chargé, exécution des événements...");
+// });
 
 /******************************************************/
 /******************************************************/
@@ -19,7 +19,7 @@ applyTheme();
 
 //écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
 
-console.log("choosing-address.js est exécuté...");
+// console.log("choosing-address.js est exécuté...");
 const inputField = document.getElementById('address');
 
 if (!inputField) {
