@@ -156,7 +156,10 @@ export function removeChildrenExceptFirst(parentElement) {
 }
 
 export function applyDynamicStyles(HTMLElement){
-    console.log(`🎨 Application des styles dynamiques sur : ${HTMLElement.className}`);
+    // console.log(`🎨 Application des styles dynamiques sur : ${HTMLElement.className}`);
+    if(HTMLElement.classList.contains('form-container')){
+        HTMLElement.style.width = '80%';
+    }
     if(HTMLElement.classList.contains('suggestions')){
         HTMLElement.style.display = 'flex';
         HTMLElement.style.flexDirection = 'column';
