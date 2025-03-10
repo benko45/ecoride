@@ -1,177 +1,10 @@
 import { applyDynamicStyles, selectImage } from "./functions.js";
 
-// document.body.addEventListener("click", async (event) => {
-//     setTimeout(async () => {
-//         let dropdown = document.querySelector(".dropdown");
-//         if (!dropdown) {
-//             console.warn("⚠️ `.dropdown` a disparu après un clic sur :", event.target);
-//             console.trace();
-//             debugger;
+// document.documentElement.style.overflow = "hidden";
+// document.body.style.overflow = "hidden";
 
-//             // 🔄 Vérifier si `index.js` est déjà en cours de rechargement
-//             if (document.querySelector("script[data-reloading='true']")) {
-//                 console.log("⚠️ `index.js` est déjà en cours de rechargement...");
-//                 return;
-//             }
 
-//             // 🔄 Recharger `index.js` dynamiquement
-//             let existingScript = document.querySelector("script[src='src/js/index.js']");
-//             if (existingScript) {
-//                 console.log("🔄 Suppression de l'ancien script `index.js`...");
-//                 existingScript.remove();
-//             }
-
-//             let newScript = document.createElement("script");
-//             newScript.src = "src/js/index.js";
-//             newScript.setAttribute("data-reloading", "true");
-
-//             newScript.onload = () => {
-//                 console.log("✅ `index.js` rechargé avec succès !");
-//                 newScript.removeAttribute("data-reloading"); // Supprimer l'attribut après chargement
-//             };
-
-//             newScript.onerror = () => console.error("❌ Échec du rechargement de `index.js`.");
-
-//             document.body.appendChild(newScript);
-//         }
-//     }, 50);
-// });
-
-// document.body.addEventListener("click", (event) => {
-//     setTimeout(() => {
-//         let dropdown = document.querySelector(".dropdown");
-//         if (!dropdown) {
-//             console.warn("⚠️ `.dropdown` a disparu après un clic sur :", event.target);
-//             console.trace(); // 🔍 Voir l'origine exacte de la suppression
-//             // debugger; // 🛑 Pause pour analyse dans DevTools
-//         }
-//     }, 50);
-// });
-
-// const trackDropdownChanges = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//         mutation.removedNodes.forEach(node => {
-//             if (node.matches && node.matches(".dropdown")) {
-//                 console.error("⚠️ `.dropdown` a été supprimé avant `loadPage()` !");
-//                 console.trace();  // 🔍 Affiche la pile d'exécution pour trouver le script responsable
-//                 debugger; // 🛑 Pause pour inspection dans DevTools
-//             }
-//         });
-//     });
-// });
-
-// trackDropdownChanges.observe(document.body, { childList: true, subtree: true });
-// console.log("🔍 Surveillance activée pour détecter si `.dropdown` est supprimé avant `loadPage()`.");
-
-// const observer = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//         mutation.removedNodes.forEach(node => {
-//             if (node.nodeType === 1 && node.matches(".dropdown")) {
-//                 console.error("⚠️ `.dropdown` a été supprimé du DOM !");
-//                 console.trace(); // 🔍 Voir quel script est responsable
-//             }
-//         });
-//     });
-// });
-
-// observer.observe(document.body, { childList: true, subtree: true });
-// console.log("🔍 Surveillance activée pour détecter si `.dropdown` est supprimé avant la transition.");
-
-// const detectDropdown = new MutationObserver(() => {
-//     let dropdown = document.querySelector(".dropdown");
-//     if (dropdown) {
-//         observer.observe(dropdown, { attributes: true, attributeFilter: ["style"] });
-//         console.log("🔍 Surveillance activée pour détecter les changements de style sur `dropdown`.");
-//         detectDropdown.disconnect(); // On arrête l'observation une fois qu'on a trouvé `.dropdown`
-//     }
-// });
-// detectDropdown.observe(document.body, { childList: true, subtree: true });
- 
-
-// let dropdown = document.querySelector(".dropdown");
-
-// const debugObserver = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//         if (mutation.attributeName === "style") {
-//             let dropdown = document.querySelector(".dropdown");
-//             if (dropdown) {
-//                 let computedStyle = window.getComputedStyle(dropdown);
-//                 console.log("🕵️ `dropdown` a été modifié !");
-//                 console.log(`   Nouvelle transformation : ${computedStyle.transform}`);
-//                 console.log("   Modification détectée par :", mutation);
-//                 console.trace();  // 🔍 Affiche la pile d'exécution pour identifier le script responsable
-//             }
-//         }
-//     });
-// });
-
-// // ✅ Active la surveillance des modifications de `dropdown`
-// if (dropdown) {
-//     debugObserver.observe(dropdown, { attributes: true, attributeFilter: ["style"] });
-//     console.log("🔍 Surveillance activée pour détecter les modifications de transformation sur `dropdown`.");
-// }
-
-// const transformObserver = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//         if (mutation.attributeName === "style") {
-//             let dropdown = document.querySelector(".dropdown");
-//             if (dropdown) {
-//                 let computedStyle = window.getComputedStyle(dropdown);
-//                 console.log("🕵️ `dropdown` transform modifié !");
-//                 console.log(`   Nouvelle transformation : ${computedStyle.transform}`);
-//                 console.log("   Modification détectée par :", mutation);
-//             }
-//         }
-//     });
-// });
-
-// if (dropdown) {
-//     transformObserver.observe(dropdown, { attributes: true, attributeFilter: ["style"] });
-//     console.log("🔍 Surveillance activée pour détecter les modifications de transformation sur `dropdown`.");
-// }
-
-// const trackDOMChanges = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//         if (mutation.addedNodes.length || mutation.removedNodes.length) {
-//             let dropdown = document.querySelector(".dropdown");
-//             if (!dropdown) {
-//                 console.warn("⚠️ `.dropdown` a disparu après une mise à jour du DOM !");
-//                 console.trace();
-//                 debugger;
-//             }
-//         }
-//     });
-// });
-
-// trackDOMChanges.observe(document.body, { childList: true, subtree: true });
-// console.log("🔍 Surveillance activée pour détecter les mises à jour du DOM qui affectent `.dropdown`.");
-
-// setInterval(() => {
-//     let dropdown = document.querySelector(".dropdown");
-//     if (dropdown) {
-//         let computedStyle = window.getComputedStyle(dropdown);
-//         console.log(`🔍 Transformation actuelle de dropdown : ${computedStyle.transform}`);
-//     }
-// }, 500);
-
-// console.log("🔍 Surveillance active pour détecter les changements de transformation sur `dropdown`.");
- 
 document.addEventListener("DOMContentLoaded", function () {
-
-    // const deletionObserver = new MutationObserver(mutations => {
-    //     mutations.forEach(mutation => {
-    //         mutation.removedNodes.forEach(node => {
-    //             if (node.matches && node.matches(".dropdown")) {
-    //                 console.error("⚠️ `.dropdown` a été supprimé avant la transition !");
-    //                 console.trace(); // 🔍 Voir l'origine exacte
-    //                 // debugger; // 🛑 Met le script en pause dans DevTools
-    //             }
-    //         });
-    //     });
-    // });
-    
-    // deletionObserver.observe(document.body, { childList: true, subtree: true });
-    // console.log("🔍 Surveillance activée pour détecter si `.dropdown` est supprimé avant `loadPage()`.");
     
     // ✅ Détection des clics sur les liens de navigation
     document.body.addEventListener("click", function (event) {
@@ -179,17 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             const url = target.href;
-
-            // ✅ Vérification du dropdown avant l'appel de loadPage()
-            let dropdown = document.querySelector(".dropdown");
-            if (dropdown) {
-                let computedStyle = window.getComputedStyle(dropdown);
-                console.log("🕵️ Vérification du `dropdown` AVANT l'appel de `loadPage()` :");
-                console.log(`   Transform : ${computedStyle.transform}`);
-            } else {
-                console.warn("⚠️ `dropdown` introuvable!");
-            }
-
             loadPage(url);
         }
     });
@@ -200,26 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             const url = target.getAttribute("data-navigate");
-
-            // ✅ Vérification du dropdown avant l'appel de loadPage()
-            let dropdown = document.querySelector(".dropdown");
-            if (dropdown) {
-                let computedStyle = window.getComputedStyle(dropdown);
-                console.log("🕵️ Vérification du `dropdown` AVANT l'appel de `loadPage()` :");
-                console.log(`   Display : ${computedStyle.display}`);
-                console.log(`   Opacity : ${computedStyle.opacity}`);
-                console.log(`   Transform : ${computedStyle.transform}`);
-            } else {
-                console.warn("⚠️ `dropdown` introuvable!");
-            }
-
             loadPage(url);
         }
     });
 
 });
-
-
 
 async function loadPage(url) {
     console.log(`🚀 loadPage() appelé pour : ${url}`);
@@ -240,51 +47,40 @@ async function loadPage(url) {
         tempContainer.style.height = "100%";
         tempContainer.style.zIndex = "100";
         tempContainer.style.backgroundColor = "var(--custom-light)";
+        
+
         document.body.appendChild(tempContainer);
 
         // ✅ Appliquer le snapshot avant la transition
         applySnapshot(tempContainer, url);
-        setTimeout(() => {
-            let dropdown = document.querySelector(".dropdown");
-            if (dropdown) {
-                let computedStyle = window.getComputedStyle(dropdown);
-                console.log("🎭 Vérification du `dropdown` après `applySnapshot()` :");
-                console.log(`   Display : ${computedStyle.display}`);
-                console.log(`   Visibility : ${computedStyle.visibility}`);
-                console.log(`   Opacity : ${computedStyle.opacity}`);
-                console.log(`   Transform : ${computedStyle.transform}`);
-            } else {
-                console.warn("⚠️ `dropdown` a été supprimé du DOM !");
-            }
-        }, 200);
+        document.querySelectorAll("img").forEach(img => {
+            img.onload = () => console.log(`✅ Image complètement chargée : ${img.src}`);
+            img.onerror = () => console.error(`❌ Problème de chargement pour : ${img.src}`);
+        });
         
-        
+
         // ✅ Animation de transition
         gsap.to(tempContainer, {
-            x: "-100%",
+            left: "0%",
             duration: 0.5,
             ease: "power2.inOut",
-            onStart: () => {
-                let dropdown = document.querySelector(".dropdown");
-                if (dropdown) {
-                    let computedStyle = window.getComputedStyle(dropdown);
-                    console.log("🕵️ Avant l'animation GSAP :");
-                    console.log(`   Transform : ${computedStyle.transform}`);
-                }
-            },
             onComplete: () => {
-                let dropdown = document.querySelector(".dropdown");
-                if (dropdown) {
-                    let computedStyle = window.getComputedStyle(dropdown);
-                    console.log("🕵️ Après l'animation GSAP :");
-                    console.log(`   Transform : ${computedStyle.transform}`);
-                }
                 pageContent.innerHTML = tempContainer.innerHTML;
+                setTimeout(() => {
+                    if (tempContainer) {
+                        let computedStyle = window.getComputedStyle(tempContainer);
+                        console.log(`📏 Position après transition - left: ${computedStyle.left}, transform: ${computedStyle.transform}`);
+            
+                        // ❗ Supprimer `tempContainer` seulement après le log
+                        tempContainer.remove();
+                        console.log(`✅tempContainer supprimé après vérification.`);
+                    }
+                }, 100);
                 tempContainer.remove();
                 console.log(`✅ Transition terminée vers ${url}`);
             }
-        });
-
+        });        
+        
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
@@ -310,7 +106,8 @@ export async function generatePageSnapshot(url) {
     return new Promise((resolve, reject) => {
         iframe.onload = async () => {
             try {
-                let doc = iframe.contentDocument || iframe.contentWindow.document;
+                // let doc = iframe.contentDocument || iframe.contentWindow.document;
+                let doc = iframe.contentWindow.document;
                 let iframeWindow = iframe.contentWindow;
 
                 if (!doc) {
@@ -437,9 +234,10 @@ async function loadCSSForPage(doc, url) {
                     console.error(`❌ Erreur lors de la construction de l'URL pour : ${link.href}`, error);
                     return;
                 }
-            } else {
-                console.log(`🔗 Fichier CSS externe détecté : ${link.href} (pas modifié)`);
             }
+            // } else {
+            //     console.log(`🔗 Fichier CSS externe détecté : ${link.href} (pas modifié)`);
+            // }
 
             // console.log(`📋 Vérification avant ajout : ${absoluteHref}`);
             // console.log(`   Est déjà dans existingStyles ? ${existingStyles.includes(absoluteHref)}`);

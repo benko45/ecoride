@@ -3,6 +3,10 @@
 import { applyTheme } from './apply-theme.js';
 import{ selectImage, storeStyles} from './functions.js';
 
+
+document.documentElement.style.overflow = "hidden";
+document.body.style.overflow = "hidden"; 
+
 /******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
 /******************************************************/
@@ -132,7 +136,7 @@ mediaQuery.addEventListener('change', handleMediaQueryChange);
 /******************************************************/
 /*    Choix de l'image de fond selon l'écran          */
 /******************************************************/
-selectImage();
+// selectImage();
 // Fonction de sélection de l'image optimale
 // window.addEventListener('DOMContentLoaded', () => {
 //     if(window.location.pathname.includes('index.html')){

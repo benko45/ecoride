@@ -14,8 +14,12 @@ body {
     padding: 0;
     box-sizing: border-box;
     position: relative;
+    // overflow: hidden;
 }
-
+.page-content {
+    // overflow: hidden;
+    will-change: "transform", "opacity";
+}
 @media screen and (max-width : variables.$breakpoint) {
     .hide-under-md {
         display: none !important;
