@@ -64,7 +64,6 @@ async function loadPage(url) {
                 executeScripts(tempContainer);
                 tempContainer.remove();
                 window.history.pushState({}, "", url);
-                
                 console.log(`✅ Transition terminée vers ${url}`);
             }
         });        
@@ -265,7 +264,7 @@ async function loadCSSForPage(doc, url) {
 }
 
 function applySnapshot(tempContainer) {
-    console.log("🔄 Application du snapshot de la page...");
+    console.log("🔄 Application instantanée du snapshot...");
 
     const savedSnapshot = localStorage.getItem("pageSnapshot");
 
@@ -274,29 +273,24 @@ function applySnapshot(tempContainer) {
         return;
     }
 
-    // ✅ Injecter le snapshot dans `tempContainer`
+    // ✅ Injection immédiate du snapshot sans aucune vérification inutile
     tempContainer.innerHTML = savedSnapshot;
 
-    console.log("✅ Snapshot appliqué avec succès.");
+    console.log("✅ Snapshot appliqué immédiatement.");
+    
+    // ✅ Suppression de toute tentative de rechargement des images
+    // On laisse le navigateur gérer leur affichage naturellement
 
-    // ✅ Forcer le chargement immédiat des images
-    tempContainer.querySelectorAll("img").forEach(img => {
-        img.loading = "eager"; // 🔹 Désactive le lazy loading
-
-        if (!img.complete || img.naturalWidth === 0) {
-            img.src = img.src + "?cache=" + new Date().getTime(); // 🔹 Ajoute un paramètre unique pour forcer le cache
-        }
-    });
-
-    // ✅ Appliquer les styles dynamiques
-    setTimeout(() => {
-        console.log("🎨 Réapplication des styles dynamiques...");
+    // ✅ Réappliquer les styles dynamiques APRÈS la transition
+    requestAnimationFrame(() => {
+        console.log("🎨 Réapplication des styles dynamiques après la transition...");
         document.querySelectorAll("*").forEach(el => {
             applyDynamicStyles(el);
         });
-        console.log("✅ Styles dynamiques réappliqués !");
-    }, 100);
+        console.log("✅ Styles dynamiques réappliqués.");
+    });
 }
+
 
 
 function ensureBootstrapIcons() {
