@@ -52,12 +52,7 @@ async function loadPage(url) {
         document.body.appendChild(tempContainer);
 
         // ✅ Appliquer le snapshot avant la transition
-        applySnapshot(tempContainer, url);
-        document.querySelectorAll("img").forEach(img => {
-            img.onload = () => console.log(`✅ Image complètement chargée : ${img.src}`);
-            img.onerror = () => console.error(`❌ Problème de chargement pour : ${img.src}`);
-        });
-        
+        applySnapshot(tempContainer, url);      
 
         // ✅ Animation de transition
         gsap.to(tempContainer, {
@@ -66,17 +61,10 @@ async function loadPage(url) {
             ease: "power2.inOut",
             onComplete: () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
-                setTimeout(() => {
-                    if (tempContainer) {
-                        let computedStyle = window.getComputedStyle(tempContainer);
-                        console.log(`📏 Position après transition - left: ${computedStyle.left}, transform: ${computedStyle.transform}`);
-            
-                        // ❗ Supprimer `tempContainer` seulement après le log
-                        tempContainer.remove();
-                        console.log(`✅tempContainer supprimé après vérification.`);
-                    }
-                }, 100);
+                executeScripts(tempContainer);
                 tempContainer.remove();
+                window.history.pushState({}, "", url);
+                
                 console.log(`✅ Transition terminée vers ${url}`);
             }
         });        
@@ -276,29 +264,40 @@ async function loadCSSForPage(doc, url) {
     });
 }
 
-export function applySnapshot(tempContainer) {
+function applySnapshot(tempContainer) {
     console.log("🔄 Application du snapshot de la page...");
-    
+
     const savedSnapshot = localStorage.getItem("pageSnapshot");
 
     if (!savedSnapshot) {
-        console.warn("⚠️ Aucun snapshot enregistré trouvé.");
+        console.warn("⚠️ Aucun snapshot enregistré.");
         return;
     }
 
     // ✅ Injecter le snapshot dans `tempContainer`
     tempContainer.innerHTML = savedSnapshot;
-    // console.log("✅ Snapshot appliqué avec succès !");
 
-    // ✅ Réappliquer les styles dynamiques après l’injection du snapshot
+    console.log("✅ Snapshot appliqué avec succès.");
+
+    // ✅ Forcer le chargement immédiat des images
+    tempContainer.querySelectorAll("img").forEach(img => {
+        img.loading = "eager"; // 🔹 Désactive le lazy loading
+
+        if (!img.complete || img.naturalWidth === 0) {
+            img.src = img.src + "?cache=" + new Date().getTime(); // 🔹 Ajoute un paramètre unique pour forcer le cache
+        }
+    });
+
+    // ✅ Appliquer les styles dynamiques
     setTimeout(() => {
-        // console.log("🎨 Réapplication des styles dynamiques après transition...");
+        console.log("🎨 Réapplication des styles dynamiques...");
         document.querySelectorAll("*").forEach(el => {
             applyDynamicStyles(el);
         });
-        // console.log("✅ Styles dynamiques réappliqués !");
+        console.log("✅ Styles dynamiques réappliqués !");
     }, 100);
 }
+
 
 function ensureBootstrapIcons() {
     if (!document.querySelector('link[href*="bootstrap-icons"]')) {
@@ -310,4 +309,41 @@ function ensureBootstrapIcons() {
     } else {
         console.log("✅ Bootstrap Icons déjà chargé.");
     }
+}
+
+async function executeScripts(container) {
+    console.log("🔄 Exécution des scripts de la nouvelle page...");
+
+    let scripts = container.querySelectorAll("script");
+
+    for (let script of scripts) {
+        let newScript = document.createElement("script");
+
+        if (script.src) {
+            // ✅ Recharger les scripts avec un `src`
+            newScript.src = script.src;
+            newScript.async = false;
+            if (script.type === "module") newScript.type = "module";
+            document.body.appendChild(newScript);
+
+            await new Promise((resolve) => {
+                newScript.onload = () => {
+                    console.log(`✅ Script chargé : ${script.src}`);
+                    resolve();
+                };
+                newScript.onerror = () => {
+                    console.error(`❌ Erreur de chargement du script ${script.src}`);
+                    resolve();
+                };
+            });
+        } else {
+            // ✅ Exécuter les scripts inline
+            newScript.textContent = script.textContent;
+            if (script.type === "module") newScript.type = "module";
+            document.body.appendChild(newScript);
+            console.log("✅ Script inline exécuté.");
+        }
+    }
+
+    console.log("✅ Tous les scripts ont été exécutés.");
 }

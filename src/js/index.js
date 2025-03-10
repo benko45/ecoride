@@ -4,8 +4,11 @@ import { applyTheme } from './apply-theme.js';
 import{ selectImage, storeStyles} from './functions.js';
 
 
-document.documentElement.style.overflow = "hidden";
-document.body.style.overflow = "hidden"; 
+document.body.style.position = "fixed";
+document.body.style.top = `-${window.scrollY}px`;
+document.body.style.width = "100%";
+
+
 
 /******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
