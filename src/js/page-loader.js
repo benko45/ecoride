@@ -5,39 +5,41 @@ import { applyDynamicStyles, selectImage } from "./functions.js";
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    
-    // ✅ Détection des clics sur les liens de navigation
     document.body.addEventListener("click", function (event) {
         let target = event.target.closest("a");
         if (target) {
             event.preventDefault();
-            const url = target.href;
-            loadPage(url);
+            loadPage(target.href);
         }
     });
-
-    // ✅ Détection des clics sur les boutons de navigation dynamique
+    
     document.body.addEventListener("click", function (event) {
         let target = event.target.closest("[data-navigate]");
         if (target) {
             event.preventDefault();
-            const url = target.getAttribute("data-navigate");
-            loadPage(url);
+            loadPage(target.getAttribute("data-navigate"));
         }
     });
 
+    // Gestion des retours arrière
+    window.addEventListener("popstate", function () {
+        console.log("↩️ Retour en arrière détecté !");
+        loadPage(location.href, true);
+    });
 });
 
-async function loadPage(url) {
+async function loadPage(url, fromBackButton = false) {
     console.log(`🚀 loadPage() appelé pour : ${url}`);
 
-    const pageContent = document.getElementById("page-content");
+    if (!url) {
+        console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
+        url = "/"; 
+    }
 
+    const pageContent = document.getElementById("page-content");
     try {
-        // ✅ Charger le snapshot de la page
         let { snapshot, scripts } = await generatePageSnapshot(url);
 
-        // ✅ Création et configuration de `tempContainer`
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -48,11 +50,8 @@ async function loadPage(url) {
         tempContainer.style.backgroundColor = "var(--custom-light)";
 
         document.body.appendChild(tempContainer);
-
-        // ✅ Appliquer le snapshot avant la transition
         tempContainer.innerHTML = snapshot;
 
-        // ✅ Animation de transition
         gsap.to(tempContainer, {
             left: "0%",
             duration: 0.5,
@@ -60,10 +59,11 @@ async function loadPage(url) {
             onComplete: async () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
                 tempContainer.remove();
-                window.history.pushState({}, "", url);
+                if (!fromBackButton) {
+                    window.history.pushState({}, "", url);
+                }
                 console.log(`✅ Transition terminée vers ${url}`);
 
-                // 🔄 Attendre 50ms avant d'exécuter les scripts
                 setTimeout(() => {
                     executeScripts(scripts);
                 }, 50);
@@ -73,41 +73,25 @@ async function loadPage(url) {
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
-
-    window.addEventListener("popstate", function () {
-        console.log("↩️ Retour en arrière détecté !");
-        loadPage(location.href);
-    });
 }
 
-export async function generatePageSnapshot(url) {
+
+async function generatePageSnapshot(url) {
     console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
 
     try {
-        // 🔄 Charger la page avec fetch()
-        let response = await fetch(url);
+        let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-        let htmlText = await response.text(); // Récupérer le HTML sous forme de texte
-
-        // 🏗️ Créer un conteneur temporaire pour parser le HTML
+        let htmlText = await response.text();
         let tempDiv = document.createElement("div");
         tempDiv.innerHTML = htmlText;
 
-        // 🔎 Récupérer #page-content et les styles CSS
         let pageContentElement = tempDiv.querySelector("#page-content");
         if (!pageContentElement) throw new Error("❌ `#page-content` introuvable dans la page chargée !");
 
         let snapshot = pageContentElement.cloneNode(true);
-        snapshot.querySelectorAll("*").forEach(el => {
-            const computedStyles = window.getComputedStyle(el);
-            el.setAttribute("style", computedStyles.cssText);
-        });
-
-        // 🏗️ Extraire les scripts pour les exécuter après la transition
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
-
-        console.log(`📜 ${scripts.length} scripts détectés :`, scripts.map(s => s.src || "[inline script]"));
 
         return { snapshot: snapshot.outerHTML, scripts };
     } catch (error) {
@@ -115,6 +99,7 @@ export async function generatePageSnapshot(url) {
         return { snapshot: "", scripts: [] };
     }
 }
+
 
 
 async function executeScriptInIframe(scriptElement, iframeWindow) {
@@ -266,20 +251,30 @@ function ensureBootstrapIcons() {
     }
 }
 
+function cleanOldScripts() {
+    document.querySelectorAll("script[data-dynamic]").forEach(script => {
+        console.log("🗑️ Suppression de l'ancien script :", script.src || "[inline script]");
+        script.remove();
+    });
+}
+
 function executeScripts(scripts) {
     console.log("🔄 Exécution des scripts après transition...");
 
+    cleanOldScripts();
+
     scripts.forEach(oldScript => {
         let newScript = document.createElement("script");
+        newScript.setAttribute("data-dynamic", "true");
 
         if (oldScript.src) {
-            newScript.src = oldScript.src;
+            newScript.src = oldScript.src + "?_=" + Date.now();
             newScript.async = false;
             if (oldScript.type === "module") newScript.type = "module";
 
             newScript.onload = () => console.log("✅ Script chargé :", newScript.src);
             newScript.onerror = () => console.error("❌ Erreur de chargement du script :", newScript.src);
-            
+
             document.body.appendChild(newScript);
         } else {
             newScript.textContent = oldScript.textContent;
@@ -288,7 +283,6 @@ function executeScripts(scripts) {
             console.log("✅ Script inline exécuté.");
         }
     });
-
     console.log("✅ Tous les scripts ont été exécutés.");
 }
 
