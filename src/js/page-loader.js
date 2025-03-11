@@ -33,14 +33,15 @@ async function loadPage(url, fromBackButton = false) {
 
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
-        url = "/"; 
+        url = "/";
     }
 
     const pageContent = document.getElementById("page-content");
     try {
-        console.log("Scripts 0 : ");
+        console.log("Scripts avant chargement :");
         Array.from(document.scripts).forEach(script => console.log(script.src));
-        let { snapshot, scripts } = await generatePageSnapshot(url);
+
+        let { snapshot, scripts, styles } = await generatePageSnapshot(url);
 
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
@@ -52,13 +53,18 @@ async function loadPage(url, fromBackButton = false) {
         tempContainer.style.backgroundColor = "var(--custom-light)";
 
         document.body.appendChild(tempContainer);
-        tempContainer.innerHTML = snapshot; 
+        tempContainer.innerHTML = snapshot;
+
+        // ✅ Charger immédiatement les styles CSS pour la transition
+        await loadCSSForPage(styles);
+
         // ✅ Filtrer les scripts à ne pas recharger
         scripts = scripts.filter(script => 
             script.src && 
             !script.src.includes("fiveserver.js") && 
             script.src.includes("src/js")
         );
+
         gsap.to(tempContainer, {
             left: "0%",
             duration: 0.5,
@@ -72,20 +78,17 @@ async function loadPage(url, fromBackButton = false) {
                 console.log(`✅ Transition terminée vers ${url}`);
 
                 setTimeout(() => {
+                    console.log("Scripts après transition :");
+                    Array.from(document.scripts).forEach(script => console.log(script.src));
                     executeScripts(scripts);
                 }, 50);
             }
         });
-        setTimeout(() => {
-            console.log("Scripts 2 : ");
-            Array.from(document.scripts).forEach(script => console.log(script.src));
-        }, 50);
 
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
-
 
 async function generatePageSnapshot(url) {
     console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
@@ -103,14 +106,14 @@ async function generatePageSnapshot(url) {
 
         let snapshot = pageContentElement.cloneNode(true);
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
+        let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
 
-        return { snapshot: snapshot.outerHTML, scripts };
+        return { snapshot: snapshot.outerHTML, scripts, styles };
     } catch (error) {
         console.error("❌ Erreur lors de la capture de la page :", error);
-        return { snapshot: "", scripts: [] };
+        return { snapshot: "", scripts: [], styles: [] };
     }
 }
-
 
 
 async function executeScriptInIframe(scriptElement, iframeWindow) {
@@ -152,75 +155,55 @@ async function executeScriptInIframe(scriptElement, iframeWindow) {
     });
 }
 
-async function loadCSSForPage(doc, url) {
+async function loadCSSForPage(styles) {
     return new Promise((resolve) => {
         let existingStyles = Array.from(document.querySelectorAll("link[rel='stylesheet']")).map(link => link.href);
         let newStyles = [];
 
-        if (!url.startsWith("http")) {
-            url = new URL(url, window.location.origin).href;
-        }
-
-        // console.log(`🌍 URL de base utilisée : ${url}`);
-
-        let stylesheets = doc.querySelectorAll("link[rel='stylesheet']");
-
-        stylesheets.forEach((link) => {
+        styles.forEach(link => {
             if (!link.href) {
                 console.warn("⚠️ Un fichier CSS sans `href` a été ignoré.");
                 return;
             }
 
-            let absoluteHref = link.href;
-            if (link.href.includes("/public/css/")) {
-                try {
-                    absoluteHref = link.href.startsWith("http") ? link.href : new URL(link.href, url).href;
-                    // console.log(`🔗 Reconstruction de l'URL pour : ${link.href} → ${absoluteHref}`);
-                } catch (error) {
-                    console.error(`❌ Erreur lors de la construction de l'URL pour : ${link.href}`, error);
-                    return;
-                }
-            }
-            // } else {
-            //     console.log(`🔗 Fichier CSS externe détecté : ${link.href} (pas modifié)`);
-            // }
+            let absoluteHref = link.href.startsWith("http") ? link.href : new URL(link.href, window.location.origin).href;
 
-            // console.log(`📋 Vérification avant ajout : ${absoluteHref}`);
-            // console.log(`   Est déjà dans existingStyles ? ${existingStyles.includes(absoluteHref)}`);
-            
             if (!existingStyles.includes(absoluteHref)) {
                 newStyles.push(absoluteHref);
             }
         });
 
-        // console.log(`📜 ${newStyles.length} nouveaux fichiers CSS détectés pour cette page :`, newStyles);
-
         if (newStyles.length === 0) {
-            resolve(); // Rien à charger
+            resolve();
             return;
         }
 
         let loadedCount = 0;
-        newStyles.forEach((href) => {
+        newStyles.forEach(href => {
             let newLink = document.createElement("link");
             newLink.rel = "stylesheet";
             newLink.href = href;
+            newLink.setAttribute("data-dynamic-style", "true"); // Marqueur pour nettoyage
+
             newLink.onload = () => {
                 loadedCount++;
                 if (loadedCount === newStyles.length) {
-                    // console.log("✅ Tous les fichiers CSS nécessaires ont été chargés !");
-                    setTimeout(resolve, 200); // ⏳ Attendre 200ms avant de continuer
+                    console.log("✅ Tous les styles CSS nécessaires ont été chargés !");
+                    resolve();
                 }
             };
+
             newLink.onerror = () => {
                 console.error(`❌ Erreur de chargement du fichier CSS : ${href}`);
                 loadedCount++;
                 if (loadedCount === newStyles.length) resolve();
             };
+
             document.head.appendChild(newLink);
         });
     });
 }
+
 
 function applySnapshot(tempContainer) {
     console.log("🔄 Application instantanée du snapshot...");
