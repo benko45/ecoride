@@ -34,125 +34,88 @@ async function loadPage(url) {
     const pageContent = document.getElementById("page-content");
 
     try {
-        // ✅ Générer et stabiliser la page cible AVANT la transition
-        // console.log(`📸 Préparation de la page cible : ${url}`);
-        await generatePageSnapshot(url);
+        // ✅ Charger le snapshot de la page
+        let { snapshot, scripts } = await generatePageSnapshot(url);
 
         // ✅ Création et configuration de `tempContainer`
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
-        tempContainer.style.left = "100%"; // Départ hors écran
+        tempContainer.style.left = "100%";
         tempContainer.style.width = "100%";
         tempContainer.style.height = "100%";
         tempContainer.style.zIndex = "100";
         tempContainer.style.backgroundColor = "var(--custom-light)";
-        
 
         document.body.appendChild(tempContainer);
 
         // ✅ Appliquer le snapshot avant la transition
-        applySnapshot(tempContainer, url);      
+        tempContainer.innerHTML = snapshot;
 
         // ✅ Animation de transition
         gsap.to(tempContainer, {
             left: "0%",
             duration: 0.5,
             ease: "power2.inOut",
-            onComplete: () => {
+            onComplete: async () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
-                executeScripts(tempContainer);
                 tempContainer.remove();
                 window.history.pushState({}, "", url);
                 console.log(`✅ Transition terminée vers ${url}`);
+
+                // 🔄 Attendre 50ms avant d'exécuter les scripts
+                setTimeout(() => {
+                    executeScripts(scripts);
+                }, 50);
             }
-        });        
-        
+        });
+
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
+
     window.addEventListener("popstate", function () {
         console.log("↩️ Retour en arrière détecté !");
         loadPage(location.href);
-    });    
+    });
 }
 
 export async function generatePageSnapshot(url) {
-    // console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
+    console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
 
-    let iframe = document.createElement("iframe");
-    iframe.style.position = "absolute";
-    iframe.style.visibility = "hidden";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
-    document.body.appendChild(iframe);
+    try {
+        // 🔄 Charger la page avec fetch()
+        let response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-    iframe.src = new URL(url, window.location.origin).href;
-    // console.log("🔍 Chargement de l'iframe avec URL :", iframe.src);
+        let htmlText = await response.text(); // Récupérer le HTML sous forme de texte
 
-    return new Promise((resolve, reject) => {
-        iframe.onload = async () => {
-            try {
-                // let doc = iframe.contentDocument || iframe.contentWindow.document;
-                let doc = iframe.contentWindow.document;
-                let iframeWindow = iframe.contentWindow;
+        // 🏗️ Créer un conteneur temporaire pour parser le HTML
+        let tempDiv = document.createElement("div");
+        tempDiv.innerHTML = htmlText;
 
-                if (!doc) {
-                    throw new Error("❌ ERREUR : DOM de l'iframe inaccessible !");
-                }
+        // 🔎 Récupérer #page-content et les styles CSS
+        let pageContentElement = tempDiv.querySelector("#page-content");
+        if (!pageContentElement) throw new Error("❌ `#page-content` introuvable dans la page chargée !");
 
-                // console.log("📜 DOM de l’iframe récupéré avec succès !");
+        let snapshot = pageContentElement.cloneNode(true);
+        snapshot.querySelectorAll("*").forEach(el => {
+            const computedStyles = window.getComputedStyle(el);
+            el.setAttribute("style", computedStyles.cssText);
+        });
 
-                // ✅ Charger dynamiquement les styles CSS
-                await loadCSSForPage(doc, url);
+        // 🏗️ Extraire les scripts pour les exécuter après la transition
+        let scripts = Array.from(tempDiv.querySelectorAll("script"));
 
-                // ✅ Vérifier quels fichiers CSS sont chargés dans `<head>`
-                // console.log("📋 Liste des fichiers CSS actuellement dans `<head>` :");
-                // document.querySelectorAll("link[rel='stylesheet']").forEach((link, index) => {
-                //     console.log(`  ${index + 1}. ${link.href}`);
-                // });
-                
-                // ✅ Détecter TOUS les scripts (modules et classiques)
-                let scripts = [...doc.head.querySelectorAll("script"), ...doc.body.querySelectorAll("script")];
-                // console.log(`📜 ${scripts.length} scripts détectés dans head et body :`);
+        console.log(`📜 ${scripts.length} scripts détectés :`, scripts.map(s => s.src || "[inline script]"));
 
-                // scripts.forEach((script, index) => {
-                //     console.log(`  ${index + 1}. ${script.src || "[inline script]"} (${script.type || "text/javascript"})`);
-                // });
-
-                // ✅ Exécuter chaque script AVANT la capture
-                for (let script of scripts) {
-                    await executeScriptInIframe(script, iframeWindow);
-                }
-                // console.log("⏳ Pause de 200ms pour assurer l'application des styles JS...");
-                await new Promise(res => setTimeout(res, 200));
-                
-                let pageContentElement = doc.getElementById("page-content");
-
-                if (!pageContentElement) {
-                    throw new Error("❌ Erreur : `#page-content` introuvable dans la page chargée !");
-                }
-
-                // console.log("✅ `#page-content` trouvé, capture en cours...");
-
-                let pageSnapshot = pageContentElement.cloneNode(true);
-                pageSnapshot.querySelectorAll("*").forEach(el => {
-                    const computedStyles = window.getComputedStyle(el);
-                    el.setAttribute("style", computedStyles.cssText);
-                });
-
-                localStorage.setItem("pageSnapshot", pageSnapshot.outerHTML);
-                // console.log("✅ Page figée et stockée avec scripts et styles appliqués !");
-
-                document.body.removeChild(iframe);
-                resolve(pageSnapshot.outerHTML);
-            } catch (error) {
-                console.error("❌ Erreur lors de la capture de la page :", error);
-                reject(error);
-            }
-        };
-    });
+        return { snapshot: snapshot.outerHTML, scripts };
+    } catch (error) {
+        console.error("❌ Erreur lors de la capture de la page :", error);
+        return { snapshot: "", scripts: [] };
+    }
 }
+
 
 async function executeScriptInIframe(scriptElement, iframeWindow) {
     return new Promise((resolve, reject) => {
@@ -291,8 +254,6 @@ function applySnapshot(tempContainer) {
     });
 }
 
-
-
 function ensureBootstrapIcons() {
     if (!document.querySelector('link[href*="bootstrap-icons"]')) {
         console.log("🔄 Rechargement de Bootstrap Icons...");
@@ -305,39 +266,29 @@ function ensureBootstrapIcons() {
     }
 }
 
-async function executeScripts(container) {
-    console.log("🔄 Exécution des scripts de la nouvelle page...");
+function executeScripts(scripts) {
+    console.log("🔄 Exécution des scripts après transition...");
 
-    let scripts = container.querySelectorAll("script");
-
-    for (let script of scripts) {
+    scripts.forEach(oldScript => {
         let newScript = document.createElement("script");
 
-        if (script.src) {
-            // ✅ Recharger les scripts avec un `src`
-            newScript.src = script.src;
+        if (oldScript.src) {
+            newScript.src = oldScript.src;
             newScript.async = false;
-            if (script.type === "module") newScript.type = "module";
-            document.body.appendChild(newScript);
+            if (oldScript.type === "module") newScript.type = "module";
 
-            await new Promise((resolve) => {
-                newScript.onload = () => {
-                    console.log(`✅ Script chargé : ${script.src}`);
-                    resolve();
-                };
-                newScript.onerror = () => {
-                    console.error(`❌ Erreur de chargement du script ${script.src}`);
-                    resolve();
-                };
-            });
+            newScript.onload = () => console.log("✅ Script chargé :", newScript.src);
+            newScript.onerror = () => console.error("❌ Erreur de chargement du script :", newScript.src);
+            
+            document.body.appendChild(newScript);
         } else {
-            // ✅ Exécuter les scripts inline
-            newScript.textContent = script.textContent;
-            if (script.type === "module") newScript.type = "module";
+            newScript.textContent = oldScript.textContent;
+            if (oldScript.type === "module") newScript.type = "module";
             document.body.appendChild(newScript);
             console.log("✅ Script inline exécuté.");
         }
-    }
+    });
 
     console.log("✅ Tous les scripts ont été exécutés.");
 }
+
