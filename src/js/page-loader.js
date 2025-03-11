@@ -38,6 +38,8 @@ async function loadPage(url, fromBackButton = false) {
 
     const pageContent = document.getElementById("page-content");
     try {
+        console.log("Scripts 0 : ");
+        Array.from(document.scripts).forEach(script => console.log(script.src));
         let { snapshot, scripts } = await generatePageSnapshot(url);
 
         let tempContainer = document.createElement("div");
@@ -50,8 +52,9 @@ async function loadPage(url, fromBackButton = false) {
         tempContainer.style.backgroundColor = "var(--custom-light)";
 
         document.body.appendChild(tempContainer);
-        tempContainer.innerHTML = snapshot;
-
+        tempContainer.innerHTML = snapshot; 
+        console.log("Scripts 1 : ");
+        Array.from(document.scripts).forEach(script => console.log(script.src));
         gsap.to(tempContainer, {
             left: "0%",
             duration: 0.5,
@@ -69,6 +72,10 @@ async function loadPage(url, fromBackButton = false) {
                 }, 50);
             }
         });
+        setTimeout(() => {
+            console.log("Scripts 2 : ");
+            Array.from(document.scripts).forEach(script => console.log(script.src));
+        }, 50);
 
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
