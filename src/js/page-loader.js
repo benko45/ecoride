@@ -53,8 +53,12 @@ async function loadPage(url, fromBackButton = false) {
 
         document.body.appendChild(tempContainer);
         tempContainer.innerHTML = snapshot; 
-        console.log("Scripts 1 : ");
-        Array.from(document.scripts).forEach(script => console.log(script.src));
+        // ✅ Filtrer les scripts à ne pas recharger
+        scripts = scripts.filter(script => 
+            script.src && 
+            !script.src.includes("fiveserver.js") && 
+            script.src.includes("src/js")
+        );
         gsap.to(tempContainer, {
             left: "0%",
             duration: 0.5,
