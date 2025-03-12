@@ -37,11 +37,30 @@ export function attachClickEventToLocationButton() {
     console.log("✅ Événement 'click' ajouté à 'Utiliser votre position' !");
 }
 
+/**
+ * Modifie dynamiquement le placeholder d'un champ input.
+ * @param {string} inputSelector - Sélecteur CSS de l'input
+ * @param {string} newPlaceholder - Nouveau texte du placeholder
+ */
+function updatePlaceholder(inputSelector, newPlaceholder) {
+    const inputElement = document.querySelector(inputSelector);
+    
+    if (!inputElement) {
+        console.warn(`⚠️ Input introuvable pour le sélecteur : ${inputSelector}`);
+        return;
+    }
+
+    console.log(`🔄 Changement du placeholder de '${inputSelector}' en : "${newPlaceholder}"`);
+    inputElement.placeholder = newPlaceholder;
+}
+
 /******************************************************/
 /******************************************************/
 applyTheme();
 /******************************************************/
 /******************************************************/
+
+updatePlaceholder('#address', localStorage.getItem('selectedDepartureAddress') || 'Utiliser votre position');
 
 //écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
 
