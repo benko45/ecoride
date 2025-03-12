@@ -30,8 +30,11 @@ if (!inputField) {
 const suggestionsDiv = document.getElementById('suggestions');
 suggestionsDiv.classList.add('suggestions'); // Classe pour styliser les éléments
 
-const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
-suggestionsDiv.appendChild(useCurrentLocationOption);
+if(document.getElementsByClassName('suggestion').length === 0) {
+    const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText);
+    suggestionsDiv.appendChild(useCurrentLocationOption);
+}
+
 
 const userAgent = 'benoit.vicente@hotmail.fr';
 

@@ -35,14 +35,11 @@ async function loadPage(url, fromBackButton = false) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
     }
-
+    cleanOldScripts();
     const pageContent = document.getElementById("page-content");
     try {
-        console.log("Scripts avant chargement :");
-        Array.from(document.scripts).forEach(script => console.log(script.src));
-
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
-
+        executeScripts(scripts);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -58,16 +55,9 @@ async function loadPage(url, fromBackButton = false) {
         // ✅ Charger immédiatement les styles CSS pour la transition
         await loadCSSForPage(styles);
 
-        // ✅ Filtrer les scripts à ne pas recharger
-        scripts = scripts.filter(script => 
-            script.src && 
-            !script.src.includes("fiveserver.js") && 
-            script.src.includes("src/js")
-        );
-
         gsap.to(tempContainer, {
             left: "0%",
-            duration: 0.5,
+            duration: 2,
             ease: "power2.inOut",
             onComplete: async () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
@@ -106,53 +96,21 @@ async function generatePageSnapshot(url) {
 
         let snapshot = pageContentElement.cloneNode(true);
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
+        // ✅ Filtrer les scripts à ne pas recharger
+        scripts = scripts.filter(script => 
+            script.src && 
+            !script.src.includes("fiveserver.js") && 
+            script.src.includes("src/js")
+        );
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
 
+        scripts.forEach(script => console.log("Script trouvé :", script.src || "[inline script]"));
+        styles.forEach(style => console.log("Style trouvé :", style.href));
         return { snapshot: snapshot.outerHTML, scripts, styles };
     } catch (error) {
         console.error("❌ Erreur lors de la capture de la page :", error);
         return { snapshot: "", scripts: [], styles: [] };
     }
-}
-
-
-async function executeScriptInIframe(scriptElement, iframeWindow) {
-    return new Promise((resolve, reject) => {
-        let doc = iframeWindow.document;
-        let newScript = doc.createElement("script");
-
-        if (scriptElement.src) {
-            newScript.src = scriptElement.src;
-            newScript.async = false;
-
-            if (scriptElement.type === "module") {
-                newScript.type = "module";
-            }
-
-            newScript.onload = () => {
-                // console.log(`✅ Script exécuté : ${scriptElement.src}`);
-                resolve();
-            };
-
-            newScript.onerror = () => {
-                console.error(`❌ Erreur de chargement du script ${scriptElement.src}`);
-                reject();
-            };
-
-            doc.body.appendChild(newScript);
-        } else {
-            try {
-                newScript.textContent = scriptElement.textContent;
-                newScript.type = scriptElement.type || "text/javascript";
-                doc.body.appendChild(newScript);
-                // console.log(`✅ Script inline exécuté.`);
-                resolve();
-            } catch (error) {
-                console.error(`❌ Erreur d'exécution du script inline`, error);
-                reject(error);
-            }
-        }
-    });
 }
 
 async function loadCSSForPage(styles) {
@@ -201,35 +159,6 @@ async function loadCSSForPage(styles) {
 
             document.head.appendChild(newLink);
         });
-    });
-}
-
-
-function applySnapshot(tempContainer) {
-    console.log("🔄 Application instantanée du snapshot...");
-
-    const savedSnapshot = localStorage.getItem("pageSnapshot");
-
-    if (!savedSnapshot) {
-        console.warn("⚠️ Aucun snapshot enregistré.");
-        return;
-    }
-
-    // ✅ Injection immédiate du snapshot sans aucune vérification inutile
-    tempContainer.innerHTML = savedSnapshot;
-
-    console.log("✅ Snapshot appliqué immédiatement.");
-    
-    // ✅ Suppression de toute tentative de rechargement des images
-    // On laisse le navigateur gérer leur affichage naturellement
-
-    // ✅ Réappliquer les styles dynamiques APRÈS la transition
-    requestAnimationFrame(() => {
-        console.log("🎨 Réapplication des styles dynamiques après la transition...");
-        document.querySelectorAll("*").forEach(el => {
-            applyDynamicStyles(el);
-        });
-        console.log("✅ Styles dynamiques réappliqués.");
     });
 }
 
