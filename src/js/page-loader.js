@@ -1,8 +1,8 @@
 import { applyDynamicStyles, selectImage } from "./functions.js";
 
-// document.documentElement.style.overflow = "hidden";
-// document.body.style.overflow = "hidden";
-
+document.addEventListener("click", (event) => {
+    console.log("🟢 Clic détecté ! Élément :", event.target);
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function (event) {
@@ -66,7 +66,7 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
-
+                importJS(url);
                 setTimeout(() => {
                     console.log("Scripts après transition :");
                     Array.from(document.scripts).forEach(script => console.log(script.src));
@@ -79,7 +79,18 @@ async function loadPage(url, fromBackButton = false) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
-
+async function importJS(url) {
+    if (url.includes("choosing-address.html")) {
+        console.log("🔄 Chargement dynamique de choosing-address.js...");
+        const { attachClickEventToLocationButton } = await import("./choosing-address.js");
+        attachClickEventToLocationButton();
+    }
+    if (url.includes("choosing-arrival-address.html")) {
+        console.log("🔄 Chargement dynamique de choosing-address.js...");
+        const { attachClickEventToLocationButton } = await import("./choosing-arrival-address.js");
+        attachClickEventToLocationButton();
+    }
+}
 async function generatePageSnapshot(url) {
     console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
 

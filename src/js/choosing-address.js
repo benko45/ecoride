@@ -1,15 +1,41 @@
-"use strict";
-
 import { applyTheme } from './apply-theme.js';
 import { createShortddress, createAddressSuggestion, removeChildrenExceptFirst, applyDynamicStyles, useCurrentLocationOptionText  } from './functions.js';
 
+export function attachClickEventToLocationButton() {
+    console.log("🔄 Réattachement de l'événement 'click' sur 'Utiliser votre position'...");
 
-"use strict";
+    const useCurrentLocationElement = document.querySelector(".suggestion");
+    if (!useCurrentLocationElement) {
+        console.warn("⚠️ Impossible de réattacher l'événement, élément introuvable !");
+        return;
+    }
 
-// console.log("✅ choosing-address.js chargé et exécuté !");
-// document.addEventListener("DOMContentLoaded", () => {
-//     console.log("✅ DOM complètement chargé, exécution des événements...");
-// });
+    useCurrentLocationElement.addEventListener("click", () => {
+        console.log("🟢 Clic détecté sur 'Utiliser votre position' !");
+        
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            console.log(`📍 Position détectée : ${latitude}, ${longitude}`);
+
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`, {
+                method: 'GET',
+                headers: { 'User-Agent': 'benoit.vicente@hotmail.fr' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const shortAddress = createShortddress(data.display_name.split(','));
+                console.log(`📍 Adresse trouvée : ${shortAddress}`);
+                localStorage.setItem("selectedDepartureAddress", shortAddress);
+                document.getElementById('address').value = shortAddress;
+            })
+            .catch(error => console.error('❌ Erreur API:', error));
+        }, (error) => {
+            console.error("❌ Erreur de géolocalisation :", error);
+        });
+    });
+
+    console.log("✅ Événement 'click' ajouté à 'Utiliser votre position' !");
+}
 
 /******************************************************/
 /******************************************************/
@@ -19,7 +45,10 @@ applyTheme();
 
 //écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
 
-// console.log("choosing-address.js est exécuté...");
+console.log("choosing-address.js est exécuté...");
+console.log("📌 choosing-address.js exécuté sur :", window.location.pathname, "Chargé par :", new Error().stack);
+
+
 const inputField = document.getElementById('address');
 
 if (!inputField) {
@@ -72,3 +101,4 @@ const selectedAddress = localStorage.getItem('selectedDepartureAddress');
 if (selectedAddress) {
     document.getElementById('address').value = selectedAddress;
 }
+
