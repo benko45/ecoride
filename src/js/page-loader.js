@@ -105,6 +105,13 @@ async function generatePageSnapshot(url) {
         let pageContentElement = tempDiv.querySelector("#page-content");
         if (!pageContentElement) throw new Error("❌ `#page-content` introuvable dans la page chargée !");
 
+        // 🔹 Mettre à jour le champ `selected-departure-address` dans le snapshot
+        if(window.location.pathname.includes("choosing-address.html") || window.location.pathname.includes("choosing-arrival-address.html")) {
+            updateSelectedDepartureInSnapshot(tempDiv)
+        } else {
+            console.log("🔄 updateSelectedDepartureInSnapshot() n'a pas été appliquée");
+        };
+
         let snapshot = pageContentElement.cloneNode(true);
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
         // ✅ Filtrer les scripts à ne pas recharger
@@ -220,3 +227,18 @@ function executeScripts(scripts) {
     console.log("✅ Tous les scripts ont été exécutés.");
 }
 
+/**
+ * Met à jour la valeur du champ `selected-departure-address` dans le snapshot avant la transition.
+ * @param {HTMLElement} tempDiv - Conteneur temporaire où la page est chargée avant le snapshot.
+ */
+function updateSelectedDepartureInSnapshot(tempDiv) {
+    const selectedDeparture = localStorage.getItem('selectedDepartureAddress') || "Adresse";
+    const displayElement = tempDiv.querySelector('#selected-departure-address');
+    
+    if (displayElement) {
+        displayElement.textContent = selectedDeparture;
+        console.log(`✅ "selected-departure-address" mis à jour dans le snapshot avec : ${selectedDeparture}`);
+    } else {
+        console.warn('⚠️ Élément "selected-departure-address" introuvable dans le snapshot.');
+    }
+}
