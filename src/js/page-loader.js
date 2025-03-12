@@ -118,6 +118,12 @@ async function generatePageSnapshot(url) {
             !script.src.includes("fiveserver.js") && 
             script.src.includes("src/js")
         );
+        //  Modifier les chemins des scripts
+        // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
+        const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
+        scripts.forEach(script => {
+            console.log(`chemin modifié : ${prefix}${script.src}`);
+        });
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
 
         scripts.forEach(script => console.log("Script trouvé :", script.src || "[inline script]"));

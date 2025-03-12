@@ -20,6 +20,16 @@ body {
     // overflow: hidden;
     will-change: "transform", "opacity";
 }
+
+
+// .responsive-img {
+//     position: relative;
+//     width: 100%;
+// }
+
+/************************************************************/
+/*                  menu responsive                         */
+/************************************************************/
 @media screen and (max-width : variables.$breakpoint) {
     .hide-under-md {
         display: none !important;

@@ -1,7 +1,7 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import{ selectImage, storeStyles} from './functions.js';
+import{ selectImage, modifyPaths} from './functions.js';
 
 
 document.body.style.position = "fixed";
@@ -38,10 +38,13 @@ export function updateBouncingArrows() {
 /******************************************************/
 /******************************************************/
 applyTheme();
+
 /******************************************************/
+/*    Sélection de l'image de fond                    */
 /******************************************************/
-// Stocker les styles avant la transition
-// storeStyles();
+
+selectImage();
+
 /******************************************************/
 /*                  Menu principal                    */
 /******************************************************/
@@ -134,12 +137,6 @@ handleMediaQueryChange(mediaQuery);
 
 // Écoute les changements de taille d'écran
 mediaQuery.addEventListener('change', handleMediaQueryChange);
-
-
-/******************************************************/
-/*    Modification des chemins pour le déploiement    */
-/******************************************************/
-modifyPaths();
 
 
 /******************************************************/

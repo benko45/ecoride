@@ -305814,6 +305814,9 @@ body {
   will-change: "transform", "opacity";
 }
 
+/************************************************************/
+/*                  menu responsive                         */
+/************************************************************/
 @media screen and (max-width: 768px) {
   .hide-under-md {
     display: none !important;
