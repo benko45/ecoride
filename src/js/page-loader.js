@@ -71,7 +71,7 @@ async function loadPage(url, fromBackButton = false) {
                     console.log("Scripts après transition :");
                     Array.from(document.scripts).forEach(script => console.log(script.src));
                     executeScripts(scripts);
-                }, 50);
+                }, 0);
             }
         });
 
