@@ -172,7 +172,7 @@ export function applyDynamicStyles(HTMLElement){
         HTMLElement.style.flexDirection = 'row';
         HTMLElement.style.alignItems = 'center';
         HTMLElement.style.width = '80%';
-        HTMLElement.style.margin = '0 auto'; // Centrer les suggestions dans leur conteneur
+        HTMLElement.style.margin = '20px auto'; // Centrer les suggestions dans leur conteneur
         HTMLElement.style.padding = '5px';
         HTMLElement.style.borderRadius = '5px'; // Arrondit les bords
         HTMLElement.style.cursor = 'pointer'; // Change le curseur en main lors du survol
