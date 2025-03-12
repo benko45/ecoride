@@ -1,5 +1,3 @@
-import { applyDynamicStyles, selectImage } from "./functions.js";
-
 document.addEventListener("click", (event) => {
     console.log("🟢 Clic détecté ! Élément :", event.target);
 });

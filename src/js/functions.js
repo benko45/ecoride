@@ -20,45 +20,45 @@ export const selectImage = () => {
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
     const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
 
-    document.querySelectorAll('.responsive-img').forEach(img => {
-        img.classList.add('hidden');
-        img.classList.remove('visible');
-    });
+    // document.querySelectorAll('.responsive-img').forEach(img => {
+    //     img.classList.add('hidden');
+    //     img.classList.remove('visible');
+    // });
 
-    // document.querySelector('.img-mobile').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg`);
-    // document.querySelector('.img-mobile').setAttribute("srcset",
-    //                            `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`
-    //                         );
-    // document.querySelector('.img-tablet').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg`);
-    // document.querySelector('.img-tablet').setAttribute("srcset", 
-    //                             `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`
-    //                         );
-    // document.querySelector('.img-tablet').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg`);
-    // document.querySelector('.img-tablet').setAttribute("srcset", 
-    //                             `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
-    //                             ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`
-    //                         );
+    document.querySelector('.img-mobile').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg`);
+    document.querySelector('.img-mobile').setAttribute("srcset",
+                               `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`
+                            );
+    document.querySelector('.img-tablet').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg`);
+    document.querySelector('.img-tablet').setAttribute("srcset", 
+                                `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`
+                            );
+    document.querySelector('.img-tablet').setAttribute("src", `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg`);
+    document.querySelector('.img-tablet').setAttribute("srcset", 
+                                `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
+                                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`
+                            );
                                                                                       
-    let selectedImage = null;
-    for (let rule of rules) {
-        if (rule.condition()) {
-            selectedImage = document.querySelector(`.${rule.className}`);
-            break;
-        }
-    }
+    // let selectedImage = null;
+    // for (let rule of rules) {
+    //     if (rule.condition()) {
+    //         selectedImage = document.querySelector(`.${rule.className}`);
+    //         break;
+    //     }
+    // }
 
-    if (selectedImage) {
-        selectedImage.classList.add('visible');
-        selectedImage.classList.remove('hidden');
-    } else {
-        console.log("❌ Aucune image sélectionnée !");
-    }
+    // if (selectedImage) {
+    //     selectedImage.classList.add('visible');
+    //     selectedImage.classList.remove('hidden');
+    // } else {
+    //     console.log("❌ Aucune image sélectionnée !");
+    // }
 };
 
 
