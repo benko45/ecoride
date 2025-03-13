@@ -1,7 +1,7 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import{ selectImage, modifyPaths} from './functions.js';
+import{ selectImage } from './functions.js';
 
 
 document.body.style.position = "fixed";
