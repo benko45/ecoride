@@ -182079,8 +182079,12 @@ html[theme=dark] .accessibility-border {
 }
 @media screen and (min-width: 768px) {
   .traject-container {
-    width: 100%;
-    max-width: 100vw;
+    position: absolute !important;
+    top: 50vh !important; /* Aligner avec la limite inférieure de l’image */
+    left: 50%;
+    transform: translate(-50%, -50%) !important; /* Centrer la ligne médiane */
+    width: 80%; /* Ajustement selon le design */
+    z-index: 2;
   }
 }
 
@@ -305718,19 +305722,18 @@ html[theme=dark] .accessibility-border {
 
 .dropdown {
   position: absolute !important;
-  top: 15%; /* Ajuste la distance depuis le haut */
+  top: 15% !important; /* Ajuste la distance depuis le haut */
   left: 50% !important;
-  transform: translate(-50%, 15%) !important;
   z-index: 1050; /* S'assure que le menu est au-dessus */
 }
+
 @media screen and (min-width: 768px) {
   .dropdown {
-    top: 25%; /* Ajuste la distance depuis le haut */
+    top: 35vh !important; /* Ajuste la distance depuis le haut */
     left: 50% !important;
-    transform: translate(-50%, 25%) !important;
+    transform: translate(-50%, -50%) !important;
   }
 }
-
 .dropdown-menu {
   left: 50% !important;
   transform: translateX(-50%) !important;
@@ -305777,30 +305780,27 @@ svg symbol path {
 /*                  image de fond                   */
 /****************************************************/
 .responsive-img {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center top;
      object-position: center top;
+  z-index: -1;
 }
 
-/****************************************************/
-/*                  image de fond                   */
-/****************************************************/
-/*                  style grande taille             */
-/****************************************************/
-.cover {
-  width: 100%;
-  height: 50vh;
-  -o-object-fit: cover;
-     object-fit: cover; /* Remplit l’espace */
-  -o-object-position: center top;
-     object-position: center top; /* Centre horizontalement, focus sur le haut */
+/* 📟 Tablette : min-width 768px */
+@media (min-width: 768px) {
+  .responsive-img {
+    height: 50vh; /* L’image ne couvre plus que la moitié supérieure */
+  }
 }
-
 .visible {
-  display: block;
+  display: block !important;
+}
+
+.hidden {
+  display: none !important;
 }
 
 body {
@@ -305808,10 +305808,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   position: relative;
-}
-
-.page-content {
-  will-change: "transform", "opacity";
+  height: 100vh;
 }
 
 /************************************************************/

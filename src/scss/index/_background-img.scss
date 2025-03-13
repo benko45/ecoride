@@ -3,25 +3,24 @@
 /*                  image de fond                   */
 /****************************************************/
 .responsive-img {
-    // display: none;
-    width: 100%; 
+    width: 100vw;
     height: 100vh;
     object-fit: cover;
     object-position: center top;
-    // position: relative !important;
+    z-index: -1;
 }
-/****************************************************/
-/*                  image de fond                   */
-/****************************************************/
-/*                  style grande taille             */
-/****************************************************/
-.cover {
-    width: 100%; 
-    height: 50vh; 
-    object-fit: cover; /* Remplit l’espace */
-    object-position: center top; /* Centre horizontalement, focus sur le haut */
+
+/* 📟 Tablette : min-width 768px */
+@media (min-width: 768px) {
+    .responsive-img {
+        height: 50vh; /* L’image ne couvre plus que la moitié supérieure */
+    }
 }
 
 .visible {
-    display: block;
+    display: block !important;
+}
+
+.hidden {
+    display: none !important;
 }

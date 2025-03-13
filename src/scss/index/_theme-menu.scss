@@ -27,14 +27,16 @@
 
 .dropdown {
     position: absolute !important;
-    top: 15%; /* Ajuste la distance depuis le haut */
+    top: 15% !important; /* Ajuste la distance depuis le haut */
     left: 50% !important;
-    transform: translate(-50%, 15%) !important;
     z-index: 1050; /* S'assure que le menu est au-dessus */
-    @media screen and (min-width: variables.$breakpoint) {
-        top: 25%; /* Ajuste la distance depuis le haut */
+}
+
+@media screen and (min-width: variables.$breakpoint) {
+    .dropdown {
+        top: 35vh !important; /* Ajuste la distance depuis le haut */
         left: 50% !important;
-        transform: translate(-50%, 25%) !important;
+        transform: translate(-50%, -50%) !important;
     }
 }
 

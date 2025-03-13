@@ -17,67 +17,44 @@ const rules = [
 export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
     
+    // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
     const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
 
     const imageSources = {
         mobile: {
-            src: `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg`,
-            srcset: `
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`,
-            sizes: '100vw'
+            sizes: "(max-width: 767px) 100vw"
         },
         tablet: {
-            src: `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg`,
-            srcset: `
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`,
-            sizes: '50vw'
+            sizes: "(min-width: 768px) and (max-width: 1599px) 50vw"
         },
         desktop: {
-            src: `${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg`,
-            srcset: `
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
-                ${prefix}/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`,
-            sizes: '33vw'
+            sizes: "(min-width: 1600px) 33vw"
         }
     };
 
-    // // 🔹 Masquer toutes les images non sélectionnées
-    // document.querySelectorAll('.responsive-img').forEach(img => {
-    //     img.style.display = "none"; // Cache toutes les images
-    // });
+    // Masquer toutes les images avant d'afficher la bonne
+    document.querySelectorAll(".responsive-img").forEach(img => {
+        img.classList.add("hidden");
+        img.classList.remove("visible");
+    });
 
-    // 🔹 Sélection de l’image en fonction de la taille de l’écran
+    // Sélectionner l'image en fonction de la largeur de l'écran
     let selectedImageClass = window.innerWidth < 768 ? 'img-mobile' 
-                         : window.innerWidth <= 1600 ? 'img-tablet' 
+                         : window.innerWidth < 1600 ? 'img-tablet' 
                          : 'img-desktop';
 
     let selectedImage = document.querySelector(`.${selectedImageClass}`);
 
     if (selectedImage) {
-        const { src, srcset, sizes } = imageSources[selectedImageClass.split('-')[1]]; // Récupérer src et srcset
-        selectedImage.src = src;
-        selectedImage.srcset = srcset;
-        selectedImage.sizes = sizes;
-        selectedImage.style.display = "block"; // Afficher uniquement l’image correcte
-        selectedImage.style.width = "100vw"; // Prend toute la largeur de l'écran
-        selectedImage.style.height = "100vh"; // Prend toute la hauteur
-        selectedImage.style.position = "fixed"; // Fixe l'image pour éviter les décalages
-        selectedImage.style.top = "0";
-        selectedImage.style.left = "0";
-        selectedImage.style.objectFit = "cover"; // Évite que l’image soit déformée
-        selectedImage.style.zIndex = "-1"; // Place l’image en arrière-plan
-
-        console.log(`✅ Image active : ${selectedImageClass}`);
-    } else {
-        console.warn("⚠️ Aucune image sélectionnée !");
+        selectedImage.sizes = imageSources[selectedImageClass.split('-')[1]].sizes;
+        selectedImage.classList.add("visible");
+        selectedImage.classList.remove("hidden");
     }
+
+    console.log(`✅ Image active : ${selectedImageClass}`);
+    console.log(`🔍 Vérification sizes: ${selectedImage ? selectedImage.sizes : 'Aucune image sélectionnée'}`);
 };
+
 
 export function createShortddress(addressParts) {
     const number = addressParts[0]?.trim() || ''; // Numéro

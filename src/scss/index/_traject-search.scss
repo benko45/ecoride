@@ -24,8 +24,12 @@
         top: 50% !important;
     }
     @media screen and (min-width: variables.$breakpoint) {
-        width: 100%;
-        max-width: 100vw;
+        position: absolute !important;
+        top: 50vh !important; /* Aligner avec la limite inférieure de l’image */
+        left: 50%;
+        transform: translate(-50%, -50%) !important; /* Centrer la ligne médiane */
+        width: 80%; /* Ajustement selon le design */
+        z-index: 2;
     }
 }
 
