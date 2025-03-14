@@ -16,43 +16,85 @@ const rules = [
 
 export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
-    
+
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
     const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
 
-    const imageSources = {
-        mobile: {
-            sizes: "(max-width: 767px) 100vw"
+    const imageSources = [
+        {
+            class: "img-mobile",
+            src: "/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg",
+            srcset: `
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`,
+            sizes: "(max-width: 767px) 100vw",
+            alt: "Image mobile",
+            minWidth: 0,
+            maxWidth: 767
         },
-        tablet: {
-            sizes: "(min-width: 768px) and (max-width: 1599px) 50vw"
+        {
+            class: "img-tablet",
+            src: "/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg",
+            srcset: `
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`,
+            sizes: "(min-width: 768px) and (max-width: 1599px) 50vw",
+            alt: "Image tablette",
+            minWidth: 768,
+            maxWidth: 1599
         },
-        desktop: {
-            sizes: "(min-width: 1600px) 33vw"
+        {
+            class: "img-desktop",
+            src: "/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg",
+            srcset: `
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`,
+            sizes: "(min-width: 1600px) 33vw",
+            alt: "Image grand écran",
+            minWidth: 1600,
+            maxWidth: Infinity
         }
-    };
+    ];
 
-    // Masquer toutes les images avant d'afficher la bonne
-    document.querySelectorAll(".responsive-img").forEach(img => {
-        img.classList.add("hidden");
-        img.classList.remove("visible");
-    });
+    // Sélection du conteneur d'images
+    const imageContainer = document.querySelector(".image-container");
 
-    // Sélectionner l'image en fonction de la largeur de l'écran
-    let selectedImageClass = window.innerWidth < 768 ? 'img-mobile' 
-                         : window.innerWidth < 1600 ? 'img-tablet' 
-                         : 'img-desktop';
-
-    let selectedImage = document.querySelector(`.${selectedImageClass}`);
-
-    if (selectedImage) {
-        selectedImage.sizes = imageSources[selectedImageClass.split('-')[1]].sizes;
-        selectedImage.classList.add("visible");
-        selectedImage.classList.remove("hidden");
+    if (!imageContainer) {
+        console.warn("⚠️ Aucun conteneur d'images trouvé !");
+        return;
     }
 
-    console.log(`✅ Image active : ${selectedImageClass}`);
-    console.log(`🔍 Vérification sizes: ${selectedImage ? selectedImage.sizes : 'Aucune image sélectionnée'}`);
+    // Nettoyer le conteneur avant d'insérer de nouvelles images
+    imageContainer.innerHTML = "";
+
+    // Déterminer la largeur actuelle de l'écran
+    const screenWidth = window.innerWidth;
+
+    imageSources.forEach(({ class: imgClass, src, srcset, sizes, alt, minWidth, maxWidth }) => {
+        const img = document.createElement("img");
+        img.classList.add("responsive-img", imgClass);
+        img.src = `${prefix}${src}`;
+        img.srcset = srcset.split("\n").map(s => `${prefix}${s.trim()}`).join("\n");
+        img.sizes = sizes;
+        img.alt = alt;
+
+        // Masquer les images qui ne correspondent pas à la taille d'écran
+        if (screenWidth >= minWidth && screenWidth <= maxWidth) {
+            img.classList.remove("hidden");
+            img.classList.add("visible");
+        } else {
+            img.classList.remove("visible");
+            img.classList.add("hidden");
+        }
+
+        imageContainer.appendChild(img);
+    });
+
+    console.log("✅ Images insérées dynamiquement avec les bons chemins.");
 };
 
 

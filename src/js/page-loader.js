@@ -1,4 +1,5 @@
 import { positionDropdownMenu } from "./index.js";
+import { selectImage } from "./functions.js";
 
 document.addEventListener("click", (event) => {
     console.log("🟢 Clic détecté ! Élément :", event.target);
@@ -51,8 +52,10 @@ async function loadPage(url, fromBackButton = false) {
 
         tempContainer.innerHTML = snapshot;
         document.body.appendChild(tempContainer);
-        
-        positionDropdownMenu();
+        if(url.includes("index.html")) {
+            // selectImage();
+            positionDropdownMenu();
+        }
         // ✅ Charger immédiatement les styles CSS pour la transition
         await loadCSSForPage(styles);
 
