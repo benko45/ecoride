@@ -1,3 +1,5 @@
+import { positionDropdownMenu } from "./index.js";
+
 document.addEventListener("click", (event) => {
     console.log("🟢 Clic détecté ! Élément :", event.target);
 });
@@ -47,9 +49,10 @@ async function loadPage(url, fromBackButton = false) {
         tempContainer.style.zIndex = "100";
         tempContainer.style.backgroundColor = "var(--custom-light)";
 
-        document.body.appendChild(tempContainer);
         tempContainer.innerHTML = snapshot;
-
+        document.body.appendChild(tempContainer);
+        
+        positionDropdownMenu();
         // ✅ Charger immédiatement les styles CSS pour la transition
         await loadCSSForPage(styles);
 
@@ -70,6 +73,9 @@ async function loadPage(url, fromBackButton = false) {
                     Array.from(document.scripts).forEach(script => console.log(script.src));
                     executeScripts(scripts);
                 }, 0);
+                requestAnimationFrame(() => {
+                    positionDropdownMenu();
+                });
             }
         });
 
@@ -77,6 +83,7 @@ async function loadPage(url, fromBackButton = false) {
         console.error("❌ Erreur lors du chargement de la page :", error);
     }
 }
+
 async function importJS(url) {
     if (url.includes("choosing-address.html")) {
         console.log("🔄 Chargement dynamique de choosing-address.js...");
@@ -89,6 +96,7 @@ async function importJS(url) {
         attachClickEventToLocationButton();
     }
 }
+
 async function generatePageSnapshot(url) {
     console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
 
@@ -101,39 +109,46 @@ async function generatePageSnapshot(url) {
         tempDiv.innerHTML = htmlText;
 
         let pageContentElement = tempDiv.querySelector("#page-content");
-        if (!pageContentElement) throw new Error("❌ `#page-content` introuvable dans la page chargée !");
+        if (!pageContentElement) throw new Error( `❌ #page-content introuvable dans la page chargée !`);
+
+        // 🔹 Correction : extraire uniquement le contenu interne de `#page-content`
+        let snapshot = pageContentElement.cloneNode(true);
+        snapshot.removeAttribute("id"); // Enlève l'ID pour éviter un conflit lors de l'insertion
+
+        console.log("✅ Contenu extrait sans doubler #page-content.");
 
         // 🔹 Mettre à jour le champ `selected-departure-address` dans le snapshot
-        if(window.location.pathname.includes("choosing-address.html") || window.location.pathname.includes("choosing-arrival-address.html")) {
-            updateSelectedDepartureInSnapshot(tempDiv)
+        if (window.location.pathname.includes("choosing-address.html") || window.location.pathname.includes("choosing-arrival-address.html")) {
+            updateSelectedDepartureInSnapshot(snapshot);
         } else {
             console.log("🔄 updateSelectedDepartureInSnapshot() n'a pas été appliquée");
-        };
+        }
 
-        let snapshot = pageContentElement.cloneNode(true);
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
-        // ✅ Filtrer les scripts à ne pas recharger
         scripts = scripts.filter(script => 
             script.src && 
             !script.src.includes("fiveserver.js") && 
             script.src.includes("src/js")
         );
-        //  Modifier les chemins des scripts
-        // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
+
+        // 🔹 Modifier les chemins des scripts en fonction de l'environnement
         const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
         scripts.forEach(script => {
             console.log(`chemin modifié : ${prefix}${script.src}`);
         });
+
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
 
         scripts.forEach(script => console.log("Script trouvé :", script.src || "[inline script]"));
         styles.forEach(style => console.log("Style trouvé :", style.href));
-        return { snapshot: snapshot.outerHTML, scripts, styles };
+
+        return { snapshot: snapshot.innerHTML, scripts, styles };
     } catch (error) {
         console.error("❌ Erreur lors de la capture de la page :", error);
         return { snapshot: "", scripts: [], styles: [] };
     }
 }
+
 
 async function loadCSSForPage(styles) {
     return new Promise((resolve) => {

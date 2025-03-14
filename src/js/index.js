@@ -46,7 +46,7 @@ applyTheme();
 selectImage();
 
 
-function positionDropdownMenu() {
+export function positionDropdownMenu() {
     const menuDropdown = document.querySelector(".dropdown"); // Menu dropdown
     const title = document.getElementById("title"); // Élément du titre
     const trajectSearch = document.getElementById("traject-search"); // Élément traject-search
