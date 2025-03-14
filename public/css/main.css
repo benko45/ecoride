@@ -305722,9 +305722,6 @@ html[theme=dark] .accessibility-border {
 
 .dropdown {
   position: absolute !important;
-  top: 15% !important; /* Ajuste la distance depuis le haut */
-  left: 50% !important;
-  z-index: 1050; /* S'assure que le menu est au-dessus */
 }
 
 @media screen and (min-width: 768px) {

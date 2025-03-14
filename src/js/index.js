@@ -45,6 +45,57 @@ applyTheme();
 
 selectImage();
 
+
+function positionDropdownMenu() {
+    const menuDropdown = document.querySelector(".dropdown"); // Menu dropdown
+    const title = document.getElementById("title"); // Élément du titre
+    const trajectSearch = document.getElementById("traject-search"); // Élément traject-search
+
+    if (!menuDropdown) {
+        console.warn("⚠️ .dropdown est introuvable !");
+        return;
+    }
+    if (!title) {
+        console.warn("⚠️ #title est introuvable !");
+        return;
+    }
+    if (!trajectSearch) {
+        console.warn("⚠️ #traject-search est introuvable !");
+        return;
+    }
+
+    // Vérifier si on est en mode mobile
+    if (window.innerWidth <= 768) {
+        // Récupérer la position Y du bas de `#title`
+        const titleRectBottom = title.getBoundingClientRect().bottom;
+
+        // Récupérer la position Y du haut de `#traject-search`
+        const trajectTop = trajectSearch.getBoundingClientRect().top;
+
+        // 🔍 Vérification des valeurs récupérées
+        console.log(`🔍 Position title bottom : ${titleRectBottom}px`);
+        console.log(`🔍 Position traject-search top : ${trajectTop}px`);
+
+        // 🟢 Calculer la position idéale du menu dropdown
+        const menuTop = (titleRectBottom + trajectTop) / 2 - 15;
+
+        // Appliquer la nouvelle position avec translate(-50%, -50%)
+        // menuDropdown.style.position = "absolute";
+        menuDropdown.style.top = `${menuTop}px`;
+        menuDropdown.style.left = "50%";
+        menuDropdown.style.transform = "translate(-50%, -50%)"; // 🔥 On garde le bon centrage
+        menuDropdown.style.zIndex = "1000"; // S'assurer qu'il est au-dessus des autres éléments
+
+        console.log(`✅ Menu dropdown positionné à ${menuTop}px`);
+    }
+}
+
+// Appliquer au chargement et au redimensionnement de la fenêtre
+document.addEventListener("DOMContentLoaded", positionDropdownMenu);
+window.addEventListener("resize", positionDropdownMenu);
+
+
+
 /******************************************************/
 /*                  Menu principal                    */
 /******************************************************/
