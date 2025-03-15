@@ -53,7 +53,7 @@ async function loadPage(url, fromBackButton = false) {
         tempContainer.innerHTML = snapshot;
         document.body.appendChild(tempContainer);
         if(url.includes("index.html")) {
-            // selectImage();
+            selectImage();
             positionDropdownMenu();
         }
         // ✅ Charger immédiatement les styles CSS pour la transition
