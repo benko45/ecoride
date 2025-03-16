@@ -1,8 +1,4 @@
 {
-    // "liveSassCompile.settings.includeItems": [
-    //     "/src/scss/main.scss",
-    //     "/src/scss/styles/custom-themes.scss"
-    // ],
     "liveSassCompile.settings.formats": [
         {
             "format": "expanded",
