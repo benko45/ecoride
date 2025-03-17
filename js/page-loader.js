@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             console.log("🔄 Clic sur un lien <a> détecté :", target.href);
-            loadPage(target.href);
+            loadPage(new URL(target.href).pathname);
         }
     });
     
