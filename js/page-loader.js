@@ -115,7 +115,8 @@ async function generatePageSnapshot(url) {
     console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
 
     try {
-        let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
+        // let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
+        let response = await fetch(url, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
         let htmlText = await response.text();
