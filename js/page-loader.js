@@ -123,6 +123,7 @@ async function generatePageSnapshot(url) {
 
     try {
         // let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
+        console.log("🔄 generatePageSnapshot() : url = ", url);
         let response = await fetch(url, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
