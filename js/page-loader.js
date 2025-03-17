@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (target) {
             event.preventDefault();
             console.log("🔄 Clic sur un lien <a> détecté :", target.href);
+            console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME = ", target.href);
             loadPage(new URL(target.href).pathname);
         }
     });
@@ -28,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let target = event.target.closest("[data-navigate]");
         if (target) {
             event.preventDefault();
-            console.log("🔄 Clic sur un élément avec data-navigate détecté : HREF = ", target.getAttribute("data-navigate"));
             console.log("🔄 Clic sur un élément avec data-navigate détecté :", target.getAttribute("data-navigate"));
+            console.log("🔄 Clic sur un élément avec data-navigate détecté : HREF = ", target.getAttribute("data-navigate"));
             loadPage(target.getAttribute("data-navigate"));
         }
     });
