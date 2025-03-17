@@ -123,8 +123,12 @@ async function generatePageSnapshot(url) {
 
     try {
         // let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
+        const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+        fetch(`${prefix}/${url}`);
+
         console.log("🔄 generatePageSnapshot() : url = ", url);
-        let response = await fetch(url, { cache: "no-store" });
+        // let response = await fetch(url, { cache: "no-store" });
+        let response = await fetch(`${prefix}/${url}`, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
         let htmlText = await response.text();
@@ -156,7 +160,7 @@ async function generatePageSnapshot(url) {
         );
 
         // 🔹 Modifier les chemins des scripts en fonction de l'environnement
-        const prefix = window.location.hostname === "benko45.github.io/" ? "/ecoride" : "/";
+        // const prefix = window.location.hostname === "benko45.github.io/" ? "/ecoride" : "/";
         
         scripts.forEach(script => {
             console.log(`chemin trouvé : ${script.src}`);
