@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let target = event.target.closest("a");
         if (target) {
             event.preventDefault();
-            const url = new URL(target.href);
-            console.log("🔄 Clic sur un lien <a> détecté :", url);
-            console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME = ", url.pathname);
-            const urlPathname = url.pathname.split("/").pop();
-            console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME.SPLIT.POP = ", urlPathname);
+            const urlPathname = new URL(target.href).pathname.split("/").pop();
+            // console.log("🔄 Clic sur un lien <a> détecté :", url);
+            // console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME = ", url.pathname);
+            // const urlPathname = url.pathname.split("/").pop();
+            // console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME.SPLIT.POP = ", urlPathname);
             loadPage(urlPathname);
         }
     });
