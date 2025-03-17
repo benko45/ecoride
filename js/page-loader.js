@@ -1,6 +1,15 @@
 import { positionDropdownMenu } from "./index.js";
 import { selectImage } from "./functions.js";
 
+
+if(!localStorage.getItem('page-loader-occurence')) {
+    localStorage.setItem('page-loader-occurence', 1);
+} else {
+    localStorage.setItem('page-loader-occurence', parseInt(localStorage.getItem('page-loader-occurence')) + 1);
+}
+
+console.log("page-loader.js est exécuté... sur : ", localStorage.getItem('page-loader-occurence'), "occurence(s)");
+
 document.addEventListener("click", (event) => {
     console.log("🟢 Clic détecté ! Élément :", event.target);
 });
@@ -15,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     document.body.addEventListener("click", function (event) {
-        let target = event.target.closest("");
+        let target = event.target.closest("[data-navigate]");
         if (target) {
             event.preventDefault();
             loadPage(target.getAttribute("data-navigate"));
@@ -40,6 +49,7 @@ async function loadPage(url, fromBackButton = false) {
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
+        console.log("executeScripts : 1");
         executeScripts(scripts);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
@@ -70,10 +80,11 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
-                importJS(url);
+                attachClickEventToLocationButton(url);
                 setTimeout(() => {
                     console.log("Scripts après transition :");
                     Array.from(document.scripts).forEach(script => console.log(script.src));
+                    console.log("executeScripts : 2");
                     executeScripts(scripts);
                 }, 0);
                 requestAnimationFrame(() => {
@@ -87,7 +98,7 @@ async function loadPage(url, fromBackButton = false) {
     }
 }
 
-async function importJS(url) {
+async function attachClickEventToLocationButton(url) {
     if (url.includes("choosing-address.html")) {
         console.log("🔄 Chargement dynamique de choosing-address.js...");
         const { attachClickEventToLocationButton } = await import("./choosing-address.js");
@@ -128,16 +139,23 @@ async function generatePageSnapshot(url) {
         }
 
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
+        
         scripts = scripts.filter(script => 
             script.src && 
             !script.src.includes("fiveserver.js") && 
-            script.src.includes("src/js")
+            !script.src.includes("https")
         );
 
         // 🔹 Modifier les chemins des scripts en fonction de l'environnement
-        const prefix = window.location.hostname === "benko45.github.io" ? "/ecoride" : "";
+        const prefix = window.location.hostname === "benko45.github.io/" ? "/ecoride" : "/";
+        
         scripts.forEach(script => {
-            console.log(`chemin modifié : ${prefix}${script.src}`);
+            console.log(`chemin trouvé : ${script.src}`);
+            const scriptSrc = new URL(script.src);
+            const protocol = scriptSrc.protocol;
+            const host = scriptSrc.host;
+            const pathName = scriptSrc.pathname;
+            script.src = `${protocol}//${host}${pathName}`;
         });
 
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
@@ -222,31 +240,37 @@ function cleanOldScripts() {
 }
 
 function executeScripts(scripts) {
-    console.log("🔄 Exécution des scripts après transition...");
+    console.log("🔄 début EXECUTESCRIPTS");
 
     cleanOldScripts();
-
+    
     scripts.forEach(oldScript => {
+        
         let newScript = document.createElement("script");
         newScript.setAttribute("data-dynamic", "true");
 
         if (oldScript.src) {
-            newScript.src = oldScript.src + "?_=" + Date.now();
+            // newScript.src = oldScript.src + "?_=" + Date.now();
+            console.log("🔄 EXECUTESCRIPTS Script trouvé :", oldScript.src);
+            newScript.src = oldScript.src;
+            console.log("🔄 EXECUTESCRIPTS Script chargé :", newScript.src);
             newScript.async = false;
+            console.log("🔄 EXECUTESCRIPTS Script async :", newScript.async);
             if (oldScript.type === "module") newScript.type = "module";
 
-            newScript.onload = () => console.log("✅ Script chargé :", newScript.src);
-            newScript.onerror = () => console.error("❌ Erreur de chargement du script :", newScript.src);
+            newScript.onload = () => console.log("✅ EXECUTESCRIPTS Script chargé :", newScript.src);
+            newScript.onerror = () => console.error("❌ EXECUTESCRIPTS Erreur de chargement du script :", newScript.src);
 
             document.body.appendChild(newScript);
+            console.log("✅ EXECUTESCRIPTS Script fin boucle.");
         } else {
             newScript.textContent = oldScript.textContent;
             if (oldScript.type === "module") newScript.type = "module";
             document.body.appendChild(newScript);
-            console.log("✅ Script inline exécuté.");
+            console.log("✅ EXECUTESCRIPTS Script inline exécuté.");
         }
     });
-    console.log("✅ Tous les scripts ont été exécutés.");
+    console.log("🔄 fin EXECUTESCRIPTS");
 }
 
 /**

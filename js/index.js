@@ -8,7 +8,7 @@ document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
 document.body.style.width = "100%";
 
-
+localStorage.setItem('testingChoosingAddress', 0);
 
 /******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
@@ -33,7 +33,14 @@ export function updateBouncingArrows() {
     }
 }
 
-//console.log("✅ index.js chargé et exécuté !");
+
+if(!localStorage.getItem('index-occurence')) {
+    localStorage.setItem('index-occurence', 1);
+} else {
+    localStorage.setItem('index-occurence', parseInt(localStorage.getItem('index-occurence')) + 1);
+}
+
+console.log("index.js est exécuté... sur : ", localStorage.getItem('index-occurence'), "occurence(s)");
 
 /******************************************************/
 /******************************************************/

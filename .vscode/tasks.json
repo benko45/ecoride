@@ -1,19 +1,19 @@
-{
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Surveiller et Déployer sur Vercel",
-            "type": "shell",
-            "command": "nodemon -e html,css,js --exec 'vercel --prod'",
-            "isBackground": true,
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
-}
+// {
+//     "version": "2.0.0",
+//     "tasks": [
+//         {
+//             "label": "Surveiller et Déployer sur Vercel",
+//             "type": "shell",
+//             "command": "nodemon -e html,css,js --exec 'vercel --prod'",
+//             "isBackground": true,
+//             "problemMatcher": [],
+//             "group": {
+//                 "kind": "build",
+//                 "isDefault": true
+//             }
+//         }
+//     ]
+// }
     
     // This task will watch for changes in the HTML, CSS, and JS files and deploy the changes to Vercel. 
     // Now, you can run the task by pressing  Ctrl + Shift + P  and typing  Run Task . 

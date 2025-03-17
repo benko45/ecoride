@@ -182,14 +182,29 @@ function createChevronSVG() {
  * @param {HTMLElement} parentElement - L'élément parent
  */
 export function removeChildrenExceptFirst(parentElement) {
-    // Vérifie si l'élément parent existe et a plus d'un enfant
-    if (parentElement && parentElement.children.length > 1) {
-        // Boucle à l'envers sur tous les enfants, en commençant par le dernier
-        for (let i = parentElement.children.length - 1; i > 0; i--) {
-            parentElement.removeChild(parentElement.children[i]);
+    console.log("🛑 Suppression déclenchée dans :", parentElement);
+    
+    if (!parentElement) return;
+    // 🔹 Ne pas exécuter la suppression si la requête est en cours
+    if (window.isFetchingSuggestions) {
+        console.log("⏳ La requête API est en cours, suppression annulée.");
+        return;
+    }
+    const suggestions = parentElement.querySelectorAll(".suggestion");
+    console.log("📌 État actuel des suggestions avant suppression :", suggestions.length, suggestions);
+
+    if (suggestions.length > 1) {
+        console.log("🚨 Suppression des suggestions obsolètes...");
+        while (parentElement.children.length > 1) {
+            console.log("❌ Suppression de :", parentElement.children[1]);
+            parentElement.removeChild(parentElement.children[1]);
         }
     }
+
+    console.log("✅ Nombre d'enfants après suppression :", parentElement.children.length);
 }
+
+
 
 export function applyDynamicStyles(HTMLElement){
     // console.log(`🎨 Application des styles dynamiques sur : ${HTMLElement.className}`);
@@ -223,141 +238,4 @@ export function applyDynamicStyles(HTMLElement){
     if(HTMLElement.classList.contains('datepicker')){
         HTMLElement.style.padding = '15px 0 0 30px';
     }
-}
-
-/**********************************************************/
-/*  Stockage des styles CSS de choosing-address.scss      */
-/*                     et choosing-arrival-address.scss   */
-/**********************************************************/
-export function storeStyles() {
-    const stylesToStore = {};
-
-    document.querySelectorAll("[data-dynamic-style]").forEach(el => {
-        const computedStyles = window.getComputedStyle(el);
-        const elementStyles = {};
-
-        // 🔹 Sauvegarde des styles nécessaires
-        ["top", "left", "right", "bottom", "width", "height", "display", "position", "opacity", "z-index"].forEach(property => {
-            elementStyles[property] = computedStyles.getPropertyValue(property);
-        });
-
-        // 🔹 Sauvegarde les classes associées à l'élément
-        elementStyles["classList"] = Array.from(el.classList);
-
-        // 🔹 Associe les styles au sélecteur de l'élément
-        stylesToStore[el.dataset.dynamicStyle] = elementStyles;
-    });
-
-    // 📦 Stocke l'objet complet dans localStorage
-    localStorage.setItem("styles", JSON.stringify(stylesToStore));
-    // console.log("✅ Styles sauvegardés :", stylesToStore);
-}
-
-export async function generatePageSnapshot(url, scriptToExecute) {
-    console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
-
-    // ✅ Créer un `iframe` invisible pour charger la page
-    let iframe = document.createElement("iframe");
-    iframe.style.position = "absolute";
-    iframe.style.visibility = "hidden";
-    iframe.style.width = "0";
-    iframe.style.height = "0";
-    document.body.appendChild(iframe);
-
-    return new Promise((resolve, reject) => {
-        iframe.onload = async () => {
-            try {
-                let doc = iframe.contentDocument || iframe.contentWindow.document;
-
-                // ✅ Attendre que tous les styles soient chargés
-                let stylesheetsLoaded = new Promise((res) => {
-                    let interval = setInterval(() => {
-                        let stylesLoaded = Array.from(doc.styleSheets).every(sheet => sheet.href);
-                        if (stylesLoaded) {
-                            clearInterval(interval);
-                            res();
-                        }
-                    }, 50);
-                });
-
-                await stylesheetsLoaded;
-                console.log("🎨 Tous les CSS sont chargés pour la nouvelle page.");
-
-                // ✅ Exécuter le script AVANT la capture du contenu
-                if (scriptToExecute) {
-                    console.log(`🚀 Exécution du script : ${scriptToExecute}`);
-                    await importDynamicScript(scriptToExecute);
-                }
-
-                // ✅ Capturer le contenu de la nouvelle page après exécution du JS
-                let pageSnapshot = doc.getElementById("page-content").cloneNode(true);
-
-                // 🔹 Appliquer les styles calculés en dur
-                pageSnapshot.querySelectorAll("*").forEach(el => {
-                    const computedStyles = window.getComputedStyle(el);
-                    el.setAttribute("style", computedStyles.cssText);
-                });
-
-                // ✅ Stocker la page figée
-                localStorage.setItem("pageSnapshot", pageSnapshot.outerHTML);
-                console.log("✅ Page de destination enregistrée avec styles et scripts appliqués !");
-
-                document.body.removeChild(iframe);
-                resolve(pageSnapshot.outerHTML);
-            } catch (error) {
-                console.error("❌ Erreur lors de la capture de la page :", error);
-                reject(error);
-            }
-        };
-
-        // ✅ Charger la page cible avec un chemin absolu
-        iframe.src = new URL(url, window.location.origin).href;
-    });
-}
-
-//v0
-export function applyStoredStyles(tempContainer, callback, scriptName = null) { 
-    console.log("🔄 Récupération de l'état enregistré de la page...");
-
-    const savedState = localStorage.getItem("savedPageState");
-
-    if (!savedState) {
-        console.warn("⚠️ Aucun état enregistré trouvé.");
-        if (callback) callback(scriptName);
-        return;
-    }
-
-    // Injecter le HTML enregistré directement dans tempContainer
-    tempContainer.innerHTML = savedState;
-    console.log("📌 tempContainer est maintenant rempli avec le contenu enregistré");
-
-    // ✅ Réappliquer les styles dynamiques après le chargement du snapshot
-    setTimeout(() => {
-        console.log("🎨 Réapplication des styles dynamiques après transition...");
-        tempContainer.querySelectorAll("*").forEach(el => {
-            applyDynamicStyles(el);
-        });
-        console.log("✅ Styles dynamiques réappliqués !");
-        
-        if (callback) callback(scriptName);
-    }, 100);
-}
-
-
-// Fonction pour sauvegarder l'état de la page
-export function saveCurrentPageState() {
-    console.log("📄 Enregistrement de l'état final de la page...");
-
-    // Cloner le contenu de #page-content
-    let pageContentClone = document.getElementById("page-content").cloneNode(true);
-
-    // Enregistrer tous les styles inline des éléments
-    pageContentClone.querySelectorAll("*").forEach(el => {
-        const computedStyles = window.getComputedStyle(el);
-        el.setAttribute("style", computedStyles.cssText);
-    });
-
-    // Sauvegarder le HTML transformé
-    localStorage.setItem("savedPageState", pageContentClone.outerHTML);
-    console.log("✅ État de la page enregistré !");
 }
