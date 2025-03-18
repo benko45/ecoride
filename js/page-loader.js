@@ -69,6 +69,7 @@ async function loadPage(url, fromBackButton = false) {
 
         tempContainer.innerHTML = snapshot;
         document.body.appendChild(tempContainer);
+
         if(url.includes("index.html")) {
             selectImage();
             positionDropdownMenu();
@@ -112,7 +113,7 @@ async function attachClickEventToLocationButton(url) {
         attachClickEventToLocationButton();
     }
     if (url.includes("choosing-arrival-address.html")) {
-        console.log("🔄 Chargement dynamique de choosing-address.js...");
+        console.log("🔄 Chargement dynamique de choosing-arrival-address.js...");
         const { attachClickEventToLocationButton } = await import("./choosing-arrival-address.js");
         attachClickEventToLocationButton();
     }
@@ -153,28 +154,29 @@ async function generatePageSnapshot(url) {
 
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
         
-        scripts = scripts.filter(script => 
-            script.src && 
-            !script.src.includes("fiveserver.js") && 
-            !script.src.includes("https")
-        );
+        scripts = scripts.filter(script => script.src && !script.src.includes("fiveserver.js"));
 
         // 🔹 Modifier les chemins des scripts en fonction de l'environnement
         // const prefix = window.location.hostname === "benko45.github.io/" ? "/ecoride" : "/";
         
         scripts.forEach(script => {
-            console.log(`chemin trouvé : ${script.src}`);
-            const scriptSrc = new URL(script.src);
-            const protocol = scriptSrc.protocol;
-            const host = scriptSrc.host;
-            const pathName = scriptSrc.pathname;
-            script.src = `${protocol}//${host}${pathName}`;
+            if(!script.src) return;
+            else {
+                if(!script.src.includes("https")) {
+                const scriptSrc = new URL(script.src);
+                const protocol = scriptSrc.protocol;
+                const host = scriptSrc.host;
+                const pathName = scriptSrc.pathname;
+                script.src = `${protocol}//${host}${pathName}`;
+                }
+                console.log(`chemin trouvé : ${script.src}`);
+            }
         });
 
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
-
-        scripts.forEach(script => console.log("Script trouvé :", script.src || "[inline script]"));
-        styles.forEach(style => console.log("Style trouvé :", style.href));
+        console.log("generatePageSnapshot : ", styles.length, " styles trouvés et ", scripts.length, " scripts trouvés.");
+        scripts.forEach(script => console.log("generatePageSnapshot Script trouvé :", script.src || "[inline script]"));
+        styles.forEach(style => console.log("generatePageSnapshot Style trouvé :", style.href));
 
         return { snapshot: snapshot.innerHTML, scripts, styles };
     } catch (error) {
