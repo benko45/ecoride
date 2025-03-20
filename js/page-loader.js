@@ -10,9 +10,9 @@ if(!localStorage.getItem('page-loader-occurence')) {
 
 console.log("page-loader.js est exécuté... sur : ", localStorage.getItem('page-loader-occurence'), "occurence(s)");
 
-document.addEventListener("click", (event) => {
-    console.log("🟢 Clic détecté ! Élément :", event.target);
-});
+// document.addEventListener("click", (event) => {
+//     console.log("🟢 Clic détecté ! Élément :", event.target);
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function (event) {
@@ -52,12 +52,12 @@ async function loadPage(url, fromBackButton = false) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
     }
-    cleanOldScripts();
+    // cleanOldScripts();
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
         console.log("executeScripts : 1");
-        executeScripts(scripts);
+        // executeScripts(scripts);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -75,7 +75,7 @@ async function loadPage(url, fromBackButton = false) {
             positionDropdownMenu();
         }
         // ✅ Charger immédiatement les styles CSS pour la transition
-        await loadCSSForPage(styles);
+        // await loadCSSForPage(styles);
 
         gsap.to(tempContainer, {
             left: "0%",
@@ -88,16 +88,16 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
-                attachClickEventToLocationButton(url);
-                setTimeout(() => {
-                    console.log("Scripts après transition :");
-                    Array.from(document.scripts).forEach(script => console.log(script.src));
-                    console.log("executeScripts : 2");
-                    executeScripts(scripts);
-                }, 0);
-                requestAnimationFrame(() => {
-                    positionDropdownMenu();
-                });
+                // // attachClickEventToLocationButton(url);
+                // setTimeout(() => {
+                //     console.log("Scripts après transition :");
+                //     Array.from(document.scripts).forEach(script => console.log(script.src));
+                //     console.log("executeScripts : 2");
+                //     executeScripts(scripts);
+                // }, 0);
+                // requestAnimationFrame(() => {
+                //     positionDropdownMenu();
+                // });
             }
         });
 
