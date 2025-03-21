@@ -56,8 +56,7 @@ async function loadPage(url, fromBackButton = false) {
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
-        // console.log("executeScripts : 1");
-        // executeScripts(scripts);
+        // cleanOldScripts();
         if (url.includes("choosing-address.html")) {
             console.log("📦 Import dynamique de choosing-address.js...");
             document.querySelector("script[src*='choosing-address']")?.remove();
@@ -99,6 +98,7 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
+                // cleanOldScripts();
                 if (url.includes("choosing-address.html")) {
                     console.log("📦 Import dynamique de choosing-address.js...");
                     import(`${prefix}/js/choosing-address.js`).then(module => {
@@ -249,7 +249,9 @@ function ensureBootstrapIcons() {
 }
 
 function cleanOldScripts() {
-    document.querySelectorAll("script").forEach(script => {
+    Array.from(document.querySelectorAll("script"))
+        .filter(script => !script.src.includes('five') && !script.src.includes('https') && !script.src.includes('page-loader'))
+        .forEach(script => {
         console.log("🗑️ Suppression de l'ancien script :", script.src || "[inline script]");
         script.remove();
     });
