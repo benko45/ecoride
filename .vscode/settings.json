@@ -3,7 +3,7 @@
         {
             "format": "expanded",
             "extensionName": ".css",
-            "savePath": "/public/css"
+            "savePath": "/css"
         }
     ],
     "liveSassCompile.settings.autoprefix": [
