@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadPage(url, fromBackButton = false) {
     console.log(`🚀 loadPage() appelé pour : ${url}`);
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
@@ -60,7 +61,7 @@ async function loadPage(url, fromBackButton = false) {
         if (url.includes("choosing-address.html")) {
             console.log("📦 Import dynamique de choosing-address.js...");
             document.querySelector("script[src*='choosing-address']")?.remove();
-            import('./choosing-address.js').then(module => {
+            import(`${prefix}/js/choosing-address.js`).then(module => {
                 // console.log("✅ choosing-address.js exécuté !");
                 // tu peux appeler une fonction exportée ici si besoin
                 module.initChoosingAddress();
@@ -100,7 +101,7 @@ async function loadPage(url, fromBackButton = false) {
                 console.log(`✅ Transition terminée vers ${url}`);
                 if (url.includes("choosing-address.html")) {
                     console.log("📦 Import dynamique de choosing-address.js...");
-                    import('./choosing-address.js').then(module => {
+                    import(`${prefix}/js/choosing-address.js`).then(module => {
                         // console.log("✅ choosing-address.js exécuté !");
                         // tu peux appeler une fonction exportée ici si besoin
                         module.initChoosingAddress();
@@ -126,7 +127,6 @@ async function generatePageSnapshot(url) {
     try {
         // let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
         const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-        fetch(`${prefix}/${url}`);
 
         console.log("🔄 generatePageSnapshot() : url = ", url);
         // let response = await fetch(url, { cache: "no-store" });
