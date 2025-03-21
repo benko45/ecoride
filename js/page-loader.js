@@ -52,12 +52,22 @@ async function loadPage(url, fromBackButton = false) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
     }
-    // cleanOldScripts();
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
-        console.log("executeScripts : 1");
+        // console.log("executeScripts : 1");
         // executeScripts(scripts);
+        if (url.includes("choosing-address.html")) {
+            console.log("📦 Import dynamique de choosing-address.js...");
+            document.querySelector("script[src*='choosing-address']")?.remove();
+            import('./choosing-address.js').then(module => {
+                // console.log("✅ choosing-address.js exécuté !");
+                // tu peux appeler une fonction exportée ici si besoin
+                module.initChoosingAddress();
+            }).catch(error => {
+                console.error("❌ Erreur lors du chargement dynamique :", error);
+            });
+        }
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -75,7 +85,7 @@ async function loadPage(url, fromBackButton = false) {
             positionDropdownMenu();
         }
         // ✅ Charger immédiatement les styles CSS pour la transition
-        // await loadCSSForPage(styles);
+        await loadCSSForPage(styles);
 
         gsap.to(tempContainer, {
             left: "0%",
@@ -88,34 +98,25 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
-                // // attachClickEventToLocationButton(url);
-                // setTimeout(() => {
-                //     console.log("Scripts après transition :");
-                //     Array.from(document.scripts).forEach(script => console.log(script.src));
-                //     console.log("executeScripts : 2");
-                //     executeScripts(scripts);
-                // }, 0);
-                // requestAnimationFrame(() => {
-                //     positionDropdownMenu();
-                // });
+                if (url.includes("choosing-address.html")) {
+                    console.log("📦 Import dynamique de choosing-address.js...");
+                    import('./choosing-address.js').then(module => {
+                        // console.log("✅ choosing-address.js exécuté !");
+                        // tu peux appeler une fonction exportée ici si besoin
+                        module.initChoosingAddress();
+                    }).catch(error => {
+                        console.error("❌ Erreur lors du chargement dynamique :", error);
+                    });
+                }
+                
+                requestAnimationFrame(() => {
+                    positionDropdownMenu();
+                });
             }
         });
 
     } catch (error) {
         console.error("❌ Erreur lors du chargement de la page :", error);
-    }
-}
-
-async function attachClickEventToLocationButton(url) {
-    if (url.includes("choosing-address.html")) {
-        console.log("🔄 Chargement dynamique de choosing-address.js...");
-        const { attachClickEventToLocationButton } = await import("./choosing-address.js");
-        attachClickEventToLocationButton();
-    }
-    if (url.includes("choosing-arrival-address.html")) {
-        console.log("🔄 Chargement dynamique de choosing-arrival-address.js...");
-        const { attachClickEventToLocationButton } = await import("./choosing-arrival-address.js");
-        attachClickEventToLocationButton();
     }
 }
 
@@ -155,22 +156,22 @@ async function generatePageSnapshot(url) {
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
         
         scripts = scripts.filter(script => script.src && !script.src.includes("fiveserver.js"));
-
+        // scripts = scripts.filter(s => s.dataset.dynamic === "true"); 
         // 🔹 Modifier les chemins des scripts en fonction de l'environnement
         // const prefix = window.location.hostname === "benko45.github.io/" ? "/ecoride" : "/";
         
         scripts.forEach(script => {
             if(!script.src) return;
-            else {
-                if(!script.src.includes("https")) {
+            // else {
+            //     if(!script.src.includes("https")) {
                 const scriptSrc = new URL(script.src);
                 const protocol = scriptSrc.protocol;
                 const host = scriptSrc.host;
                 const pathName = scriptSrc.pathname;
                 script.src = `${protocol}//${host}${pathName}`;
-                }
+                // }
                 console.log(`chemin trouvé : ${script.src}`);
-            }
+            // }
         });
 
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
@@ -248,7 +249,7 @@ function ensureBootstrapIcons() {
 }
 
 function cleanOldScripts() {
-    document.querySelectorAll("script[data-dynamic]").forEach(script => {
+    document.querySelectorAll("script").forEach(script => {
         console.log("🗑️ Suppression de l'ancien script :", script.src || "[inline script]");
         script.remove();
     });
@@ -262,7 +263,7 @@ function executeScripts(scripts) {
     scripts.forEach(oldScript => {
         
         let newScript = document.createElement("script");
-        newScript.setAttribute("data-dynamic", "true");
+        // newScript.setAttribute("data-dynamic", "true");
 
         if (oldScript.src) {
             // newScript.src = oldScript.src + "?_=" + Date.now();

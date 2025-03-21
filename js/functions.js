@@ -182,29 +182,22 @@ function createChevronSVG() {
  * @param {HTMLElement} parentElement - L'élément parent
  */
 export function removeChildrenExceptFirst(parentElement) {
-    console.log("🛑 Suppression déclenchée dans :", parentElement);
+    // console.log("🛑 Suppression déclenchée dans :", parentElement);
     
     if (!parentElement) return;
-    // 🔹 Ne pas exécuter la suppression si la requête est en cours
-    if (window.isFetchingSuggestions) {
-        console.log("⏳ La requête API est en cours, suppression annulée.");
-        return;
-    }
     const suggestions = parentElement.querySelectorAll(".suggestion");
-    console.log("📌 État actuel des suggestions avant suppression :", suggestions.length, suggestions);
+    // console.log("📌 État actuel des suggestions avant suppression :", suggestions.length, suggestions);
 
     if (suggestions.length > 1) {
         console.log("🚨 Suppression des suggestions obsolètes...");
         while (parentElement.children.length > 1) {
-            console.log("❌ Suppression de :", parentElement.children[1]);
+            // console.log("❌ Suppression de :", parentElement.children[1]);
             parentElement.removeChild(parentElement.children[1]);
         }
     }
 
     console.log("✅ Nombre d'enfants après suppression :", parentElement.children.length);
 }
-
-
 
 export function applyDynamicStyles(HTMLElement){
     // console.log(`🎨 Application des styles dynamiques sur : ${HTMLElement.className}`);
