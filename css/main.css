@@ -305789,7 +305789,7 @@ svg symbol path {
 /* 📟 Tablette : min-width 768px */
 @media (min-width: 768px) {
   .responsive-img {
-    height: 50vh; /* L’image ne couvre plus que la moitié supérieure */
+    height: calc(var(--vh) * 50); /* L’image ne couvre plus que la moitié supérieure */
   }
 }
 .visible {
