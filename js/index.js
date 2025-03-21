@@ -42,7 +42,20 @@ if(!localStorage.getItem('index-occurence')) {
 
 console.log("index.js est exécuté... sur : ", localStorage.getItem('index-occurence'), "occurence(s)");
 
+
 /******************************************************/
+/*      Gestion de la hauteur de la fenêtre         
+/*      pour tenir compte de la barre de recherche
+/*      du navigateur
+/******************************************************/
+const setRealVh = () => {
+    let vh = window.innerHeight * 0.01;
+    // définit la variable --vh en fonction de innerHeight
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+setRealVh();
+window.addEventListener('resize', setRealVh);
+
 /******************************************************/
 applyTheme();
 

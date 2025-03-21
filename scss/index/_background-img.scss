@@ -1,0 +1,27 @@
+@use "../variables" as variables;
+/****************************************************/
+/*                  image de fond                   */
+/****************************************************/
+.responsive-img {
+    width: 100vw;
+    // height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    object-fit: cover;
+    object-position: center top;
+    z-index: -1;
+}
+
+/* 📟 Tablette : min-width 768px */
+@media (min-width: 768px) {
+    .responsive-img {
+        height: 50vh; /* L’image ne couvre plus que la moitié supérieure */
+    }
+}
+
+.visible {
+    display: block !important;
+}
+
+.hidden {
+    display: none !important;
+}
