@@ -10,10 +10,6 @@ if(!localStorage.getItem('page-loader-occurence')) {
 
 console.log("page-loader.js est exécuté... sur : ", localStorage.getItem('page-loader-occurence'), "occurence(s)");
 
-// document.addEventListener("click", (event) => {
-//     console.log("🟢 Clic détecté ! Élément :", event.target);
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function (event) {
         let target = event.target.closest("a");
@@ -61,9 +57,7 @@ async function loadPage(url, fromBackButton = false) {
             console.log("📦 Import dynamique de choosing-address.js...");
             document.querySelector("script[src*='choosing-address']")?.remove();
             import(`${prefix}/js/choosing-address.js`).then(module => {
-                // console.log("✅ choosing-address.js exécuté !");
-                // tu peux appeler une fonction exportée ici si besoin
-                module.initChoosingAddress();
+                module.initChoosingAddress("choosing-address");
             }).catch(error => {
                 console.error("❌ Erreur lors du chargement dynamique :", error);
             });
@@ -104,15 +98,17 @@ async function loadPage(url, fromBackButton = false) {
                     import(`${prefix}/js/choosing-address.js`).then(module => {
                         // console.log("✅ choosing-address.js exécuté !");
                         // tu peux appeler une fonction exportée ici si besoin
-                        module.initChoosingAddress();
+                        module.initChoosingAddress("choosing-address");
                     }).catch(error => {
                         console.error("❌ Erreur lors du chargement dynamique :", error);
                     });
                 }
                 
-                requestAnimationFrame(() => {
-                    positionDropdownMenu();
-                });
+                if(url.includes("index.html")) {
+                    requestAnimationFrame(() => {
+                        positionDropdownMenu();
+                    });
+                }
             }
         });
 

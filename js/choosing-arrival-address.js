@@ -1,7 +1,6 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import { createShortddress, createAddressSuggestion, removeChildrenExceptFirst, applyDynamicStyles, useCurrentLocationOptionText  } from './functions.js';
 
 export function initChoosingArrivalAddress() {
     // console.log("✅ `initChoosingArrivalAddress()` exécuté !");
