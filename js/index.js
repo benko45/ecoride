@@ -55,8 +55,6 @@ export function updateBouncingArrows() {
     }
 }
 
-
-
 export function positionDropdownMenu() {
     const menuDropdown = document.querySelector(".dropdown"); // Menu dropdown
     const title = document.getElementById("title"); // Élément du titre
@@ -96,6 +94,38 @@ export function positionDropdownMenu() {
         // console.log(`✅ Menu dropdown positionné à ${menuTop}px`);
     }
 }
+
+export function displayDate() {
+    const savedDate = localStorage.getItem('selectedDate');
+    const options = { weekday: 'short', day: '2-digit', month: 'short' };
+    
+    const today = new Date();
+    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
+
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
+
+    const afterTomorrow = new Date(today);
+    afterTomorrow.setDate(today.getDate() + 2);
+    const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
+
+    if (savedDate) {
+        console.log('savedDate:', savedDate);
+        if (savedDate === todayFormatted) {
+            $('#date-picker').text("Aujourd'hui");
+        } else if (savedDate === tomorrowFormatted) {
+            $('#date-picker').text("Demain");
+        } else if (savedDate === afterTomorrowFormatted) {
+            $('#date-picker').text("Après-demain");
+        } else {
+            $('#date-picker').text(savedDate);
+        }
+    } else {
+        $('#date-picker').text("Aujourd'hui");
+    }
+}
+
 
 export function initIndex() {
     /******************************************************/
@@ -296,26 +326,9 @@ export function initIndex() {
     // Redirection vers la page de sélection de date
     document.getElementById("case-date").addEventListener("click", function() {
         localStorage.setItem("clickSurItem", "true");
-        // window.location.href = "public/html/choosing-date.html";
     });
 
-    // Récupérer la date enregistrée dans le localStorage
-    const savedDate = localStorage.getItem('selectedDate');
-    // Obtenir le jour, la date et le mois actuels
-    const today = new Date();
-    const options = { weekday: 'short', day: '2-digit', month: 'short' };
-    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
-    // Afficher la date dans la div si elle existe
-    if (savedDate) {
-        console.log('savedDate:', savedDate);
-        if (savedDate === todayFormatted) {
-            $('#date-picker').text("Aujourd'hui");
-        } else {
-        $('#date-picker').text(savedDate);
-        }
-    } else {
-        $('#date-picker').text('Aujourd\'hui');
-    }
+    displayDate();
 
 
     /******************************************************/

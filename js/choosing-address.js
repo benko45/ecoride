@@ -146,7 +146,7 @@ function removeChildrenExceptFirst(parentElement) {
     console.log("✅ Nombre d'enfants après suppression :", parentElement.children.length);
 }
 
-function applyDynamicStyles(HTMLElement){
+export function applyDynamicStyles(HTMLElement){
     // console.log(`🎨 Application des styles dynamiques sur : ${HTMLElement.className}`);
     if(HTMLElement.classList.contains('form-container')){
         HTMLElement.style.width = '80%';

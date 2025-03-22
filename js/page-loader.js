@@ -1,5 +1,6 @@
-import { positionDropdownMenu, updateBouncingArrows } from "./index.js";
+import { positionDropdownMenu, updateBouncingArrows, displayDate } from "./index.js";
 import { selectImage } from "./functions.js";
+
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -57,7 +58,11 @@ async function loadPage(url, fromBackButton = false) {
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
 
-        if(url.includes(addressPage)) importScript("choosing-address", "initChoosingAddress", addressPage);
+        if(url.includes(addressPage)) {
+            importScript("choosing-address", "initChoosingAddress", addressPage);
+        } else if(url.includes("choosing-date")) {
+            importScript("choosing-date", "initChoosingDate");
+        }
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -73,10 +78,11 @@ async function loadPage(url, fromBackButton = false) {
             selectImage();
             positionDropdownMenu();
             updateBouncingArrows();
+            displayDate();
         }
         gsap.to(tempContainer, {
             left: "0%",
-            duration: 0.5,
+            duration: 1,
             ease: "power2.inOut",
             onComplete: async () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
@@ -92,8 +98,12 @@ async function loadPage(url, fromBackButton = false) {
                         positionDropdownMenu();
                     });
                     updateBouncingArrows();
+                    displayDate();
+                } else if(url.includes(addressPage)) {
+                    importScript("choosing-address", "initChoosingAddress", addressPage);
+                } else if(url.includes("choosing-date")) {
+                    importScript("choosing-date", "initChoosingDate");
                 }
-                if(url.includes(addressPage)) importScript("choosing-address", "initChoosingAddress", addressPage);
             }
         });
 
@@ -233,13 +243,12 @@ function cleanCSS(url) {
             existingLinks.forEach(link => {
                 const isStillNeeded = newLinks.some(newLink => newLink.href === link.href);
                 if (!isStillNeeded) {
-                    console.log("🗑️ Suppression du lien obsolète :", link);
+                    // console.log("🗑️ Suppression du lien obsolète :", link);
                     link.remove();
                 }
             });
         });
 }
-
 
 function ensureBootstrapIcons() {
     if (!document.querySelector('link[href*="bootstrap-icons"]')) {
@@ -251,15 +260,6 @@ function ensureBootstrapIcons() {
     } else {
         console.log("✅ Bootstrap Icons déjà chargé.");
     }
-}
-
-function cleanOldScripts() {
-    Array.from(document.querySelectorAll("script"))
-        .filter(script => !script.src.includes('five') && !script.src.includes('https') && !script.src.includes('page-loader'))
-        .forEach(script => {
-        console.log("🗑️ Suppression de l'ancien script :", script.src || "[inline script]");
-        script.remove();
-    });
 }
 
 function importScript(scriptName, initFunctionName = null, initParam = null) {
