@@ -201,8 +201,8 @@ export function initChoosingAddress(page) {
     console.log("📌 initChoosingAddress : page = ", page);
 
     const storageKey = page.includes("choosing-address") 
-    ? "selectedDepartureAddress" 
-    : "selectedArrivalAddress";
+        ? "selectedDepartureAddress" 
+        : "selectedArrivalAddress";
     console.log("🔑 Clé de stockage :", storageKey);
 
     /******************************************************/
@@ -225,7 +225,7 @@ export function initChoosingAddress(page) {
         const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
         suggestionsDiv.appendChild(useCurrentLocationOption);
     }
-    if(window.location.pathname.includes('choosing-address')) {
+    if(window.location.pathname.includes('choosing-address') || window.location.pathname.includes('choosing-arrival-address')) {
         const suggestions = document.getElementsByClassName('suggestion')
         if(suggestions.length !== 0) {
             for (let suggestion of suggestions) {
@@ -243,7 +243,7 @@ export function initChoosingAddress(page) {
         document.getElementById('address').value = selectedAddress;
     }
     
-    // document.addEventListener("click", (event) => {
-    //     console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
-    // });
+    document.addEventListener("click", (event) => {
+        console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
+    });
 }    

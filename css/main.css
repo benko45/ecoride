@@ -305642,6 +305642,7 @@ html[theme=dark] .accessibility-border {
 
 .arrow-bounce {
   overflow: visible;
+  pointer-events: auto;
 }
 
 .arrow-bounce path {

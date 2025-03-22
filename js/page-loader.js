@@ -1,15 +1,6 @@
 import { positionDropdownMenu, updateBouncingArrows } from "./index.js";
 import { selectImage } from "./functions.js";
 
-
-if(!localStorage.getItem('page-loader-occurence')) {
-    localStorage.setItem('page-loader-occurence', 1);
-} else {
-    localStorage.setItem('page-loader-occurence', parseInt(localStorage.getItem('page-loader-occurence')) + 1);
-}
-
-console.log("page-loader.js est exécuté... sur : ", localStorage.getItem('page-loader-occurence'), "occurence(s)");
-
 document.addEventListener("DOMContentLoaded", function () {
 
     document.body.addEventListener("click", function (event) {
@@ -27,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         while (el && el !== document.body) {
             if (el.id === "bouncing-arrows") {
+                // updateBouncingArrows();
                 shouldNavigate = false; // ne pas naviguer
                 break;
             }
@@ -64,11 +56,7 @@ async function loadPage(url, fromBackButton = false) {
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
-        if(url.includes("index.html")) {
-            selectImage();
-            positionDropdownMenu();
-            updateBouncingArrows();
-        }
+
         if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
@@ -78,15 +66,17 @@ async function loadPage(url, fromBackButton = false) {
         tempContainer.style.height = "100%";
         tempContainer.style.zIndex = "100";
         tempContainer.style.backgroundColor = "var(--custom-light)";
-
         tempContainer.innerHTML = snapshot;
         document.body.appendChild(tempContainer);
-        // ✅ Charger immédiatement les styles CSS pour la transition
         await loadCSSForPage(styles);
-
+        if(url.includes("index.html")) {
+            selectImage();
+            positionDropdownMenu();
+            updateBouncingArrows();
+        }
         gsap.to(tempContainer, {
             left: "0%",
-            duration: 2,
+            duration: 0.5,
             ease: "power2.inOut",
             onComplete: async () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
@@ -95,7 +85,9 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
+                // await loadCSSForPage(styles);
                 if(url.includes("index")) {
+                    cleanCSS(url);
                     requestAnimationFrame(() => {
                         positionDropdownMenu();
                     });
@@ -175,7 +167,6 @@ async function generatePageSnapshot(url) {
     }
 }
 
-
 async function loadCSSForPage(styles) {
     return new Promise((resolve) => {
         let existingStyles = Array.from(document.querySelectorAll("link[rel='stylesheet']")).map(link => link.href);
@@ -225,6 +216,31 @@ async function loadCSSForPage(styles) {
     });
 }
 
+function cleanCSS(url) { 
+    fetch(url)
+        .then(res => res.text())
+        .then(html => {
+            // 1. Nettoyer tous les styles existants
+            const existingLinks = document.head.querySelectorAll('link[rel="stylesheet"]');
+            // 2. Parser le HTML temporairement
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            // 3. Récupérer et convertir tous les nouveaux liens en tableau
+            const newLinks = Array.from(tempDiv.querySelectorAll('link[rel="stylesheet"]'));
+
+            // 4. Supprimer les liens obsolètes (présents dans <head> mais pas dans newLinks)
+            existingLinks.forEach(link => {
+                const isStillNeeded = newLinks.some(newLink => newLink.href === link.href);
+                if (!isStillNeeded) {
+                    console.log("🗑️ Suppression du lien obsolète :", link);
+                    link.remove();
+                }
+            });
+        });
+}
+
+
 function ensureBootstrapIcons() {
     if (!document.querySelector('link[href*="bootstrap-icons"]')) {
         console.log("🔄 Rechargement de Bootstrap Icons...");
@@ -254,6 +270,20 @@ function importChoosingAddressScript(addressPage) {
     document.querySelector("script[src*='choosing-address']")?.remove();
     import(`${prefix}/js/choosing-address.js`).then(module => {
         module.initChoosingAddress(addressPage);
+        return;
+    }).catch(error => {
+        console.error("❌ Erreur lors du chargement dynamique :", error);
+        return;
+    });
+}
+
+function importIndexScript() {
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+
+    console.log("📦 Import dynamique de index.js...");
+    document.querySelector("script[src*='index']")?.remove();
+    import(`${prefix}/js/index.js`).then(module => {
+        module.initIndex();
         return;
     }).catch(error => {
         console.error("❌ Erreur lors du chargement dynamique :", error);
