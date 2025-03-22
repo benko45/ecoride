@@ -57,7 +57,7 @@ async function loadPage(url, fromBackButton = false) {
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
 
-        if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
+        if(url.includes(addressPage)) importScript("choosing-address", "initChoosingAddress", addressPage);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -93,7 +93,7 @@ async function loadPage(url, fromBackButton = false) {
                     });
                     updateBouncingArrows();
                 }
-                if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
+                if(url.includes(addressPage)) importScript("choosing-address", "initChoosingAddress", addressPage);
             }
         });
 
@@ -262,33 +262,26 @@ function cleanOldScripts() {
     });
 }
 
-function importChoosingAddressScript(addressPage) {
-
+function importScript(scriptName, initFunctionName = null, initParam = null) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
-    console.log("📦 Import dynamique de ", addressPage, ".js...");
-    document.querySelector("script[src*='choosing-address']")?.remove();
-    import(`${prefix}/js/choosing-address.js`).then(module => {
-        module.initChoosingAddress(addressPage);
-        return;
-    }).catch(error => {
-        console.error("❌ Erreur lors du chargement dynamique :", error);
-        return;
-    });
-}
+    console.log(`📦 Import dynamique de ${scriptName}.js...`);
 
-function importIndexScript() {
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    // Supprime l'ancien script s'il est déjà chargé
+    document.querySelector(`script[src*='${scriptName}']`)?.remove();
 
-    console.log("📦 Import dynamique de index.js...");
-    document.querySelector("script[src*='index']")?.remove();
-    import(`${prefix}/js/index.js`).then(module => {
-        module.initIndex();
-        return;
-    }).catch(error => {
-        console.error("❌ Erreur lors du chargement dynamique :", error);
-        return;
-    });
+    import(`${prefix}/js/${scriptName}.js`)
+        .then(module => {
+            if (initFunctionName && typeof module[initFunctionName] === "function") {
+                module[initFunctionName](initParam);
+                console.log(`✅ ${initFunctionName}() appelée depuis ${scriptName}.js`);
+            } else if (initFunctionName) {
+                console.warn(`⚠️ ${initFunctionName}() non trouvée dans ${scriptName}.js`);
+            }
+        })
+        .catch(error => {
+            console.error(`❌ Erreur lors de l'import de ${scriptName}.js :`, error);
+        });
 }
 
 /**
