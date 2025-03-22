@@ -8,8 +8,6 @@ document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
 document.body.style.width = "100%";
 
-localStorage.setItem('testingChoosingAddress', 0);
-
 /******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
 /******************************************************/
@@ -19,9 +17,6 @@ export function updateBouncingArrows() {
         console.error("❌ ERREUR : #bouncing-arrows introuvable !");
         return;
     }
-    // console.log('updateBouncingArrows() selectedDepartureAddress: ', localStorage.getItem('selectedDepartureAddress'));
-    // console.log('updateBouncingArrows() selectedArrivalAddress: ', localStorage.getItem('selectedArrivalAddress'));
-    // console.log('test:',  (localStorage.getItem('selectedDepartureAddress')  && localStorage.getItem('selectedArrivalAddress')) || (localStorage.getItem('selectedDepartureAddress') === localStorage.getItem('selectedArrivalAddress')))
     const dep = localStorage.getItem('selectedDepartureAddress');
     const arr = localStorage.getItem('selectedArrivalAddress');
     if( dep !== arr && dep && arr) {
@@ -256,8 +251,12 @@ if (selectedArrivalAddress) {
     selectedArrivalAddress = "Arrivée";
     document.getElementById('selected-arrival-address').innerHTML = 'Arrivée';
 }
-
-document.getElementById('bouncing-arrows').addEventListener('click', function() {
+/******************************************************/
+/*                  ECHANGE DES ADRESSES               */
+/******************************************************/
+document.getElementById('bouncing-arrows').addEventListener('click', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
     console.log('click les flèches');
     let temp = localStorage.getItem('selectedDepartureAddress');
     localStorage.setItem('selectDepartureAddress', localStorage.getItem('selectedArrivalAddress'));;

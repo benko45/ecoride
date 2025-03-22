@@ -1,4 +1,4 @@
-import { positionDropdownMenu } from "./index.js";
+import { positionDropdownMenu, updateBouncingArrows } from "./index.js";
 import { selectImage } from "./functions.js";
 
 
@@ -11,27 +11,36 @@ if(!localStorage.getItem('page-loader-occurence')) {
 console.log("page-loader.js est exécuté... sur : ", localStorage.getItem('page-loader-occurence'), "occurence(s)");
 
 document.addEventListener("DOMContentLoaded", function () {
+
     document.body.addEventListener("click", function (event) {
         let target = event.target.closest("a");
         if (target) {
             event.preventDefault();
             const urlPathname = new URL(target.href).pathname.split("/").pop();
-            // console.log("🔄 Clic sur un lien <a> détecté :", url);
-            // console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME = ", url.pathname);
-            // const urlPathname = url.pathname.split("/").pop();
-            // console.log("🔄 Clic sur un lien <a> détecté : HREF.PATHNAME.SPLIT.POP = ", urlPathname);
             loadPage(urlPathname);
         }
     });
     
     document.body.addEventListener("click", function (event) {
-        let target = event.target.closest("[data-navigate]");
-        if (target) {
-            event.preventDefault();
-            console.log("🔄 Clic sur un élément avec data-navigate détecté :", target.getAttribute("data-navigate"));
-            console.log("🔄 Clic sur un élément avec data-navigate détecté : HREF = ", target.getAttribute("data-navigate"));
-            loadPage(target.getAttribute("data-navigate"));
+        let el = event.target;
+        let shouldNavigate = true;
+        
+        while (el && el !== document.body) {
+            if (el.id === "bouncing-arrows") {
+                shouldNavigate = false; // ne pas naviguer
+                break;
+            }
+            if (el.hasAttribute("data-navigate")) {
+                break; // on a trouvé un élément navigable
+            }
+            el = el.parentElement;
         }
+        
+        if (shouldNavigate && el && el.hasAttribute("data-navigate")) {
+            event.preventDefault();
+            loadPage(el.getAttribute("data-navigate"));
+        }
+        
     });
 
     // Gestion des retours arrière
@@ -58,6 +67,7 @@ async function loadPage(url, fromBackButton = false) {
         if(url.includes("index.html")) {
             selectImage();
             positionDropdownMenu();
+            updateBouncingArrows();
         }
         if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
         let tempContainer = document.createElement("div");
@@ -89,6 +99,7 @@ async function loadPage(url, fromBackButton = false) {
                     requestAnimationFrame(() => {
                         positionDropdownMenu();
                     });
+                    updateBouncingArrows();
                 }
                 if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
             }
