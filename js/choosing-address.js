@@ -200,7 +200,7 @@ function updatePlaceholder(inputSelector, newPlaceholder) {
 export function initChoosingAddress(page) {
     console.log("📌 initChoosingAddress : page = ", page);
 
-    const storageKey = window.location.pathname.includes(page) 
+    const storageKey = page.includes("choosing-address") 
     ? "selectedDepartureAddress" 
     : "selectedArrivalAddress";
     console.log("🔑 Clé de stockage :", storageKey);
@@ -243,7 +243,7 @@ export function initChoosingAddress(page) {
         document.getElementById('address').value = selectedAddress;
     }
     
-    document.addEventListener("click", (event) => {
-        console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
-    });
+    // document.addEventListener("click", (event) => {
+    //     console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
+    // });
 }    

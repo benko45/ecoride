@@ -92,10 +92,6 @@ export function positionDropdownMenu() {
         // Récupérer la position Y du haut de `#traject-search`
         const trajectTop = trajectSearch.getBoundingClientRect().top;
 
-        // 🔍 Vérification des valeurs récupérées
-        console.log(`🔍 Position title bottom : ${titleRectBottom}px`);
-        console.log(`🔍 Position traject-search top : ${trajectTop}px`);
-
         // 🟢 Calculer la position idéale du menu dropdown
         const menuTop = (titleRectBottom + trajectTop) / 2 - 15;
 
@@ -106,7 +102,7 @@ export function positionDropdownMenu() {
         menuDropdown.style.transform = "translate(-50%, -50%)"; // 🔥 On garde le bon centrage
         menuDropdown.style.zIndex = "1000"; // S'assurer qu'il est au-dessus des autres éléments
 
-        console.log(`✅ Menu dropdown positionné à ${menuTop}px`);
+        // console.log(`✅ Menu dropdown positionné à ${menuTop}px`);
     }
 }
 

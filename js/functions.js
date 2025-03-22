@@ -77,7 +77,7 @@ export const selectImage = () => {
     imageSources.forEach(({ class: imgClass, src, srcset, sizes, alt, minWidth, maxWidth }) => {
         const img = document.createElement("img");
         img.classList.add("responsive-img", imgClass);
-        console.log("🖼️ Image insérée :",  `${prefix}${src}`);
+        // console.log("🖼️ Image insérée :",  `${prefix}${src}`);
         img.src = `${prefix}${src}`;
         img.srcset = srcset.split("\n").map(s => `${prefix}${s.trim()}`).join("\n");
         img.sizes = sizes;
@@ -95,5 +95,5 @@ export const selectImage = () => {
         imageContainer.appendChild(img);
     });
 
-    console.log("✅ Images insérées dynamiquement avec les bons chemins.");
+    // console.log("✅ Images insérées dynamiquement avec les bons chemins.");
 };

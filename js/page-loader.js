@@ -42,8 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function loadPage(url, fromBackButton = false) {
+
     console.log(`🚀 loadPage() appelé pour : ${url}`);
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    const addressPage = url.includes("choosing-address")
+            ? "choosing-address"
+            : "choosing-arrival-address";
 
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
@@ -52,16 +55,11 @@ async function loadPage(url, fromBackButton = false) {
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, scripts, styles } = await generatePageSnapshot(url);
-        // cleanOldScripts();
-        if (url.includes("choosing-address.html")) {
-            console.log("📦 Import dynamique de choosing-address.js...");
-            document.querySelector("script[src*='choosing-address']")?.remove();
-            import(`${prefix}/js/choosing-address.js`).then(module => {
-                module.initChoosingAddress("choosing-address");
-            }).catch(error => {
-                console.error("❌ Erreur lors du chargement dynamique :", error);
-            });
+        if(url.includes("index.html")) {
+            selectImage();
+            positionDropdownMenu();
         }
+        if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -73,11 +71,6 @@ async function loadPage(url, fromBackButton = false) {
 
         tempContainer.innerHTML = snapshot;
         document.body.appendChild(tempContainer);
-
-        if(url.includes("index.html")) {
-            selectImage();
-            positionDropdownMenu();
-        }
         // ✅ Charger immédiatement les styles CSS pour la transition
         await loadCSSForPage(styles);
 
@@ -92,23 +85,12 @@ async function loadPage(url, fromBackButton = false) {
                     window.history.pushState({}, "", url);
                 }
                 console.log(`✅ Transition terminée vers ${url}`);
-                // cleanOldScripts();
-                if (url.includes("choosing-address.html")) {
-                    console.log("📦 Import dynamique de choosing-address.js...");
-                    import(`${prefix}/js/choosing-address.js`).then(module => {
-                        // console.log("✅ choosing-address.js exécuté !");
-                        // tu peux appeler une fonction exportée ici si besoin
-                        module.initChoosingAddress("choosing-address");
-                    }).catch(error => {
-                        console.error("❌ Erreur lors du chargement dynamique :", error);
-                    });
-                }
-                
-                if(url.includes("index.html")) {
+                if(url.includes("index")) {
                     requestAnimationFrame(() => {
                         positionDropdownMenu();
                     });
                 }
+                if (url.includes(addressPage)) importChoosingAddressScript(addressPage);
             }
         });
 
@@ -140,13 +122,13 @@ async function generatePageSnapshot(url) {
         let snapshot = pageContentElement.cloneNode(true);
         snapshot.removeAttribute("id"); // Enlève l'ID pour éviter un conflit lors de l'insertion
 
-        console.log("✅ Contenu extrait sans doubler #page-content.");
+        // console.log("✅ Contenu extrait sans doubler #page-content.");
 
         // 🔹 Mettre à jour le champ `selected-departure-address` dans le snapshot
-        if (window.location.pathname.includes("choosing-address.html") || window.location.pathname.includes("choosing-arrival-address.html")) {
-            updateSelectedDepartureInSnapshot(snapshot);
+        if (window.location.pathname.includes("choosing-address") || window.location.pathname.includes("choosing-arrival-address")) {
+            updateSelectedAddressInSnapshot(snapshot);
         } else {
-            console.log("🔄 updateSelectedDepartureInSnapshot() n'a pas été appliquée");
+            console.log("🔄 updateSelectedAddressInSnapshot() n'a pas été appliquée");
         }
 
         let scripts = Array.from(tempDiv.querySelectorAll("script"));
@@ -166,14 +148,14 @@ async function generatePageSnapshot(url) {
                 const pathName = scriptSrc.pathname;
                 script.src = `${protocol}//${host}${pathName}`;
                 // }
-                console.log(`chemin trouvé : ${script.src}`);
+                // console.log(`chemin trouvé : ${script.src}`);
             // }
         });
 
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
-        console.log("generatePageSnapshot : ", styles.length, " styles trouvés et ", scripts.length, " scripts trouvés.");
-        scripts.forEach(script => console.log("generatePageSnapshot Script trouvé :", script.src || "[inline script]"));
-        styles.forEach(style => console.log("generatePageSnapshot Style trouvé :", style.href));
+        // console.log("generatePageSnapshot : ", styles.length, " styles trouvés et ", scripts.length, " scripts trouvés.");
+        // scripts.forEach(script => console.log("generatePageSnapshot Script trouvé :", script.src || "[inline script]"));
+        // styles.forEach(style => console.log("generatePageSnapshot Style trouvé :", style.href));
 
         return { snapshot: snapshot.innerHTML, scripts, styles };
     } catch (error) {
@@ -253,52 +235,43 @@ function cleanOldScripts() {
     });
 }
 
-function executeScripts(scripts) {
-    console.log("🔄 début EXECUTESCRIPTS");
+function importChoosingAddressScript(addressPage) {
 
-    cleanOldScripts();
-    
-    scripts.forEach(oldScript => {
-        
-        let newScript = document.createElement("script");
-        // newScript.setAttribute("data-dynamic", "true");
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
-        if (oldScript.src) {
-            // newScript.src = oldScript.src + "?_=" + Date.now();
-            console.log("🔄 EXECUTESCRIPTS Script trouvé :", oldScript.src);
-            newScript.src = oldScript.src;
-            console.log("🔄 EXECUTESCRIPTS Script chargé :", newScript.src);
-            newScript.async = false;
-            console.log("🔄 EXECUTESCRIPTS Script async :", newScript.async);
-            if (oldScript.type === "module") newScript.type = "module";
-
-            newScript.onload = () => console.log("✅ EXECUTESCRIPTS Script chargé :", newScript.src);
-            newScript.onerror = () => console.error("❌ EXECUTESCRIPTS Erreur de chargement du script :", newScript.src);
-
-            document.body.appendChild(newScript);
-            console.log("✅ EXECUTESCRIPTS Script fin boucle.");
-        } else {
-            newScript.textContent = oldScript.textContent;
-            if (oldScript.type === "module") newScript.type = "module";
-            document.body.appendChild(newScript);
-            console.log("✅ EXECUTESCRIPTS Script inline exécuté.");
-        }
+    console.log("📦 Import dynamique de ", addressPage, ".js...");
+    document.querySelector("script[src*='choosing-address']")?.remove();
+    import(`${prefix}/js/choosing-address.js`).then(module => {
+        module.initChoosingAddress(addressPage);
+        return;
+    }).catch(error => {
+        console.error("❌ Erreur lors du chargement dynamique :", error);
+        return;
     });
-    console.log("🔄 fin EXECUTESCRIPTS");
 }
 
 /**
  * Met à jour la valeur du champ `selected-departure-address` dans le snapshot avant la transition.
  * @param {HTMLElement} tempDiv - Conteneur temporaire où la page est chargée avant le snapshot.
  */
-function updateSelectedDepartureInSnapshot(tempDiv) {
-    const selectedDeparture = localStorage.getItem('selectedDepartureAddress') || "Adresse";
-    const displayElement = tempDiv.querySelector('#selected-departure-address');
+function updateSelectedAddressInSnapshot(tempDiv) {
+
+    const selectedDepartureAddress = localStorage.getItem('selectedDepartureAddress') || "Départ";
+    const selectedArrivalAddress = localStorage.getItem('selectedArrivalAddress') || "Arrivée";
+    const departureElement = tempDiv.querySelector('#selected-departure-address');
+    const arrivalElement = tempDiv.querySelector('#selected-arrival-address');
     
-    if (displayElement) {
-        displayElement.textContent = selectedDeparture;
-        console.log(`✅ "selected-departure-address" mis à jour dans le snapshot avec : ${selectedDeparture}`);
+    if (departureElement) {
+        departureElement.textContent = selectedDepartureAddress;
+        console.log(`✅ selectedDepartureAddress mis à jour dans le snapshot avec : ${selectedDepartureAddress}`);
     } else {
-        console.warn('⚠️ Élément "selected-departure-address" introuvable dans le snapshot.');
+        console.warn(`⚠️ Élément #selected-departure-address introuvable dans le snapshot.`);
+    }
+
+    if (arrivalElement) {
+        arrivalElement.textContent = selectedArrivalAddress;
+        console.log(`✅ selectedArrivalAddress mis à jour dans le snapshot avec : ${selectedArrivalAddress}`);
+    } else {
+        console.warn(`⚠️ Élément #selected-arrival-address introuvable dans le snapshot.`);
     }
 }
