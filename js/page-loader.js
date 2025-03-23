@@ -80,7 +80,7 @@ async function loadPage(url, fromBackButton = false) {
         if(url.includes("index.html")) {
             selectImage();
             requestAnimationFrame(() => {
-                positionDropdownMenu();
+                positionDropdownMenu(tempContainer);
             });
             updateBouncingArrows();
             displayDate();

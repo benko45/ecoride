@@ -66,49 +66,28 @@ export function updateBouncingArrows() {
     }
 }
 
-export function positionDropdownMenu() {
-    const menuDropdown = document.querySelector('.dropdown');
-    const title = document.getElementById('title');
-    const trajectSearch = document.getElementById('traject-search');
+export function positionDropdownMenu(container) {
+    const menuDropdown = container.querySelector(".dropdown");
+    const title = container.querySelector("#title");
+    const trajectSearch = container.querySelector("#traject-search");
 
-    if (!dropdown || !title || !trajectSearch) {
-        console.warn("⏳ Attente de chargement des éléments pour positionner le menu...");
-        setTimeout(positionDropdownMenu, 100); // réessaye un peu plus tard
-        return;
-    }
-
-    if (!menuDropdown) {
-        console.warn("⚠️ .dropdown est introuvable !");
-        return;
-    }
-    if (!title) {
-        console.warn("⚠️ #title est introuvable !");
-        return;
-    }
-    if (!trajectSearch) {
-        console.warn("⚠️ #traject-search est introuvable !");
+    if (!menuDropdown || !title || !trajectSearch) {
+        console.warn("⚠️ Impossible de positionner le menu thème (élément manquant)");
         return;
     }
 
-    // Vérifier si on est en mode mobile
     if (window.innerWidth <= 768) {
-        // Récupérer la position Y du bas de `#title`
         const titleRectBottom = title.getBoundingClientRect().bottom;
-
-        // Récupérer la position Y du haut de `#traject-search`
         const trajectTop = trajectSearch.getBoundingClientRect().top;
-
-        // 🟢 Calculer la position idéale du menu dropdown
         const menuTop = (titleRectBottom + trajectTop) / 2 - 15;
 
-        // Appliquer la nouvelle position avec translate(-50%, -50%)
-        // menuDropdown.style.position = "absolute";
         menuDropdown.style.top = `${menuTop}px`;
         menuDropdown.style.left = "50%";
-        menuDropdown.style.transform = "translate(-50%, -50%)"; // 🔥 On garde le bon centrage
-        menuDropdown.style.zIndex = "1000"; // S'assurer qu'il est au-dessus des autres éléments
+        menuDropdown.style.transform = "translate(-50%, -50%)";
+        menuDropdown.style.zIndex = "1000";
     }
 }
+
 
 export function displayDate() {
     const savedDate = localStorage.getItem('selectedDate');
