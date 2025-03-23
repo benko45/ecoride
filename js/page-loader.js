@@ -99,9 +99,9 @@ async function loadPage(url, fromBackButton = false) {
                 if(url.includes("index")) {
                     initApplyTheme();
                     cleanCSS(url);
-                    requestAnimationFrame(() => {
+                    // requestAnimationFrame(() => {
                         positionDropdownMenu();
-                    });
+                    // });
                     updateBouncingArrows();
                     displayDate();
                     displayPassengersNb();

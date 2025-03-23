@@ -101,8 +101,6 @@ export function positionDropdownMenu() {
         menuDropdown.style.left = "50%";
         menuDropdown.style.transform = "translate(-50%, -50%)"; // 🔥 On garde le bon centrage
         menuDropdown.style.zIndex = "1000"; // S'assurer qu'il est au-dessus des autres éléments
-
-        // console.log(`✅ Menu dropdown positionné à ${menuTop}px`);
     }
 }
 
