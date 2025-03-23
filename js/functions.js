@@ -1,19 +1,3 @@
-// Configuration : Règles pour sélectionner l'image
-// const rules = [
-//     {
-//         className: 'img-mobile',
-//         condition: () => window.innerWidth < 768
-//     },
-//     {
-//         className: 'img-tablet',
-//         condition: () => window.innerWidth <= 1600 
-//     },
-//     {
-//         className: 'img-desktop',
-//         condition: () => window.innerWidth > 1600 
-//     }
-// ];
-
 export const selectImage = () => {
     console.log("🖼️ selectImage() appelée !");
 

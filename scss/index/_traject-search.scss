@@ -16,16 +16,13 @@
 
 .traject-container {
     position: absolute !important;
-    top: 50% !important;
+    top: calc(var(--vh) * 50) !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     width: 70% !important;
-    @media screen and (max-width: 425px) {
-        top: 50% !important;
-    }
     @media screen and (min-width: variables.$breakpoint) {
         position: absolute !important;
-        top: 50vh !important; /* Aligner avec la limite inférieure de l’image */
+        top: calc(var(--vh) * 50) !important; /* Aligner avec la limite inférieure de l’image */
         left: 50%;
         transform: translate(-50%, -50%) !important; /* Centrer la ligne médiane */
         width: 80%; /* Ajustement selon le design */

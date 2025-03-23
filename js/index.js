@@ -9,6 +9,17 @@ document.body.style.top = `-${window.scrollY}px`;
 document.body.style.width = "100%";
 
 /******************************************************/
+/*            Gestion de la hauteur de la fenêtre     */
+/*            pour tenir compte de la barre de        */
+/*            recherche du navigateur                 */   
+/******************************************************/
+const setRealVh = () => {
+    let vh = window.innerHeight * 0.01;
+    // définit la variable --vh en fonction de innerHeight
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+};
+
+/******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
 /******************************************************/
 export function updateBouncingArrows() {
@@ -132,44 +143,57 @@ export function displayPassengersNb() {
     console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
 }
 
-export function initIndex() {
-    /******************************************************/
-    /*      Gestion de la hauteur de la fenêtre         
-    /*      pour tenir compte de la barre de recherche
-    /*      du navigateur
-    /******************************************************/
-    const setRealVh = () => {
-        let vh = window.innerHeight * 0.01;
-        // définit la variable --vh en fonction de innerHeight
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-    setRealVh();
-    window.addEventListener('resize', setRealVh);
+/******************************************************/
+/*   Calcul de la largeur des dropdown-item           */
+/*   du menu principal                                */
+/******************************************************/
+const resizeElements = () => {
+    const lis = document.querySelectorAll('#nav li');
+    const as = document.querySelectorAll('#nav li a');
 
-    /******************************************************/
-    initApplyTheme();
+    let maxWidth = 0;
 
-    /******************************************************/
-    /*    Sélection de l'image de fond                    */
-    /******************************************************/
-    selectImage();
+    // Trouver la largeur maximale
+    lis.forEach(element => {
+        const width = element.offsetWidth;
+        if(width > maxWidth) maxWidth = width;
+    });
+    as.forEach(element => {
+        const width = element.offsetWidth;
+        if(width > maxWidth) maxWidth = width;
+    });
+    // console.log('Max Width:', maxWidth);
 
-    /******************************************************/
-    /*    Mise à jour des flèches de changement de sens   */
-    /******************************************************/
-    document.addEventListener('DOMContentLoaded', updateBouncingArrows);
-
-    // Appliquer au chargement et au redimensionnement de la fenêtre
-    document.addEventListener("DOMContentLoaded", positionDropdownMenu);
-    window.addEventListener("resize", positionDropdownMenu);
-
-
-
-    /******************************************************/
-    /*                  Menu principal                    */
-    /******************************************************/
-
-    // S'assurer que le DOM est chargé
+    // Appliquer la largeur maximale à tous les éléments
+    lis.forEach(element => {
+        element.style.width = maxWidth + 'px';
+    });
+    as.forEach(element => {
+        element.style.width = maxWidth + 'px';
+    });
+};
+/******************************************************/
+/*   Gestion du menu principal en mode tablette       */
+/******************************************************/
+function setMobileMenu(e) {
+    const connexion = document.getElementById('connexion');
+    const span_connexion = document.getElementById('span-connexion');  
+    if (e.matches) {
+        connexion.classList.remove('p-3');
+        span_connexion.innerHTML = "Connexion";
+    }
+    resizeElements();
+    const liASpan = document.querySelectorAll('li a span');
+    liASpan.forEach(element => {
+        element.classList.remove('ps-2');
+    });
+}
+/******************************************************/
+/*   Gestion générale du menu principal               */
+/******************************************************/
+function handleMenu() {
+    /*  Mode desktop                                      */
+    /**************************************************** */
     document.addEventListener('DOMContentLoaded', function() {
         // Cibler le toggle et la liste du menu
         var menuToggle = document.getElementById('menu-toggle');
@@ -199,73 +223,19 @@ export function initIndex() {
             }
         });
     });
-
-
-    /***********************************************************/
-    /*              En dessous de width 768px                  */
-    /***********************************************************/
-
+    /*******************************************************/
+    /*  En dessous de width 768px (mode mobile)            */
+    /*******************************************************/
     const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const connexion = document.getElementById('connexion');
-    const span_connexion = document.getElementById('span-connexion');
-    // const traject_container_container = document.getElementById('traject-container-container');
-
-    function handleMediaQueryChange(e) {
-        if (e.matches) {
-            connexion.classList.remove('p-3');
-            span_connexion.innerHTML = "Connexion";
-        }
-        /******************************************************/
-        /*   Calcul de la largeur des dropdown-item           */
-        /******************************************************/
-        const resizeElements = () => {
-            const lis = document.querySelectorAll('#nav li');
-            const as = document.querySelectorAll('#nav li a');
-
-            let maxWidth = 0;
-
-            // Trouver la largeur maximale
-            lis.forEach(element => {
-                const width = element.offsetWidth;
-                if(width > maxWidth) maxWidth = width;
-            });
-            as.forEach(element => {
-                const width = element.offsetWidth;
-                if(width > maxWidth) maxWidth = width;
-            });
-            // console.log('Max Width:', maxWidth);
-
-            // Appliquer la largeur maximale à tous les éléments
-            lis.forEach(element => {
-                element.style.width = maxWidth + 'px';
-            });
-            as.forEach(element => {
-                element.style.width = maxWidth + 'px';
-            });
-        };
-        // Appeler la fonction au chargement de la page
-        resizeElements();
-
-        const liASpan = document.querySelectorAll('li a span');
-        liASpan.forEach(element => {
-            element.classList.remove('ps-2');
-        });
-    }
-
     // Vérifie la taille de l'écran au chargement
-    handleMediaQueryChange(mediaQuery);
-
+    setMobileMenu(mediaQuery);
     // Écoute les changements de taille d'écran
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
-
-
-    /******************************************************/
-    /*            Gestion des choix pour le trajet        */  
-    /******************************************************/
-
-    /******************************************************/
-    /*                  CASE DEPART                       */
-    /******************************************************/
+    mediaQuery.addEventListener('change', setMobileMenu);
+}
+/******************************************************/
+/*   Gestion de la case départ                        */
+/******************************************************/
+function handleDeparture() {
     // écoute le click sur la zone recherche-départ
     const caseDepart = document.getElementById("click-case-depart");
 
@@ -286,10 +256,11 @@ export function initIndex() {
         selectedDepartureAddress = "Départ";
         document.getElementById('selected-departure-address').innerHTML = 'Départ';
     }
-
-    /******************************************************/
-    /*                  CASE ARRIVEE                      */
-    /******************************************************/
+}
+/******************************************************/
+/*   Gestion de la case arrivée                        */
+/******************************************************/
+function handleArrival() {
     //écoute le click sur la zone recherche-arrivée
     const caseArrivee = document.getElementById("case-arrivee");
     caseArrivee.addEventListener("click", function() {
@@ -309,22 +280,39 @@ export function initIndex() {
         selectedArrivalAddress = "Arrivée";
         document.getElementById('selected-arrival-address').innerHTML = 'Arrivée';
     }
-
-    /********************************************************/
-    /* vidange du localstorage si l'utilisateur quitte l'application */
-    /********************************************************/
-
-    window.addEventListener('beforeunload', function (event) {
-        const aCliqueSurItem = localStorage.getItem('clickSurItem');
-        if (!aCliqueSurItem) {
-            localStorage.clear();
-        } else {
-                localStorage.removeItem('clickSurItem');
-        }
-    });
+}
 
 
-
+export function initIndex() {
+    setRealVh();
+    window.addEventListener('resize', setRealVh);
+    /******************************************************/
+    initApplyTheme();
+    /******************************************************/
+    selectImage();
+    /******************************************************/
+    /*    Mise à jour des flèches de changement de sens   */
+    /******************************************************/
+    document.addEventListener('DOMContentLoaded', updateBouncingArrows);
+    /******************************************************/
+    /*    Mise à jour de la position du menu thème        */
+    /******************************************************/
+    document.addEventListener("DOMContentLoaded", positionDropdownMenu);
+    window.addEventListener("resize", positionDropdownMenu);
+    /******************************************************/
+    /*                  Menu principal                    */
+    /******************************************************/
+    handleMenu();
+    /******************************************************/
+    /*            Gestion des choix pour le trajet        */  
+    /******************************************************/
+    /*                  CASE DEPART                       */
+    /******************************************************/
+    handleDeparture()
+    /******************************************************/
+    /*                  CASE ARRIVEE                      */
+    /******************************************************/
+    handleArrival();
     /******************************************************/
     /*               Choix de la date                     */
     /******************************************************/
@@ -332,10 +320,7 @@ export function initIndex() {
     document.getElementById("case-date").addEventListener("click", function() {
         localStorage.setItem("clickSurItem", "true");
     });
-
     displayDate();
-
-
     /******************************************************/
     /*               Choix du nombre de passagers         */
     /******************************************************/
@@ -344,17 +329,13 @@ export function initIndex() {
         localStorage.setItem("clickSurItem", "true");
         // window.location.href = "public/html/choosing-passengers.html";
     });
-
     // initialisation du nombre de passagers
     let selectedPassengers = localStorage.getItem('selectedPassengers');
     if(!selectedPassengers){
             localStorage.setItem('selectedPassengers', 1);
     }
-
     // Affichage du nombre de passagers
     displayPassengersNb();
-
-
     /******************************************************/
     /*               Validation du formulaire             */
     /******************************************************/
@@ -373,6 +354,19 @@ export function initIndex() {
                 : selectedArrivalAddress === 'Arrivée'
                     ? window.location.href = "public/html/choosing-arrival-address.html"
                     : window.location.href = "public/html/search-result.html";
+        }
+    });
+
+    /********************************************************/
+    /* vidange du localstorage si l'utilisateur quitte l'application */
+    /********************************************************/
+
+    window.addEventListener('beforeunload', function (event) {
+        const aCliqueSurItem = localStorage.getItem('clickSurItem');
+        if (!aCliqueSurItem) {
+            localStorage.clear();
+        } else {
+                localStorage.removeItem('clickSurItem');
         }
     });
 }
