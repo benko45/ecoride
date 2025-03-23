@@ -79,7 +79,9 @@ async function loadPage(url, fromBackButton = false) {
         await loadCSSForPage(styles);
         if(url.includes("index.html")) {
             selectImage();
-            positionDropdownMenu();
+            requestAnimationFrame(() => {
+                positionDropdownMenu();
+            });
             updateBouncingArrows();
             displayDate();
             displayPassengersNb();
@@ -99,9 +101,9 @@ async function loadPage(url, fromBackButton = false) {
                 if(url.includes("index")) {
                     initApplyTheme();
                     cleanCSS(url);
-                    // requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
                         positionDropdownMenu();
-                    // });
+                    });
                     updateBouncingArrows();
                     displayDate();
                     displayPassengersNb();
