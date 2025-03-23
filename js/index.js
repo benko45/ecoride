@@ -66,7 +66,12 @@ export function updateBouncingArrows() {
     }
 }
 
-export function positionDropdownMenu(container) {
+export function positionDropdownMenu(container = document) {
+    if (!container || typeof container.querySelector !== "function") {
+        console.error("❌ container n'est pas un élément DOM valide :", container);
+        return;
+    }
+
     const menuDropdown = container.querySelector(".dropdown");
     const title = container.querySelector("#title");
     const trajectSearch = container.querySelector("#traject-search");
@@ -87,7 +92,6 @@ export function positionDropdownMenu(container) {
         menuDropdown.style.zIndex = "1000";
     }
 }
-
 
 export function displayDate() {
     const savedDate = localStorage.getItem('selectedDate');
@@ -280,8 +284,8 @@ export function initIndex() {
     /******************************************************/
     /*    Mise à jour de la position du menu thème        */
     /******************************************************/
-    document.addEventListener("DOMContentLoaded", positionDropdownMenu);
-    window.addEventListener("resize", positionDropdownMenu);
+    document.addEventListener("DOMContentLoaded", () => positionDropdownMenu());
+    window.addEventListener("resize", () => positionDropdownMenu());
     /******************************************************/
     /*                  Menu principal                    */
     /******************************************************/
