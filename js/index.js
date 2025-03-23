@@ -67,9 +67,15 @@ export function updateBouncingArrows() {
 }
 
 export function positionDropdownMenu() {
-    const menuDropdown = document.querySelector(".dropdown"); // Menu dropdown
-    const title = document.getElementById("title"); // Élément du titre
-    const trajectSearch = document.getElementById("traject-search"); // Élément traject-search
+    const menuDropdown = document.querySelector('.dropdown');
+    const title = document.getElementById('title');
+    const trajectSearch = document.getElementById('traject-search');
+
+    if (!dropdown || !title || !trajectSearch) {
+        console.warn("⏳ Attente de chargement des éléments pour positionner le menu...");
+        setTimeout(positionDropdownMenu, 100); // réessaye un peu plus tard
+        return;
+    }
 
     if (!menuDropdown) {
         console.warn("⚠️ .dropdown est introuvable !");
