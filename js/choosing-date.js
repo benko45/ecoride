@@ -1,10 +1,10 @@
 "use strict";
 
-import { applyTheme } from './apply-theme.js';
+import { initApplyTheme } from './apply-theme.js';
 import { applyDynamicStyles} from './choosing-address.js';
 
 export function initChoosingDate() {
-    applyTheme();
+    initApplyTheme();
     const datepicker = document.querySelector('.datepicker');
     if (!datepicker) {
         initDatepicker()}

@@ -1,3 +1,4 @@
+import { initApplyTheme } from "./apply-theme.js";
 import { positionDropdownMenu, updateBouncingArrows, displayDate, displayPassengersNb } from "./index.js";
 import { selectImage } from "./functions.js";
 
@@ -96,6 +97,7 @@ async function loadPage(url, fromBackButton = false) {
                 console.log(`✅ Transition terminée vers ${url}`);
                 // await loadCSSForPage(styles);
                 if(url.includes("index")) {
+                    initApplyTheme();
                     cleanCSS(url);
                     requestAnimationFrame(() => {
                         positionDropdownMenu();

@@ -1,6 +1,6 @@
 "use strict";
 
-import { applyTheme } from './apply-theme.js';
+import { initApplyTheme } from './apply-theme.js';
 import{ selectImage } from './functions.js';
 
 
@@ -147,7 +147,7 @@ export function initIndex() {
     window.addEventListener('resize', setRealVh);
 
     /******************************************************/
-    applyTheme();
+    initApplyTheme();
 
     /******************************************************/
     /*    Sélection de l'image de fond                    */

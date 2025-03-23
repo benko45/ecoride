@@ -1,10 +1,10 @@
 "use strict";
 
-import { applyTheme } from './apply-theme.js';
+import { initApplyTheme } from './apply-theme.js';
 /******************************************************/
 /******************************************************/
 export function initChoosingPassengers(mode = "final") {
-    applyTheme();
+    initApplyTheme();
 
     // Récupération des éléments à CHAQUE appel (car le DOM change)
     const plus = document.querySelector('.bi-plus-circle');

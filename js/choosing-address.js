@@ -1,4 +1,4 @@
-import { applyTheme } from './apply-theme.js';
+import { initApplyTheme } from './apply-theme.js';
 
 function attachInputEvent(suggestionsDiv, storageKey) {
     console.log("🔄 Réattachement de l'événement 'click' sur 'Utiliser votre position'...");
@@ -207,7 +207,7 @@ export function initChoosingAddress(page) {
 
     /******************************************************/
     /******************************************************/
-    applyTheme();
+    initApplyTheme();
     /******************************************************/
     /******************************************************/
     

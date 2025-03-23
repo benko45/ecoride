@@ -1,6 +1,6 @@
 "use strict";
 
-import { applyTheme } from './apply-theme.js';
+import { initApplyTheme } from './apply-theme.js';
 
 export function initChoosingArrivalAddress() {
     // console.log("✅ `initChoosingArrivalAddress()` exécuté !");
@@ -15,7 +15,7 @@ export function initChoosingArrivalAddress() {
 
         /******************************************************/
     /******************************************************/
-    applyTheme();
+    initApplyTheme();
     /******************************************************/
     /******************************************************/
 
