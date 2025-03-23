@@ -126,6 +126,11 @@ export function displayDate() {
     }
 }
 
+export function displayPassengersNb() {
+    const passengersNb = localStorage.getItem('selectedPassengers');
+    document.getElementById('passengers-nb').innerHTML = passengersNb;
+    console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
+}
 
 export function initIndex() {
     /******************************************************/
@@ -341,17 +346,13 @@ export function initIndex() {
     });
 
     // initialisation du nombre de passagers
-    let selectedPassengers;
-    if(localStorage.getItem('selectedPassengers')){
-        selectedPassengers = localStorage.getItem('selectedPassengers')
-        }
-        else {
-            selectedPassengers = 1;
+    let selectedPassengers = localStorage.getItem('selectedPassengers');
+    if(!selectedPassengers){
             localStorage.setItem('selectedPassengers', 1);
-        }
+    }
 
-
-    document.getElementById('passengers-nb').innerHTML = selectedPassengers;
+    // Affichage du nombre de passagers
+    displayPassengersNb();
 
 
     /******************************************************/

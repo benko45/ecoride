@@ -1,4 +1,4 @@
-import { positionDropdownMenu, updateBouncingArrows, displayDate } from "./index.js";
+import { positionDropdownMenu, updateBouncingArrows, displayDate, displayPassengersNb } from "./index.js";
 import { selectImage } from "./functions.js";
 
 
@@ -62,6 +62,8 @@ async function loadPage(url, fromBackButton = false) {
             importScript("choosing-address", "initChoosingAddress", addressPage);
         } else if(url.includes("choosing-date")) {
             importScript("choosing-date", "initChoosingDate");
+        } else if(url.includes("choosing-passengers")) {
+            importScript("choosing-passengers", "initChoosingPassengers", "transition");
         }
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
@@ -79,6 +81,7 @@ async function loadPage(url, fromBackButton = false) {
             positionDropdownMenu();
             updateBouncingArrows();
             displayDate();
+            displayPassengersNb();
         }
         gsap.to(tempContainer, {
             left: "0%",
@@ -99,10 +102,13 @@ async function loadPage(url, fromBackButton = false) {
                     });
                     updateBouncingArrows();
                     displayDate();
+                    displayPassengersNb();
                 } else if(url.includes(addressPage)) {
                     importScript("choosing-address", "initChoosingAddress", addressPage);
                 } else if(url.includes("choosing-date")) {
                     importScript("choosing-date", "initChoosingDate");
+                }  else if(url.includes("choosing-passengers")) {
+                    importScript("choosing-passengers", "initChoosingPassengers", "final");
                 }
             }
         });
@@ -137,9 +143,12 @@ async function generatePageSnapshot(url) {
 
         // console.log("✅ Contenu extrait sans doubler #page-content.");
 
-        // 🔹 Mettre à jour le champ `selected-departure-address` dans le snapshot
-        if (window.location.pathname.includes("choosing-address") || window.location.pathname.includes("choosing-arrival-address")) {
-            updateSelectedAddressInSnapshot(snapshot);
+        // 🔹 Mettre à jour le champ de données dans le snapshot
+        if (window.location.pathname.includes("choosing-address")
+                || window.location.pathname.includes("choosing-arrival-address")
+                || window.location.pathname.includes("choosing-passengers")
+                || url.includes("choosing-passengers")) {
+                    updateSnapshotData(snapshot);
         } else {
             console.log("🔄 updateSelectedAddressInSnapshot() n'a pas été appliquée");
         }
@@ -288,24 +297,25 @@ function importScript(scriptName, initFunctionName = null, initParam = null) {
  * Met à jour la valeur du champ `selected-departure-address` dans le snapshot avant la transition.
  * @param {HTMLElement} tempDiv - Conteneur temporaire où la page est chargée avant le snapshot.
  */
-function updateSelectedAddressInSnapshot(tempDiv) {
-
+function updateSnapshotData(tempDiv) {
     const selectedDepartureAddress = localStorage.getItem('selectedDepartureAddress') || "Départ";
     const selectedArrivalAddress = localStorage.getItem('selectedArrivalAddress') || "Arrivée";
+    const selectedPassengers = localStorage.getItem('selectedPassengers') || "1";
+
     const departureElement = tempDiv.querySelector('#selected-departure-address');
     const arrivalElement = tempDiv.querySelector('#selected-arrival-address');
-    
+    const passengersElement = tempDiv.querySelector('#passengers-nb');
+
     if (departureElement) {
         departureElement.textContent = selectedDepartureAddress;
-        console.log(`✅ selectedDepartureAddress mis à jour dans le snapshot avec : ${selectedDepartureAddress}`);
-    } else {
-        console.warn(`⚠️ Élément #selected-departure-address introuvable dans le snapshot.`);
     }
 
     if (arrivalElement) {
         arrivalElement.textContent = selectedArrivalAddress;
-        console.log(`✅ selectedArrivalAddress mis à jour dans le snapshot avec : ${selectedArrivalAddress}`);
-    } else {
-        console.warn(`⚠️ Élément #selected-arrival-address introuvable dans le snapshot.`);
+    }
+
+    if (passengersElement) {
+        passengersElement.textContent = selectedPassengers;
     }
 }
+
