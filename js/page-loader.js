@@ -165,9 +165,9 @@ async function loadPage(url, fromBackButton = false) {
 
 async function generatePageSnapshot(url) {
     console.log(`📸 Chargement du fragment de page : ${url}`);
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
     try {
-        const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-        console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
         const response = await fetch(`${prefix}/fragments/${url}`, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
