@@ -1,29 +1,55 @@
+import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "./spa-navigation.js";
 /******************************************************/
 /*            Gestion de la Navigation                */
-let isFirstNavigation = true;         
-if (isFirstNavigation) {
-    //initialisation de l'historique de navigation
-    window.history.replaceState({}, "", "index.html");
-    isFirstNavigation = false;
-}
-let position = "index.html"
+/******************************************************/
+const expectedPages = [
+    "index.html",
+    "choosing-address.html",
+    "choosing-arrival-address.html",
+    "choosing-date.html",
+    "choosing-passengers.html"
+  ];
+  
+  // Si la page HTML a été chargée directement sans passer par index.html, on redirige
+  const currentPath = window.location.pathname.split("/").pop();
+  if (expectedPages.includes(currentPath) && currentPath !== "index.html") {
+    console.warn("🚫 Page HTML accédée directement : redirection vers index.html");
+    window.location.replace("index.html");
+  }
+  
+initNavigation();
+setupPopstateHandler(loadPage);
 /******************************************************/
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+        console.warn("♻️ Navigation via cache (bfcache) détectée. Rechargement forcé.");
+        location.reload();
+    }
+});  
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Interception globale des liens <a>
     document.body.addEventListener("click", function (event) {
-        let target = event.target.closest("a");
-        if (target) {
-            event.preventDefault();
-            const urlPathname = new URL(target.href).pathname.split("/").pop();
-            loadPage(urlPathname);
+        const link = event.target.closest("a");
+
+        if (link && link.href.startsWith(window.location.origin)) {
+            const isExternal = link.target === "_blank" || link.hasAttribute("download");
+            const isHashLink = link.hash && link.pathname === window.location.pathname;
+
+            if (!isExternal && !isHashLink) {
+                event.preventDefault();
+                const urlPathname = new URL(link.href).pathname.split("/").pop();
+                console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
+                loadPage(urlPathname);
+            }
         }
     });
-    
+
     document.body.addEventListener("click", function (event) {
         let el = event.target;
         let shouldNavigate = true;
-        
+
         while (el && el !== document.body) {
             if (el.id === "bouncing-arrows") {
                 shouldNavigate = false; // ne pas naviguer
@@ -34,37 +60,33 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             el = el.parentElement;
         }
-        
+
         if (shouldNavigate && el && el.hasAttribute("data-navigate")) {
             event.preventDefault();
+            console.log(`🔗 Lien data-navigate : ${el.getAttribute("data-navigate")}`);
             loadPage(el.getAttribute("data-navigate"));
-        }
-        
-    });
-
-    // Gestion des retours arrière
-    window.addEventListener("popstate", function () {
-        console.log("↩️ Retour en arrière détecté !");
-        const path = new URL(location.href).pathname.replace(/^\//, "");
-        if(position === "index.html") {
-            if(isFirstNavigation) {
-                position = path;
-                loadPage(path, true);
-            }
-        } else {
-            position = path;
-            loadPage(path, true);
         }
     });
 });
 
 async function loadPage(url, fromBackButton = false) {
 
-    console.log(`🚀 loadPage() appelé pour : ${url}`);
-    const addressPage = url.includes("choosing-address")
-            ? "choosing-address"
-            : "choosing-arrival-address";
+    console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);
+    console.trace(); // 💣 TRACE
 
+    const expectedPages = [
+        "index.html",
+        "choosing-address.html",
+        "choosing-arrival-address.html",
+        "choosing-date.html",
+        "choosing-passengers.html",
+      ];
+      
+      if (!expectedPages.includes(url)) {
+        console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
+        console.trace(); // Voir qui a demandé ce loadPage()
+      }
+      
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
@@ -84,7 +106,7 @@ async function loadPage(url, fromBackButton = false) {
         document.body.appendChild(tempContainer);
         
         await loadCSSForPage(styles);
-        scriptToImport(url, addressPage);
+        scriptToImport(url);
 
         gsap.to(tempContainer, {
             left: "0%",
@@ -94,7 +116,7 @@ async function loadPage(url, fromBackButton = false) {
                 pageContent.innerHTML = tempContainer.innerHTML;
                 tempContainer.remove();
                 navigation(url, fromBackButton);
-                scriptToImport(url, addressPage);
+                scriptToImport(url);
                 console.log(`✅ Transition terminée vers ${url}`);
             }
         });
@@ -121,6 +143,7 @@ async function generatePageSnapshot(url) {
         tempDiv.innerHTML = htmlText;
 
         let pageContentElement = tempDiv.querySelector("#page-content");
+        // console.log("🧪 generatePageSnapshot() : Contenu HTML chargé :", tempDiv.innerHTML);
         if (!pageContentElement) throw new Error( `❌ #page-content introuvable dans la page chargée !`);
 
         // 🔹 Correction : extraire uniquement le contenu interne de `#page-content`
@@ -219,11 +242,15 @@ function importScript(scriptName, initFunctionName = null, initParam = null) {
         });
 }
 
-function scriptToImport(url, addressPage) {
-    if(url.includes("index.html")) {
+function scriptToImport(url) {
+    console.log("📜 scriptToImport() appelé avec :", url);
+
+    if(url.includes("index")) {
         importScript("index", "initIndex");
-    } else if(url.includes(addressPage)) {
-        importScript("choosing-address", "initChoosingAddress", addressPage);
+    } else if (url.includes("choosing-address")) {
+        importScript("choosing-address", "initChoosingAddress", "choosing-address");
+    } else if (url.includes("choosing-arrival-address")) {
+        importScript("choosing-address", "initChoosingAddress", "choosing-arrival-address");
     } else if(url.includes("choosing-date")) {
         importScript("choosing-date", "initChoosingDate");
     } else if(url.includes("choosing-passengers")) {
@@ -257,51 +284,7 @@ function updateSnapshotData(tempDiv) {
     }
 }
 
-function navigation(url, fromBackButton) {
-    if (!fromBackButton) {
-        if (isFirstNavigation) {
-            window.history.replaceState({}, "", url); // index.html ou autre au tout début
-            isFirstNavigation = false;
-        } else {
-            window.history.pushState({}, "", url); // à chaque navigation classique
-        }
-    }    
-}
 
 
-
-const historyLog = [];
-
-function logHistoryEvent(action, path = location.pathname) {
-    historyLog.push({ action, path, time: new Date().toLocaleTimeString() });
-    console.clear();
-    console.log("🧭 Historique SPA (dernier en bas) :");
-    historyLog.forEach((entry, index) => {
-        console.log(
-            `${index + 1}. ${entry.time} — [${entry.action}] ${entry.path}`
-        );
-    });
-}
-
-// Intercepter les pushState et replaceState
-(function () {
-    const originalPush = history.pushState;
-    const originalReplace = history.replaceState;
-
-    history.pushState = function (...args) {
-        originalPush.apply(this, args);
-        logHistoryEvent("pushState", args[2]); // args[2] = URL
-    };
-
-    history.replaceState = function (...args) {
-        originalReplace.apply(this, args);
-        logHistoryEvent("replaceState", args[2]);
-    };
-})();
-
-// Intercepter les retours en arrière / avant
-window.addEventListener("popstate", () => {
-    logHistoryEvent("popstate");
-});
 
 

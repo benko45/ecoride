@@ -260,22 +260,22 @@ export function initIndex() {
     /******************************************************/
     /*               Validation du formulaire             */
     /******************************************************/
-    document.getElementById("search").addEventListener("click", function() {
+    // document.getElementById("search").addEventListener("click", function() {
 
-        if(selectedDepartureAddress === selectedArrivalAddress) {
-            alert('Veuillez choisir des adresses différentes');
-        } else {
-            // Vérifier que les champs sont remplis
-            if(!localStorage.getItem('selectedDate')) {
-                localStorage.setItem('selectedDate', todayFormatted);
-            }
-            selectedDepartureAddress === 'Départ'
-                ? window.location.href = "public/html/choosing-address.html"
-                : selectedArrivalAddress === 'Arrivée'
-                    ? window.location.href = "public/html/choosing-arrival-address.html"
-                    : window.location.href = "public/html/search-result.html";
-        }
-    });
+    //     if(selectedDepartureAddress === selectedArrivalAddress) {
+    //         alert('Veuillez choisir des adresses différentes');
+    //     } else {
+    //         // Vérifier que les champs sont remplis
+    //         if(!localStorage.getItem('selectedDate')) {
+    //             localStorage.setItem('selectedDate', todayFormatted);
+    //         }
+    //         selectedDepartureAddress === 'Départ'
+    //             ? window.location.href = "public/html/choosing-address.html"
+    //             : selectedArrivalAddress === 'Arrivée'
+    //                 ? window.location.href = "public/html/choosing-arrival-address.html"
+    //                 : window.location.href = "public/html/search-result.html";
+    //     }
+    // });
 }
 
 initIndex();

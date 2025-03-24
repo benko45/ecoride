@@ -222,8 +222,8 @@ function updatePlaceholder(storageKey) {
 }
 
 export function initChoosingAddress(page) {
-    console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
-    console.log("📌 initChoosingAddress : page = ", page);
+    // console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
+    console.log("📌 initChoosingAddress — reçu page:", page);
 
     /* adaptation du chemin pour les pages GitHub */
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
@@ -240,12 +240,12 @@ export function initChoosingAddress(page) {
     updatePlaceholder(storageKey);
     
     attachInputEvent(initSuggestions(storageKey), storageKey); 
-    document.querySelectorAll('.back-link')?.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            history.pushState({}, "", `${prefix}${location}`);
-        });
-    });
+    // document.querySelectorAll('.back-link')?.forEach(link => {
+    //     link.addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //         history.pushState({}, "", `${prefix}${location}`);
+    //     });
+    // });
     document.addEventListener("click", (event) => {
         console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
     });
