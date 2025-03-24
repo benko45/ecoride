@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isExternal && !isHashLink) {
                 event.preventDefault();
                 const urlPathname = new URL(link.href).pathname.split("/").pop();
-                // console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
+                console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
                 applyTempDataToLocalStorage();
                 loadPage(urlPathname);
             }
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (shouldNavigate && el && el.hasAttribute("data-navigate")) {
             event.preventDefault();
-            // console.log(`🔗 Lien data-navigate : ${el.getAttribute("data-navigate")}`);
+            console.log(`🔗 Lien data-navigate : ${el.getAttribute("data-navigate")}`);
             applyTempDataToLocalStorage();
             loadPage(el.getAttribute("data-navigate"));
         }
