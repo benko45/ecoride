@@ -2,12 +2,12 @@
 
 import { applyTheme } from './apply-theme.js';
 import { applyDynamicStyles} from './choosing-address.js';
+import { setTempData } from './page-loader.js';
 
 export function initChoosingDate() {
     applyTheme();
     const datepicker = document.querySelector('.datepicker');
-    if (!datepicker) {
-        initDatepicker()}
+    if (!datepicker) initDatepicker();
     else {
         datepicker.remove();
         initDatepicker();
@@ -37,17 +37,16 @@ function initDatepicker() {
             language: 'fr',     // Langue en français
             container: '#date-depart'
         }).on('changeDate', function(e) {
-            // Format court
+
+                // Format court
             let selectedDate = e.format();
             selectedDate = selectedDate.replace('.', '');  // Supprime le point après le jour
-            localStorage.setItem('selectedDate', selectedDate);
-
+            setTempData('selectedDate', selectedDate);
             // Format long (DD dd MM)
-            const dateObject = e.date;
-            const options = { weekday: 'long', day: '2-digit', month: 'long' };
-            const longSelectedDate = dateObject.toLocaleDateString('fr-FR', options);
-
-            localStorage.setItem('longSelectedDate', longSelectedDate);
+            // const dateObject = e.date;
+            // const options = { weekday: 'long', day: '2-digit', month: 'long' };
+            // const longSelectedDate = dateObject.toLocaleDateString('fr-FR', options);
+            // localStorage.setItem('longSelectedDate', longSelectedDate);
 
             console.log('selectedDate:', selectedDate);
             // console.log('longSelectedDate:', longSelectedDate);

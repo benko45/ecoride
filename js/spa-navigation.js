@@ -1,3 +1,5 @@
+import { resetTempData } from "./page-loader.js";
+
 let isFirstNavigation = true;
 
 /**
@@ -57,6 +59,7 @@ export function setupPopstateHandler(loadPageCallback) {
     window.addEventListener("popstate", () => {
         const path = normalizeUrl(location.href);
         console.log("↩️ Retour navigateur vers:", path);
+        resetTempData();
         loadPageCallback(path, true);
     });
 }

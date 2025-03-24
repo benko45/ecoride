@@ -1,8 +1,8 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-/******************************************************/
-/******************************************************/
+import { setTempData } from './page-loader.js';
+
 export function initChoosingPassengers() {
     applyTheme();
 
@@ -61,7 +61,7 @@ function plusAnimation(plus, minus, passengers_nb) {
                 plus.style.color = "var(--custom-primary-2)";
             }
             passengers_nb.innerHTML++;
-            localStorage.setItem("selectedPassengers", passengers_nb.innerHTML);
+            setTempData("selectedPassengers", passengers_nb.innerHTML);
         }
     });
 }
@@ -76,7 +76,7 @@ function minusAnimation(plus, minus, passengers_nb) {
             }
             plus.style.color = "var(--custom-primary)";
             passengers_nb.innerHTML--;
-            localStorage.setItem("selectedPassengers", passengers_nb.innerHTML);
+            setTempData("selectedPassengers", passengers_nb.innerHTML);
         } 
     });
 }

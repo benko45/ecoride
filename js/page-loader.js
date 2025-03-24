@@ -2,31 +2,65 @@ import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "
 /******************************************************/
 /*            Gestion de la Navigation                */
 /******************************************************/
-const expectedPages = [
-    "index.html",
-    "choosing-address.html",
-    "choosing-arrival-address.html",
-    "choosing-date.html",
-    "choosing-passengers.html"
-  ];
-  
-  // Si la page HTML a été chargée directement sans passer par index.html, on redirige
-  const currentPath = window.location.pathname.split("/").pop();
-  if (expectedPages.includes(currentPath) && currentPath !== "index.html") {
-    console.warn("🚫 Page HTML accédée directement : redirection vers index.html");
-    window.location.replace("index.html");
-  }
-  
+let _currentPage = "index"; // 📍 Page SPA actuellement affichée
+export function getCurrentPage() {
+    return _currentPage;
+}
+export function setCurrentPage(page) {
+    _currentPage = page;
+}
 initNavigation();
 setupPopstateHandler(loadPage);
-/******************************************************/
 
-window.addEventListener("pageshow", (event) => {
-    if (event.persisted) {
-        console.warn("♻️ Navigation via cache (bfcache) détectée. Rechargement forcé.");
-        location.reload();
+/*****************************************************/
+/*            Gestion des input data                 */
+/*****************************************************/
+export const tempData = {
+    selectedDepartureAddress: null,
+    selectedArrivalAddress: null,
+    selectedDate: null,
+    selectedPassengers: null
+};
+
+function applyTempDataToLocalStorage() {
+    if (tempData.selectedDepartureAddress) {
+        localStorage.setItem("selectedDepartureAddress", tempData.selectedDepartureAddress);
     }
-});  
+    if(tempData.selectedArrivalAddress) {
+        localStorage.setItem("selectedArrivalAddress", tempData.selectedArrivalAddress);
+    }
+    if (tempData.selectedDate) {
+        localStorage.setItem("selectedDate", tempData.selectedDate);
+    }
+    if (tempData.selectedPassengers) {
+        localStorage.setItem("selectedPassengers", tempData.selectedPassengers);
+    }
+    console.log("💾 Données temporaires transférées dans localStorage");
+}
+
+export function setTempData(key, value) {
+    if (key in tempData) {
+        tempData[key] = value;
+    } else {
+        console.warn(`❗ Clé inconnue dans tempData : ${key}`);
+    }
+}
+
+export function resetTempData() {
+    tempData.selectedDepartureAddress = null;
+    tempData.selectedArrivalAddress = null;
+    tempData.selectedDate = null;
+    tempData.selectedPassengers = null;
+    // console.log("🗑️ Données temporaires effacées");
+}
+
+/*****************************************************/
+/*            Gestion du chargement de page          */
+/*****************************************************/
+window.addEventListener("pageshow", (event) => {
+    // Ce bloc reste utile si on veut détecter un retour via bfcache
+    console.log("📌 pageshow event", event.persisted ? "(restauré du cache)" : "(normal)");
+});
 
 document.addEventListener("DOMContentLoaded", function () {
     // Interception globale des liens <a>
@@ -40,7 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isExternal && !isHashLink) {
                 event.preventDefault();
                 const urlPathname = new URL(link.href).pathname.split("/").pop();
-                console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
+                // console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
+                applyTempDataToLocalStorage();
                 loadPage(urlPathname);
             }
         }
@@ -63,7 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (shouldNavigate && el && el.hasAttribute("data-navigate")) {
             event.preventDefault();
-            console.log(`🔗 Lien data-navigate : ${el.getAttribute("data-navigate")}`);
+            // console.log(`🔗 Lien data-navigate : ${el.getAttribute("data-navigate")}`);
+            applyTempDataToLocalStorage();
             loadPage(el.getAttribute("data-navigate"));
         }
     });
@@ -106,7 +142,7 @@ async function loadPage(url, fromBackButton = false) {
         document.body.appendChild(tempContainer);
         
         await loadCSSForPage(styles);
-        scriptToImport(url);
+        scriptToImport(url, tempContainer);
 
         gsap.to(tempContainer, {
             left: "0%",
@@ -117,6 +153,7 @@ async function loadPage(url, fromBackButton = false) {
                 tempContainer.remove();
                 navigation(url, fromBackButton);
                 scriptToImport(url);
+                setCurrentPage(normalizeUrl(url).replace(".html", ""));
                 console.log(`✅ Transition terminée vers ${url}`);
             }
         });
@@ -127,46 +164,36 @@ async function loadPage(url, fromBackButton = false) {
 }
 
 async function generatePageSnapshot(url) {
-    console.log(`📸 Génération et stabilisation de la page en arrière-plan : ${url}`);
-
+    console.log(`📸 Chargement du fragment de page : ${url}`);
     try {
-        // let response = await fetch(`${url}?_=${Date.now()}`, { cache: "no-store" });
         const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-
-        console.log("🔄 generatePageSnapshot() : url = ", url);
-        // let response = await fetch(url, { cache: "no-store" });
-        let response = await fetch(`${prefix}/${url}`, { cache: "no-store" });
+        const response = await fetch(`${prefix}/fragments/${url}`, { cache: "no-store" });
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
-        let htmlText = await response.text();
-        let tempDiv = document.createElement("div");
+        const htmlText = await response.text();
+
+        const tempDiv = document.createElement("div");
         tempDiv.innerHTML = htmlText;
 
-        let pageContentElement = tempDiv.querySelector("#page-content");
-        // console.log("🧪 generatePageSnapshot() : Contenu HTML chargé :", tempDiv.innerHTML);
-        if (!pageContentElement) throw new Error( `❌ #page-content introuvable dans la page chargée !`);
+        // Récupération des styles (liens <link rel="stylesheet">)
+        const styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
 
-        // 🔹 Correction : extraire uniquement le contenu interne de `#page-content`
-        let snapshot = pageContentElement.cloneNode(true);
-        snapshot.removeAttribute("id"); // Enlève l'ID pour éviter un conflit lors de l'insertion
+        // On supprime ces <link> du fragment avant injection dans le DOM
+        styles.forEach(link => link.remove());
 
-        // console.log("✅ Contenu extrait sans doubler #page-content.");
+        const snapshot = tempDiv.innerHTML;
 
-        // 🔹 Mettre à jour le champ de données dans le snapshot
-        if (window.location.pathname.includes("choosing-address")
-                || window.location.pathname.includes("choosing-arrival-address")
-                || window.location.pathname.includes("choosing-passengers")
-                || url.includes("choosing-passengers")) {
-                    updateSnapshotData(snapshot);
-        } else {
-            console.log("🔄 updateSelectedAddressInSnapshot() n'a pas été appliquée");
-        }
+        // Optionnel : traitement conditionnel selon le type de page (ex: mise à jour snapshot)
+        const normalized = normalizeUrl(url);
+        const tempWrapper = document.createElement("div");
+        tempWrapper.innerHTML = snapshot;
+        const pageContentDiv = tempWrapper.querySelector("#page-content");
+        if (pageContentDiv) pageContentDiv.removeAttribute("id");
+        updateSnapshotData(tempWrapper);
+        return { snapshot: tempWrapper.innerHTML, styles };
 
-        let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
-
-        return { snapshot: snapshot.innerHTML, styles };
     } catch (error) {
-        console.error("❌ Erreur lors de la capture de la page :", error);
+        console.error("❌ Erreur lors du chargement du fragment :", error);
         return { snapshot: "", styles: [] };
     }
 }
@@ -220,7 +247,7 @@ async function loadCSSForPage(styles) {
     });
 }
 
-function importScript(scriptName, initFunctionName = null, initParam = null) {
+function importScript(scriptName, initFunctionName = null, initParam_1 = null) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
     console.log(`📦 Import dynamique de ${scriptName}.js...`);
@@ -231,7 +258,7 @@ function importScript(scriptName, initFunctionName = null, initParam = null) {
     import(`${prefix}/js/${scriptName}.js`)
         .then(module => {
             if (initFunctionName && typeof module[initFunctionName] === "function") {
-                module[initFunctionName](initParam);
+                module[initFunctionName](initParam_1);
                 console.log(`✅ ${initFunctionName}() appelée depuis ${scriptName}.js`);
             } else if (initFunctionName) {
                 console.warn(`⚠️ ${initFunctionName}() non trouvée dans ${scriptName}.js`);
@@ -242,11 +269,10 @@ function importScript(scriptName, initFunctionName = null, initParam = null) {
         });
 }
 
-function scriptToImport(url) {
+function scriptToImport(url, container) {
     console.log("📜 scriptToImport() appelé avec :", url);
-
     if(url.includes("index")) {
-        importScript("index", "initIndex");
+        importScript("index", "initIndex", container);
     } else if (url.includes("choosing-address")) {
         importScript("choosing-address", "initChoosingAddress", "choosing-address");
     } else if (url.includes("choosing-arrival-address")) {

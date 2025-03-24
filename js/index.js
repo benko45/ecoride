@@ -7,11 +7,53 @@ import{ selectImage } from './functions.js';
 document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
 document.body.style.width = "100%";
-let initialized = false;
+
 localStorage.setItem('selectedDepartureAddress', 'Départ');
 localStorage.setItem('selectedArrivalAddress', 'Arrivée');
 localStorage.setItem('selectedPassengers', 1);
 localStorage.setItem('selectedDate', new Date().toLocaleDateString('fr-FR', { weekday: 'short', day: '2-digit', month: 'short' }).replace('.', ''));
+
+/******************************************************/
+/*   logique principale                               */
+/******************************************************/
+export function initIndex(container = document) {
+    
+    setRealVh();
+    applyTheme();
+    selectImage();
+    positionDropdownMenu(container);
+    handleMenu();
+    displayDepartureAddress();
+    displayArrivalAddress();
+    displayDate();
+    displayPassengersNb();
+    updateBouncingArrows();
+   
+    
+    window.addEventListener('resize', setRealVh);
+    document.addEventListener('DOMContentLoaded', updateBouncingArrows);
+    document.addEventListener("DOMContentLoaded", () => positionDropdownMenu());
+    window.addEventListener("resize", () => positionDropdownMenu());
+    /******************************************************/
+    /*               Validation du formulaire             */
+    /******************************************************/
+    // document.getElementById("search").addEventListener("click", function() {
+
+    //     if(selectedDepartureAddress === selectedArrivalAddress) {
+    //         alert('Veuillez choisir des adresses différentes');
+    //     } else {
+    //         // Vérifier que les champs sont remplis
+    //         if(!localStorage.getItem('selectedDate')) {
+    //             localStorage.setItem('selectedDate', todayFormatted);
+    //         }
+    //         selectedDepartureAddress === 'Départ'
+    //             ? window.location.href = "public/html/choosing-address.html"
+    //             : selectedArrivalAddress === 'Arrivée'
+    //                 ? window.location.href = "public/html/choosing-arrival-address.html"
+    //                 : window.location.href = "public/html/search-result.html";
+    //     }
+    // });
+}
 
 /******************************************************/
 /*            Gestion de la hauteur de la fenêtre     */
@@ -72,7 +114,7 @@ export function updateBouncingArrows() {
 }
 
 export function positionDropdownMenu(container = document) {
-    if (!container || typeof container.querySelector !== "function") {
+    if (!(container instanceof Element || container instanceof Document)) {
         console.error("❌ container n'est pas un élément DOM valide :", container);
         return;
     }
@@ -80,17 +122,17 @@ export function positionDropdownMenu(container = document) {
     const menuDropdown = container.querySelector(".dropdown");
     const title = container.querySelector("#title");
     const trajectSearch = container.querySelector("#traject-search");
-
+    
     if (!menuDropdown || !title || !trajectSearch) {
         console.warn("⚠️ Impossible de positionner le menu thème (élément manquant)");
         return;
     }
-
+    
     if (window.innerWidth <= 768) {
         const titleRectBottom = title.getBoundingClientRect().bottom;
         const trajectTop = trajectSearch.getBoundingClientRect().top;
         const menuTop = (titleRectBottom + trajectTop) / 2 - 15;
-
+        
         menuDropdown.style.top = `${menuTop}px`;
         menuDropdown.style.left = "50%";
         menuDropdown.style.transform = "translate(-50%, -50%)";
@@ -98,7 +140,16 @@ export function positionDropdownMenu(container = document) {
     }
 }
 
-export function displayDate() {
+
+function displayDepartureAddress() {
+    document.getElementById('selected-departure-address').innerHTML = localStorage.getItem('selectedDepartureAddress');
+}
+
+function displayArrivalAddress() {
+    document.getElementById('selected-arrival-address').innerHTML = localStorage.getItem('selectedArrivalAddress');
+}
+
+function displayDate() {
     const savedDate = localStorage.getItem('selectedDate');
     const options = { weekday: 'short', day: '2-digit', month: 'short' };
     
@@ -112,7 +163,7 @@ export function displayDate() {
     const afterTomorrow = new Date(today);
     afterTomorrow.setDate(today.getDate() + 2);
     const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
-
+    
     if (savedDate) {
         // console.log('savedDate:', savedDate);
         if (savedDate === todayFormatted) {
@@ -129,7 +180,7 @@ export function displayDate() {
     }
 }
 
-export function displayPassengersNb() {
+function displayPassengersNb() {
     const passengersNb = localStorage.getItem('selectedPassengers');
     document.getElementById('passengers-nb').innerHTML = passengersNb;
     // console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
@@ -142,9 +193,9 @@ export function displayPassengersNb() {
 const resizeElements = () => {
     const lis = document.querySelectorAll('#nav li');
     const as = document.querySelectorAll('#nav li a');
-
+    
     let maxWidth = 0;
-
+    
     // Trouver la largeur maximale
     lis.forEach(element => {
         const width = element.offsetWidth;
@@ -155,7 +206,7 @@ const resizeElements = () => {
         if(width > maxWidth) maxWidth = width;
     });
     // console.log('Max Width:', maxWidth);
-
+    
     // Appliquer la largeur maximale à tous les éléments
     lis.forEach(element => {
         element.style.width = maxWidth + 'px';
@@ -224,58 +275,6 @@ function handleMenu() {
     // Écoute les changements de taille d'écran
     mediaQuery.addEventListener('change', setMobileMenu);
 }
-/******************************************************/
-/*   Gestion de la case départ                        */
-/******************************************************/
-function displayDepartureAddress() {
-    document.getElementById('selected-departure-address').innerHTML = localStorage.getItem('selectedDepartureAddress'); 
-}
-/******************************************************/
-/*   Gestion de la case arrivée                        */
-/******************************************************/
-function displayArrivalAddress() {
-    document.getElementById('selected-arrival-address').innerHTML = localStorage.getItem('selectedArrivalAddress'); 
-}
 
-export function initIndex() {
-    // if (initialized) return;
-    // initialized = true;
-    
-    setRealVh();
-    applyTheme();
-    selectImage();
-    positionDropdownMenu();
-    handleMenu();
-    displayDepartureAddress();
-    displayArrivalAddress();
-    displayDate();
-    displayPassengersNb();
-    updateBouncingArrows();
-   
-    
-    window.addEventListener('resize', setRealVh);
-    document.addEventListener('DOMContentLoaded', updateBouncingArrows);
-    document.addEventListener("DOMContentLoaded", () => positionDropdownMenu());
-    window.addEventListener("resize", () => positionDropdownMenu());
-    /******************************************************/
-    /*               Validation du formulaire             */
-    /******************************************************/
-    // document.getElementById("search").addEventListener("click", function() {
-
-    //     if(selectedDepartureAddress === selectedArrivalAddress) {
-    //         alert('Veuillez choisir des adresses différentes');
-    //     } else {
-    //         // Vérifier que les champs sont remplis
-    //         if(!localStorage.getItem('selectedDate')) {
-    //             localStorage.setItem('selectedDate', todayFormatted);
-    //         }
-    //         selectedDepartureAddress === 'Départ'
-    //             ? window.location.href = "public/html/choosing-address.html"
-    //             : selectedArrivalAddress === 'Arrivée'
-    //                 ? window.location.href = "public/html/choosing-arrival-address.html"
-    //                 : window.location.href = "public/html/search-result.html";
-    //     }
-    // });
-}
 
 initIndex();
