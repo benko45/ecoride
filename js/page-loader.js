@@ -1,7 +1,13 @@
-import { initApplyTheme } from "./apply-theme.js";
-import { positionDropdownMenu, updateBouncingArrows, displayDate, displayPassengersNb } from "./index.js";
-import { selectImage } from "./functions.js";
-
+/******************************************************/
+/*            Gestion de la Navigation                */
+let isFirstNavigation = true;         
+if (isFirstNavigation) {
+    //initialisation de l'historique de navigation
+    window.history.replaceState({}, "", "index.html");
+    isFirstNavigation = false;
+}
+let position = "index.html"
+/******************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -20,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         while (el && el !== document.body) {
             if (el.id === "bouncing-arrows") {
-                // updateBouncingArrows();
                 shouldNavigate = false; // ne pas naviguer
                 break;
             }
@@ -40,7 +45,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // Gestion des retours arrière
     window.addEventListener("popstate", function () {
         console.log("↩️ Retour en arrière détecté !");
-        loadPage(location.href, true);
+        const path = new URL(location.href).pathname.replace(/^\//, "");
+        if(position === "index.html") {
+            if(isFirstNavigation) {
+                position = path;
+                loadPage(path, true);
+            }
+        } else {
+            position = path;
+            loadPage(path, true);
+        }
     });
 });
 
@@ -57,15 +71,7 @@ async function loadPage(url, fromBackButton = false) {
     }
     const pageContent = document.getElementById("page-content");
     try {
-        let { snapshot, scripts, styles } = await generatePageSnapshot(url);
-
-        if(url.includes(addressPage)) {
-            importScript("choosing-address", "initChoosingAddress", addressPage);
-        } else if(url.includes("choosing-date")) {
-            importScript("choosing-date", "initChoosingDate");
-        } else if(url.includes("choosing-passengers")) {
-            importScript("choosing-passengers", "initChoosingPassengers", "transition");
-        }
+        let { snapshot, styles } = await generatePageSnapshot(url);
         let tempContainer = document.createElement("div");
         tempContainer.style.position = "absolute";
         tempContainer.style.top = "0";
@@ -76,16 +82,10 @@ async function loadPage(url, fromBackButton = false) {
         tempContainer.style.backgroundColor = "var(--custom-light)";
         tempContainer.innerHTML = snapshot;
         document.body.appendChild(tempContainer);
+        
         await loadCSSForPage(styles);
-        if(url.includes("index.html")) {
-            selectImage();
-            requestAnimationFrame(() => {
-                positionDropdownMenu(tempContainer);
-            });
-            updateBouncingArrows();
-            displayDate();
-            displayPassengersNb();
-        }
+        scriptToImport(url, addressPage);
+
         gsap.to(tempContainer, {
             left: "0%",
             duration: 1,
@@ -93,27 +93,9 @@ async function loadPage(url, fromBackButton = false) {
             onComplete: async () => {
                 pageContent.innerHTML = tempContainer.innerHTML;
                 tempContainer.remove();
-                if (!fromBackButton) {
-                    window.history.pushState({}, "", url);
-                }
+                navigation(url, fromBackButton);
+                scriptToImport(url, addressPage);
                 console.log(`✅ Transition terminée vers ${url}`);
-                // await loadCSSForPage(styles);
-                if(url.includes("index")) {
-                    initApplyTheme();
-                    cleanCSS(url);
-                    requestAnimationFrame(() => {
-                        positionDropdownMenu();
-                    });
-                    updateBouncingArrows();
-                    displayDate();
-                    displayPassengersNb();
-                } else if(url.includes(addressPage)) {
-                    importScript("choosing-address", "initChoosingAddress", addressPage);
-                } else if(url.includes("choosing-date")) {
-                    importScript("choosing-date", "initChoosingDate");
-                }  else if(url.includes("choosing-passengers")) {
-                    importScript("choosing-passengers", "initChoosingPassengers", "final");
-                }
             }
         });
 
@@ -157,36 +139,12 @@ async function generatePageSnapshot(url) {
             console.log("🔄 updateSelectedAddressInSnapshot() n'a pas été appliquée");
         }
 
-        let scripts = Array.from(tempDiv.querySelectorAll("script"));
-        
-        scripts = scripts.filter(script => script.src && !script.src.includes("fiveserver.js"));
-        // scripts = scripts.filter(s => s.dataset.dynamic === "true"); 
-        // 🔹 Modifier les chemins des scripts en fonction de l'environnement
-        // const prefix = window.location.hostname === "benko45.github.io/" ? "/ecoride" : "/";
-        
-        scripts.forEach(script => {
-            if(!script.src) return;
-            // else {
-            //     if(!script.src.includes("https")) {
-                const scriptSrc = new URL(script.src);
-                const protocol = scriptSrc.protocol;
-                const host = scriptSrc.host;
-                const pathName = scriptSrc.pathname;
-                script.src = `${protocol}//${host}${pathName}`;
-                // }
-                // console.log(`chemin trouvé : ${script.src}`);
-            // }
-        });
-
         let styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
-        // console.log("generatePageSnapshot : ", styles.length, " styles trouvés et ", scripts.length, " scripts trouvés.");
-        // scripts.forEach(script => console.log("generatePageSnapshot Script trouvé :", script.src || "[inline script]"));
-        // styles.forEach(style => console.log("generatePageSnapshot Style trouvé :", style.href));
 
-        return { snapshot: snapshot.innerHTML, scripts, styles };
+        return { snapshot: snapshot.innerHTML, styles };
     } catch (error) {
         console.error("❌ Erreur lors de la capture de la page :", error);
-        return { snapshot: "", scripts: [], styles: [] };
+        return { snapshot: "", styles: [] };
     }
 }
 
@@ -239,42 +197,6 @@ async function loadCSSForPage(styles) {
     });
 }
 
-function cleanCSS(url) { 
-    fetch(url)
-        .then(res => res.text())
-        .then(html => {
-            // 1. Nettoyer tous les styles existants
-            const existingLinks = document.head.querySelectorAll('link[rel="stylesheet"]');
-            // 2. Parser le HTML temporairement
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
-
-            // 3. Récupérer et convertir tous les nouveaux liens en tableau
-            const newLinks = Array.from(tempDiv.querySelectorAll('link[rel="stylesheet"]'));
-
-            // 4. Supprimer les liens obsolètes (présents dans <head> mais pas dans newLinks)
-            existingLinks.forEach(link => {
-                const isStillNeeded = newLinks.some(newLink => newLink.href === link.href);
-                if (!isStillNeeded) {
-                    // console.log("🗑️ Suppression du lien obsolète :", link);
-                    link.remove();
-                }
-            });
-        });
-}
-
-function ensureBootstrapIcons() {
-    if (!document.querySelector('link[href*="bootstrap-icons"]')) {
-        console.log("🔄 Rechargement de Bootstrap Icons...");
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css";
-        document.head.appendChild(link);
-    } else {
-        console.log("✅ Bootstrap Icons déjà chargé.");
-    }
-}
-
 function importScript(scriptName, initFunctionName = null, initParam = null) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
@@ -295,6 +217,18 @@ function importScript(scriptName, initFunctionName = null, initParam = null) {
         .catch(error => {
             console.error(`❌ Erreur lors de l'import de ${scriptName}.js :`, error);
         });
+}
+
+function scriptToImport(url, addressPage) {
+    if(url.includes("index.html")) {
+        importScript("index", "initIndex");
+    } else if(url.includes(addressPage)) {
+        importScript("choosing-address", "initChoosingAddress", addressPage);
+    } else if(url.includes("choosing-date")) {
+        importScript("choosing-date", "initChoosingDate");
+    } else if(url.includes("choosing-passengers")) {
+        importScript("choosing-passengers", "initChoosingPassengers");
+    }
 }
 
 /**
@@ -322,4 +256,52 @@ function updateSnapshotData(tempDiv) {
         passengersElement.textContent = selectedPassengers;
     }
 }
+
+function navigation(url, fromBackButton) {
+    if (!fromBackButton) {
+        if (isFirstNavigation) {
+            window.history.replaceState({}, "", url); // index.html ou autre au tout début
+            isFirstNavigation = false;
+        } else {
+            window.history.pushState({}, "", url); // à chaque navigation classique
+        }
+    }    
+}
+
+
+
+const historyLog = [];
+
+function logHistoryEvent(action, path = location.pathname) {
+    historyLog.push({ action, path, time: new Date().toLocaleTimeString() });
+    console.clear();
+    console.log("🧭 Historique SPA (dernier en bas) :");
+    historyLog.forEach((entry, index) => {
+        console.log(
+            `${index + 1}. ${entry.time} — [${entry.action}] ${entry.path}`
+        );
+    });
+}
+
+// Intercepter les pushState et replaceState
+(function () {
+    const originalPush = history.pushState;
+    const originalReplace = history.replaceState;
+
+    history.pushState = function (...args) {
+        originalPush.apply(this, args);
+        logHistoryEvent("pushState", args[2]); // args[2] = URL
+    };
+
+    history.replaceState = function (...args) {
+        originalReplace.apply(this, args);
+        logHistoryEvent("replaceState", args[2]);
+    };
+})();
+
+// Intercepter les retours en arrière / avant
+window.addEventListener("popstate", () => {
+    logHistoryEvent("popstate");
+});
+
 

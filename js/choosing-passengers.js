@@ -1,10 +1,10 @@
 "use strict";
 
-import { initApplyTheme } from './apply-theme.js';
+import { applyTheme } from './apply-theme.js';
 /******************************************************/
 /******************************************************/
-export function initChoosingPassengers(mode = "final") {
-    initApplyTheme();
+export function initChoosingPassengers() {
+    applyTheme();
 
     // Récupération des éléments à CHAQUE appel (car le DOM change)
     const plus = document.querySelector('.bi-plus-circle');
@@ -18,14 +18,18 @@ export function initChoosingPassengers(mode = "final") {
 
     // Initialisation
     initPlusMinusComponent(plus, minus, passengers_nb);
+    plusAnimation(plus, minus, passengers_nb);
+    minusAnimation(plus, minus, passengers_nb);
 
-    if (mode === "final") {
-        // Ne pas attacher les événements en mode "transition"
-        plusAnimation(plus, minus, passengers_nb);
-        minusAnimation(plus, minus, passengers_nb);
-    }
 
-    console.log(`✅ initChoosingPassengers() exécuté en mode : ${mode}`);
+    /* adaptation du chemin pour les pages GitHub */
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    document.querySelectorAll('.back-link')?.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            history.pushState({}, "", `${prefix}/choosing-passengers.html`);
+        });
+    });
 }
 
 

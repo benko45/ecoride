@@ -1,5 +1,5 @@
 export const selectImage = () => {
-    console.log("🖼️ selectImage() appelée !");
+    // console.log("🖼️ selectImage() appelée !");
 
     // Définition du préfixe en fonction de l'environnement (GitHub Pages ou local)
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";

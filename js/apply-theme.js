@@ -2,18 +2,18 @@
 /*            Gestion des Thèmes                      */
 /******************************************************/
 
-export function initApplyTheme() {
+export function applyTheme() {
     // Variable pour stocker la sélection de l'utilisateur
     var selectedTheme = localStorage.getItem("theme") || "auto";
     // Appliquer le thème immédiatement au chargement
-    applyTheme(selectedTheme);
+    setTheme(selectedTheme);
     // Gestion des clics sur le dropdown
     toggleTheme();
     // **Écoute les changements du mode système en mode auto**
     watchingAutoMode(selectedTheme);
 };
 
-function applyTheme(theme) {
+function setTheme(theme) {
     // Déterminer le vrai thème utilisé (light ou dark) en cas de "auto"
     var effectiveTheme = (theme === "auto")
         ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light")
@@ -34,7 +34,7 @@ function toggleTheme() {
     dropdownItems.forEach(function (item) {
         item.addEventListener('click', function () {
             const selectedTheme = this.getAttribute('theme');
-            applyTheme(selectedTheme);
+            setTheme(selectedTheme);
         });
     });
 }
@@ -42,7 +42,7 @@ function toggleTheme() {
 function watchingAutoMode(selectedTheme) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
         if (selectedTheme === "auto") {
-            applyTheme("auto");
+            setTheme("auto");
         }
     });
 }

@@ -1,12 +1,17 @@
 "use strict";
 
-import { initApplyTheme } from './apply-theme.js';
+import { applyTheme } from './apply-theme.js';
 import{ selectImage } from './functions.js';
 
 
 document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
 document.body.style.width = "100%";
+let initialized = false;
+localStorage.setItem('selectedDepartureAddress', 'Départ');
+localStorage.setItem('selectedArrivalAddress', 'Arrivée');
+localStorage.setItem('selectedPassengers', 1);
+localStorage.setItem('selectedDate', new Date().toLocaleDateString('fr-FR', { weekday: 'short', day: '2-digit', month: 'short' }).replace('.', ''));
 
 /******************************************************/
 /*            Gestion de la hauteur de la fenêtre     */
@@ -32,19 +37,17 @@ export function updateBouncingArrows() {
     const dep = localStorage.getItem('selectedDepartureAddress');
     const arr = localStorage.getItem('selectedArrivalAddress');
 
-    if (dep !== arr && dep && arr) {
+    if (dep !== 'Départ' && arr !== 'Arrivée' && dep !== arr) {
+        console.log('🔁 Flèches activées');
         arrows.classList.remove('d-none');
         arrows.style.display = 'inline-flex';
         arrows.style.alignItems = 'center';
 
-        const svg = arrows.querySelector('svg');
-        if (!svg.classList.contains('arrow-bounce')) {
-            svg.classList.add('arrow-bounce');
-        }
-
-        // Supprime les anciens écouteurs (si déjà en place)
+        // 🧼 Cloner et remplacer pour supprimer les anciens écouteurs
         const clone = arrows.cloneNode(true);
         arrows.replaceWith(clone);
+
+        const svg = clone.querySelector('svg'); // ✅ récupérer le bon SVG
 
         clone.addEventListener('click', () => {
             console.log('🔁 Clic sur flèches → échange des adresses');
@@ -56,10 +59,12 @@ export function updateBouncingArrows() {
             document.getElementById('selected-departure-address').textContent = localStorage.getItem('selectedDepartureAddress');
             document.getElementById('selected-arrival-address').textContent = localStorage.getItem('selectedArrivalAddress');
 
-            // Optionnel : redéclencher animation si on veut un effet actif
-            svg.classList.remove('arrow-bounce');
-            void svg.offsetWidth; // forcer reflow
-            svg.classList.add('arrow-bounce');
+            // 🔄 Relancer animation
+            if (svg) {
+                svg.classList.remove('arrow-bounce');
+                void svg.offsetWidth;
+                svg.classList.add('arrow-bounce');
+            }
         });
     } else {
         arrows.classList.add('d-none');
@@ -109,7 +114,7 @@ export function displayDate() {
     const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
 
     if (savedDate) {
-        console.log('savedDate:', savedDate);
+        // console.log('savedDate:', savedDate);
         if (savedDate === todayFormatted) {
             $('#date-picker').text("Aujourd'hui");
         } else if (savedDate === tomorrowFormatted) {
@@ -127,7 +132,7 @@ export function displayDate() {
 export function displayPassengersNb() {
     const passengersNb = localStorage.getItem('selectedPassengers');
     document.getElementById('passengers-nb').innerHTML = passengersNb;
-    console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
+    // console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
 }
 
 /******************************************************/
@@ -222,107 +227,36 @@ function handleMenu() {
 /******************************************************/
 /*   Gestion de la case départ                        */
 /******************************************************/
-function handleDeparture() {
-    // écoute le click sur la zone recherche-départ
-    const caseDepart = document.getElementById("click-case-depart");
-
-    caseDepart.addEventListener("click", function() {
-        // event.preventDefault();
-        localStorage.setItem("clickSurItem", "true");
-        // window.location.href = "public/html/choosing-address.html";
-    });
-
-    // Récupérer l'adresse stockée dans localStorage
-    let selectedDepartureAddress = localStorage.getItem('selectedDepartureAddress');
-    // console.log(selectedDepartureAddress);
-    if ('selectedDepartureAddress: ', selectedDepartureAddress) {
-        // Si une adresse a été enregistrée, l'afficher
-        document.getElementById('selected-departure-address').innerHTML = selectedDepartureAddress;
-    } else {
-        // Si aucune adresse n'est sélectionnée
-        selectedDepartureAddress = "Départ";
-        document.getElementById('selected-departure-address').innerHTML = 'Départ';
-    }
+function displayDepartureAddress() {
+    document.getElementById('selected-departure-address').innerHTML = localStorage.getItem('selectedDepartureAddress'); 
 }
 /******************************************************/
 /*   Gestion de la case arrivée                        */
 /******************************************************/
-function handleArrival() {
-    //écoute le click sur la zone recherche-arrivée
-    const caseArrivee = document.getElementById("case-arrivee");
-    caseArrivee.addEventListener("click", function() {
-        // event.preventDefault();
-        localStorage.setItem("clickSurItem", "true");
-        // window.location.href = "public/html/choosing-arrival-address.html";
-    });
-
-    // Récupérer l'adresse stockée dans localStorage
-    let selectedArrivalAddress = localStorage.getItem('selectedArrivalAddress');
-
-    if (selectedArrivalAddress) {
-        // Si une adresse a été enregistrée, l'afficher
-        document.getElementById('selected-arrival-address').innerHTML = selectedArrivalAddress;
-    } else {
-        // Si aucune adresse n'est sélectionnée
-        selectedArrivalAddress = "Arrivée";
-        document.getElementById('selected-arrival-address').innerHTML = 'Arrivée';
-    }
+function displayArrivalAddress() {
+    document.getElementById('selected-arrival-address').innerHTML = localStorage.getItem('selectedArrivalAddress'); 
 }
 
-
 export function initIndex() {
+    // if (initialized) return;
+    // initialized = true;
+    
     setRealVh();
-    window.addEventListener('resize', setRealVh);
-    /******************************************************/
-    initApplyTheme();
-    /******************************************************/
+    applyTheme();
     selectImage();
-    /******************************************************/
-    /*    Mise à jour des flèches de changement de sens   */
-    /******************************************************/
+    positionDropdownMenu();
+    handleMenu();
+    displayDepartureAddress();
+    displayArrivalAddress();
+    displayDate();
+    displayPassengersNb();
+    updateBouncingArrows();
+   
+    
+    window.addEventListener('resize', setRealVh);
     document.addEventListener('DOMContentLoaded', updateBouncingArrows);
-    /******************************************************/
-    /*    Mise à jour de la position du menu thème        */
-    /******************************************************/
     document.addEventListener("DOMContentLoaded", () => positionDropdownMenu());
     window.addEventListener("resize", () => positionDropdownMenu());
-    /******************************************************/
-    /*                  Menu principal                    */
-    /******************************************************/
-    handleMenu();
-    /******************************************************/
-    /*            Gestion des choix pour le trajet        */  
-    /******************************************************/
-    /*                  CASE DEPART                       */
-    /******************************************************/
-    handleDeparture()
-    /******************************************************/
-    /*                  CASE ARRIVEE                      */
-    /******************************************************/
-    handleArrival();
-    /******************************************************/
-    /*               Choix de la date                     */
-    /******************************************************/
-    // Redirection vers la page de sélection de date
-    document.getElementById("case-date").addEventListener("click", function() {
-        localStorage.setItem("clickSurItem", "true");
-    });
-    displayDate();
-    /******************************************************/
-    /*               Choix du nombre de passagers         */
-    /******************************************************/
-    // Redirection vers la page de sélection du nombre de passagers
-    document.getElementById("case-passengers").addEventListener("click", function() {
-        localStorage.setItem("clickSurItem", "true");
-        // window.location.href = "public/html/choosing-passengers.html";
-    });
-    // initialisation du nombre de passagers
-    let selectedPassengers = localStorage.getItem('selectedPassengers');
-    if(!selectedPassengers){
-            localStorage.setItem('selectedPassengers', 1);
-    }
-    // Affichage du nombre de passagers
-    displayPassengersNb();
     /******************************************************/
     /*               Validation du formulaire             */
     /******************************************************/
@@ -331,7 +265,6 @@ export function initIndex() {
         if(selectedDepartureAddress === selectedArrivalAddress) {
             alert('Veuillez choisir des adresses différentes');
         } else {
-            localStorage.setItem("clickSurItem", "true");
             // Vérifier que les champs sont remplis
             if(!localStorage.getItem('selectedDate')) {
                 localStorage.setItem('selectedDate', todayFormatted);
@@ -341,19 +274,6 @@ export function initIndex() {
                 : selectedArrivalAddress === 'Arrivée'
                     ? window.location.href = "public/html/choosing-arrival-address.html"
                     : window.location.href = "public/html/search-result.html";
-        }
-    });
-
-    /********************************************************/
-    /* vidange du localstorage si l'utilisateur quitte l'application */
-    /********************************************************/
-
-    window.addEventListener('beforeunload', function (event) {
-        const aCliqueSurItem = localStorage.getItem('clickSurItem');
-        if (!aCliqueSurItem) {
-            localStorage.clear();
-        } else {
-                localStorage.removeItem('clickSurItem');
         }
     });
 }

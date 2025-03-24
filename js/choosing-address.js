@@ -1,4 +1,5 @@
-import { initApplyTheme } from './apply-theme.js';
+import { applyTheme } from './apply-theme.js';
+
 
 function attachInputEvent(suggestionsDiv, storageKey) {
     console.log("🔄 Réattachement de l'événement 'click' sur 'Utiliser votre position'...");
@@ -124,6 +125,28 @@ function createChevronSVG() {
     return svg;
 }
 
+function initSuggestions(storageKey) {
+    const useCurrentLocationOptionText = 'Utiliser votre position'
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.classList.add('suggestions');
+    if(window.location.pathname.includes('index') && document.getElementsByClassName('suggestion').length === 0) {
+        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
+        suggestionsDiv.appendChild(useCurrentLocationOption);
+    }
+    if(window.location.pathname.includes('choosing-address') || window.location.pathname.includes('choosing-arrival-address')) {
+        const suggestions = document.getElementsByClassName('suggestion')
+        if(suggestions.length !== 0) {
+            for (let suggestion of suggestions) {
+                suggestion.remove();
+            }
+        }
+        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
+        suggestionsDiv.appendChild(useCurrentLocationOption);
+    }
+
+    return suggestionsDiv;
+}
+
 /**
  * Supprime tous les enfants d'un élément, sauf le premier
  * @param {HTMLElement} parentElement - L'élément parent
@@ -185,64 +208,44 @@ export function applyDynamicStyles(HTMLElement){
  * @param {string} inputSelector - Sélecteur CSS de l'input
  * @param {string} newPlaceholder - Nouveau texte du placeholder
  */
-function updatePlaceholder(inputSelector, newPlaceholder) {
-    const inputElement = document.querySelector(inputSelector);
+function updatePlaceholder(storageKey) {
+    const inputElement = document.querySelector('#address');
     
     if (!inputElement) {
         console.warn(`⚠️ Input introuvable pour le sélecteur : ${inputSelector}`);
         return;
     }
-
-    console.log(`🔄 Changement du placeholder de '${inputSelector}' en : "${newPlaceholder}"`);
-    inputElement.placeholder = newPlaceholder;
+    const selectedAddress =
+        localStorage.getItem(storageKey) === "Arrivée" || localStorage.getItem(storageKey) === "Départ" 
+            ? "Rue blanche ou Café de la gare" : localStorage.getItem(storageKey);
+    inputElement.placeholder = selectedAddress;
 }
 
 export function initChoosingAddress(page) {
+    console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
     console.log("📌 initChoosingAddress : page = ", page);
 
+    /* adaptation du chemin pour les pages GitHub */
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    /* spécification selon la page /choosing-address.html ou /choosing-arrival-address.html */ 
+    const location = page.includes("choosing-address")
+        ? "/choosing-address.html"
+        : "/choosing-arrival-address.html";
     const storageKey = page.includes("choosing-address") 
         ? "selectedDepartureAddress" 
         : "selectedArrivalAddress";
     console.log("🔑 Clé de stockage :", storageKey);
 
-    /******************************************************/
-    /******************************************************/
-    initApplyTheme();
-    /******************************************************/
-    /******************************************************/
+    applyTheme();
+    updatePlaceholder(storageKey);
     
-    updatePlaceholder('#address', localStorage.getItem(storageKey) || 'Utiliser votre position');
-    
-    
-    console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
-    
-    
-    // // console.log("✅ Élément `.suggestions` ajouté :", document.querySelector('#suggestions'));
-    const useCurrentLocationOptionText = 'Utiliser votre position'
-    const suggestionsDiv = document.getElementById('suggestions');
-    suggestionsDiv.classList.add('suggestions'); // Classe pour styliser les éléments
-    if(window.location.pathname.includes('index') && document.getElementsByClassName('suggestion').length === 0) {
-        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
-        suggestionsDiv.appendChild(useCurrentLocationOption);
-    }
-    if(window.location.pathname.includes('choosing-address') || window.location.pathname.includes('choosing-arrival-address')) {
-        const suggestions = document.getElementsByClassName('suggestion')
-        if(suggestions.length !== 0) {
-            for (let suggestion of suggestions) {
-                suggestion.remove();
-            }
-        }
-        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
-        suggestionsDiv.appendChild(useCurrentLocationOption);
-    }
-    //écoute la saisie sur la zone recherche-départ pour faire des propositions d'adresses
-    attachInputEvent(suggestionsDiv, storageKey);
-    
-    const selectedAddress = localStorage.getItem(storageKey);
-    if (selectedAddress) {
-        document.getElementById('address').value = selectedAddress;
-    }
-    
+    attachInputEvent(initSuggestions(storageKey), storageKey); 
+    document.querySelectorAll('.back-link')?.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            history.pushState({}, "", `${prefix}${location}`);
+        });
+    });
     document.addEventListener("click", (event) => {
         console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
     });
