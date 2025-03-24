@@ -57,7 +57,7 @@ export function navigation(url, fromBackButton = false) {
  */
 export function setupPopstateHandler(loadPageCallback) {
     window.addEventListener("popstate", () => {
-        const path = normalizeUrl(location.href);
+        const path = normalizeUrl(location.pathname);
         console.log("↩️ Retour navigateur vers:", path);
         resetTempData();
         loadPageCallback(path, true);
