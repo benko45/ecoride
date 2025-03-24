@@ -131,20 +131,11 @@ async function loadPage(url, fromBackButton = false) {
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, styles } = await generatePageSnapshot(url);
-        let tempContainer = document.createElement("div");
-        tempContainer.style.position = "absolute";
-        tempContainer.style.top = "0";
-        tempContainer.style.left = "100%";
-        tempContainer.style.width = "100%";
-        tempContainer.style.height = "100%";
-        tempContainer.style.zIndex = "100";
-        tempContainer.style.backgroundColor = "var(--custom-light)";
-        tempContainer.innerHTML = snapshot;
+        let tempContainer = createTempContainer();
+        forceImageReload(tempContainer);
         document.body.appendChild(tempContainer);
-        
         await loadCSSForPage(styles);
-        scriptToImport(url, tempContainer);
-
+        importScript(url, tempContainer);
         gsap.to(tempContainer, {
             left: "0%",
             duration: 1,
@@ -153,7 +144,7 @@ async function loadPage(url, fromBackButton = false) {
                 pageContent.innerHTML = tempContainer.innerHTML;
                 tempContainer.remove();
                 navigation(url, fromBackButton);
-                scriptToImport(url);
+                importScript(url);
                 setCurrentPage(normalizeUrl(url).replace(".html", ""));
                 console.log(`✅ Transition terminée vers ${url}`);
             }
@@ -249,7 +240,7 @@ async function loadCSSForPage(styles) {
     });
 }
 
-function importScript(scriptName, initFunctionName = null, initParam_1 = null) {
+function _importScript(scriptName, initFunctionName = null, initParam_1 = null) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
     console.log(`📦 Import dynamique de ${scriptName}.js...`);
@@ -271,18 +262,18 @@ function importScript(scriptName, initFunctionName = null, initParam_1 = null) {
         });
 }
 
-function scriptToImport(url, container) {
-    console.log("📜 scriptToImport() appelé avec :", url);
+function importScript(url, container) {
+    console.log("📜 importScript() appelé avec :", url);
     if(url.includes("index")) {
-        importScript("index", "initIndex", container);
+        _importScript("index", "initIndex", container);
     } else if (url.includes("choosing-address")) {
-        importScript("choosing-address", "initChoosingAddress", "choosing-address");
+        _importScript("choosing-address", "initChoosingAddress", "choosing-address");
     } else if (url.includes("choosing-arrival-address")) {
-        importScript("choosing-address", "initChoosingAddress", "choosing-arrival-address");
+        _importScript("choosing-address", "initChoosingAddress", "choosing-arrival-address");
     } else if(url.includes("choosing-date")) {
-        importScript("choosing-date", "initChoosingDate");
+        _importScript("choosing-date", "initChoosingDate");
     } else if(url.includes("choosing-passengers")) {
-        importScript("choosing-passengers", "initChoosingPassengers");
+        _importScript("choosing-passengers", "initChoosingPassengers");
     }
 }
 
@@ -312,7 +303,23 @@ function updateSnapshotData(tempDiv) {
     }
 }
 
+function createTempContainer() {
+    let tempContainer = document.createElement("div");
+    tempContainer.style.position = "absolute";
+    tempContainer.style.top = "0";
+    tempContainer.style.left = "100%";
+    tempContainer.style.width = "100%";
+    tempContainer.style.height = "100%";
+    tempContainer.style.zIndex = "100";
+    tempContainer.style.backgroundColor = "var(--custom-light)";
+    tempContainer.innerHTML = snapshot;
 
+    return tempContainer;
+}
 
-
-
+function forceImageReload(container) {
+    container.querySelectorAll("img").forEach(img => {
+        const src = img.getAttribute("src");
+        if (src) img.setAttribute("src", src);
+    });
+}
