@@ -60,6 +60,7 @@ export function resetTempData() {
 window.addEventListener("pageshow", (event) => {
     // Ce bloc reste utile si on veut détecter un retour via bfcache
     console.log("📌 pageshow event", event.persisted ? "(restauré du cache)" : "(normal)");
+    location.reload();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
