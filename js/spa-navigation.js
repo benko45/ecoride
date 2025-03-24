@@ -60,6 +60,7 @@ export function setupPopstateHandler(loadPageCallback) {
         const path = normalizeUrl(location.pathname.split("/").pop());
         console.log("↩️ Retour navigateur vers:", path);
         resetTempData();
+        document.getElementById("page-content").innerHTML = ""; // 🔄 reset
         loadPageCallback(path, true);
     });
 }
