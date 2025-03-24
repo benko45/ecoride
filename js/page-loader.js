@@ -131,7 +131,7 @@ async function loadPage(url, fromBackButton = false) {
     const pageContent = document.getElementById("page-content");
     try {
         let { snapshot, styles } = await generatePageSnapshot(url);
-        let tempContainer = createTempContainer();
+        let tempContainer = createTempContainer(snapshot);
         forceImageReload(tempContainer);
         document.body.appendChild(tempContainer);
         await loadCSSForPage(styles);
@@ -303,7 +303,7 @@ function updateSnapshotData(tempDiv) {
     }
 }
 
-function createTempContainer() {
+function createTempContainer(snapshot) {
     let tempContainer = document.createElement("div");
     tempContainer.style.position = "absolute";
     tempContainer.style.top = "0";
