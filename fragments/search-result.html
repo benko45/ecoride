@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultat de la recherche</title>
+    <link rel="icon" type="image/x-icon" href="/public/img/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/custom-themes.css">
+    <link rel="stylesheet" href="../css/search-result.css">
+</head>
+<body class="background-light">
+    <div id="filter-container" class=" d-flex align-items-center my-4">
+        <i id="chevron-left" class="fa-solid fa-chevron-left"></i>
+        <div id="filter-abstract">
+            <div id="line_1">
+                <div id="filter-departure-address"></div>
+                <i id="filter-right-arrow" class="fa-solid fa-arrow-right mx-2"></i>
+                <div id="filter-arrival-address"></div>
+            </div>
+            <div id="line_2">
+                <div id="filter-date"></div>
+                <div id="filter-passengers-nb"></div>
+            </div>
+        </div>
+        <div id="filter-button">Filtrer</div>
+    </div>
+    <div id="search-result-container">
+        <div id="search-result-header">
+            <div id="search-date"></div>
+            <div id="search-traject"></div>
+        </div>
+        <div id="search-result-content"></div>
+    </div>
+    <script src="../js/bootstrap.bundle.js" defer></script>
+    <script type="module" src="../../src/js/search-result.js" defer></script>
+</body>
+</html>

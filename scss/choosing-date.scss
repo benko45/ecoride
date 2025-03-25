@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use "styles/colors-variables" as colors;
+@use "styles/global-styles";
+
+.datepicker {
+    padding-left: 30px !important;
+}
+#page-content {
+    will-change: transform, opacity;
+}

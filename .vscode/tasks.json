@@ -1,0 +1,25 @@
+// {
+//     "version": "2.0.0",
+//     "tasks": [
+//         {
+//             "label": "Surveiller et Déployer sur Vercel",
+//             "type": "shell",
+//             "command": "nodemon -e html,css,js --exec 'vercel --prod'",
+//             "isBackground": true,
+//             "problemMatcher": [],
+//             "group": {
+//                 "kind": "build",
+//                 "isDefault": true
+//             }
+//         }
+//     ]
+// }
+    
+    // This task will watch for changes in the HTML, CSS, and JS files and deploy the changes to Vercel. 
+    // Now, you can run the task by pressing  Ctrl + Shift + P  and typing  Run Task . 
+    // You can also run the task by pressing  Ctrl + Shift + B  and selecting the task from the list. 
+    // Conclusion 
+    // In this article, you learned how to deploy a static website to Vercel using the Vercel CLI. You also learned how to automate the deployment process using a task runner like Nodemon. 
+    // I hope you found this article helpful. If you have any questions or feedback, please let me know in the comments below. 
+    // Happy coding! 
+    // Peer Review Contributions by:  Lalithnarayan C

@@ -1,7 +1,0 @@
-/* :root {
-  --bs-placeholder-color: red;
-} */
-
-input::placeholder {
-  color: red !important;
-}

@@ -1,0 +1,129 @@
+@use 'sass:map';
+@use '../styles/colors-variables' as colors;
+@use "../variables";
+
+#filter-container{
+    width: 90%;                /* S'assure qu'il prend toute la largeur */
+    max-width: 90vw;          /* S'assure qu'il ne dépasse pas la largeur de l'écran */
+    margin-left: 15px;
+    border: 0.5px solid var(--custom-primary-8);
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: space-between;
+    #chevron-left{
+        color: var(--custom-primary);
+        margin: 0 5px 0 0;
+    }
+    #filter-abstract{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 5px;
+        #line_1{
+            $text-width: 130px;
+            display: flex;
+            align-items: center;
+            font-size: 0.70rem;
+            font-weight: 400;
+            color: var(--custom-primary);
+            #filter-departure-address{
+                display: block;
+                white-space: nowrap;         /* Empêche le texte de passer à la ligne */
+                overflow: hidden;            /* Cache le texte qui dépasse le conteneur */
+                text-overflow:ellipsis;      /* Ajoute des points de suspension */
+            }
+            #filter-right-arrow{
+                color: var(--custom-primary-8); 
+            }
+            #filter-arrival-address{
+                display: block;
+                white-space: nowrap;         /* Empêche le texte de passer à la ligne */
+                overflow: hidden;            /* Cache le texte qui dépasse le conteneur */
+                text-overflow: ellipsis;     /* Ajoute des points de suspension */
+            }
+        }
+        #line_2 {
+            $text-width: 150px;
+            display: flex;
+            // justify-content: space-between;
+            align-items: center;
+            font-size: 0.70rem;
+            font-weight: 400;
+            color: var(--custom-primary-6);
+            // #filter-date {
+            //     margin-right: 10px;
+            // }
+            // #filter-passengers-nb {
+            //     margin-left: 10px;
+            // }
+        }
+    }
+    #filter-button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--custom-primary);
+        color: var(--custom-light);
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 5px 0 0 0;
+        font-size: 0.70rem;
+        font-weight: 400;
+        cursor: pointer;
+        &:hover{
+            background-color: var(--custom-primary-8);
+        }
+    }
+}
+
+// #line_1 {
+//     display: flex;
+//     flex-wrap: nowrap;          /* Empêche le retour à la ligne */
+//     width: 100%;                /* S'assure de ne pas dépasser le parent */
+//     overflow: hidden;
+//     box-sizing: border-box;
+//   }
+  
+//   #line_1 > * {
+//     flex-shrink: 1;             /* Permet aux enfants de rétrécir */
+//     min-width: 0;               /* Autorise le rétrécissement */
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//   }
+
+//   #line_1 {
+//     display: flex;
+//     justify-content: space-between;
+//     flex-wrap: nowrap;
+//     width: 100%;
+//     max-width: 100%;               /* Empêche le dépassement du parent */
+//     overflow: hidden;              /* Cache tout débordement */
+//     box-sizing: border-box;
+//   }
+  
+//   #line_1 > * {
+//     flex-shrink: 1;                /* Permet le rétrécissement */
+//     flex-grow: 0;                  /* Empêche l'expansion */
+//     min-width: 0;                  /* Autorise le rétrécissement */
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//   }
+//   #filter-departure-address,
+//   #filter-arrival-address {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     max-width: 100%;               /* Empêche le dépassement */
+//     box-sizing: border-box;
+//     flex-shrink: 1;
+//     flex-grow: 0;
+//     min-width: 0;
+//   }
+
+//   #filter-abstract, #line_1, #filter-departure-address, #filter-arrival-address {
+//     overflow: visible !important;
+//     outline: 1px solid red;
+//   }
+  

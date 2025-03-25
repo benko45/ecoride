@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use "styles/colors-variables" as colors;
+@use "styles/global-styles";
+@use "variables";
+
+#page-content {
+    will-change: transform, opacity;
+}
+
+#address {
+    width: 100%;
+}
+
+#input-form {
+    width: 100%;
+}
+
+html[theme="accesibility-light"] input.form-control:focus {
+    border-color: var(--custom-primary);
+}
+html[theme="accesibility-dark"] input.form-control:focus {
+    border-color: var(--custom-primary);
+}
+
+html[theme="light"] input.form-control:focus {
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+html[theme="dark"] input.form-control:focus {
+    box-shadow: none;
+    border: 1px solid transparent;
+}
+
+$placeholderPrefixes: ("::", "::-webkit-input-", "::-moz-", ":-ms-input-", "::-ms-input-");
+
+@each $prefix in $placeholderPrefixes {
+    input#{$prefix}placeholder {
+        color: var(--custom-primary) !important;
+    }
+}
