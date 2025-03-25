@@ -129,30 +129,33 @@ async function loadPage(url, fromBackButton = false) {
         url = "/";
     }
     const pageContent = document.getElementById("page-content");
-    try {
-        let { snapshot, styles } = await generatePageSnapshot(url);
-        let tempContainer = createTempContainer(snapshot);
-        forceImageReload(tempContainer);
-        document.body.appendChild(tempContainer);
-        await loadCSSForPage(styles);
-        importScript(url, tempContainer);
-        gsap.to(tempContainer, {
-            left: "0%",
-            duration: 1,
-            ease: "power2.inOut",
-            onComplete: async () => {
-                pageContent.innerHTML = tempContainer.innerHTML;
-                tempContainer.remove();
-                navigation(url, fromBackButton);
-                importScript(url);
-                setCurrentPage(normalizeUrl(url).replace(".html", ""));
-                console.log(`✅ Transition terminée vers ${url}`);
-            }
-        });
+    generatePageSnapshot(url)
+        .then(result => {
+            const { snapshot, styles } = result;
+            const tempContainer = createTempContainer(snapshot);
+            forceImageReload(tempContainer);
+            document.body.appendChild(tempContainer);
 
-    } catch (error) {
-        console.error("❌ Erreur lors du chargement de la page :", error);
-    }
+            return loadCSSForPage(styles).then(() => tempContainer);
+        })
+        .then(tempContainer => {
+            importScript(url, tempContainer);
+
+            gsap.to(tempContainer, {
+                left: "0%",
+                duration: 1,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    pageContent.innerHTML = tempContainer.innerHTML;
+                    tempContainer.remove();
+                    navigation(url, fromBackButton);
+                    importScript(url);
+                    setCurrentPage(normalizeUrl(url).replace(".html", ""));
+                    console.log(`✅ Transition terminée vers ${url}`);
+                }
+            });
+        })
+        .catch(err => console.error("Erreur :", err));
 }
 
 async function generatePageSnapshot(url) {
