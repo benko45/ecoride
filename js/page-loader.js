@@ -126,50 +126,17 @@ async function loadPage(url, fromBackButton = false) {
 
 async function generatePageSnapshot(url) {
     console.log(`📸 Chargement du fragment de page : ${url}`);
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
     try {
         const htmlText = await _fetchFragmentHTML(url);
         const tempDiv =_createTempDiv(htmlText);
         const styles = _extractAndRemoveStyles(tempDiv);
         const snapshot = tempDiv.innerHTML;
         const preparedSnapshot = _prepareSnapshotContent(snapshot);
-        return { snapshot: preparedSnapshot, styles };
+        return { preparedSnapshot, styles };
     } catch (error) {
         handleLoadError(error);
         return { snapshot: "", styles: [] };
     }
-}
-
-function _fetchFragmentHTML(url) {
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    return fetch(`${prefix}/fragments/${url}`, { cache: "no-store" })
-        .then(response => {
-            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-            return response.text();
-        });
-}
-
-function _createTempDiv(htmlText) {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = htmlText;
-    return tempDiv;
-}
-
-function _extractAndRemoveStyles(container) {
-    const styles = Array.from(container.querySelectorAll("link[rel='stylesheet']"));
-    styles.forEach(link => link.remove());
-    return styles;
-}
-
-function _prepareSnapshotContent(rawHtml, url) {
-    const normalized = normalizeUrl(url);
-    const tempWrapper = document.createElement("div");
-    tempWrapper.innerHTML = rawHtml;
-    const pageContentDiv = tempWrapper.querySelector("#page-content");
-    if (pageContentDiv) pageContentDiv.removeAttribute("id");
-    updateSnapshotData(tempWrapper);
-    return pageContentDiv || tempWrapper;
 }
 
 async function loadCSSForPage(styles) {
