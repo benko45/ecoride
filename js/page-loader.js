@@ -126,15 +126,17 @@ async function loadPage(url, fromBackButton = false) {
 
 async function generatePageSnapshot(url) {
     console.log(`📸 Chargement du fragment de page : ${url}`);
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
     try {
         const htmlText = await _fetchFragmentHTML(url);
         const tempDiv =_createTempDiv(htmlText);
         const styles = _extractAndRemoveStyles(tempDiv);
         const snapshot = tempDiv.innerHTML;
         const preparedSnapshot = _prepareSnapshotContent(snapshot);
-        return { preparedSnapshot, styles };
+        return { snapshot: preparedSnapshot, styles };
     } catch (error) {
-        handleLoadError(error);
+        console.error("❌ Erreur lors du chargement du fragment :", error);
         return { snapshot: "", styles: [] };
     }
 }
@@ -188,48 +190,42 @@ async function loadCSSForPage(styles) {
     });
 }
 
-async function _importScript(scriptName, initFunctionName, container = null, initParam = null) {
+function _importScript(scriptName, initFunctionName = null, initParam_1 = null) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
     console.log(`📦 Import dynamique de ${scriptName}.js...`);
 
-    try {
-        const module = await import(`${prefix}/js/${scriptName}.js`);
+    // Supprime l'ancien script s'il est déjà chargé
+    document.querySelector(`script[src*='${scriptName}']`)?.remove();
 
-        if (typeof module[initFunctionName] === "function") {
-            // Vérifie que container est un élément DOM valide (sauf si optionnel)
-            if (container instanceof Element) {
-                await module[initFunctionName](initParam, container);
-                console.log(`✅ ${initFunctionName}() appelée avec container depuis ${scriptName}.js`);
-            } else {
-                await module[initFunctionName](initParam);
-                console.log(`✅ ${initFunctionName}() appelée sans container depuis ${scriptName}.js`);
+    import(`${prefix}/js/${scriptName}.js`)
+        .then(module => {
+            if (initFunctionName && typeof module[initFunctionName] === "function") {
+                module[initFunctionName](initParam_1);
+                console.log(`✅ ${initFunctionName}() appelée depuis ${scriptName}.js`);
+            } else if (initFunctionName) {
+                console.warn(`⚠️ ${initFunctionName}() non trouvée dans ${scriptName}.js`);
             }
-        } else {
-            console.warn(`⚠️ ${initFunctionName}() non trouvée dans ${scriptName}.js`);
-        }
-    } catch (error) {
-        console.error(`❌ Erreur lors de l'import de ${scriptName}.js :`, error);
-    }
+        })
+        .catch(error => {
+            console.error(`❌ Erreur lors de l'import de ${scriptName}.js :`, error);
+        });
 }
 
-
-async function importScript(url, container = null) {
-    console.log("📜 importScript() appelé avec :", url, container);
-
-    if (url.includes("index")) {
-        await _importScript("index", "initIndex", container);
+function importScript(url, container) {
+    console.log("📜 importScript() appelé avec :", url);
+    if(url.includes("index")) {
+        _importScript("index", "initIndex", container);
     } else if (url.includes("choosing-address")) {
-        await _importScript("choosing-address", "initChoosingAddress", container, "choosing-address");
+        _importScript("choosing-address", "initChoosingAddress", "choosing-address");
     } else if (url.includes("choosing-arrival-address")) {
-        await _importScript("choosing-address", "initChoosingAddress", container, "choosing-arrival-address");
-    } else if (url.includes("choosing-date")) {
-        await _importScript("choosing-date", "initChoosingDate", container);
-    } else if (url.includes("choosing-passengers")) {
-        await _importScript("choosing-passengers", "initChoosingPassengers", container);
+        _importScript("choosing-address", "initChoosingAddress", "choosing-arrival-address");
+    } else if(url.includes("choosing-date")) {
+        _importScript("choosing-date", "initChoosingDate");
+    } else if(url.includes("choosing-passengers")) {
+        _importScript("choosing-passengers", "initChoosingPassengers");
     }
 }
-
 
 /**
  * Met à jour la valeur du champ `selected-departure-address` dans le snapshot avant la transition.
@@ -266,8 +262,7 @@ function createTempContainer(snapshot) {
     tempContainer.style.height = "100%";
     tempContainer.style.zIndex = "100";
     tempContainer.style.backgroundColor = "var(--custom-light)";
-    tempContainer.innerHTML = "";
-    tempContainer.appendChild(snapshot);  
+    tempContainer.innerHTML = snapshot;
 
     return tempContainer;
 }
