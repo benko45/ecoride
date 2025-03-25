@@ -107,10 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function loadPage(url, fromBackButton = false) {
-
     console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);
     console.trace(); // 💣 TRACE
-    
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
@@ -118,47 +116,25 @@ async function loadPage(url, fromBackButton = false) {
     if (!isValidUrl(url)) {
         console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
         console.trace(); // Voir qui a demandé ce loadPage()
-    }
-    
+    } 
     const pageContent = document.getElementById("page-content");
     generatePageSnapshot(url)
-        .then(result => {
-            const { snapshot, styles } = result;
-            const tempContainer = createTempContainer(snapshot);
-            forceImageReload(tempContainer);
-            document.body.appendChild(tempContainer);
-            return loadCSSForPage(styles).then(() => ({ tempContainer, snapshot}));
-        })
-        .then(async({ tempContainer, snapshot }) => {
-            await importScript(url, snapshot);
-            gsap.to(tempContainer, {
-                left: "0%",
-                duration: 1,
-                ease: "power2.inOut",
-                onComplete: async () => {
-                    pageContent.innerHTML = "";
-                    pageContent.appendChild(snapshot); // snapshot est un vrai Node
-                    // ✨ Attendre deux frames pour être certain que le DOM est bien rendu
-                    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-                    await importScript(url, pageContent); // Le script a maintenant accès à un DOM vivant
-                    tempContainer.remove();
-                    navigation(url, fromBackButton);
-                    setCurrentPage(normalizeUrl(url).replace(".html", ""));
-                    console.log(`✅ Transition terminée vers ${url}`);
-                }
-            });
-        })
+        .then(_prepareStyles)
+        .then(tempContainer => pageTransition(url, tempContainer, pageContent, fromBackButton))
         .catch(err => console.error("Erreur :", err));
 }
 
 async function generatePageSnapshot(url) {
     console.log(`📸 Chargement du fragment de page : ${url}`);
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
     try {
         const htmlText = await _fetchFragmentHTML(url);
-        const tempDiv = _createTempDiv(htmlText);
-        const snapshot = _prepareSnapshotContent(tempDiv.innerHTML, url);
+        const tempDiv =_createTempDiv(htmlText);
         const styles = _extractAndRemoveStyles(tempDiv);
-        return { snapshot, styles };
+        const snapshot = tempDiv.innerHTML;
+        const preparedSnapshot = _prepareSnapshotContent(snapshot);
+        return { snapshot: preparedSnapshot, styles };
     } catch (error) {
         handleLoadError(error);
         return { snapshot: "", styles: [] };
@@ -345,4 +321,60 @@ function isValidUrl(url) {
         "choosing-passengers.html"
     ];
     return expectedPages.includes(url);
+}
+
+async function _prepareStyles(result) {
+    const { snapshot, styles } = result;
+    const tempContainer = createTempContainer(snapshot);
+    forceImageReload(tempContainer);
+    document.body.appendChild(tempContainer);
+    await loadCSSForPage(styles);
+    return tempContainer;
+}
+
+function pageTransition(url, tempContainer, pageContent, fromBackButton) {
+    importScript(url, tempContainer);
+    gsap.to(tempContainer, {
+        left: "0%",
+        duration: 1,
+        ease: "power2.inOut",
+        onComplete: () => {
+            pageContent.innerHTML = tempContainer.innerHTML;
+            tempContainer.remove();
+            navigation(url, fromBackButton);
+            importScript(url);
+            setCurrentPage(normalizeUrl(url).replace(".html", ""));
+            console.log(`✅ Transition terminée vers ${url}`);
+        }
+    });
+}
+
+async function _fetchFragmentHTML(url) {
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    return fetch(`${prefix}/fragments/${url}`, { cache: "no-store" })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            return response.text();
+        });
+}
+
+function _createTempDiv(htmlText) {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlText;
+    return tempDiv;
+}
+
+function _extractAndRemoveStyles(container) {
+    const styles = Array.from(container.querySelectorAll("link[rel='stylesheet']"));
+    styles.forEach(link => link.remove());
+    return styles;
+}
+
+function _prepareSnapshotContent(snapshot) {
+    const tempWrapper = document.createElement("div");
+    tempWrapper.innerHTML = snapshot;
+    const pageContentDiv = tempWrapper.querySelector("#page-content");
+    if (pageContentDiv) pageContentDiv.removeAttribute("id");
+    updateSnapshotData(tempWrapper);
+    return tempWrapper.innerHTML;
 }
