@@ -110,23 +110,13 @@ async function loadPage(url, fromBackButton = false) {
 
     console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);
     console.trace(); // 💣 TRACE
-
-    const expectedPages = [
-        "index.html",
-        "choosing-address.html",
-        "choosing-arrival-address.html",
-        "choosing-date.html",
-        "choosing-passengers.html",
-      ];
-      
-      if (!expectedPages.includes(url)) {
-        console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
-        console.trace(); // Voir qui a demandé ce loadPage()
-      }
-      
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
+    }   
+    if (!isValidUrl(url)) {
+        console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
+        console.trace(); // Voir qui a demandé ce loadPage()
     }
     const pageContent = document.getElementById("page-content");
     generatePageSnapshot(url)
@@ -135,12 +125,10 @@ async function loadPage(url, fromBackButton = false) {
             const tempContainer = createTempContainer(snapshot);
             forceImageReload(tempContainer);
             document.body.appendChild(tempContainer);
-
             return loadCSSForPage(styles).then(() => tempContainer);
         })
         .then(tempContainer => {
             importScript(url, tempContainer);
-
             gsap.to(tempContainer, {
                 left: "0%",
                 duration: 1,
@@ -163,14 +151,8 @@ async function generatePageSnapshot(url) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
     console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
     try {
-        const response = await fetch(`${prefix}/fragments/${url}`, { cache: "no-store" });
-        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-
-        const htmlText = await response.text();
-
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = htmlText;
-
+        const htmlText = await _fetchFragmentHTML(url);
+        const tempDiv = _createTempDiv(htmlText);
         // Récupération des styles (liens <link rel="stylesheet">)
         const styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
 
@@ -178,15 +160,8 @@ async function generatePageSnapshot(url) {
         styles.forEach(link => link.remove());
 
         const snapshot = tempDiv.innerHTML;
-
-        // Optionnel : traitement conditionnel selon le type de page (ex: mise à jour snapshot)
-        const normalized = normalizeUrl(url);
-        const tempWrapper = document.createElement("div");
-        tempWrapper.innerHTML = snapshot;
-        const pageContentDiv = tempWrapper.querySelector("#page-content");
-        if (pageContentDiv) pageContentDiv.removeAttribute("id");
-        updateSnapshotData(tempWrapper);
-        return { snapshot: tempWrapper.innerHTML, styles };
+        _prepareSnapshotContent(snapshot);
+        return { snapshot, styles };
 
     } catch (error) {
         console.error("❌ Erreur lors du chargement du fragment :", error);
@@ -325,4 +300,38 @@ function forceImageReload(container) {
         const src = img.getAttribute("src");
         if (src) img.setAttribute("src", src);
     });
+}
+
+function isValidUrl(url) {
+    const expectedPages = [
+        "index.html",
+        "choosing-address.html",
+        "choosing-arrival-address.html",
+        "choosing-date.html",
+        "choosing-passengers.html"
+    ];
+    return expectedPages.includes(url);
+}
+
+function _fetchFragmentHTML(url) {
+    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
+    return fetch(`${prefix}/fragments/${url}`, { cache: "no-store" })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            return response.text();
+        });
+}
+
+function _createTempDiv(htmlText) {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlText;
+    return tempDiv;
+}
+
+function _prepareSnapshotContent(snapshot) {
+    const tempWrapper = document.createElement("div");
+    tempWrapper.innerHTML = snapshot;
+    const pageContentDiv = tempWrapper.querySelector("#page-content");
+    if (pageContentDiv) pageContentDiv.removeAttribute("id");
+    updateSnapshotData(tempWrapper);
 }
