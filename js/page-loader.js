@@ -107,47 +107,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function loadPage(url, fromBackButton = false) {
-
     console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);
     console.trace(); // 💣 TRACE
-
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
     }
-      
     if (!isValidUrl(url)) {
         console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
         console.trace(); // Voir qui a demandé ce loadPage()
-    }
-      
+    } 
     const pageContent = document.getElementById("page-content");
     generatePageSnapshot(url)
-        .then(result => {
-            const { snapshot, styles } = result;
-            const tempContainer = createTempContainer(snapshot);
-            forceImageReload(tempContainer);
-            document.body.appendChild(tempContainer);
-
-            return loadCSSForPage(styles).then(() => tempContainer);
-        })
-        .then(tempContainer => {
-            importScript(url, tempContainer);
-
-            gsap.to(tempContainer, {
-                left: "0%",
-                duration: 1,
-                ease: "power2.inOut",
-                onComplete: () => {
-                    pageContent.innerHTML = tempContainer.innerHTML;
-                    tempContainer.remove();
-                    navigation(url, fromBackButton);
-                    importScript(url);
-                    setCurrentPage(normalizeUrl(url).replace(".html", ""));
-                    console.log(`✅ Transition terminée vers ${url}`);
-                }
-            });
-        })
+        .then(_prepareStyles)
+        .then(tempContainer => pageTransition(url, tempContainer, pageContent, fromBackButton))
         .catch(err => console.error("Erreur :", err));
 }
 
@@ -310,6 +283,32 @@ function isValidUrl(url) {
         "choosing-passengers.html"
     ];
     return expectedPages.includes(url);
+}
+
+async function _prepareStyles(result) {
+    const { snapshot, styles } = result;
+    const tempContainer = createTempContainer(snapshot);
+    forceImageReload(tempContainer);
+    document.body.appendChild(tempContainer);
+    await loadCSSForPage(styles);
+    return tempContainer;
+}
+
+function pageTransition(url, tempContainer, pageContent, fromBackButton) {
+    importScript(url, tempContainer);
+    gsap.to(tempContainer, {
+        left: "0%",
+        duration: 1,
+        ease: "power2.inOut",
+        onComplete: () => {
+            pageContent.innerHTML = tempContainer.innerHTML;
+            tempContainer.remove();
+            navigation(url, fromBackButton);
+            importScript(url);
+            setCurrentPage(normalizeUrl(url).replace(".html", ""));
+            console.log(`✅ Transition terminée vers ${url}`);
+        }
+    });
 }
 
 async function _fetchFragmentHTML(url) {
