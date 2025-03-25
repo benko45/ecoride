@@ -1,15 +1,12 @@
-# fly.toml app configuration file generated for ecoride-cool-morning-874 on 2025-03-25T19:10:14+01:00
+# fly.toml app configuration file generated for ecoride-bitter-fog-874 on 2025-03-25T20:02:14+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'ecoride-cool-morning-874'
+app = 'ecoride-bitter-fog-874'
 primary_region = 'cdg'
 
 [build]
-
-[env]
-  PORT = '8080'
 
 [http_service]
   internal_port = 8080
