@@ -4,60 +4,66 @@ import { applyTheme } from './apply-theme.js';
 import { applyDynamicStyles} from './choosing-address.js';
 import { setTempData } from './page-loader.js';
 
-export function initChoosingDate() {
+export function initChoosingDate(_, container) {
+    console.log("📦 Container reçu dans initChoosingDate:", container);
+    console.log("📦 Contenu HTML :", container.innerHTML);
+  
     applyTheme();
-    const datepicker = document.querySelector('.datepicker');
-    if (!datepicker) initDatepicker();
-    else {
-        datepicker.remove();
-        initDatepicker();
+  
+    // Supprime les .datepicker éventuels pour forcer une reconstruction propre
+    const oldPicker = container.querySelector('.datepicker');
+    if (oldPicker) {
+      console.warn("🧹 Suppression de l'ancien datepicker");
+      oldPicker.remove();
     }
-    /* adaptation du chemin pour les pages GitHub */
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    document.querySelectorAll('.back-link')?.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            history.pushState({}, "", `${prefix}/choosing-address.html`);
-        });
+  
+    initDatepicker(container);
+  }
+  
+
+  function initDatepicker(container) {
+    console.log("📅 Appel à initDatepicker()");
+  
+    const target = container.querySelector('#date-depart');
+    if (!target) {
+        console.warn("❌ #date-depart introuvable dans le container !");
+        return;
+    }
+
+    const $picker = $(target);
+
+    $picker.datepicker({
+        format: 'D dd M',
+        startDate: '0d',
+        todayHighlight: true,
+        language: 'fr',
+        container: "#date-depart"
+    }).on('changeDate', function (e) {
+        const selectedDate = e.format().replace('.', '');
+        setTempData('selectedDate', selectedDate);
+        console.log('📅 Date sélectionnée :', selectedDate);
     });
-    
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const datepicker = document.querySelector('.datepicker');
+          if (datepicker) {
+            datepickerStyle(datepicker);
+            console.log("🎨 Style appliqué avec succès !");
+          } else {
+            console.warn("⚠️ ⏰ Échec : aucun .datepicker trouvé dans le document !");
+          }
+        });
+      });
+      
+      
+
+    const savedDate = localStorage.getItem('selectedDate');
+    dateInit(savedDate);
 }
 
-function initDatepicker() {
-    // Initialisation du Datepicker
-    $(document).ready(function() {
-        // Récupérer les dates stockées dans le localStorage
-        const savedDate = localStorage.getItem('selectedDate');
-
-        // Configuration du Datepicker
-        $('#date-depart').datepicker({
-            format: 'D dd M',   // Format de la date
-            startDate: '0d',    // Date minimale (aujourd'hui)
-            todayHighlight: true,   // Surligne la date d'aujourd'hui
-            language: 'fr',     // Langue en français
-            container: '#date-depart'
-        }).on('changeDate', function(e) {
-
-                // Format court
-            let selectedDate = e.format();
-            selectedDate = selectedDate.replace('.', '');  // Supprime le point après le jour
-            setTempData('selectedDate', selectedDate);
-            // Format long (DD dd MM)
-            // const dateObject = e.date;
-            // const options = { weekday: 'long', day: '2-digit', month: 'long' };
-            // const longSelectedDate = dateObject.toLocaleDateString('fr-FR', options);
-            // localStorage.setItem('longSelectedDate', longSelectedDate);
-
-            console.log('selectedDate:', selectedDate);
-            // console.log('longSelectedDate:', longSelectedDate);
-        });
-
-        // Si une date est enregistrée, on la sélectionne et on la surligne
-        dateInit(savedDate)
-        // On décore le datepicker
-        datepickerStyle();
-    });
-}
+  
+  
 
 function dateInit(savedDate) {
     if (savedDate) {
@@ -68,11 +74,14 @@ function dateInit(savedDate) {
     }
 }
 
-function datepickerStyle() {
-    const datePickers = document.getElementsByClassName('datepicker');
-    if (datePickers.length > 0) {
-        Array.from(datePickers).forEach(el => applyDynamicStyles(el));
-    } else {
-        console.warn('Aucun datepicker trouvé !');
+export function datepickerStyle(container = document) {
+    const datepicker = container.querySelector(".datepicker");
+    if (!datepicker) {
+        console.warn("⚠️ Aucun élément avec la classe .datepicker trouvé dans le container !");
+        return;
     }
+    datepicker.style.padding = "15px 0 0 30px";
+    console.log("🎨 Style personnalisé appliqué au datepicker !");
 }
+
+  

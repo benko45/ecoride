@@ -127,21 +127,22 @@ async function loadPage(url, fromBackButton = false) {
             const tempContainer = createTempContainer(snapshot);
             forceImageReload(tempContainer);
             document.body.appendChild(tempContainer);
-
-            return loadCSSForPage(styles).then(() => tempContainer);
+            return loadCSSForPage(styles).then(() => ({ tempContainer, snapshot}));
         })
-        .then(tempContainer => {
-            importScript(url, tempContainer);
-
+        .then(async({ tempContainer, snapshot }) => {
+            await importScript(url, snapshot);
             gsap.to(tempContainer, {
                 left: "0%",
                 duration: 1,
                 ease: "power2.inOut",
-                onComplete: () => {
-                    pageContent.innerHTML = tempContainer.innerHTML;
+                onComplete: async () => {
+                    pageContent.innerHTML = "";
+                    pageContent.appendChild(snapshot); // snapshot est un vrai Node
+                    // ✨ Attendre deux frames pour être certain que le DOM est bien rendu
+                    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+                    await importScript(url, pageContent); // Le script a maintenant accès à un DOM vivant
                     tempContainer.remove();
                     navigation(url, fromBackButton);
-                    importScript(url);
                     setCurrentPage(normalizeUrl(url).replace(".html", ""));
                     console.log(`✅ Transition terminée vers ${url}`);
                 }
@@ -192,7 +193,7 @@ function _prepareSnapshotContent(rawHtml, url) {
     const pageContentDiv = tempWrapper.querySelector("#page-content");
     if (pageContentDiv) pageContentDiv.removeAttribute("id");
     updateSnapshotData(tempWrapper);
-    return tempWrapper.innerHTML;
+    return pageContentDiv || tempWrapper;
 }
 
 async function loadCSSForPage(styles) {
@@ -244,42 +245,48 @@ async function loadCSSForPage(styles) {
     });
 }
 
-function _importScript(scriptName, initFunctionName = null, initParam_1 = null) {
+async function _importScript(scriptName, initFunctionName, container = null, initParam = null) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
 
     console.log(`📦 Import dynamique de ${scriptName}.js...`);
 
-    // Supprime l'ancien script s'il est déjà chargé
-    document.querySelector(`script[src*='${scriptName}']`)?.remove();
+    try {
+        const module = await import(`${prefix}/js/${scriptName}.js`);
 
-    import(`${prefix}/js/${scriptName}.js`)
-        .then(module => {
-            if (initFunctionName && typeof module[initFunctionName] === "function") {
-                module[initFunctionName](initParam_1);
-                console.log(`✅ ${initFunctionName}() appelée depuis ${scriptName}.js`);
-            } else if (initFunctionName) {
-                console.warn(`⚠️ ${initFunctionName}() non trouvée dans ${scriptName}.js`);
+        if (typeof module[initFunctionName] === "function") {
+            // Vérifie que container est un élément DOM valide (sauf si optionnel)
+            if (container instanceof Element) {
+                await module[initFunctionName](initParam, container);
+                console.log(`✅ ${initFunctionName}() appelée avec container depuis ${scriptName}.js`);
+            } else {
+                await module[initFunctionName](initParam);
+                console.log(`✅ ${initFunctionName}() appelée sans container depuis ${scriptName}.js`);
             }
-        })
-        .catch(error => {
-            console.error(`❌ Erreur lors de l'import de ${scriptName}.js :`, error);
-        });
-}
-
-function importScript(url, container) {
-    console.log("📜 importScript() appelé avec :", url);
-    if(url.includes("index")) {
-        _importScript("index", "initIndex", container);
-    } else if (url.includes("choosing-address")) {
-        _importScript("choosing-address", "initChoosingAddress", "choosing-address");
-    } else if (url.includes("choosing-arrival-address")) {
-        _importScript("choosing-address", "initChoosingAddress", "choosing-arrival-address");
-    } else if(url.includes("choosing-date")) {
-        _importScript("choosing-date", "initChoosingDate");
-    } else if(url.includes("choosing-passengers")) {
-        _importScript("choosing-passengers", "initChoosingPassengers");
+        } else {
+            console.warn(`⚠️ ${initFunctionName}() non trouvée dans ${scriptName}.js`);
+        }
+    } catch (error) {
+        console.error(`❌ Erreur lors de l'import de ${scriptName}.js :`, error);
     }
 }
+
+
+async function importScript(url, container = null) {
+    console.log("📜 importScript() appelé avec :", url, container);
+
+    if (url.includes("index")) {
+        await _importScript("index", "initIndex", container);
+    } else if (url.includes("choosing-address")) {
+        await _importScript("choosing-address", "initChoosingAddress", container, "choosing-address");
+    } else if (url.includes("choosing-arrival-address")) {
+        await _importScript("choosing-address", "initChoosingAddress", container, "choosing-arrival-address");
+    } else if (url.includes("choosing-date")) {
+        await _importScript("choosing-date", "initChoosingDate", container);
+    } else if (url.includes("choosing-passengers")) {
+        await _importScript("choosing-passengers", "initChoosingPassengers", container);
+    }
+}
+
 
 /**
  * Met à jour la valeur du champ `selected-departure-address` dans le snapshot avant la transition.
@@ -316,7 +323,8 @@ function createTempContainer(snapshot) {
     tempContainer.style.height = "100%";
     tempContainer.style.zIndex = "100";
     tempContainer.style.backgroundColor = "var(--custom-light)";
-    tempContainer.innerHTML = snapshot;
+    tempContainer.innerHTML = "";
+    tempContainer.appendChild(snapshot);  
 
     return tempContainer;
 }
