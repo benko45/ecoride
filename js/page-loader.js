@@ -110,14 +110,17 @@ async function loadPage(url, fromBackButton = false) {
 
     console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);
     console.trace(); // 💣 TRACE
+
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
         url = "/";
-    }   
+    }
+      
     if (!isValidUrl(url)) {
         console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
         console.trace(); // Voir qui a demandé ce loadPage()
     }
+      
     const pageContent = document.getElementById("page-content");
     generatePageSnapshot(url)
         .then(result => {
@@ -125,10 +128,12 @@ async function loadPage(url, fromBackButton = false) {
             const tempContainer = createTempContainer(snapshot);
             forceImageReload(tempContainer);
             document.body.appendChild(tempContainer);
+
             return loadCSSForPage(styles).then(() => tempContainer);
         })
         .then(tempContainer => {
             importScript(url, tempContainer);
+
             gsap.to(tempContainer, {
                 left: "0%",
                 duration: 1,
@@ -152,17 +157,11 @@ async function generatePageSnapshot(url) {
     console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
     try {
         const htmlText = await _fetchFragmentHTML(url);
-        const tempDiv = _createTempDiv(htmlText);
-        // Récupération des styles (liens <link rel="stylesheet">)
-        const styles = Array.from(tempDiv.querySelectorAll("link[rel='stylesheet']"));
-
-        // On supprime ces <link> du fragment avant injection dans le DOM
-        styles.forEach(link => link.remove());
-
+        const tempDiv =_createTempDiv(htmlText);
+        const styles = _extractAndRemoveStyles(tempDiv);
         const snapshot = tempDiv.innerHTML;
-        _prepareSnapshotContent(snapshot);
-        return { snapshot, styles };
-
+        const preparedSnapshot = _prepareSnapshotContent(snapshot);
+        return { snapshot: preparedSnapshot, styles };
     } catch (error) {
         console.error("❌ Erreur lors du chargement du fragment :", error);
         return { snapshot: "", styles: [] };
@@ -313,7 +312,7 @@ function isValidUrl(url) {
     return expectedPages.includes(url);
 }
 
-function _fetchFragmentHTML(url) {
+async function _fetchFragmentHTML(url) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
     return fetch(`${prefix}/fragments/${url}`, { cache: "no-store" })
         .then(response => {
@@ -328,10 +327,17 @@ function _createTempDiv(htmlText) {
     return tempDiv;
 }
 
+function _extractAndRemoveStyles(container) {
+    const styles = Array.from(container.querySelectorAll("link[rel='stylesheet']"));
+    styles.forEach(link => link.remove());
+    return styles;
+}
+
 function _prepareSnapshotContent(snapshot) {
     const tempWrapper = document.createElement("div");
     tempWrapper.innerHTML = snapshot;
     const pageContentDiv = tempWrapper.querySelector("#page-content");
     if (pageContentDiv) pageContentDiv.removeAttribute("id");
     updateSnapshotData(tempWrapper);
+    return tempWrapper.innerHTML;
 }
