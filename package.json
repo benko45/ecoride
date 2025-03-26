@@ -6,7 +6,9 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
-    "express": "^4.21.2"
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.7.9"

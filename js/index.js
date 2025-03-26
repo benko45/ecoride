@@ -142,11 +142,11 @@ export function positionDropdownMenu(container = document) {
 
 
 function displayDepartureAddress() {
-    document.getElementById('selected-departure-address').innerHTML = localStorage.getItem('selectedDepartureAddress');
+    document.getElementById('selected-departure-address').innerText = localStorage.getItem('selectedDepartureAddress');
 }
 
 function displayArrivalAddress() {
-    document.getElementById('selected-arrival-address').innerHTML = localStorage.getItem('selectedArrivalAddress');
+    document.getElementById('selected-arrival-address').innerText = localStorage.getItem('selectedArrivalAddress');
 }
 
 function displayDate() {
@@ -182,7 +182,7 @@ function displayDate() {
 
 function displayPassengersNb() {
     const passengersNb = localStorage.getItem('selectedPassengers');
-    document.getElementById('passengers-nb').innerHTML = passengersNb;
+    document.getElementById('passengers-nb').innerText = passengersNb;
     // console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
 }
 
@@ -223,7 +223,7 @@ function setMobileMenu(e) {
     const span_connexion = document.getElementById('span-connexion');  
     if (e.matches) {
         connexion.classList.remove('p-3');
-        span_connexion.innerHTML = "Connexion";
+        span_connexion.innerText = "Connexion";
     }
     resizeElements();
     const liASpan = document.querySelectorAll('li a span');

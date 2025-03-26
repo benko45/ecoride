@@ -53,7 +53,7 @@ export const selectImage = () => {
     }
 
     // Nettoyer le conteneur avant d'insérer de nouvelles images
-    imageContainer.innerHTML = "";
+    imageContainer.innerHTML = policy.createHTML("");
 
     // Déterminer la largeur actuelle de l'écran
     const screenWidth = window.innerWidth;

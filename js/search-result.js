@@ -19,10 +19,10 @@ const filterArrivalAddress = document.getElementById('filter-arrival-address');
 const filterDate = document.getElementById('filter-date');
 const filterPassengersNb = document.getElementById('filter-passengers-nb');
 
-filterDepartureAddress.innerHTML = localStorage.getItem('selectedDepartureAddress');
-filterArrivalAddress.innerHTML = localStorage.getItem('selectedArrivalAddress');
-filterDate.innerHTML = localStorage.getItem('selectedDate');
-filterPassengersNb.innerHTML = ', ' + localStorage.getItem('selectedPassengers') + ' passager' + s(localStorage.getItem('selectedPassengers'));
+filterDepartureAddress.innerText = localStorage.getItem('selectedDepartureAddress');
+filterArrivalAddress.innerText = localStorage.getItem('selectedArrivalAddress');
+filterDate.innerText = localStorage.getItem('selectedDate');
+filterPassengersNb.innerText = ', ' + localStorage.getItem('selectedPassengers') + ' passager' + s(localStorage.getItem('selectedPassengers'));
 
 // Ajuste la largeur des éléments de filtre : windwow.innerWidth / 2 - 50px
 adjustLine_1_ItemWidth(filterContainer, [filterDepartureAddress, filterArrivalAddress], 20);
