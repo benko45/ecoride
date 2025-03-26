@@ -1,3 +1,4 @@
+import { policy } from "/security.js";
 import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "./spa-navigation.js";
 /******************************************************/
 /*            Gestion de la Navigation                */

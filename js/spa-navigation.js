@@ -1,3 +1,4 @@
+import { policy } from "/security.js";
 import { resetTempData } from "./page-loader.js";
 
 let isFirstNavigation = true;

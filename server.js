@@ -25,7 +25,7 @@ app.use(helmet.contentSecurityPolicy({
                 "https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css",
                 "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"], 
     imgSrc: ["'self'"], // Autorise les images venant du même domaine
-    connectSrc: ["'self'"], // Ajout de la directive connectSrc pour les connexions XMLHttpRequest / WebSockets
+    connectSrc: ["'self'", "https://nominatim.openstreetmap.org/"], // Ajout de la directive connectSrc pour les connexions XMLHttpRequest / WebSockets
     fontSrc: ["'self'"], // Autorise les polices venant du même domaine
     objectSrc: ["'none'"], // Bloque les objets (comme Flash)
     upgradeInsecureRequests: [], // Force les connexions HTTP à se faire en HTTPS si possible

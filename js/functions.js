@@ -1,3 +1,5 @@
+import { policy } from "/security.js";
+
 export const selectImage = () => {
     // console.log("🖼️ selectImage() appelée !");
 
