@@ -7,5 +7,8 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.9"
   }
 }
