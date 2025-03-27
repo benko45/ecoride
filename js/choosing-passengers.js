@@ -20,16 +20,6 @@ export function initChoosingPassengers() {
     initPlusMinusComponent(plus, minus, passengers_nb);
     plusAnimation(plus, minus, passengers_nb);
     minusAnimation(plus, minus, passengers_nb);
-
-
-    /* adaptation du chemin pour les pages GitHub */
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    document.querySelectorAll('.back-link')?.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            history.pushState({}, "", `${prefix}/choosing-passengers.html`);
-        });
-    });
 }
 
 

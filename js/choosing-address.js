@@ -5,12 +5,6 @@ export function initChoosingAddress(page) {
     // console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
     console.log("📌 initChoosingAddress — reçu page:", page);
 
-    /* adaptation du chemin pour les pages GitHub */
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    /* spécification selon la page /choosing-address.html ou /choosing-arrival-address.html */ 
-    const location = page.includes("choosing-address")
-        ? "/choosing-address.html"
-        : "/choosing-arrival-address.html";
     const storageKey = page.includes("choosing-address") 
         ? "selectedDepartureAddress" 
         : "selectedArrivalAddress";

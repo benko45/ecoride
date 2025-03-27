@@ -12,15 +12,6 @@ export function initChoosingDate() {
         datepicker.remove();
         initDatepicker();
     }
-    /* adaptation du chemin pour les pages GitHub */
-    const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    document.querySelectorAll('.back-link')?.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            history.pushState({}, "", `${prefix}/choosing-address.html`);
-        });
-    });
-    
 }
 
 function initDatepicker() {
