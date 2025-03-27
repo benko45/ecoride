@@ -182067,6 +182067,7 @@ html[theme=dark] .accessibility-border {
 
 #passengers-nb {
   width: 40%;
+  cursor: pointer;
 }
 
 #passengers-nb-selector {

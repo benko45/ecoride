@@ -182114,4 +182114,8 @@ input:-ms-input-placeholder {
 
 input::-ms-input-placeholder {
   color: var(--custom-primary) !important;
+}
+
+#selected-departure-address {
+  cursor: pointer;
 }/*# sourceMappingURL=choosing-address.css.map */
