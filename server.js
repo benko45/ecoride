@@ -36,8 +36,8 @@ app.use(helmet({
       baseUri: ["'self'"],
       formAction: ["'self'"],
       frameAncestors: ["'self'"],
-      trustedTypes: ["default"],
-      requireTrustedTypesFor: ["script"]
+      trustedTypes: ["'default'"],
+      requireTrustedTypesFor: ["'script'"]
     }
   }
 }));
