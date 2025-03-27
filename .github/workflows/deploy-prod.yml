@@ -15,6 +15,6 @@ jobs:
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy to ecoride-prod
-        run: flyctl deploy --remote-only --config fly-prod.toml
+        run: flyctl deploy --remote-only --app ecoride-prod --config fly-prod.toml
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN_PROD }}
