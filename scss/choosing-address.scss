@@ -38,3 +38,7 @@ $placeholderPrefixes: ("::", "::-webkit-input-", "::-moz-", ":-ms-input-", "::-m
         color: var(--custom-primary) !important;
     }
 }
+
+#selected-departure-address {
+    cursor: pointer;    
+}   
