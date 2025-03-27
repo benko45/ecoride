@@ -1,0 +1,24 @@
+<!-- views/index.ejs -->
+<% layout('layout') -%>
+
+<!-- Injection de contenu dans le layout -->
+<div id="page-content">
+  <!-- Barre de navigation -->
+  <%- include('partials/navbar') %>
+
+  <!-- Symboles SVG partagés -->
+  <%- include('partials/symbols') %>
+
+  <!-- Image responsive selon la taille de l'écran -->
+  <%- include('partials/img-container') %>
+
+  <div id="title" class="myTitle d-flex justify-content-center align-items-center fs-60">
+    EcoRide
+  </div>
+
+  <!-- Choix du thème -->
+  <%- include('partials/theme-switcher') %>
+
+  <!-- Zone de recherche de trajet -->
+  <%- include('partials/search-form') %>
+</div>

@@ -1,0 +1,80 @@
+    <!-- Menu dropdown pour choisir le theme -->
+    <div class="dropdown">
+        <!-- Bouton de sélection de thème -->
+        <button class="btn dropdown-toggle d-flex align-items-center background-body-bg"
+        id="themeToggle"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        aria-label="Changer le thème">
+        <!-- Icône pour le thème "auto" -->
+        <span class="theme-icon icon-auto">
+            <svg class="bi">
+                <use href="#circle-half"></use>
+            </svg>
+        </span>
+        <!-- Icône pour le thème "clair" -->
+            <span class="theme-icon icon-light">
+                <svg class="bi" width="1em" height="1em">
+                    <use href="#sun-fill"></use>
+                </svg>
+            </span>
+            <!-- Icône pour le thème "sombre" -->
+            <span class="theme-icon icon-dark">
+                <svg class="bi" width="1em" height="1em">
+                    <use href="#moon-stars-fill"></use>
+                </svg>
+            </span>
+            <!-- Icône pour le thème "accessibilité sombre" -->
+            <span class="theme-icon icon-accessibility-dark">
+                <svg class="bi" width="1em" height="1em">
+                <use href="#user-dark"></use>
+                </svg>
+            </span>
+            <!-- Icône pour le thème "accessibilité clair" -->
+            <span class="theme-icon icon-accessibility-light">
+                <svg class="bi" width="1em" height="1em">
+                    <use href="#user-light"></use>
+                </svg>
+            </span>
+            <span class="visually-hidden" id="theme-text">Changer le thème</span>
+        </button>
+
+        <ul id ="theme-menu-list" class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="themeToggle">
+            <li>
+                <button type="button" class="dropdown-item align-items-center" theme="light">
+                    <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+                        Clair
+                    <svg class="bi ms-auto d-none check-icon" width="1em" height="1em"><use href="#check2"></use></svg>
+                </button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-item d-flex align-items-center" theme="dark">
+                    <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+                        Sombre
+                    <svg class="bi ms-auto d-none check-icon" width="1em" height="1em"><use href="#check2"></use></svg>
+                </button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-item d-flex align-items-center" theme="auto">
+                    <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+                        Auto (OS)
+                    <svg class="bi ms-auto d-none check-icon" width="1em" height="1em"><use href="#check2"></use></svg>
+                </button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-item d-flex align-items-center" theme="accessibility-light">
+                    <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#user-light"></use></svg>
+                        Accessibilité - Clair
+                    <svg class="bi ms-auto d-none check-icon" width="1em" height="1em"><use href="#check2"></use></svg>
+                </button>
+            </li>
+            <li>
+                <button type="button" class="dropdown-item d-flex align-items-center" theme="accessibility-dark">
+                    <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#user-dark"></use></svg>
+                        Accessibilité - Sombre
+                    <svg class="bi ms-auto d-none check-icon" width="1em" height="1em"><use href="#check2"></use></svg>
+                </button>
+            </li>
+        </ul>
+    </div> 

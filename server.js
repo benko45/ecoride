@@ -2,11 +2,16 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const path = require('path');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --- Politique CSP personnalisée ---
+// === 📁 CONFIGURATION DES DOSSIERS ===
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // views/ contient index.ejs, fragments/, layout.ejs
+
+// === 🔐 CSP DIRECTIVES ===
 const cspDirectives = {
   scriptSrc: [
     "'self'",
@@ -38,9 +43,11 @@ const cspDirectives = {
   ]
 };
 
+// === 🔐 IP AUTORISÉES + ZAP ===
+const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119'];  // adresse statique de ZAP
+const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixe IPv6 mobile de ZAP
 
-const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119']; // adresse statique de ZAP
-
+// === 🔐 CORS AUTORISÉS ===
 const allowedOrigins = [
   'https://ecoride-prod.fly.dev',
   'https://ecoride-dev.fly.dev',
@@ -57,40 +64,39 @@ const corsOptions = {
   }
 };
 
-//
-// === 🔐 MIDDLEWARES DE SÉCURITÉ ===
-//
+// === 🔐 MIDDLEWARES SÉCURITÉ ===
 
-// Headers de sécurité (Helmet)
+// Helmet (en premier si CSP personnalisée ensuite)
 app.use(helmet());
 
-// CSP appliquée à toutes les requêtes (y compris erreurs)
+// Middleware CSP dynamique avec nonce
 app.use((req, res, next) => {
+  const nonce = crypto.randomBytes(16).toString('base64');
+  res.locals.nonce = nonce;
+
   res.setHeader('Content-Security-Policy',
     `default-src 'self'; ` +
-    `script-src ${cspDirectives.scriptSrc.join(' ')}; ` +
-    `style-src ${cspDirectives.styleSrc.join(' ')}; ` +
+    `script-src ${cspDirectives.scriptSrc.join(' ')} 'nonce-${nonce}'; ` +
+    `style-src ${cspDirectives.styleSrc.join(' ')} 'nonce-${nonce}'; ` +
     `img-src ${cspDirectives.imgSrc.join(' ')}; ` +
     `font-src ${cspDirectives.fontSrc.join(' ')}; ` +
     `connect-src 'self' https://nominatim.openstreetmap.org/; ` +
     `object-src 'none'; upgrade-insecure-requests; ` +
     `base-uri 'self'; form-action 'self'; frame-ancestors 'self'; ` +
     `trusted-types default; require-trusted-types-for 'script'; script-src-attr 'none'`
-  );  
+  );
+
   next();
 });
 
 // Filtrage IP avec exception ZAP
-const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixes IPv6 de ZAP
 app.use((req, res, next) => {
   const forwardedIps = req.headers['x-forwarded-for']?.split(',') || [];
   const clientIp = forwardedIps[0] || req.ip;
   const userAgent = req.headers['user-agent'] || '';
   console.log(`Client IP: ${clientIp} | UA: ${userAgent}`);
 
-  // Exception ZAP
   if (userAgent.includes('ZAP')) return next();
-
   const isAllowedIpv6 = allowedIpv6Prefixes.some(prefix => clientIp.startsWith(prefix));
   if (!allowedIps.includes(clientIp) && !isAllowedIpv6) {
     return res.status(403).sendFile(path.join(__dirname, '403.html'));
@@ -99,30 +105,38 @@ app.use((req, res, next) => {
   next();
 });
 
-// CORS (domaines autorisés uniquement)
+// CORS
 app.use(cors(corsOptions));
 
-//
-// === 🚀 SERVEURS DE FICHIERS ET ROUTES ===
-//
+// === 🚀 FICHIERS PUBLICS ===
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
-// Fichiers statiques
-app.use(express.static('.'));
+// === 📄 ROUTES PRINCIPALES ===
 
-// Route d’accueil simple
+// Index (SPA root page)
 app.get('/', (req, res) => {
-  res.send('CSP correctement configuré avec Helmet!');
+  res.render('index', {
+    nonce: res.locals.nonce,
+    title: "Accueil",
+    userIsReturning: false
+  });
 });
 
-// Page 404
+// Fragments dynamiques (ex: choosing-address, results, etc.)
+app.get('/fragments/:name', (req, res) => {
+  const fragment = req.params.name;
+  res.render(`fragments/${fragment}`, {
+    nonce: res.locals.nonce,
+    userIsReturning: true
+  });
+});
+
+// 404
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
-//
-// === 🟢 LANCEMENT DU SERVEUR ===
-//
-
+// === 🚀 START SERVEUR ===
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server listening on port ${PORT}`);
 });
