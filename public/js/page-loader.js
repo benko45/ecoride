@@ -1,5 +1,5 @@
 import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "./spa-navigation.js";
-
+import { paths } from "./paths.js";
 
 
 

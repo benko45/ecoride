@@ -2,6 +2,6 @@
 /*            Gestion des paths                       */
 /******************************************************/
 export const paths = {
-    fragments: "/fragments/", // Chemin pour les fragments
-    js: "/js/", // Chemin pour les scripts
+    fragments: "/views/fragments/", // Chemin pour les fragments
+    js: "/public/js/", // Chemin pour les scripts
 }

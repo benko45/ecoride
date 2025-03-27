@@ -7,12 +7,12 @@ export const selectImage = () => {
     const imageSources = [
         {
             class: "img-mobile",
-            src: "/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg",
+            src: "/public/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg",
             srcset: `
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_320.jpg 320w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_375.jpg 375w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_425.jpg 425w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_768.jpg 768w`,
             sizes: "(max-width: 767px) 100vw",
             alt: "Image mobile",
             minWidth: 0,
@@ -20,11 +20,11 @@ export const selectImage = () => {
         },
         {
             class: "img-tablet",
-            src: "/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg",
+            src: "/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg",
             srcset: `
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1024.jpg 1024w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md_1600.jpg 1600w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_md.jpg 2280w`,
             sizes: "(min-width: 768px) and (max-width: 1599px) 50vw",
             alt: "Image tablette",
             minWidth: 768,
@@ -32,11 +32,11 @@ export const selectImage = () => {
         },
         {
             class: "img-desktop",
-            src: "/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg",
+            src: "/public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg",
             srcset: `
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
-                /img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1024.jpg 1024w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes_1440.jpg 1440w,
+                /public/img/Un_bouleau_au_bord_d_un_chemin_dans_les_Alpes.jpg 5472w`,
             sizes: "(min-width: 1600px) 33vw",
             alt: "Image grand écran",
             minWidth: 1600,
