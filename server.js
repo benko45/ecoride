@@ -28,6 +28,7 @@ const cspDirectives = {
 };
 
 const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119'];
+
 const allowedOrigins = [
   'https://ecoride-prod.fly.dev',
   'https://ecoride-dev.fly.dev',
@@ -66,14 +67,18 @@ app.use((req, res, next) => {
 });
 
 // Filtrage IP avec exception ZAP
+const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixes IPv6 de ZAP
 app.use((req, res, next) => {
-  const clientIp = req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
+  const forwardedIps = req.headers['x-forwarded-for']?.split(',') || [];
+  const clientIp = forwardedIps[0] || req.ip;
   const userAgent = req.headers['user-agent'] || '';
-  console.log(`Client IP: ${clientIp} | User-Agent: ${userAgent}`);
+  console.log(`Client IP: ${clientIp} | UA: ${userAgent}`);
 
+  // Exception ZAP
   if (userAgent.includes('ZAP')) return next();
 
-  if (!allowedIps.includes(clientIp)) {
+  const isAllowedIpv6 = allowedIpv6Prefixes.some(prefix => clientIp.startsWith(prefix));
+  if (!allowedIps.includes(clientIp) && !isAllowedIpv6) {
     return res.status(403).sendFile(path.join(__dirname, '403.html'));
   }
 
