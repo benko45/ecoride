@@ -28,11 +28,13 @@ const cspDirectives = {
   ],
   fontSrc: [
     "'self'",
-    "https://fonts.gstatic.com"
+    "https://fonts.gstatic.com",
+    "https://cdnjs.cloudflare.com"
   ],
   imgSrc: [
     "'self'",
-    "https://github.com"
+    "https://github.com",
+    "https://avatars.githubusercontent.com"
   ]
 };
 
