@@ -6,10 +6,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // --- Liste d'IP autorisées ---
-const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119', 'ZAP_IP_ICI'];
+const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119'];
 app.use((req, res, next) => {
   const clientIp = req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
-  console.log(`Client IP: ${clientIp}`);
+  const userAgent = req.headers['user-agent'] || '';
+  console.log(`Client IP: ${clientIp} | User-Agent: ${userAgent}`);
+
+  // Autorise ZAP temporairement (optionnel)
+  if (userAgent.includes('ZAP')) return next();
+
   if (!allowedIps.includes(clientIp)) {
     return res.status(403).send('Forbidden: IP not allowed');
   }
@@ -57,6 +62,7 @@ const cspDirectives = {
   ]
 };
 
+// --- CSP appliquée globalement ---
 app.use((req, res, next) => {
   res.setHeader('Content-Security-Policy',
     `default-src 'self'; ` +
@@ -71,16 +77,17 @@ app.use((req, res, next) => {
 });
 
 // --- Sécurité générale Helmet ---
-app.use(helmet()); // OK même sans helmet.contentSecurityPolicy()
+app.use(helmet());
 
 // --- Route racine ---
 app.get('/', (req, res) => {
   res.send('CSP correctement configuré avec Helmet!');
 });
 
-// --- Middleware 404 simple ---
+// --- Middleware 404 avec redirection vers 404.html ---
+const path = require('path');
 app.use((req, res) => {
-  res.status(404).send('404 - Page non trouvée');
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
 // --- Lancement serveur ---
