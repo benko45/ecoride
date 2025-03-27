@@ -1,7 +1,14 @@
 import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "./spa-navigation.js";
 import { paths } from "./paths.js";
+import { fragmentAssets } from "./fragment-assets.js";
 
 
+/******************************************************/
+/*           Récupération des N(umber)(used)ONCE      */
+/*           pour les scripts dynamiques              */
+/*           Permet d'appliquer la CSP                */
+/******************************************************/
+const nonce = document.body.getAttribute("nonce") || document.querySelector("meta[name='csp-nonce']")?.getAttribute("content");
 
 /******************************************************/
 /*            Gestion de la Navigation                */
@@ -111,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function loadPage(url, fromBackButton = false) {
-    console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);
+    console.log(`🚀 loadPage() appelé pour : ${url}, retour =`, fromBackButton);    
     console.trace(); // 💣 TRACE
     if (!url) {
         console.warn("⚠️ Aucune URL de retour trouvée, retour à la page d'accueil.");
@@ -121,11 +128,43 @@ async function loadPage(url, fromBackButton = false) {
         console.warn("⚠️ URL inattendue reçue dans loadPage():", url);
         console.trace(); // Voir qui a demandé ce loadPage()
     } 
+    
+    // Chargement des assets CSS et JS du fragment
+    const fragmentName = url.replace(".html", "").split("/").pop();
+    loadAssetsForFragment(fragmentName, nonce);
     const pageContent = document.getElementById("page-content");
+    // Transition de page
     generatePageSnapshot(url)
         .then(_prepareStyles)
         .then(tempContainer => pageTransition(url, tempContainer, pageContent, fromBackButton))
         .catch(err => console.error("Erreur :", err));
+}
+
+/*****************************************************/
+/*  Gestion du chargement des styles et scripts      */
+/*****************************************************/
+function loadAssetsForFragment(fragmentName, nonce = null) {
+    const assets = fragmentAssets[fragmentName];
+    if (!assets) return;
+
+    for (const href of assets.styles || []) {
+        if (!document.querySelector(`link[href="${href}"]`)) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = href;
+        document.head.appendChild(link);
+        }
+    }
+
+    for (const src of assets.scripts || []) {
+        if (!document.querySelector(`script[src="${src}"]`)) {
+        const script = document.createElement("script");
+        script.src = src;
+        script.type = "module";
+        if (nonce) script.setAttribute("nonce", nonce);
+        document.body.appendChild(script);
+        }
+    }
 }
 
 async function generatePageSnapshot(url) {
@@ -280,11 +319,11 @@ function forceImageReload(container) {
 
 function isValidUrl(url) {
     const expectedPages = [
-        "index",
-        "choosing-address",
-        "choosing-arrival-address",
-        "choosing-date",
-        "choosing-passengers"
+        "index.html",
+        "choosing-address.html",
+        "choosing-arrival-address.html",
+        "choosing-date.html",
+        "choosing-passengers.html"
     ];
     return expectedPages.includes(url);
 }
@@ -317,7 +356,7 @@ function pageTransition(url, tempContainer, pageContent, fromBackButton) {
 
 async function _fetchFragmentHTML(url) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    return fetch(`${prefix}${paths.fragments}${url.replace(/\.html$/, "")}`, { cache: "no-store" })
+    return fetch(`${prefix}${paths.fragments}${url}`, { cache: "no-store" })
         .then(response => {
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             return response.text();

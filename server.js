@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // views/ contient index.ejs, fragments/, layout.ejs
 
+// === 📄 LAYOUTS EJS ===
+const expressLayouts = require('express-ejs-layouts');
+app.use(expressLayouts);
+app.set('layout', 'layout');
+
 // === 🔐 CSP DIRECTIVES ===
 const cspDirectives = {
   scriptSrc: [
@@ -20,13 +25,13 @@ const cspDirectives = {
     "https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js",
     "https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
-    "https://kit.fontawesome.com/06e14d9221.js",
     "https://unpkg.com/trusted-types@3.0.4/dist/es6/trustedtypes.full.es6.js"
   ],
   styleSrc: [
     "'self'",
     "https://fonts.googleapis.com",
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+    "https://cdn.jsdelivr.net",
+    "https://cdnjs.cloudflare.com",
     "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
     "https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css",
     "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -34,6 +39,7 @@ const cspDirectives = {
   fontSrc: [
     "'self'",
     "https://fonts.gstatic.com",
+    "https://cdn.jsdelivr.net",
     "https://cdnjs.cloudflare.com"
   ],
   imgSrc: [
@@ -44,22 +50,33 @@ const cspDirectives = {
 };
 
 // === 🔐 IP AUTORISÉES + ZAP ===
-const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119'];  // adresse statique de ZAP
+const allowedIps = ['88.126.84.119', '127.0.0.1', '::1', '192.168.1.141', '137.66.6.96'];  // adresse statique de ZAP
 const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixe IPv6 mobile de ZAP
 
 // === 🔐 CORS AUTORISÉS ===
 const allowedOrigins = [
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
   'https://ecoride-prod.fly.dev',
   'https://ecoride-dev.fly.dev',
   'https://ecoride-test.fly.dev'
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+  origin: function (origin, callback) {
+    console.log("🌐 Requête entrante avec origin =", origin);
+
+    // Autoriser si pas d'origin (requête locale / navigation directe)
+    // ou si l'origin contient localhost:3000 ou 127.0.0.1:3000
+    if (
+      !origin ||
+      origin.includes("localhost:3000") ||
+      origin.includes("127.0.0.1:3000")
+    ) {
       callback(null, true);
     } else {
-      callback(new Error('CORS not allowed'), false);
+      console.warn("❌ Origin refusée :", origin);
+      callback(new Error("CORS not allowed"));
     }
   }
 };
@@ -80,10 +97,10 @@ app.use((req, res, next) => {
     `style-src ${cspDirectives.styleSrc.join(' ')} 'nonce-${nonce}'; ` +
     `img-src ${cspDirectives.imgSrc.join(' ')}; ` +
     `font-src ${cspDirectives.fontSrc.join(' ')}; ` +
-    `connect-src 'self' https://nominatim.openstreetmap.org/; ` +
+    `connect-src 'self' https://nominatim.openstreetmap.org/ https://ka-f.fontawesome.com; ` +
     `object-src 'none'; upgrade-insecure-requests; ` +
     `base-uri 'self'; form-action 'self'; frame-ancestors 'self'; ` +
-    `trusted-types default; require-trusted-types-for 'script'; script-src-attr 'none'`
+    `trusted-types default; script-src-attr 'none'` //require-trusted-types-for 'script'; est incompatible jQuery
   );
 
   next();
@@ -115,6 +132,7 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // Index (SPA root page)
 app.get('/', (req, res) => {
+  console.log("access /");
   res.render('index', {
     nonce: res.locals.nonce,
     title: "Accueil",

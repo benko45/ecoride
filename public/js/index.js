@@ -164,20 +164,20 @@ function displayDate() {
     afterTomorrow.setDate(today.getDate() + 2);
     const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
     
-    if (savedDate) {
-        // console.log('savedDate:', savedDate);
-        if (savedDate === todayFormatted) {
-            $('#date-picker').text("Aujourd'hui");
-        } else if (savedDate === tomorrowFormatted) {
-            $('#date-picker').text("Demain");
-        } else if (savedDate === afterTomorrowFormatted) {
-            $('#date-picker').text("Après-demain");
-        } else {
-            $('#date-picker').text(savedDate);
-        }
-    } else {
-        $('#date-picker').text("Aujourd'hui");
-    }
+    // if (savedDate) {
+    //     // console.log('savedDate:', savedDate);
+    //     if (savedDate === todayFormatted) {
+    //         $('#date-picker').text("Aujourd'hui");
+    //     } else if (savedDate === tomorrowFormatted) {
+    //         $('#date-picker').text("Demain");
+    //     } else if (savedDate === afterTomorrowFormatted) {
+    //         $('#date-picker').text("Après-demain");
+    //     } else {
+    //         $('#date-picker').text(savedDate);
+    //     }
+    // } else {
+    //     $('#date-picker').text("Aujourd'hui");
+    // }
 }
 
 function displayPassengersNb() {
