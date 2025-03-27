@@ -41,7 +41,7 @@ app.use(helmet.contentSecurityPolicy({
 }));
 
 // Liste d'IP autorisées
-const allowedIps = ['192.168.1.141', '137.66.6.96'];
+const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119']; // 88.126.84.119 = IP de ZAP
 
 // Middleware IP autorisée (compatible proxy)
 app.use((req, res, next) => {
