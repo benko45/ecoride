@@ -1,45 +1,10 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-// --- Liste d'IP autorisées ---
-const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119'];
-app.use((req, res, next) => {
-  const clientIp = req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
-  const userAgent = req.headers['user-agent'] || '';
-  console.log(`Client IP: ${clientIp} | User-Agent: ${userAgent}`);
-
-  // Autorise ZAP temporairement (optionnel)
-  if (userAgent.includes('ZAP')) return next();
-
-  if (!allowedIps.includes(clientIp)) {
-    return res.status(403).send('Forbidden: IP not allowed');
-  }
-  next();
-});
-
-// --- CORS sur domaines autorisés ---
-const allowedOrigins = [
-  'https://ecoride-prod.fly.dev',
-  'https://ecoride-dev.fly.dev',
-  'https://ecoride-test.fly.dev'
-];
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed'), false);
-    }
-  }
-};
-app.use(cors(corsOptions));
-
-// --- Fichiers statiques ---
-app.use(express.static('.'));
 
 // --- Politique CSP personnalisée ---
 const cspDirectives = {
@@ -62,7 +27,31 @@ const cspDirectives = {
   ]
 };
 
-// --- CSP appliquée globalement ---
+const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119'];
+const allowedOrigins = [
+  'https://ecoride-prod.fly.dev',
+  'https://ecoride-dev.fly.dev',
+  'https://ecoride-test.fly.dev'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS not allowed'), false);
+    }
+  }
+};
+
+//
+// === 🔐 MIDDLEWARES DE SÉCURITÉ ===
+//
+
+// Headers de sécurité (Helmet)
+app.use(helmet());
+
+// CSP appliquée à toutes les requêtes (y compris erreurs)
 app.use((req, res, next) => {
   res.setHeader('Content-Security-Policy',
     `default-src 'self'; ` +
@@ -76,21 +65,45 @@ app.use((req, res, next) => {
   next();
 });
 
-// --- Sécurité générale Helmet ---
-app.use(helmet());
+// Filtrage IP avec exception ZAP
+app.use((req, res, next) => {
+  const clientIp = req.headers['x-forwarded-for']?.split(',')[0] || req.ip;
+  const userAgent = req.headers['user-agent'] || '';
+  console.log(`Client IP: ${clientIp} | User-Agent: ${userAgent}`);
 
-// --- Route racine ---
+  if (userAgent.includes('ZAP')) return next();
+
+  if (!allowedIps.includes(clientIp)) {
+    return res.status(403).sendFile(path.join(__dirname, '403.html'));
+  }
+
+  next();
+});
+
+// CORS (domaines autorisés uniquement)
+app.use(cors(corsOptions));
+
+//
+// === 🚀 SERVEURS DE FICHIERS ET ROUTES ===
+//
+
+// Fichiers statiques
+app.use(express.static('.'));
+
+// Route d’accueil simple
 app.get('/', (req, res) => {
   res.send('CSP correctement configuré avec Helmet!');
 });
 
-// --- Middleware 404 avec redirection vers 404.html ---
-const path = require('path');
+// Page 404
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
-// --- Lancement serveur ---
+//
+// === 🟢 LANCEMENT DU SERVEUR ===
+//
+
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`✅ Server listening on port ${PORT}`);
 });
