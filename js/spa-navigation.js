@@ -1,4 +1,3 @@
-import { policy } from "/security.js";
 import { resetTempData } from "./page-loader.js";
 
 let isFirstNavigation = true;
@@ -61,7 +60,7 @@ export function setupPopstateHandler(loadPageCallback) {
         const path = normalizeUrl(location.pathname.split("/").pop());
         console.log("↩️ Retour navigateur vers:", path);
         resetTempData();
-        document.getElementById("page-content").innerHTML = policy.createHTML(""); // 🔄 reset
+        document.getElementById("page-content").innerHTML = window.policy.createHTML(""); // 🔄 reset
         loadPageCallback(path, true);
     });
 }

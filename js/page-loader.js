@@ -1,4 +1,3 @@
-import { policy } from "/security.js";
 import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "./spa-navigation.js";
 /******************************************************/
 /*            Gestion de la Navigation                */
@@ -263,7 +262,7 @@ function createTempContainer(snapshot) {
     tempContainer.style.height = "100%";
     tempContainer.style.zIndex = "100";
     tempContainer.style.backgroundColor = "var(--custom-light)";
-    tempContainer.innerHTML = policy.createHTML(snapshot);
+    tempContainer.innerHTML = window.policy.createHTML(snapshot);
 
     return tempContainer;
 }
@@ -302,7 +301,7 @@ function pageTransition(url, tempContainer, pageContent, fromBackButton) {
         duration: 1,
         ease: "power2.inOut",
         onComplete: () => {
-            pageContent.innerHTML = policy.createHTML(tempContainer.innerHTML);
+            pageContent.innerHTML = window.policy.createHTML(tempContainer.innerHTML);
             tempContainer.remove();
             navigation(url, fromBackButton);
             importScript(url);
@@ -323,7 +322,7 @@ async function _fetchFragmentHTML(url) {
 
 function _createTempDiv(htmlText) {
     const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = policy.createHTML(htmlText);
+    tempDiv.innerHTML = window.policy.createHTML(htmlText);
     return tempDiv;
 }
 
@@ -335,7 +334,7 @@ function _extractAndRemoveStyles(container) {
 
 function _prepareSnapshotContent(snapshot) {
     const tempWrapper = document.createElement("div");
-    tempWrapper.innerHTML = policy.createHTML(snapshot);
+    tempWrapper.innerHTML = window.policy.createHTML(snapshot);
     const pageContentDiv = tempWrapper.querySelector("#page-content");
     if (pageContentDiv) pageContentDiv.removeAttribute("id");
     updateSnapshotData(tempWrapper);

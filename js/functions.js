@@ -1,5 +1,3 @@
-import { policy } from "/security.js";
-
 export const selectImage = () => {
     // console.log("🖼️ selectImage() appelée !");
 
@@ -55,7 +53,7 @@ export const selectImage = () => {
     }
 
     // Nettoyer le conteneur avant d'insérer de nouvelles images
-    imageContainer.innerHTML = policy.createHTML("");
+    imageContainer.innerHTML = window.policy.createHTML("");
 
     // Déterminer la largeur actuelle de l'écran
     const screenWidth = window.innerWidth;
