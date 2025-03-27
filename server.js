@@ -32,6 +32,7 @@ app.use(helmet.contentSecurityPolicy({
     baseUri: ["'self'"], // Permet uniquement les liens de base venant du même domaine
     formAction: ["'self'"], // Autorise uniquement les actions de formulaire vers le même domaine
     "frame-ancestors": ["'self'"], // Bloque l'insertion du site dans un iframe
+    "trusted-types": ["default"], // Active Trusted Types
   }
 }));
 
