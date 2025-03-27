@@ -16,18 +16,26 @@ const cspDirectives = {
     "https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr.min.js",
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js",
     "https://kit.fontawesome.com/06e14d9221.js",
-    "https://unpkg.com/trusted-types@3.0.4/dist/es6/trustedtypes.full.es6.js",
-    "https://fonts.googleapis.com",
-    "https://fonts.gstatic.com"
+    "https://unpkg.com/trusted-types@3.0.4/dist/es6/trustedtypes.full.es6.js"
   ],
   styleSrc: [
     "'self'",
+    "https://fonts.googleapis.com",
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
     "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
     "https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css",
     "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
   ],
+  fontSrc: [
+    "'self'",
+    "https://fonts.gstatic.com"
+  ],
+  imgSrc: [
+    "'self'",
+    "https://github.com"
+  ]
 };
+
 
 const allowedIps = ['192.168.1.141', '137.66.6.96', '88.126.84.119']; // adresse statique de ZAP
 
@@ -60,11 +68,13 @@ app.use((req, res, next) => {
     `default-src 'self'; ` +
     `script-src ${cspDirectives.scriptSrc.join(' ')}; ` +
     `style-src ${cspDirectives.styleSrc.join(' ')}; ` +
-    `img-src 'self'; connect-src 'self' https://nominatim.openstreetmap.org/; ` +
-    `font-src 'self'; object-src 'none'; upgrade-insecure-requests; ` +
+    `img-src ${cspDirectives.imgSrc.join(' ')}; ` +
+    `font-src ${cspDirectives.fontSrc.join(' ')}; ` +
+    `connect-src 'self' https://nominatim.openstreetmap.org/; ` +
+    `object-src 'none'; upgrade-insecure-requests; ` +
     `base-uri 'self'; form-action 'self'; frame-ancestors 'self'; ` +
     `trusted-types default; require-trusted-types-for 'script'; script-src-attr 'none'`
-  );
+  );  
   next();
 });
 
