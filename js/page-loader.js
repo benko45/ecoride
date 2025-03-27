@@ -1,4 +1,8 @@
 import { initNavigation, navigation, normalizeUrl, setupPopstateHandler } from "./spa-navigation.js";
+
+
+
+
 /******************************************************/
 /*            Gestion de la Navigation                */
 /******************************************************/
@@ -127,7 +131,7 @@ async function loadPage(url, fromBackButton = false) {
 async function generatePageSnapshot(url) {
     console.log(`📸 Chargement du fragment de page : ${url}`);
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}/fragments/${url}`);
+    console.log("🔗 generatePageSnapshot : Chemin :", `${prefix}${paths.fragments}${url}`);
     try {
         const htmlText = await _fetchFragmentHTML(url);
         const tempDiv =_createTempDiv(htmlText);
@@ -198,7 +202,7 @@ function _importScript(scriptName, initFunctionName = null, initParam_1 = null) 
     // Supprime l'ancien script s'il est déjà chargé
     document.querySelector(`script[src*='${scriptName}']`)?.remove();
 
-    import(`${prefix}/js/${scriptName}.js`)
+    import(`${prefix}${paths.js}${scriptName}.js`)
         .then(module => {
             if (initFunctionName && typeof module[initFunctionName] === "function") {
                 module[initFunctionName](initParam_1);
@@ -313,7 +317,7 @@ function pageTransition(url, tempContainer, pageContent, fromBackButton) {
 
 async function _fetchFragmentHTML(url) {
     const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-    return fetch(`${prefix}/fragments/${url}`, { cache: "no-store" })
+    return fetch(`${prefix}${paths.fragments}${url}`, { cache: "no-store" })
         .then(response => {
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             return response.text();
