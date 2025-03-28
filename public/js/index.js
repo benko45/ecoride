@@ -4,6 +4,14 @@ import { applyTheme } from './apply-theme.js';
 import { initNavigation, listenToNavigation, setupPopstateHandler } from './spa-navigation.js';
 import { selectImage } from './functions.js';
 import { loadPage } from './page-loader.js';
+import { applyDynamicStyles } from './choosing-address.js';
+
+
+
+const nonce = document.body.getAttribute("nonce") || document.querySelector("meta[name='csp-nonce']")?.getAttribute("content");
+
+const dynamicStyle = document.createElement('style');
+if (nonce) dynamicStyle.setAttribute('nonce', nonce);
 
 document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
@@ -38,6 +46,11 @@ export function initIndex(container = document) {
     initNavigation();
     setupPopstateHandler(loadPage);
     listenToNavigation();
+
+    container.querySelectorAll('.form-container, .suggestions, .suggestion, .datepicker, .text-container').forEach(el => {
+        if (el) applyDynamicStyles(el);
+    });
+    
    
     window.addEventListener('resize', setRealVh);
     document.addEventListener('DOMContentLoaded', updateBouncingArrows);
@@ -160,7 +173,7 @@ function displayArrivalAddress(container=document) {
 
 function displayDate(container=document) {
     const savedDate = localStorage.getItem('selectedDate');
-    console.log('📅 displayDate : Date sélectionnée:', savedDate);
+    // console.log('📅 displayDate : Date sélectionnée:', savedDate);
     const options = { weekday: 'short', day: '2-digit', month: 'short' };
     
     const today = new Date();
@@ -178,7 +191,7 @@ function displayDate(container=document) {
     if (!datepicker) {
         console.warn("⚠️ #date-picker introuvable dans container:", container);
         return;
-    } else console.log('📅 displayDate : datepicker trouvé :', datepicker);
+    }
     
     if (savedDate) {
         if (savedDate === todayFormatted) {

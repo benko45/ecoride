@@ -7,7 +7,8 @@ import { toPascalCase } from "./functions.js";
 /*      les nonces sont générés côté serveur          */
 /******************************************************/
 const nonce = document.body.getAttribute("nonce") || document.querySelector("meta[name='csp-nonce']")?.getAttribute("content");
-
+const dynamicStyle = document.createElement('style');
+if (nonce) dynamicStyle.setAttribute('nonce', nonce);
 function loadAssetsForFragment(fragmentName, nonce = null) {
   const assets = fragmentAssets[fragmentName];
   if (!assets) return;
@@ -92,10 +93,12 @@ function extractAndApplyTitle(container) {
   }
 
 async function importFragmentModule(fragmentName, isBackOrForward, container) {
-    if (!isBackOrForward) {
+    // if (!isBackOrForward) {
         const fragmentModule = await import(`./${fragmentName}.js`);
         if (typeof fragmentModule[`init${toPascalCase(fragmentName)}`] === 'function') {
           fragmentModule[`init${toPascalCase(fragmentName)}`](container);
         }
-      }
+        console.log("📦 importFragmentModule — fragment:", fragmentName, "| back/forward ?", isBackOrForward);
+
+      // }
 }

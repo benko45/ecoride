@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 3000;
 
 const viewsPath = path.join(__dirname, 'views');
 
+console.log("✅ Lancement de server.js");
+
 fs.readdir(viewsPath, (err, files) => {
   if (err) {
     console.error("❌ Le dossier views/ est introuvable en production !");
@@ -82,7 +84,8 @@ const corsOptions = {
     if (
       !origin ||
       origin.includes("localhost:3000") ||
-      origin.includes("127.0.0.1:3000")
+      origin.includes("127.0.0.1:3000") || 
+      allowedOrigins.includes(origin)
     ) {
       callback(null, true);
     } else {
@@ -155,6 +158,10 @@ app.get('/', (req, res) => {
   }
 });
 
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end(); // No Content, silencieux
+});
+
 // Fragments dynamiques (ex: choosing-address, results, etc.)
 app.get('/:name', (req, res) => {
   const fragment = req.params.name;
@@ -166,7 +173,7 @@ app.get('/:name', (req, res) => {
 
 // 404
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, '404.html'));
+  res.status(404).sendFile('404');
 });
 
 app.use((err, req, res, next) => {
