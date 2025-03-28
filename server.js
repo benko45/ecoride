@@ -1,3 +1,8 @@
+import fs from 'fs';
+import path from 'path';
+
+
+
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -6,6 +11,16 @@ const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const viewsPath = path.join(__dirname, 'views');
+
+fs.readdir(viewsPath, (err, files) => {
+  if (err) {
+    console.error("❌ Le dossier views/ est introuvable en production !");
+  } else {
+    console.log("✅ Contenu du dossier views :", files);
+  }
+});
 
 // === 📁 CONFIGURATION DES DOSSIERS ===
 app.set('view engine', 'ejs');
@@ -138,6 +153,11 @@ app.get('/', (req, res) => {
     title: "Accueil",
     userIsReturning: false
   });
+  if (err) {
+    console.error("Erreur EJS :", err); // 👈 Tu verras enfin ce qui bloque
+    return res.status(500).send("Erreur serveur");
+  }
+  res.send(html);
 });
 
 // Fragments dynamiques (ex: choosing-address, results, etc.)
