@@ -9,25 +9,28 @@ document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
 document.body.style.width = "100%";
 
-localStorage.setItem('selectedDepartureAddress', 'Départ');
-localStorage.setItem('selectedArrivalAddress', 'Arrivée');
-localStorage.setItem('selectedPassengers', 1);
-localStorage.setItem('selectedDate', new Date().toLocaleDateString('fr-FR', { weekday: 'short', day: '2-digit', month: 'short' }).replace('.', ''));
 
 /******************************************************/
 /*   logique principale                               */
 /******************************************************/
 export function initIndex(container = document) {
+    console.log(container)
+    console.log(container.querySelector(".dropdown"))
+    console.log("📦 container type:", container.nodeType, "—", container);
     
+    if(container === document) {
+        localStorage.setItem('selectedDepartureAddress', 'Départ');
+        localStorage.setItem('selectedArrivalAddress', 'Arrivée');
+        localStorage.setItem('selectedDate', "Aujourd'hui");
+        localStorage.setItem('selectedPassengers', 1);
+        displayData();
+    } else displayData(container);
+
     setRealVh();
     applyTheme();
     selectImage();
     positionDropdownMenu(container);
     handleMenu();
-    displayDepartureAddress();
-    displayArrivalAddress();
-    displayDate();
-    displayPassengersNb();
     updateBouncingArrows();
     /******************************************************/
     /*            Gestion de la Navigation                */
@@ -38,8 +41,8 @@ export function initIndex(container = document) {
    
     window.addEventListener('resize', setRealVh);
     document.addEventListener('DOMContentLoaded', updateBouncingArrows);
-    document.addEventListener("DOMContentLoaded", () => positionDropdownMenu());
-    window.addEventListener("resize", () => positionDropdownMenu());
+    document.addEventListener("DOMContentLoaded", () => positionDropdownMenu(container));
+    window.addEventListener("resize", () => positionDropdownMenu(container));
     /******************************************************/
     /*               Validation du formulaire             */
     /******************************************************/
@@ -147,49 +150,62 @@ export function positionDropdownMenu(container = document) {
 }
 
 
-function displayDepartureAddress() {
-    document.getElementById('selected-departure-address').innerText = localStorage.getItem('selectedDepartureAddress');
+function displayDepartureAddress(container=document) {
+    container.querySelector('#selected-departure-address').innerText = localStorage.getItem('selectedDepartureAddress');
 }
 
-function displayArrivalAddress() {
-    document.getElementById('selected-arrival-address').innerText = localStorage.getItem('selectedArrivalAddress');
+function displayArrivalAddress(container=document) {
+    container.querySelector('#selected-arrival-address').innerText = localStorage.getItem('selectedArrivalAddress');
 }
 
-function displayDate() {
+function displayDate(container=document) {
     const savedDate = localStorage.getItem('selectedDate');
+    console.log('📅 displayDate : Date sélectionnée:', savedDate);
     const options = { weekday: 'short', day: '2-digit', month: 'short' };
     
     const today = new Date();
-    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '');
+    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
 
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
+    const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
 
     const afterTomorrow = new Date(today);
     afterTomorrow.setDate(today.getDate() + 2);
-    const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
+    const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+    
+    const datepicker = $(container).find('#date-picker');
+    if (!datepicker) {
+        console.warn("⚠️ #date-picker introuvable dans container:", container);
+        return;
+    } else console.log('📅 displayDate : datepicker trouvé :', datepicker);
     
     if (savedDate) {
-        // console.log('savedDate:', savedDate);
         if (savedDate === todayFormatted) {
-            $('#date-picker').text("Aujourd'hui");
+            datepicker.text("Aujourd'hui");
         } else if (savedDate === tomorrowFormatted) {
-            $('#date-picker').text("Demain");
+            datepicker.text("Demain");
         } else if (savedDate === afterTomorrowFormatted) {
-            $('#date-picker').text("Après-demain");
+            datepicker.text("Après-demain");
         } else {
-            $('#date-picker').text(savedDate);
+            datepicker.text(savedDate);
         }
     } else {
-        $('#date-picker').text("Aujourd'hui");
+        datepicker.text("Aujourd'hui");
     }
 }
 
-function displayPassengersNb() {
+function displayPassengersNb(container=document) {
     const passengersNb = localStorage.getItem('selectedPassengers');
-    document.getElementById('passengers-nb').innerText = passengersNb;
+    container.querySelector('#passengers-nb').innerText = passengersNb;
     // console.log('👥 displayPassengersNb : Nombre de passagers:', passengersNb);
+}
+
+function displayData(container=document) {
+    displayDepartureAddress(container);
+    displayArrivalAddress(container);
+    displayDate(container);
+    displayPassengersNb(container);
 }
 
 /******************************************************/

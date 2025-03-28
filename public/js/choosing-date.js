@@ -15,11 +15,12 @@ export function initChoosingDate() {
 }
 
 function initDatepicker() {
+    let dateHasBeenSelected = false;
     // Initialisation du Datepicker
     $(document).ready(function() {
         // Récupérer les dates stockées dans le localStorage
         const savedDate = localStorage.getItem('selectedDate');
-
+        console.log('initDatepicker: savedDate:', savedDate);
         // Configuration du Datepicker
         $('#date-depart').datepicker({
             format: 'D dd M',   // Format de la date
@@ -28,19 +29,14 @@ function initDatepicker() {
             language: 'fr',     // Langue en français
             container: '#date-depart'
         }).on('changeDate', function(e) {
-
-                // Format court
-            let selectedDate = e.format();
-            selectedDate = selectedDate.replace('.', '');  // Supprime le point après le jour
-            setTempData('selectedDate', selectedDate);
-            // Format long (DD dd MM)
-            // const dateObject = e.date;
-            // const options = { weekday: 'long', day: '2-digit', month: 'long' };
-            // const longSelectedDate = dateObject.toLocaleDateString('fr-FR', options);
-            // localStorage.setItem('longSelectedDate', longSelectedDate);
-
-            console.log('selectedDate:', selectedDate);
-            // console.log('longSelectedDate:', longSelectedDate);
+            if (!dateHasBeenSelected) {
+                dateHasBeenSelected = true; // ✅ première interaction réelle
+            } else {
+                let selectedDate = e.format();
+                selectedDate = selectedDate.replace('.', '').toLowerCase();
+                setTempData('selectedDate', selectedDate);
+                console.log('selectedDate:', selectedDate);
+            }
         });
 
         // Si une date est enregistrée, on la sélectionne et on la surligne
@@ -51,6 +47,7 @@ function initDatepicker() {
 }
 
 function dateInit(savedDate) {
+    console.log('dateInit: savedDate:', savedDate);
     if (savedDate) {
         $('#date-depart').datepicker('setDate', savedDate);
     } else {

@@ -1,5 +1,6 @@
 import { fragmentAssets } from "./fragment-assets.js";
 import { normalizeUrl, setCurrentPage } from "./spa-navigation.js";
+import { toPascalCase } from "./functions.js";
 
 /******************************************************/
 /*      sécurisation de l'exécution des scripts       */
@@ -16,17 +17,8 @@ function loadAssetsForFragment(fragmentName, nonce = null) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = href;
+      if (nonce) link.setAttribute("nonce", nonce);
       document.head.appendChild(link);
-    }
-  }
-
-  for (const src of assets.scripts || []) {
-    if (!document.querySelector(`script[src="${src}"]`)) {
-      const script = document.createElement("script");
-      script.src = src;
-      script.type = "module";
-      if (nonce) script.setAttribute("nonce", nonce);
-      document.body.appendChild(script);
     }
   }
 }
@@ -37,39 +29,38 @@ export async function loadPage(url, isBackOrForward = false) {
 
   try {
     const snapshot = await generatePageSnapshot(url);
-    await pageTransition(snapshot, url);
-    await importFragmentModule(fragmentName, isBackOrForward);
+    await pageTransition(snapshot, isBackOrForward);
+    await importFragmentModule(fragmentName, isBackOrForward, snapshot);
     setCurrentPage(normalizeUrl(url).replace(".html", ""));
   } catch (error) {
     console.error("Erreur lors du chargement du fragment :", error);
   }
 }
 
-async function pageTransition(incomingPage, url) {
-    console.log("📦 Début de transition");
-  
+
+async function pageTransition(incomingPage, isBackOrForward) {
     const outgoingPage = document.getElementById("page-container");
+  
+    // Ajoute la bonne classe selon la direction
+    const enterClass = isBackOrForward ? "slide-in-left" : "slide-in-right";
+    const exitClass = isBackOrForward ? "slide-out-right" : "slide-out-left";
   
     return new Promise((resolve) => {
       if (outgoingPage) {
-        console.log("🎬 Animation fade-out");
-        outgoingPage.classList.add("fade-out");
+        outgoingPage.classList.add(exitClass);
         outgoingPage.addEventListener("animationend", () => {
-          console.log("🧹 Suppression ancienne page");
           outgoingPage.remove();
           document.body.appendChild(incomingPage);
-          incomingPage.classList.add("fade-in");
+          incomingPage.classList.add(enterClass);
           resolve();
         }, { once: true });
       } else {
-        console.log("📥 Pas de page précédente");
         document.body.appendChild(incomingPage);
-        incomingPage.classList.add("fade-in");
+        incomingPage.classList.add(enterClass);
         resolve();
       }
     });
   }
-  
 
 async function generatePageSnapshot(url) {
     const html = await _fetchFragmentHTML(url);
@@ -100,48 +91,11 @@ function extractAndApplyTitle(container) {
     if (tempTitle) document.title = tempTitle.textContent;
   }
 
-async function importFragmentModule(fragmentName, isBackOrForward) {
+async function importFragmentModule(fragmentName, isBackOrForward, container) {
     if (!isBackOrForward) {
         const fragmentModule = await import(`./${fragmentName}.js`);
         if (typeof fragmentModule[`init${toPascalCase(fragmentName)}`] === 'function') {
-          fragmentModule[`init${toPascalCase(fragmentName)}`](fragmentName);
+          fragmentModule[`init${toPascalCase(fragmentName)}`](container);
         }
       }
-}
-
-function toPascalCase(str) {
-    return str
-      .replace(/[_\- ]+/g, ' ')                 // remplace underscore, tiret, ou espace par un seul espace
-      .replace(/([a-z])([A-Z])/g, '$1 $2')      // espace entre camelCase
-      .toLowerCase()                            // tout en minuscules
-      .split(' ')                               // découpe par mot
-      .filter(Boolean)                          // supprime les chaînes vides
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))  // majuscule à chaque mot
-      .join('');                                // concatène sans espace
-  }
-
-function updateSnapshotData(tempDiv) {
-    const selectedDepartureAddress = localStorage.getItem('selectedDepartureAddress') || "Départ";
-    const selectedArrivalAddress = localStorage.getItem('selectedArrivalAddress') || "Arrivée";
-    const selectedPassengers = localStorage.getItem('selectedPassengers') || "1";
-    const selectedDate = localStorage.getItem('selectedDate');
-
-
-    const departureElement = tempDiv.querySelector('#selected-departure-address');
-    const arrivalElement = tempDiv.querySelector('#selected-arrival-address');
-    const passengersElement = tempDiv.querySelector('#passengers-nb');
-    const dateElement = tempDiv.querySelector('#selected-date');
-
-    if (departureElement && selectedDepartureAddress) {
-        departureElement.textContent = selectedDepartureAddress;
-    }
-    if (arrivalElement && selectedArrivalAddress) {
-        arrivalElement.textContent = selectedArrivalAddress;
-    }
-    if (passengersElement && selectedPassengers) {
-        passengersElement.textContent = selectedPassengers;
-    }
-    if (dateElement && selectedDate) {
-        dateElement.textContent = selectedDate;
-    }
 }

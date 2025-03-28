@@ -2,21 +2,16 @@ import { applyTheme } from './apply-theme.js';
 import { getCurrentPage } from './spa-navigation.js';
 import {  setTempData } from './handleData.js';
 
-export function initChoosingAddress(page) {
-    // console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
-    console.log("📌 initChoosingAddress — reçu page:", page);
+export function initChoosingAddress() {
 
-    const storageKey = page.includes("choosing-address") 
-        ? "selectedDepartureAddress" 
-        : "selectedArrivalAddress";
-    console.log("🔑 Clé de stockage :", storageKey);
+    const storageKey = "selectedDepartureAddress"
 
     applyTheme();
     updatePlaceholder(storageKey);
-    attachInputEvent(initSuggestions(storageKey), storageKey); 
-    document.addEventListener("click", (event) => {
-        console.log("🟢 ", page, ".js Clic détecté ! Élément :", event.target);
-    });
+    attachInputEvent(initSuggestions(storageKey), storageKey);
+    const containers = document.querySelectorAll("#page-container");
+    const lastContainer = containers[containers.length - 1];
+    lastContainer?.classList.remove("invisible");
 }
 
 function attachInputEvent(suggestionsDiv, storageKey) {

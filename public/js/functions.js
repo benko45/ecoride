@@ -81,3 +81,14 @@ export const selectImage = () => {
 
     // console.log("✅ Images insérées dynamiquement avec les bons chemins.");
 };
+
+export function toPascalCase(str) {
+    return str
+      .replace(/[_\- ]+/g, ' ')                 // remplace underscore, tiret, ou espace par un seul espace
+      .replace(/([a-z])([A-Z])/g, '$1 $2')      // espace entre camelCase
+      .toLowerCase()                            // tout en minuscules
+      .split(' ')                               // découpe par mot
+      .filter(Boolean)                          // supprime les chaînes vides
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))  // majuscule à chaque mot
+      .join('');                                // concatène sans espace
+  }

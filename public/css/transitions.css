@@ -1,41 +1,49 @@
 /* public/css/transitions.css */
 
-/* Conteneur principal des fragments */
+/* Positionnement de base */
 #page-container {
-    opacity: 1;
-    transition: opacity 0.4s ease;
-  }
-  
-  /* Classe pour l'entrée en fondu */
-  .fade-in {
-    animation: fadeIn 0.4s ease forwards;
-  }
-  
-  /* Classe pour la sortie en fondu */
-  .fade-out {
-    animation: fadeOut 0.4s ease forwards;
-  }
-  
-  /* Définition des animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-  }
-  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  --animationTime:  0.5s;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to   { transform: translateX(100%); opacity: 0; }
+}
+
+
+
+.slide-in-right {
+  animation: slideInRight var(--animationTime) ease both;
+}
+.slide-out-left {
+  animation: slideOutLeft var(--animationTime) ease both;
+}
+.slide-in-left {
+  animation: slideInLeft var(--animationime) ease both;
+}
+.slide-out-right {
+  animation: slideOutRight var(--animationTime) ease both;
+}
