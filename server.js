@@ -1,10 +1,9 @@
-import fs from 'fs';
-
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const path = require('path');
 const crypto = require('crypto');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
