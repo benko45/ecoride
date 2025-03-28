@@ -1,8 +1,9 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import{ selectImage } from './functions.js';
-
+import { initNavigation, listenToNavigation, setupPopstateHandler } from './spa-navigation.js';
+import { selectImage } from './functions.js';
+import { loadPage } from './page-loader.js';
 
 document.body.style.position = "fixed";
 document.body.style.top = `-${window.scrollY}px`;
@@ -28,8 +29,13 @@ export function initIndex(container = document) {
     displayDate();
     displayPassengersNb();
     updateBouncingArrows();
+    /******************************************************/
+    /*            Gestion de la Navigation                */
+    /******************************************************/
+    initNavigation();
+    setupPopstateHandler(loadPage);
+    listenToNavigation();
    
-    
     window.addEventListener('resize', setRealVh);
     document.addEventListener('DOMContentLoaded', updateBouncingArrows);
     document.addEventListener("DOMContentLoaded", () => positionDropdownMenu());
@@ -164,20 +170,20 @@ function displayDate() {
     afterTomorrow.setDate(today.getDate() + 2);
     const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '');
     
-    // if (savedDate) {
-    //     // console.log('savedDate:', savedDate);
-    //     if (savedDate === todayFormatted) {
-    //         $('#date-picker').text("Aujourd'hui");
-    //     } else if (savedDate === tomorrowFormatted) {
-    //         $('#date-picker').text("Demain");
-    //     } else if (savedDate === afterTomorrowFormatted) {
-    //         $('#date-picker').text("Après-demain");
-    //     } else {
-    //         $('#date-picker').text(savedDate);
-    //     }
-    // } else {
-    //     $('#date-picker').text("Aujourd'hui");
-    // }
+    if (savedDate) {
+        // console.log('savedDate:', savedDate);
+        if (savedDate === todayFormatted) {
+            $('#date-picker').text("Aujourd'hui");
+        } else if (savedDate === tomorrowFormatted) {
+            $('#date-picker').text("Demain");
+        } else if (savedDate === afterTomorrowFormatted) {
+            $('#date-picker').text("Après-demain");
+        } else {
+            $('#date-picker').text(savedDate);
+        }
+    } else {
+        $('#date-picker').text("Aujourd'hui");
+    }
 }
 
 function displayPassengersNb() {

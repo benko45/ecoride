@@ -2,7 +2,7 @@ import { applyTheme } from './apply-theme.js';
 import { getCurrentPage } from './spa-navigation.js';
 import {  setTempData } from './handleData.js';
 
-export function initChoosingAddress(page) {
+export function initChoosingArrivalAddress(page) {
     // console.log("📌 ", page, ".js exécuté sur :", window.location.pathname);
     console.log("📌 initChoosingAddress — reçu page:", page);
 

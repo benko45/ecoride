@@ -5,10 +5,11 @@
 .datepicker {
     padding-left: 30px !important;
 }
-#page-content {
-    will-change: transform, opacity;
-}
 
 #datepicker {
+    cursor: pointer;
+}
+
+#date-depart {
     cursor: pointer;
 }

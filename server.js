@@ -141,9 +141,9 @@ app.get('/', (req, res) => {
 });
 
 // Fragments dynamiques (ex: choosing-address, results, etc.)
-app.get('/fragments/:name', (req, res) => {
+app.get('/:name', (req, res) => {
   const fragment = req.params.name;
-  res.render(`fragments/${fragment}`, {
+  res.render(`${fragment}`, {
     nonce: res.locals.nonce,
     userIsReturning: true
   });

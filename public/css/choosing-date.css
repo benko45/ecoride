@@ -182065,10 +182065,10 @@ html[theme=dark] .accessibility-border {
   padding-left: 30px !important;
 }
 
-#page-content {
-  will-change: transform, opacity;
+#datepicker {
+  cursor: pointer;
 }
 
-#datepicker {
+#date-depart {
   cursor: pointer;
 }/*# sourceMappingURL=choosing-date.css.map */

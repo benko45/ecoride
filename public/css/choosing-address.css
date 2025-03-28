@@ -182062,10 +182062,6 @@ html[theme=dark] .accessibility-border {
 }
 
 /************************************************/
-#page-content {
-  will-change: transform, opacity;
-}
-
 #address {
   width: 100%;
 }
@@ -182074,19 +182070,31 @@ html[theme=dark] .accessibility-border {
   width: 100%;
 }
 
+html[theme=accesibility-light] input.form-control {
+  border: none;
+}
 html[theme=accesibility-light] input.form-control:focus {
   border-color: var(--custom-primary);
 }
 
+html[theme=accesibility-dark] input.form-control {
+  border: none;
+}
 html[theme=accesibility-dark] input.form-control:focus {
   border-color: var(--custom-primary);
 }
 
+html[theme=light] input.form-control {
+  border: none;
+}
 html[theme=light] input.form-control:focus {
   box-shadow: none;
   border: 1px solid transparent;
 }
 
+html[theme=dark] input.form-control {
+  border: none;
+}
 html[theme=dark] input.form-control:focus {
   box-shadow: none;
   border: 1px solid transparent;
@@ -182118,4 +182126,8 @@ input::-ms-input-placeholder {
 
 #selected-departure-address {
   cursor: pointer;
+}
+
+.form-container {
+  width: 80%;
 }/*# sourceMappingURL=choosing-address.css.map */

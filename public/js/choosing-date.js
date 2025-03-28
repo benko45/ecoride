@@ -2,7 +2,7 @@
 
 import { applyTheme } from './apply-theme.js';
 import { applyDynamicStyles} from './choosing-address.js';
-import { setTempData } from './page-loader.js';
+import { setTempData } from './handleData.js';
 
 export function initChoosingDate() {
     applyTheme();

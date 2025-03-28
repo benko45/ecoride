@@ -1,7 +1,7 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import { setTempData } from './page-loader.js';
+import { setTempData } from './handleData.js';
 
 export function initChoosingPassengers() {
     applyTheme();
@@ -44,7 +44,7 @@ function initPlusMinusComponent(plus, minus, passengers_nb) {
 
 function plusAnimation(plus, minus, passengers_nb) {
     document.getElementById("plus").addEventListener("click", function() {
-        const passengersNb = parseInt(passengers_nb.innerHTML, 10);
+        let passengersNb = parseInt(passengers_nb.innerHTML, 10);
         if(passengersNb < 10)
         {
             minus.style.color = "var(--custom-primary)";
@@ -54,13 +54,14 @@ function plusAnimation(plus, minus, passengers_nb) {
             }
             passengersNb++;
             setTempData("selectedPassengers", passengersNb.toString());
+            passengers_nb.innerText = passengersNb;
         }
     });
 }
 
 function minusAnimation(plus, minus, passengers_nb) {
     document.getElementById("minus").addEventListener("click", function() {
-        const passengersNb = parseInt(passengers_nb.innerHTML, 10);
+        let passengersNb = parseInt(passengers_nb.innerHTML, 10);
         if(passengersNb > 1)
         {
             if(passengersNb == 2)
@@ -70,6 +71,7 @@ function minusAnimation(plus, minus, passengers_nb) {
             plus.style.color = "var(--custom-primary)";
             passengersNb--;
             setTempData("selectedPassengers", passengersNb.toString());
+            passengers_nb.innerText = passengersNb;
         } 
     });
 }
