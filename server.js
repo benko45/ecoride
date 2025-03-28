@@ -61,7 +61,7 @@ const cspDirectives = {
 };
 
 // === 🔐 IP AUTORISÉES + ZAP ===
-const allowedIps = ['88.126.84.119', '127.0.0.1', '::1', '192.168.1.141', '137.66.6.96'];  // adresse statique de ZAP
+const allowedIps = ['88.126.84.119', '91.166.155.218', '127.0.0.1', '::1', '192.168.1.141', '192.168.1.128', '137.66.6.96'];  // adresse statique de ZAP
 const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixe IPv6 mobile de ZAP
 
 // === 🔐 CORS AUTORISÉS ===
@@ -126,9 +126,9 @@ app.use((req, res, next) => {
 
   if (userAgent.includes('ZAP')) return next();
   const isAllowedIpv6 = allowedIpv6Prefixes.some(prefix => clientIp.startsWith(prefix));
-  if (!allowedIps.includes(clientIp) && !isAllowedIpv6) {
-    return res.status(403).sendFile(path.join(__dirname, '403.html'));
-  }
+  // if (!allowedIps.includes(clientIp) && !isAllowedIpv6) {
+  //   return res.status(403).sendFile(path.join(__dirname, '403.html'));
+  // }
 
   next();
 });
