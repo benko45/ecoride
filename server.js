@@ -144,16 +144,15 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Index (SPA root page)
 app.get('/', (req, res) => {
   console.log("access /");
-  res.render('index', {
+  try { 
+    res.render('index', {
     nonce: res.locals.nonce,
     title: "Accueil",
-    userIsReturning: false
-  });
-  if (err) {
-    console.error("Erreur EJS :", err); // 👈 Tu verras enfin ce qui bloque
-    return res.status(500).send("Erreur serveur");
+    userIsReturning: false})
+  } catch (err) {
+    console.error('❌ Erreur dans res.render(index):', err);
+    res.status(500).send('Erreur rendering index.ejs');
   }
-  res.send(html);
 });
 
 // Fragments dynamiques (ex: choosing-address, results, etc.)
@@ -168,6 +167,11 @@ app.get('/:name', (req, res) => {
 // 404
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '404.html'));
+});
+
+app.use((err, req, res, next) => {
+  console.error('❌ Erreur serveur :', err.stack);
+  res.status(500).send('Erreur interne du serveur');
 });
 
 // === 🚀 START SERVEUR ===
