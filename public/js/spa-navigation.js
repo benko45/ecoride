@@ -14,19 +14,31 @@ export function setCurrentPage(page) {
 /**
  * Initialise la navigation de la SPA.
  */
-export function initNavigation(){
-    if (isFirstNavigation) {
-        window.history.replaceState({}, "", "index.html");
+export function initNavigation() {
+    const navEntry = performance.getEntriesByType("navigation")[0];
+
+    if (navEntry?.type === "reload") {
+        // ✅ Rechargement de page détecté
+        console.log("🔄 Rechargement détecté — historique SPA réinitialisé");
+        history.replaceState({}, "", "index.html");
+        setCurrentPage("index");
         isFirstNavigation = false;
-    }   
+        return;
+    }
+
+    // Cas initial (chargement direct, pas reload)
+    if (isFirstNavigation) {
+        history.replaceState({}, "", "index.html");
+        isFirstNavigation = false;
+    }
 }
+
 
 export function listenToNavigation() {
     document.addEventListener("DOMContentLoaded", function () {
         // Interception globale des liens <a>
         document.body.addEventListener("click", function (event) {
             const link = event.target.closest("a");
-    
             if (link && link.href.startsWith(window.location.origin)) {
                 const isExternal = link.target === "_blank" || link.hasAttribute("download");
                 const isHashLink = link.hash && link.pathname === window.location.pathname;
@@ -37,6 +49,7 @@ export function listenToNavigation() {
                     console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
                     applyTempDataToLocalStorage();
                     loadPage(urlPathname, false);
+                    navigation(urlPathname);
                 }
             }
         });
@@ -58,9 +71,11 @@ export function listenToNavigation() {
     
             if (shouldNavigate && el && el.hasAttribute("data-navigate")) {
                 event.preventDefault();
-                console.log(`🔗 Lien data-navigate : ${el.getAttribute("data-navigate")}`);
+                const page = el.getAttribute("data-navigate");
+                console.log(`🔗 Lien data-navigate : ${page}`)
                 applyTempDataToLocalStorage();
                 loadPage(el.getAttribute("data-navigate"), false);
+                navigation(page);
             }
         });
     });
@@ -110,11 +125,12 @@ export function navigation(url, fromBackButton = false) {
  */
 export function setupPopstateHandler(loadPageCallback) {
     window.addEventListener("popstate", () => {
-        const path = normalizeUrl(location.pathname.split("/").pop());
+        let path = location.pathname;
+        path = path.startsWith("/") ? path.slice(1) : path;
+        path = path === "" ? "index.html" : path;
+        const normalized = normalizeUrl(path);
         console.log("↩️ Retour navigateur vers:", path);
-        resetTempData();
-        const outgoing = document.getElementById("page-container");
-        if (outgoing) outgoing.remove();     
+        resetTempData();     
         loadPageCallback(path, true);
     });
 }

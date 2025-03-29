@@ -9,6 +9,7 @@ import { toPascalCase } from "./functions.js";
 const nonce = document.body.getAttribute("nonce") || document.querySelector("meta[name='csp-nonce']")?.getAttribute("content");
 const dynamicStyle = document.createElement('style');
 if (nonce) dynamicStyle.setAttribute('nonce', nonce);
+
 function loadAssetsForFragment(fragmentName, nonce = null) {
   const assets = fragmentAssets[fragmentName];
   if (!assets) return;
@@ -48,6 +49,7 @@ async function pageTransition(incomingPage, isBackOrForward) {
   
     return new Promise((resolve) => {
       if (outgoingPage) {
+        console.log("✅ transition terminée")
         outgoingPage.classList.add(exitClass);
         outgoingPage.addEventListener("animationend", () => {
           outgoingPage.remove();
@@ -65,6 +67,7 @@ async function pageTransition(incomingPage, isBackOrForward) {
 
 async function generatePageSnapshot(url) {
     const html = await _fetchFragmentHTML(url);
+    console.log("🧪 HTML fetché depuis", url, ":", html.slice(0, 200));
     const temp = createTempContainer(html);
     extractAndApplyTitle(temp);
 
@@ -74,13 +77,25 @@ async function generatePageSnapshot(url) {
 function createTempContainer(html) {
   const container = document.createElement("div");
   container.id = "page-container";
-  container.innerHTML = window.policy.createHTML(html);
+  const safeHtml = window.policy.createHTML(html);
+// on veut extraire juste le contenu du <body>, pas tout le document
+  const tempDoc = document.implementation.createHTMLDocument();
+  tempDoc.documentElement.innerHTML = window.policy.createHTML(safeHtml);
+  const bodyContent = tempDoc.body.innerHTML;
+
+  container.innerHTML = window.policy.createHTML(bodyContent);
+
   return container;
 }
 
 async function _fetchFragmentHTML(url) {
   const prefix = window.location.pathname.startsWith("/ecoride") ? "/ecoride" : "";
-  return fetch(`${prefix}/${url.replace(/\.html$/, "")}`, { cache: "no-store" })
+  return fetch(`${prefix}/${url.replace(/\.html$/, "")}`,
+    { cache: "no-store" ,
+      headers: {
+        "x-requested-by": "spa" // 👈 indique que c'est une requête SPA
+        }
+    })
     .then(response => {
       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
       return response.text();

@@ -164,12 +164,26 @@ app.get('/favicon.ico', (req, res) => {
 
 // Fragments dynamiques (ex: choosing-address, results, etc.)
 app.get('/:name', (req, res) => {
-  const fragment = req.params.name;
-  res.render(`${fragment}`, {
+  let fragment = req.params.name;
+
+  // 🧽 Tolère les .html dans l'URL
+  if (fragment.endsWith('.html')) {
+    fragment = fragment.slice(0, -5); // ou .replace(/\.html$/, '')
+  }
+
+  const filePath = path.join(__dirname, 'views', `${fragment}.ejs`);
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).send('Page non trouvée');
+  }
+
+  const isSPARequest = req.headers["x-requested-by"] === "spa";
+  res.render(fragment, {
+    layout: isSPARequest ? false : 'layout', // ✅ layout uniquement si pas SPA
     nonce: res.locals.nonce,
     userIsReturning: true
   });
 });
+
 
 // 404
 app.use((req, res) => {

@@ -2,14 +2,16 @@ import { applyTheme } from './apply-theme.js';
 import { getCurrentPage } from './spa-navigation.js';
 import {  setTempData } from './handleData.js';
 
-export function initChoosingAddress() {
-
+console.log("📦 [choosing-address.js] — module chargé");
+export function initChoosingAddress(container=document) {
+    
+    console.log("🚀 [initChoosingAddress] appelée avec container =", container);
     const storageKey = "selectedDepartureAddress"
 
     applyTheme();
     updatePlaceholder(storageKey);
     attachInputEvent(initSuggestions(storageKey), storageKey);
-    const containers = document.querySelectorAll("#page-container");
+    const containers = container.querySelectorAll("#page-container");
     const lastContainer = containers[containers.length - 1];
     lastContainer?.classList.remove("invisible");
 }
