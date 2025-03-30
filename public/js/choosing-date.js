@@ -5,7 +5,7 @@ import { applyDynamicStyles} from './choosing-address.js';
 import { setTempData } from './handleData.js';
 
 export function initChoosingDate(container=document) {
-    applyTheme();
+    applyTheme(container);
     const datepicker = container.querySelector('.datepicker');
     if (!datepicker) initDatepicker(container);
     else {

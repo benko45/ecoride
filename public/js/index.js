@@ -34,7 +34,7 @@ export function initIndex(container = document) {
     } else displayData(container);
 
     setRealVh();
-    applyTheme();
+    applyTheme(container);
     selectImage(container);
     requestAnimationFrame(() => positionDropdownMenu(container));
     handleMenu(container);

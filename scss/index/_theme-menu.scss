@@ -74,7 +74,7 @@ svg symbol path{
 }
 
 .dropdown-item {
-    color: var(--custom-primary);
+    color: var(--custom-primary) !important;
     &:hover {
         background-color: var(--custom-gray);
     }

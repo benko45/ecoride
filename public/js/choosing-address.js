@@ -7,7 +7,7 @@ export function initChoosingAddress(container=document) {
     
     console.log("🚀 [initChoosingAddress] appelée avec container =", container);
     const storageKey = "selectedDepartureAddress"
-    applyTheme();
+    applyTheme(container);
     updatePlaceholder(storageKey, container);
     attachInputEvent(initSuggestions(storageKey, container), storageKey, container);
     const containers = container.querySelectorAll("#page-container");

@@ -305763,7 +305763,7 @@ svg symbol path {
 }
 
 .dropdown-item {
-  color: var(--custom-primary);
+  color: var(--custom-primary) !important;
 }
 .dropdown-item:hover {
   background-color: var(--custom-gray);

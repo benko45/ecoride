@@ -4,7 +4,7 @@ import { applyTheme } from './apply-theme.js';
 import { setTempData } from './handleData.js';
 
 export function initChoosingPassengers(container=document) {
-    applyTheme();
+    applyTheme(container);
 
     // Récupération des éléments à CHAQUE appel (car le DOM change)
     const plus = container.querySelector('.bi-plus-circle');
