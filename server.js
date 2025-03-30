@@ -81,7 +81,7 @@ const corsOptions = {
 
     if (
       // Autorise navigation directe (pas d'en-tête Origin)
-      !origin ||
+      origin ||
       allowedOrigins.includes(origin)
     ) {
       callback(null, true);
