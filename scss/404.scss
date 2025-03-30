@@ -1,0 +1,24 @@
+h1 {
+    font-size: 5rem;
+    margin-bottom: 0.2em;
+    color: #c0392b;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 2em;
+  }
+
+  a.button {
+    padding: 0.75em 1.5em;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  a.button:hover {
+    background-color: #2980b9;
+  }

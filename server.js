@@ -94,8 +94,9 @@ const corsOptions = {
 };
 
 app.get('/favicon.ico', (req, res) => {
-  res.status(204).end(); // No Content, silencieux
+  res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
 });
+
 
 // === 🔐 MIDDLEWARES SÉCURITÉ ===
 
