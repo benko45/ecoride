@@ -45,7 +45,7 @@ export function listenToNavigation() {
     
                 if (!isExternal && !isHashLink) {
                     event.preventDefault();
-                    const urlPathname = new URL(link.href).pathname.split("/").pop();
+                    const urlPathname = new URL(link.href).pathname.split("/").pop() || "index";
                     console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
                     applyTempDataToLocalStorage();
                     window.__spaNavigated = true;
