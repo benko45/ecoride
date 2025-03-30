@@ -64,7 +64,7 @@ const cspDirectives = {
 
 // === 🔐 IP AUTORISÉES + ZAP ===
 const allowedIps = ['88.126.84.119', '91.166.155.218', '127.0.0.1', '::1', '192.168.1.141', '192.168.1.128', '137.66.6.96'];  // adresse statique de ZAP
-const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixe IPv6 mobile de ZAP
+const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0', '2a01:e0a:1a6:f6a0:', 'fdaa:13:ef8a:a7b:3b6:6ed9:6c93:2'];  // Préfixe IPv6 mobile de ZAP
 
 // === 🔐 CORS AUTORISÉS  ===
 const allowedOrigins = [
