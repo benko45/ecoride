@@ -165,13 +165,6 @@ app.get('/', (req, res) => {
   }
 });
 
-
-// Redirection vers l'index (SPA root page)
-app.get(['/index.html', '/'], (req, res) => {
-  res.render('index');
-});
-
-
 // Fragments dynamiques (ex: choosing-address, results, etc.)
 app.get('/:name', (req, res) => {
   let fragment = req.params.name;
