@@ -183,7 +183,13 @@ app.get('/:name', (req, res) => {
 
   const filePath = path.join(__dirname, 'views', `${fragment}.ejs`);
   if (!fs.existsSync(filePath)) {
-    return res.status(404).send('Page non trouvée');
+    app.use((req, res) => {
+      res.status(404).render('404', {
+        layout: false,
+        nonce: res.locals.nonce,
+        title: "Page non trouvée"
+      });
+    });
   }
 
   const isSPARequest = req.headers["x-requested-by"] === "spa";
