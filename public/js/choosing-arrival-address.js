@@ -2,34 +2,36 @@ import { applyTheme } from './apply-theme.js';
 import { getCurrentPage } from './spa-navigation.js';
 import {  setTempData } from './handleData.js';
 
-export function initChoosingArrivalAddress() {
-
-    const storageKey = "selectedArrivalAddress";
-
+console.log("📦 [choosing-address.js] — module chargé");
+export function initChoosingArrivalAddress(container=document) {
+    
+    console.log("🚀 [initChoosingAddress] appelée avec container =", container);
+    const storageKey = "selectedArrivalAddress"
     applyTheme();
-    updatePlaceholder(storageKey);
-    attachInputEvent(initSuggestions(storageKey), storageKey); 
+    updatePlaceholder(storageKey, container);
+    attachInputEvent(initSuggestions(storageKey, container), storageKey, container);
+    const containers = container.querySelectorAll("#page-container");
+    const lastContainer = containers[containers.length - 1];
+    lastContainer?.classList.remove("invisible");
 }
 
-function attachInputEvent(suggestionsDiv, storageKey) {
+function attachInputEvent(suggestionsDiv, storageKey, container = document) {
     console.log("🔄 Réattachement de l'événement 'click' sur 'Utiliser votre position'...");
 
-    const inputField = document.getElementById('address');
+    const inputField = container.querySelector('#address');
 
     if (!inputField) {
         console.warn("Champ d'adresse introuvable !");
+        return;
     }
-    
+
     const userAgent = 'benoit.vicente@hotmail.fr';
-    
-    // console.log("Ajout de l'événement `input` au champ d'adresse...");
+
     inputField.addEventListener('input', function () {
-        console.log("L'utilisateur a tapé :", this.value); // Vérifier si l'événement fonctionne
+        console.log("L'utilisateur a tapé :", this.value);
         const query = this.value;
         if (query.length >= 10) {
             console.log("📡 Envoi de la requête API avec :", query);
-            // 🛑 Indiquer qu'une requête est encours pour bloquer une suppression immédiate
-            // window.isFetchingSuggestions = true;
             removeChildrenExceptFirst(suggestionsDiv);  
             fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}`, {
                 method: 'GET',
@@ -37,30 +39,25 @@ function attachInputEvent(suggestionsDiv, storageKey) {
             })
             .then(response => response.json())
             .then(data => {
-                // console.log("Réponse API reçue :", data); // Vérifier si la requête est bien envoyée
-                
                 data.forEach((suggestion) => {
                     const addressParts = suggestion.display_name.split(',');
                     const country = addressParts[addressParts.length - 1]?.trim();
                     if (country === "France") {
                         const shortAddress = createShortddress(addressParts);
-                        const suggestedAddress = createAddressSuggestion(shortAddress, suggestionsDiv, storageKey);
-                        // console.log("🟢 Élément ajouté au DOM :", suggestedAddress);
+                        const suggestedAddress = createAddressSuggestion(shortAddress, suggestionsDiv, storageKey, container);
                         suggestionsDiv.appendChild(suggestedAddress);
-                        // console.log("📌 Contenu actuel de #suggestions :", document.getElementById("suggestions").innerHTML);
                     }
                 });
-                // window.isFetchingSuggestions = false;
             })
             .catch(error => {
-                console.error('Erreur API:', error)
-                // window.isFetchingSuggestions = false;
+                console.error('Erreur API:', error);
             });
         }
     });
 
-    console.log("✅ Événement 'click' ajouté à 'Utiliser votre position' !");
+    console.log("✅ Événement 'input' ajouté !");
 }
+
 
 function createShortddress(addressParts) {
     const number = addressParts[0]?.trim() || ''; // Numéro
@@ -75,7 +72,7 @@ function createShortddress(addressParts) {
 
 const useCurrentLocationOptionText = 'Utiliser votre position';
 //Fonction pour créer les suggestions d'adresse
-function createAddressSuggestion(address, parentElement, storageKey) {
+function createAddressSuggestion(address, parentElement, storageKey, container=document) {
     // Crée un div pour chaque suggestion
     const suggestion = document.createElement('div');
     suggestion.classList.add('suggestion');
@@ -92,7 +89,9 @@ function createAddressSuggestion(address, parentElement, storageKey) {
     // Ajoute un événement de clic pour sélectionner la suggestion
     suggestion.addEventListener('click', () => {
         if(address !== useCurrentLocationOptionText) {
-            document.getElementById('address').value = address; // Remplir le champ avec l'adresse courte
+            const input = container.querySelector("#address");
+            input.value = address; // Remplir le champ avec l'adresse courte
+            input.placeholder = address; // Mettre à jour le placeholder
         }
         removeChildrenExceptFirst(parentElement)
         const userAgent = 'benoit.vicente@hotmail.fr';
@@ -112,7 +111,8 @@ function createAddressSuggestion(address, parentElement, storageKey) {
                     .then(data => {
                         const shortAddress = createShortddress(data.display_name.split(',')); // Construire l'adresse courte
                         setTempData(storageKey, shortAddress);
-                        document.getElementById('address').value = shortAddress;
+                        const input = container.querySelector("#address");
+                        input.value = shortAddress;
                     })
                     .catch(error => console.error('Erreur API:', error));
             });
@@ -135,22 +135,22 @@ function createChevronSVG() {
     return svg;
 }
 
-function initSuggestions(storageKey) {
+function initSuggestions(storageKey, container=document) {
     const useCurrentLocationOptionText = 'Utiliser votre position'
-    const suggestionsDiv = document.getElementById('suggestions');
+    const suggestionsDiv = container.querySelector('#suggestions');
     suggestionsDiv.classList.add('suggestions');
-    if(getCurrentPage() === 'index' && document.getElementsByClassName('suggestion').length === 0) {
-        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
+    if(getCurrentPage() === 'index' && container.getElementsByClassName('suggestion').length === 0) {
+        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey, container);
         suggestionsDiv.appendChild(useCurrentLocationOption);
     }
     if(getCurrentPage() === 'choosing-address' || getCurrentPage() === 'choosing-arrival-address') {
-        const suggestions = document.getElementsByClassName('suggestion')
+        const suggestions = container.getElementsByClassName('suggestion')
         if(suggestions.length !== 0) {
             for (let suggestion of suggestions) {
                 suggestion.remove();
             }
         }
-        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey);
+        const useCurrentLocationOption = createAddressSuggestion(useCurrentLocationOptionText, null, storageKey, container);
         suggestionsDiv.appendChild(useCurrentLocationOption);
     }
 
@@ -218,16 +218,18 @@ export function applyDynamicStyles(HTMLElement){
  * @param {string} inputSelector - Sélecteur CSS de l'input
  * @param {string} newPlaceholder - Nouveau texte du placeholder
  */
-function updatePlaceholder(storageKey) {
-    const inputElement = document.querySelector('#address');
-    
+function updatePlaceholder(storageKey, container = document) {
+    const inputElement = container.querySelector('#address');
+  
     if (!inputElement) {
-        console.warn(`⚠️ Input introuvable pour le sélecteur : ${inputSelector}`);
+        console.warn(`⚠️ Input introuvable pour le sélecteur : #address`);
         return;
     }
+  
     const selectedAddress =
         localStorage.getItem(storageKey) === "Arrivée" || localStorage.getItem(storageKey) === "Départ" 
             ? "Rue blanche ou Café de la gare" : localStorage.getItem(storageKey);
     inputElement.placeholder = selectedAddress;
-}
+  }
+  
 

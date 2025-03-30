@@ -161,6 +161,17 @@ function displayDate(container=document) {
     afterTomorrow.setDate(today.getDate() + 2);
     const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
     
+    console.log("🔍 savedDate localStorage:", savedDate);
+    console.log("📅 todayFormatted:", todayFormatted);
+    console.log("📅 tomorrowFormatted:", tomorrowFormatted);
+    console.log("📅 afterTomorrowFormatted:", afterTomorrowFormatted);
+
+    console.log("📏 savedDate.length:", savedDate?.length);
+    console.log("📐 codes:", {
+    savedDate: savedDate?.split('').map(c => c.charCodeAt(0)),
+    todayFormatted: todayFormatted.split('').map(c => c.charCodeAt(0))
+    });
+
     const datepicker = $(container).find('#date-picker');
     if (!datepicker) {
         console.warn("⚠️ #date-picker introuvable dans container:", container);

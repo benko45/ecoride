@@ -3,13 +3,13 @@
 import { applyTheme } from './apply-theme.js';
 import { setTempData } from './handleData.js';
 
-export function initChoosingPassengers() {
+export function initChoosingPassengers(container=document) {
     applyTheme();
 
     // Récupération des éléments à CHAQUE appel (car le DOM change)
-    const plus = document.querySelector('.bi-plus-circle');
-    const minus = document.querySelector('.bi-dash-circle');
-    const passengers_nb = document.getElementById("passengers-nb");
+    const plus = container.querySelector('.bi-plus-circle');
+    const minus = container.querySelector('.bi-dash-circle');
+    const passengers_nb = container.querySelector("#passengers-nb");
 
     if (!plus || !minus || !passengers_nb) {
         console.warn("⛔ Composants du compteur de passagers non trouvés !");
@@ -18,8 +18,8 @@ export function initChoosingPassengers() {
 
     // Initialisation
     initPlusMinusComponent(plus, minus, passengers_nb);
-    plusAnimation(plus, minus, passengers_nb);
-    minusAnimation(plus, minus, passengers_nb);
+    plusAnimation(plus, minus, passengers_nb, container);
+    minusAnimation(plus, minus, passengers_nb, container);
 }
 
 
@@ -42,8 +42,8 @@ function initPlusMinusComponent(plus, minus, passengers_nb) {
     }
 }
 
-function plusAnimation(plus, minus, passengers_nb) {
-    document.getElementById("plus").addEventListener("click", function() {
+function plusAnimation(plus, minus, passengers_nb, container) {
+    container.querySelector("#plus").addEventListener("click", function() {
         let passengersNb = parseInt(passengers_nb.innerHTML, 10);
         if(passengersNb < 10)
         {
@@ -59,8 +59,8 @@ function plusAnimation(plus, minus, passengers_nb) {
     });
 }
 
-function minusAnimation(plus, minus, passengers_nb) {
-    document.getElementById("minus").addEventListener("click", function() {
+function minusAnimation(plus, minus, passengers_nb, container) {
+    container.querySelector("#minus").addEventListener("click", function() {
         let passengersNb = parseInt(passengers_nb.innerHTML, 10);
         if(passengersNb > 1)
         {
