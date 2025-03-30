@@ -1,0 +1,42 @@
+/* public/css/transitions.css */
+@use 'styles/custom-themes.scss' as themes;
+@use 'styles/colors-variables' as colors;
+@use "variables" as variables;
+
+:root {
+  --transitionTime: 1s;
+}
+
+#page-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background: white;
+  overflow: hidden;
+  background-color: var(--custom-light);
+}
+
+/* La page entrante commence hors champ */
+#page-container.pre-enter {
+  transform: translateX(100%);
+}
+
+/* Animations */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+.slide-in-right {
+  animation: slideInRight var(--transitionTime) ease forwards;
+}
+.slide-in-left {
+  animation: slideInLeft var(--transitionTime) ease forwards;
+}
+

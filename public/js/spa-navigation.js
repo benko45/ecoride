@@ -48,6 +48,7 @@ export function listenToNavigation() {
                     const urlPathname = new URL(link.href).pathname.split("/").pop();
                     console.log(`🔗 Interception <a> SPA : ${urlPathname}`);
                     applyTempDataToLocalStorage();
+                    window.__spaNavigated = true;
                     loadPage(urlPathname, false);
                     navigation(urlPathname);
                 }
@@ -74,6 +75,7 @@ export function listenToNavigation() {
                 const page = el.getAttribute("data-navigate");
                 console.log(`🔗 Lien data-navigate : ${page}`)
                 applyTempDataToLocalStorage();
+                window.__spaNavigated = true;
                 loadPage(el.getAttribute("data-navigate"), false);
                 navigation(page);
             }
@@ -130,7 +132,8 @@ export function setupPopstateHandler(loadPageCallback) {
         path = path === "" ? "index.html" : path;
         const normalized = normalizeUrl(path);
         console.log("↩️ Retour navigateur vers:", path);
-        resetTempData();     
+        resetTempData();
+        window.__spaNavigated = true;
         loadPageCallback(path, true);
     });
 }

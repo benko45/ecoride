@@ -7,7 +7,6 @@ import { loadPage } from './page-loader.js';
 import { applyDynamicStyles } from './choosing-address.js';
 
 
-
 const nonce = document.body.getAttribute("nonce") || document.querySelector("meta[name='csp-nonce']")?.getAttribute("content");
 
 const dynamicStyle = document.createElement('style');
@@ -25,7 +24,7 @@ export function initIndex(container = document) {
     console.log(container)
     console.log(container.querySelector(".dropdown"))
     console.log("📦 container type:", container.nodeType, "—", container);
-    
+
     if(container === document) {
         localStorage.setItem('selectedDepartureAddress', 'Départ');
         localStorage.setItem('selectedArrivalAddress', 'Arrivée');
@@ -36,13 +35,11 @@ export function initIndex(container = document) {
 
     setRealVh();
     applyTheme();
-    selectImage();
-    positionDropdownMenu(container);
-    handleMenu();
-    updateBouncingArrows();
-    /******************************************************/
-    /*            Gestion de la Navigation                */
-    /******************************************************/
+    selectImage(container);
+    requestAnimationFrame(() => positionDropdownMenu(container));
+    handleMenu(container);
+    updateBouncingArrows(container);
+
     initNavigation();
     setupPopstateHandler(loadPage);
     listenToNavigation();
@@ -50,32 +47,11 @@ export function initIndex(container = document) {
     container.querySelectorAll('.form-container, .suggestions, .suggestion, .datepicker, .text-container').forEach(el => {
         if (el) applyDynamicStyles(el);
     });
-    
-   
-    window.addEventListener('resize', setRealVh);
-    document.addEventListener('DOMContentLoaded', updateBouncingArrows);
-    document.addEventListener("DOMContentLoaded", () => positionDropdownMenu(container));
-    window.addEventListener("resize", () => positionDropdownMenu(container));
-    /******************************************************/
-    /*               Validation du formulaire             */
-    /******************************************************/
-    // document.getElementById("search").addEventListener("click", function() {
 
-    //     if(selectedDepartureAddress === selectedArrivalAddress) {
-    //         alert('Veuillez choisir des adresses différentes');
-    //     } else {
-    //         // Vérifier que les champs sont remplis
-    //         if(!localStorage.getItem('selectedDate')) {
-    //             localStorage.setItem('selectedDate', todayFormatted);
-    //         }
-    //         selectedDepartureAddress === 'Départ'
-    //             ? window.location.href = "public/html/choosing-address.html"
-    //             : selectedArrivalAddress === 'Arrivée'
-    //                 ? window.location.href = "public/html/choosing-arrival-address.html"
-    //                 : window.location.href = "public/html/search-result.html";
-    //     }
-    // });
+    window.addEventListener('resize', setRealVh);
+    window.addEventListener("resize", () => positionDropdownMenu(container));
 }
+
 
 /******************************************************/
 /*            Gestion de la hauteur de la fenêtre     */
@@ -91,8 +67,8 @@ const setRealVh = () => {
 /******************************************************/
 /*   double-flèche pour échanger arrivée et départ    */
 /******************************************************/
-export function updateBouncingArrows() {
-    const arrows = document.getElementById('bouncing-arrows');
+export function updateBouncingArrows(container = document) {
+    const arrows = container.querySelector('#bouncing-arrows');
     if (!arrows) {
         console.error("❌ ERREUR : #bouncing-arrows introuvable !");
         return;
@@ -107,11 +83,10 @@ export function updateBouncingArrows() {
         arrows.style.display = 'inline-flex';
         arrows.style.alignItems = 'center';
 
-        // 🧼 Cloner et remplacer pour supprimer les anciens écouteurs
         const clone = arrows.cloneNode(true);
         arrows.replaceWith(clone);
 
-        const svg = clone.querySelector('svg'); // ✅ récupérer le bon SVG
+        const svg = clone.querySelector('svg');
 
         clone.addEventListener('click', () => {
             console.log('🔁 Clic sur flèches → échange des adresses');
@@ -120,10 +95,9 @@ export function updateBouncingArrows() {
             localStorage.setItem('selectedDepartureAddress', localStorage.getItem('selectedArrivalAddress'));
             localStorage.setItem('selectedArrivalAddress', temp);
 
-            document.getElementById('selected-departure-address').textContent = localStorage.getItem('selectedDepartureAddress');
-            document.getElementById('selected-arrival-address').textContent = localStorage.getItem('selectedArrivalAddress');
+            container.querySelector('#selected-departure-address').textContent = localStorage.getItem('selectedDepartureAddress');
+            container.querySelector('#selected-arrival-address').textContent = localStorage.getItem('selectedArrivalAddress');
 
-            // 🔄 Relancer animation
             if (svg) {
                 svg.classList.remove('arrow-bounce');
                 void svg.offsetWidth;
@@ -253,63 +227,63 @@ const resizeElements = () => {
 /******************************************************/
 /*   Gestion du menu principal en mode tablette       */
 /******************************************************/
-function setMobileMenu(e) {
-    const connexion = document.getElementById('connexion');
-    const span_connexion = document.getElementById('span-connexion');  
-    if (e.matches) {
-        connexion.classList.remove('p-3');
-        span_connexion.innerText = "Connexion";
+function setMobileMenu(container = document, e) {
+    const connexion = container.querySelector('#connexion');
+    const span_connexion = container.querySelector('#span-connexion');
+  
+    if (!connexion || !span_connexion) {
+      console.warn("⚠️ #connexion ou #span-connexion introuvable dans container :", container);
+      return;
     }
-    resizeElements();
-    const liASpan = document.querySelectorAll('li a span');
+  
+    if (e && e.matches) {
+      connexion.classList.remove('p-3');
+      span_connexion.innerText = "Connexion";
+    }
+  
+    resizeElements(container);
+    const liASpan = container.querySelectorAll('li a span');
     liASpan.forEach(element => {
-        element.classList.remove('ps-2');
+      element.classList.remove('ps-2');
     });
-}
+  }
+  
 /******************************************************/
 /*   Gestion générale du menu principal               */
 /******************************************************/
-function handleMenu() {
-    /*  Mode desktop                                      */
-    /**************************************************** */
-    document.addEventListener('DOMContentLoaded', function() {
-        // Cibler le toggle et la liste du menu
-        var menuToggle = document.getElementById('menu-toggle');
-        var menuList = document.getElementById('menu-list');
-        var animatedCaret = menuToggle;
+function handleMenu(container = document) {
+    const menuToggle = container.querySelector('#menu-toggle');
+    const menuList = container.querySelector('#menu-list');
+    const animatedCaret = menuToggle;
 
-        // Ajouter un événement de clic
-        menuToggle.addEventListener('click', function(event) {
-            event.preventDefault();
-            event.stopPropagation();  // Empêche le clic de se propager au document
-            
-            // Basculer l'affichage du menu
-            menuList.classList.remove('hide');
-            menuList.classList.toggle('show');
+    if (!menuToggle || !menuList) {
+        console.warn("⚠️ menuToggle ou menuList introuvable dans", container);
+        return;
+    }
 
-            // Basculer l'animation du caret (avec l'icône Font Awesome)
-            animatedCaret.classList.toggle('show-caret');
-        });
-
-        // Cacher le menu si on clique en dehors
-        document.addEventListener('click', function(event) {
-            // Si le clic est en dehors du menu, on ferme
-            if (!menuToggle.contains(event.target) && !menuList.contains(event.target)) {
-                menuList.classList.remove('show');
-                menuList.classList.toggle('hide');
-                animatedCaret.classList.remove('show-caret');
-            }
-        });
+    menuToggle.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        menuList.classList.remove('hide');
+        menuList.classList.toggle('show');
+        animatedCaret.classList.toggle('show-caret');
     });
-    /*******************************************************/
-    /*  En dessous de width 768px (mode mobile)            */
-    /*******************************************************/
+
+    container.addEventListener('click', function(event) {
+        if (!menuToggle.contains(event.target) && !menuList.contains(event.target)) {
+            menuList.classList.remove('show');
+            menuList.classList.add('hide');
+            animatedCaret.classList.remove('show-caret');
+        }
+    });
+
+    // Mobile
     const mediaQuery = window.matchMedia('(max-width: 768px)');
-    // Vérifie la taille de l'écran au chargement
-    setMobileMenu(mediaQuery);
-    // Écoute les changements de taille d'écran
-    mediaQuery.addEventListener('change', setMobileMenu);
+    setMobileMenu(container, mediaQuery);
+    mediaQuery.addEventListener('change', (e) => setMobileMenu(container, e));
 }
 
-
-initIndex();
+// Si on est dans le contexte initial (pas SPA), appeler initIndex(document)
+if (!window.__spaNavigated) {
+    initIndex(document);
+  }
