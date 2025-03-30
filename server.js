@@ -127,9 +127,9 @@ app.use((req, res, next) => {
 
   if (userAgent.includes('ZAP')) return next();
   const isAllowedIpv6 = allowedIpv6Prefixes.some(prefix => clientIp.startsWith(prefix));
-  // if (!allowedIps.includes(clientIp) && !isAllowedIpv6) {
-  //   return res.status(403).sendFile(path.join(__dirname, '403.html'));
-  // }
+  if (!allowedIps.includes(clientIp) && !isAllowedIpv6) {
+    return res.status(403).sendFile(path.join(__dirname, '403.html'));
+  }
 
   next();
 });
