@@ -66,25 +66,22 @@ const cspDirectives = {
 const allowedIps = ['88.126.84.119', '91.166.155.218', '127.0.0.1', '::1', '192.168.1.141', '192.168.1.128', '137.66.6.96'];  // adresse statique de ZAP
 const allowedIpv6Prefixes = ['2a01:e0a:595:1dd0'];  // Préfixe IPv6 mobile de ZAP
 
-// === 🔐 CORS AUTORISÉS ===
+// === 🔐 CORS AUTORISÉS  ===
 const allowedOrigins = [
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  'https://ecoride-prod.fly.dev',
-  'https://ecoride-dev.fly.dev',
-  'https://ecoride-test.fly.dev'
+  "https://ecoride-prod.fly.dev",
+  "https://ecoride-dev.fly.dev",
+  "https://ecoride-test.fly.dev"
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("🌐 Requête entrante avec origin =", origin);
 
-    // Autoriser si pas d'origin (requête locale / navigation directe)
-    // ou si l'origin contient localhost:3000 ou 127.0.0.1:3000
     if (
+      // Autorise navigation directe (pas d'en-tête Origin)
       !origin ||
-      origin.includes("localhost:3000") ||
-      origin.includes("127.0.0.1:3000") || 
       allowedOrigins.includes(origin)
     ) {
       callback(null, true);
@@ -92,7 +89,8 @@ const corsOptions = {
       console.warn("❌ Origin refusée :", origin);
       callback(new Error("CORS not allowed"));
     }
-  }
+  },
+  optionsSuccessStatus: 200 // utile pour les requêtes OPTIONS avec certains navigateurs
 };
 
 // === 🔐 MIDDLEWARES SÉCURITÉ ===
