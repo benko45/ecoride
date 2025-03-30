@@ -93,6 +93,10 @@ const corsOptions = {
   optionsSuccessStatus: 200 // utile pour les requêtes OPTIONS avec certains navigateurs
 };
 
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end(); // No Content, silencieux
+});
+
 // === 🔐 MIDDLEWARES SÉCURITÉ ===
 
 // Helmet (en premier si CSP personnalisée ensuite)
@@ -160,8 +164,11 @@ app.get('/', (req, res) => {
   }
 });
 
-app.get('/favicon.ico', (req, res) => {
-  res.status(204).end(); // No Content, silencieux
+
+// Redirection vers l'index (SPA root page)
+app.get('/index.html', (req, res) => {
+  console.log("🔁 Redirection /index.html → /");
+  res.redirect('/');
 });
 
 // Fragments dynamiques (ex: choosing-address, results, etc.)
