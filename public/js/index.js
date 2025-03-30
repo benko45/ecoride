@@ -146,52 +146,57 @@ function displayArrivalAddress(container=document) {
 }
 
 function displayDate(container=document) {
-    const savedDate = localStorage.getItem('selectedDate');
-    // console.log('📅 displayDate : Date sélectionnée:', savedDate);
-    const options = { weekday: 'short', day: '2-digit', month: 'short' };
-    
-    const today = new Date();
-    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+    let savedDate = localStorage.getItem('selectedDate');
+    console.log("🗓️ displayDate > savedDate =", savedDate);
 
+    const options = { weekday: 'short', day: '2-digit', month: 'short' };
+
+    const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-    const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-
     const afterTomorrow = new Date(today);
     afterTomorrow.setDate(today.getDate() + 2);
-    const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-    
-    console.log("🔍 savedDate localStorage:", savedDate);
-    console.log("📅 todayFormatted:", todayFormatted);
-    console.log("📅 tomorrowFormatted:", tomorrowFormatted);
-    console.log("📅 afterTomorrowFormatted:", afterTomorrowFormatted);
 
-    console.log("📏 savedDate.length:", savedDate?.length);
-    console.log("📐 codes:", {
-    savedDate: savedDate?.split('').map(c => c.charCodeAt(0)),
-    todayFormatted: todayFormatted.split('').map(c => c.charCodeAt(0))
-    });
+    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+    const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+    const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+
+    console.log("📅 todayFormatted =", todayFormatted);
+    console.log("📅 tomorrowFormatted =", tomorrowFormatted);
+    console.log("📅 afterTomorrowFormatted =", afterTomorrowFormatted);
+
+    // 🧠 Convertir mots-clés en formats comparables
+    let comparisonDate = savedDate;
+    if (savedDate === "Aujourd'hui") comparisonDate = todayFormatted;
+    else if (savedDate === "Demain") comparisonDate = tomorrowFormatted;
+    else if (savedDate === "Après-demain") comparisonDate = afterTomorrowFormatted;
+
+    console.log("🔍 comparisonDate =", comparisonDate);
 
     const datepicker = $(container).find('#date-picker');
     if (!datepicker) {
         console.warn("⚠️ #date-picker introuvable dans container:", container);
         return;
     }
-    
-    if (savedDate) {
-        if (savedDate === todayFormatted) {
-            datepicker.text("Aujourd'hui");
-        } else if (savedDate === tomorrowFormatted) {
-            datepicker.text("Demain");
-        } else if (savedDate === afterTomorrowFormatted) {
-            datepicker.text("Après-demain");
-        } else {
-            datepicker.text(savedDate);
-        }
-    } else {
+
+    // 🖼️ Affichage des libellés
+    if (comparisonDate === todayFormatted) {
+        console.log("✅ Affichage : Aujourd'hui");
         datepicker.text("Aujourd'hui");
+    } else if (comparisonDate === tomorrowFormatted) {
+        console.log("✅ Affichage : Demain");
+        datepicker.text("Demain");
+    } else if (comparisonDate === afterTomorrowFormatted) {
+        console.log("✅ Affichage : Après-demain");
+        datepicker.text("Après-demain");
+    } else {
+        console.log("ℹ️ Affichage brut :", savedDate);
+        datepicker.text(savedDate);
     }
 }
+
+
+
 
 function displayPassengersNb(container=document) {
     const passengersNb = localStorage.getItem('selectedPassengers');

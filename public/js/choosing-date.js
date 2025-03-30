@@ -32,10 +32,11 @@ function initDatepicker(container=document) {
             if (!dateHasBeenSelected) {
                 dateHasBeenSelected = true; // ✅ première interaction réelle
             } else {
-                let selectedDate = e.format();
-                selectedDate = selectedDate.replace('.', '').toLowerCase();
+                let selectedDate = e.date; // Date JS native
+                const options = { weekday: 'short', day: '2-digit', month: 'short' };
+                selectedDate = selectedDate.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
                 setTempData('selectedDate', selectedDate);
-                console.log('selectedDate:', selectedDate);
+                console.log('📥 selectedDate enregistré :', selectedDate);
             }
         });
 
@@ -49,34 +50,18 @@ function initDatepicker(container=document) {
 function dateInit(savedDate) {
     console.log("🧪 dateInit: savedDate:", savedDate);
 
-    const formatDateForPicker = (date) => {
-        const options = { weekday: 'short', day: '2-digit', month: 'short' };
-        return date.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-    };
-
-    if (savedDate === "Aujourd'hui") {
-        const today = new Date();
-        const formatted = formatDateForPicker(today);
-        console.log("📆 Date 'Aujourd'hui' →", formatted);
-        $('#date-depart').datepicker('setDate', formatted);
-    } else if (savedDate === "Demain") {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const formatted = formatDateForPicker(tomorrow);
-        console.log("📆 Date 'Demain' →", formatted);
-        $('#date-depart').datepicker('setDate', formatted);
-    } else if (savedDate === "Après-demain") {
-        const overmorrow = new Date();
-        overmorrow.setDate(overmorrow.getDate() + 2);
-        const formatted = formatDateForPicker(overmorrow);
-        console.log("📆 Date 'Après-demain' →", formatted);
-        $('#date-depart').datepicker('setDate', formatted);
-    } else if (savedDate) {
+    if (savedDate) {
         $('#date-depart').datepicker('setDate', savedDate);
     } else {
-        $('#date-depart').datepicker('setDate', new Date());
+        const today = new Date();
+        const options = { weekday: 'short', day: '2-digit', month: 'short' };
+        const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+        localStorage.setItem('selectedDate', todayFormatted);
+        $('#date-depart').datepicker('setDate', todayFormatted);
+        console.log("📆 Aucun savedDate → fallback aujourd’hui :", todayFormatted);
     }
 }
+
 
 
 function datepickerStyle(container=document) {
