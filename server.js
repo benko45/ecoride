@@ -75,23 +75,23 @@ const allowedOrigins = [
   "https://ecoride-test.fly.dev"
 ];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    console.log("🌐 Requête entrante avec origin =", origin);
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     console.log("🌐 Requête entrante avec origin =", origin);
 
-    if (
-      // Autorise navigation directe (pas d'en-tête Origin)
-      !origin ||
-      allowedOrigins.includes(origin)
-    ) {
-      callback(null, true);
-    } else {
-      console.warn("❌ Origin refusée :", origin);
-      callback(new Error("CORS not allowed"));
-    }
-  },
-  optionsSuccessStatus: 200 // utile pour les requêtes OPTIONS avec certains navigateurs
-};
+//     if (
+//       // Autorise navigation directe (pas d'en-tête Origin)
+//       !origin ||
+//       allowedOrigins.includes(origin)
+//     ) {
+//       callback(null, true);
+//     } else {
+//       console.warn("❌ Origin refusée :", origin);
+//       callback(new Error("CORS not allowed"));
+//     }
+//   },
+//   optionsSuccessStatus: 200 // utile pour les requêtes OPTIONS avec certains navigateurs
+// };
 
 app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.ico'));
@@ -144,7 +144,7 @@ app.use((req, res, next) => {
 });
 
 // CORS
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // === 🚀 FICHIERS PUBLICS ===
 app.use('/public', express.static(path.join(__dirname, 'public')));
