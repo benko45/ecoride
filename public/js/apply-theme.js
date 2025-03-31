@@ -10,6 +10,7 @@ export function applyTheme(container = document) {
     toggleTheme(container);
 }
 
+
 function setTheme(theme) {
     // Déterminer le vrai thème utilisé (light ou dark) en cas de "auto"
     var effectiveTheme = (theme === "auto")
