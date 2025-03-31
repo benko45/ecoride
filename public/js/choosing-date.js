@@ -1,10 +1,10 @@
 "use strict";
 
 import { applyTheme } from './apply-theme.js';
-import { applyDynamicStyles} from './choosing-address.js';
+import { applyDynamicStyles } from './choosing-address.js';
 import { setTempData } from './handleData.js';
 
-export function initChoosingDate(container=document) {
+export function initChoosingDate(container = document) {
     applyTheme(container);
     const datepicker = container.querySelector('.datepicker');
     if (!datepicker) initDatepicker(container);
@@ -14,35 +14,30 @@ export function initChoosingDate(container=document) {
     }
 }
 
-function initDatepicker(container=document) {
+function initDatepicker(container = document) {
     let dateHasBeenSelected = false;
-    // Initialisation du Datepicker
-    $(document).ready(function() {
-        // Récupérer les dates stockées dans le localStorage
+
+    $(document).ready(function () {
         const savedDate = localStorage.getItem('selectedDate');
         console.log('initDatepicker: savedDate:', savedDate);
-        // Configuration du Datepicker
+
         $('#date-depart').datepicker({
-            format: 'D dd M',   // Format de la date
-            startDate: '0d',    // Date minimale (aujourd'hui)
-            todayHighlight: true,   // Surligne la date d'aujourd'hui
-            language: 'fr',     // Langue en français
+            format: 'D dd M',
+            startDate: '0d',
+            todayHighlight: true,
+            language: 'fr',
             container: '#date-depart'
-        }).on('changeDate', function(e) {
+        }).on('changeDate', function (e) {
             if (!dateHasBeenSelected) {
-                dateHasBeenSelected = true; // ✅ première interaction réelle
+                dateHasBeenSelected = true;
             } else {
-                let selectedDate = e.date; // Date JS native
-                const options = { weekday: 'short', day: '2-digit', month: 'short' };
-                selectedDate = selectedDate.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-                setTempData('selectedDate', selectedDate);
+                const selectedDate = formatDateToLocalISO(e.date);
                 console.log('📥 selectedDate enregistré :', selectedDate);
+                setTempData('selectedDate', selectedDate);
             }
         });
 
-        // Si une date est enregistrée, on la sélectionne et on la surligne
-        dateInit(savedDate)
-        // On décore le datepicker
+        dateInit(savedDate);
         datepickerStyle(container);
     });
 }
@@ -51,24 +46,28 @@ function dateInit(savedDate) {
     console.log("🧪 dateInit: savedDate:", savedDate);
 
     if (savedDate) {
-        $('#date-depart').datepicker('setDate', savedDate);
+        // Convertit l'ISO local en date JS locale sans décalage UTC
+        const [year, month, day] = savedDate.split('-');
+        const localDate = new Date(Number(year), Number(month) - 1, Number(day));
+        $('#date-depart').datepicker('setDate', localDate);
     } else {
         const today = new Date();
-        const options = { weekday: 'short', day: '2-digit', month: 'short' };
-        const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-        localStorage.setItem('selectedDate', todayFormatted);
-        $('#date-depart').datepicker('setDate', todayFormatted);
-        console.log("📆 Aucun savedDate → fallback aujourd’hui :", todayFormatted);
+        $('#date-depart').datepicker('setDate', today);
     }
 }
 
-
-
-function datepickerStyle(container=document) {
+function datepickerStyle(container = document) {
     const datePickers = container.getElementsByClassName('datepicker');
     if (datePickers.length > 0) {
         Array.from(datePickers).forEach(el => applyDynamicStyles(el));
     } else {
         console.warn('Aucun datepicker trouvé !');
     }
+}
+
+export function formatDateToLocalISO(date) {
+    const year = date.getFullYear();
+    const month = `${date.getMonth() + 1}`.padStart(2, '0');
+    const day = `${date.getDate()}`.padStart(2, '0');
+    return `${year}-${month}-${day}`;
 }

@@ -5,6 +5,7 @@ import { initNavigation, listenToNavigation, setupPopstateHandler } from './spa-
 import { selectImage } from './functions.js';
 import { loadPage } from './page-loader.js';
 import { applyDynamicStyles } from './choosing-address.js';
+import { formatDateToLocalISO } from './choosing-date.js';
 
 
 const nonce = document.body.getAttribute("nonce") || document.querySelector("meta[name='csp-nonce']")?.getAttribute("content");
@@ -28,7 +29,7 @@ export function initIndex(container = document) {
     if(container === document) {
         localStorage.setItem('selectedDepartureAddress', 'Départ');
         localStorage.setItem('selectedArrivalAddress', 'Arrivée');
-        localStorage.setItem('selectedDate', "Aujourd'hui");
+        localStorage.setItem('selectedDate', new Date().toISOString().split('T')[0]); // "2025-03-31"
         localStorage.setItem('selectedPassengers', 1);
         displayData();
     } else displayData(container);
@@ -145,33 +146,28 @@ function displayArrivalAddress(container=document) {
     container.querySelector('#selected-arrival-address').innerText = localStorage.getItem('selectedArrivalAddress');
 }
 
-function displayDate(container=document) {
-    let savedDate = localStorage.getItem('selectedDate');
-    console.log("🗓️ displayDate > savedDate =", savedDate);
+function displayDate(container = document) {
+    const savedDate = localStorage.getItem('selectedDate');
+    if (!savedDate) return;
 
-    const options = { weekday: 'short', day: '2-digit', month: 'short' };
+    // Création d'une date locale à partir d'une ISO sans décalage
+    const [year, month, day] = savedDate.split('-');
+    const savedDateObj = new Date(Number(year), Number(month) - 1, Number(day));
+    const savedDateISO = `${year}-${month}-${day}`; // on garde l’ISO pour comparaison
+
+    console.log("🗓️ displayDate > savedDate =", savedDateISO);
+
+    const options = { weekday: 'long', day: '2-digit', month: 'long' };
 
     const today = new Date();
-    const tomorrow = new Date(today);
+    const tomorrow = new Date();
+    const afterTomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
-    const afterTomorrow = new Date(today);
     afterTomorrow.setDate(today.getDate() + 2);
 
-    const todayFormatted = today.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-    const tomorrowFormatted = tomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-    const afterTomorrowFormatted = afterTomorrow.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
-
-    console.log("📅 todayFormatted =", todayFormatted);
-    console.log("📅 tomorrowFormatted =", tomorrowFormatted);
-    console.log("📅 afterTomorrowFormatted =", afterTomorrowFormatted);
-
-    // 🧠 Convertir mots-clés en formats comparables
-    let comparisonDate = savedDate;
-    if (savedDate === "Aujourd'hui") comparisonDate = todayFormatted;
-    else if (savedDate === "Demain") comparisonDate = tomorrowFormatted;
-    else if (savedDate === "Après-demain") comparisonDate = afterTomorrowFormatted;
-
-    console.log("🔍 comparisonDate =", comparisonDate);
+    const todayISO = formatDateToLocalISO(today);
+    const tomorrowISO = formatDateToLocalISO(tomorrow);
+    const afterTomorrowISO = formatDateToLocalISO(afterTomorrow);
 
     const datepicker = $(container).find('#date-picker');
     if (!datepicker) {
@@ -179,24 +175,17 @@ function displayDate(container=document) {
         return;
     }
 
-    // 🖼️ Affichage des libellés
-    if (comparisonDate === todayFormatted) {
-        console.log("✅ Affichage : Aujourd'hui");
+    if (savedDateISO === todayISO) {
         datepicker.text("Aujourd'hui");
-    } else if (comparisonDate === tomorrowFormatted) {
-        console.log("✅ Affichage : Demain");
+    } else if (savedDateISO === tomorrowISO) {
         datepicker.text("Demain");
-    } else if (comparisonDate === afterTomorrowFormatted) {
-        console.log("✅ Affichage : Après-demain");
+    } else if (savedDateISO === afterTomorrowISO) {
         datepicker.text("Après-demain");
     } else {
-        console.log("ℹ️ Affichage brut :", savedDate);
-        datepicker.text(savedDate);
+        const formatted = savedDateObj.toLocaleDateString('fr-FR', options).replace('.', '').toLowerCase();
+        datepicker.text(formatted);
     }
 }
-
-
-
 
 function displayPassengersNb(container=document) {
     const passengersNb = localStorage.getItem('selectedPassengers');
