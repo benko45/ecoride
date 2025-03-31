@@ -47,7 +47,6 @@ function toggleTheme(container = document) {
 }
 
 
-
 function watchingAutoMode(selectedTheme) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
         if (selectedTheme === "auto") {
